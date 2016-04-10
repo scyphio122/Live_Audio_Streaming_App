@@ -1,0 +1,9 @@
+#include "commandreceiver.h"
+#include "udpmanager.h"
+
+
+CommandReceiver::CommandReceiver()
+{
+
+}
+
