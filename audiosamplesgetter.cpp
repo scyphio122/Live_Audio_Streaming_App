@@ -1,20 +1,40 @@
 #include "audiosamplesgetter.h"
 #include <QMessageBox>
+#include <QObject>
 #include <string>
+#include <QAudioInput>
+#include <QAudioOutput>
 
 AudioSamplesGetter::AudioSamplesGetter()
 {
-    audioMixerDeviceInit("Miks stereo (Realtek High Defin");
+    this->isCurrentlyPlaying    = false;
+    this->isMuted               = true;
+    this->echoSound             = false;
+
+    inputDataBuffer.reset(new QByteArray(new char[AUDIO_IN_BUFFER_SIZE], AUDIO_IN_BUFFER_SIZE));
+    capturingStream.reset(new QBuffer(this->inputDataBuffer.get()));
+    capturingStream->open(QIODevice::ReadWrite);
 }
 
-void AudioSamplesGetter::audioMixerDeviceInit(std::string audioDeviceName)
+QList<QAudioDeviceInfo> AudioSamplesGetter::listAvailableDevicesIn()
+{
+    return QAudioDeviceInfo::availableDevices(QAudio::AudioInput);
+}
+
+QList<QAudioDeviceInfo> AudioSamplesGetter::listAvailableDevicesOut()
+{
+    return QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
+}
+
+
+bool AudioSamplesGetter::audioMixerDeviceInit(std::string audioDeviceName)
 {
     bool audioMixerFound = false;
     QList<QAudioDeviceInfo> devices = QAudioDeviceInfo::availableDevices(QAudio::AudioInput);
-    QAudioDeviceInfo audioDeviceInfo = QAudioDeviceInfo(;
+    QAudioDeviceInfo audioDeviceInfo;
     for(int i=0; i<devices.size(); i++)
     {
-        if(devices[i].deviceName() == audioDeviceName)
+        if(devices[i].deviceName().toStdString() == audioDeviceName)
         {
             audioDeviceInfo = devices[i];
             audioMixerFound = true;
@@ -31,11 +51,17 @@ void AudioSamplesGetter::audioMixerDeviceInit(std::string audioDeviceName)
         return false;
     }
 
-    capturingStream->setOpenMode();
-    audioInDevice.reset(new QAudioInput(audioInDevice));
-    audioInDevice.start(capturingStream);
 
-//    connect(capturingDevice, SIGNAL(readyRead()), this, SLOT(captureSample()));
+    QAudioFormat desiredFormat;
+    desiredFormat.setChannelCount(2);
+    desiredFormat.setCodec("audio/pcm");
+    desiredFormat.setSampleType(QAudioFormat::SignedInt);
+    desiredFormat.setSampleRate(48000);
+    desiredFormat.setSampleSize(16);
+    desiredFormat = audioDeviceInfo.nearestFormat(desiredFormat);
+
+    setInputAudioDevice(new QAudioInput(audioDeviceInfo, desiredFormat));
+//    connect(audioInDevice, SIGNAL(readyRead()), this, SLOT(captureSamples()));
     return true;
 }
 
@@ -44,19 +70,15 @@ void AudioSamplesGetter::setAudioSamplesSender(AudioSamplesSender* newAudioSampl
     audioSender = newAudioSamplesSender;
 }
 
-void AudioSamplesGetter::setAudioSamplesSender(AudioSamplesSender* newAudioSamplesSender)
-{
-    this->audioSender = newAudioSamplesSender;
-}
 
 void AudioSamplesGetter::setInputAudioDevice(QAudioInput* newAudioInputDev)
 {
-    this->audioInDevice = newAudioInputDev;
+    this->audioInDevice.reset(newAudioInputDev);
 }
 
-void AudioSamplesGetter::setOutputAudioDevoce(QAudioOutput* newAudioOutputDev)
+void AudioSamplesGetter::setOutputAudioDevice(QAudioOutput* newAudioOutputDev)
 {
-    this->audioOutDevice = newAudioOutputDev;
+    this->audioOutDevice .reset(newAudioOutputDev);
 }
 
 void AudioSamplesGetter::setMuteEnabled(bool isMuted)
@@ -69,7 +91,26 @@ void AudioSamplesGetter::setEchoEnabled(bool isOn)
     this->echoSound = isOn;
 }
 
-void AudioSamplesGetter::getSamples(int& leftSample, int& rightSample)
+void AudioSamplesGetter::startSampling()
+{
+    if(!isCurrentlyPlaying)
+    {
+        audioInDevice->start(capturingStream.get());
+        isCurrentlyPlaying = true;
+    }
+}
+
+void AudioSamplesGetter::stopSampling()
+{
+    if(isCurrentlyPlaying)
+    {
+        audioInDevice->stop();
+        isCurrentlyPlaying = false;
+    }
+}
+
+
+void AudioSamplesGetter::captureSamples(int& leftSample, int& rightSample)
 {
 
 }
@@ -78,3 +119,9 @@ void AudioSamplesGetter::playEchoedSamples(int leftSample, int rightSample)
 {
 
 }
+
+bool AudioSamplesGetter::isPlaying()
+{
+    return this->isCurrentlyPlaying;
+}
+

@@ -1,0 +1,16 @@
+INPUT(
+./debug/main.o
+./debug/mainwindow.o
+./debug/audiosamplesgetter.o
+./debug/audiosamplessender.o
+./debug/commandssender.o
+./debug/udpmanager.o
+./debug/receiveddatagramprocessor.o
+./debug/datagramlistener.o
+./debug/commandreceiver.o
+./debug/graphicsvisualizer.o
+./debug/abstractvisualization.o
+./debug/fftbars.o
+./debug/audiosamplesplayer.o
+./debug/moc_mainwindow.o
+);

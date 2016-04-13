@@ -7,6 +7,7 @@ class AudioSamplesPlayer : public DatagramListener
 {
 public:
     AudioSamplesPlayer();
+    void onDataReceived(QByteArray& data);
 };
 
 #endif // AUDIOSAMPLESRECEIVER_H

@@ -4,13 +4,15 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+            multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Remote_Boombox
 TEMPLATE = app
 
+CONFIG += c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -38,5 +40,9 @@ HEADERS  += mainwindow.h \
     abstractvisualization.h \
     fftbars.h \
     audiosamplesplayer.h
+
+INCLUDEPATH += D:/C++_Libs/boost_1_60_0/
+
+LIBS += "-LD:/C++_Libs/boost_1_60_0/"
 
 FORMS    += mainwindow.ui

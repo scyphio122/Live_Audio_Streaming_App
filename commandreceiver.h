@@ -2,16 +2,15 @@
 #define COMMANDRECEIVER_H
 
 #include <datagramlistener.h>
-#include "udpmanager.h"
+
 
 class CommandReceiver : public DatagramListener
 {
-private:
-    UdpManager* udpManager;
+
 public:
     CommandReceiver();
+    void onDataReceived(QByteArray& data);
 
-    void setUdpManager(UdpManager *udpManager);
 };
 
 #endif // COMMANDRECEIVER_H

@@ -1,0 +1,16 @@
+INPUT(
+./release/main.o
+./release/mainwindow.o
+./release/audiosamplesgetter.o
+./release/audiosamplessender.o
+./release/commandssender.o
+./release/udpmanager.o
+./release/receiveddatagramprocessor.o
+./release/datagramlistener.o
+./release/commandreceiver.o
+./release/graphicsvisualizer.o
+./release/abstractvisualization.o
+./release/fftbars.o
+./release/audiosamplesplayer.o
+./release/moc_mainwindow.o
+);

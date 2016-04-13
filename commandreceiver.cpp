@@ -7,7 +7,7 @@ CommandReceiver::CommandReceiver()
 
 }
 
-void CommandReceiver::setUdpManager(UdpManager *udpManager)
+void CommandReceiver::onDataReceived(QByteArray& data)
 {
-    this->udpManager = udpManager;
+
 }
