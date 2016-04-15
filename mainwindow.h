@@ -10,6 +10,7 @@
 #include "audiosamplesplayer.h"
 #include "commandreceiver.h"
 #include "graphicsvisualizer.h"
+#include "fftcalculator.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +20,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
+    Ui::MainWindow *ui;
     AudioSamplesGetter audioSamplesGetter;
     AudioSamplesSender audioSamplesSender;
     CommandsSender commandsSender;
@@ -28,20 +30,39 @@ private:
     CommandReceiver commandsReceiver;
     GraphicsVisualizer graphVisualizer;
 
+    FftCalculator*  fft;
+    QPixmap*        pixmap;
+    QPainter*       painter;
+    QBrush*         brush;
+    QPen*           pen;
+    double          inputFreq;
+    volatile bool   redrawFlag = false;
 
+
+    void paintEvent(QPaintEvent *);
+    void visualizeFFT();
+    void drawingDelay(uint32_t time_ms);
+    void setFftCalculator(FftCalculator* fft);
+    void generateTestSin(double freq, double* dataOut, double xStart, double xEnd, uint32_t dataOutNumber);
     void displayAudioInDevices();
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+
 
 private slots:
+
+    void fftTest();
 
     void on_pB_startStopSampling_clicked();
 
     void on_cb_inputAudioDevice_activated(const QString &arg1);
 
-private:
-    Ui::MainWindow *ui;
+public:
+    explicit MainWindow(QWidget *parent = 0);
+    void runFftTest();
+    ~MainWindow();
+
+
 };
+
+
 
 #endif // MAINWINDOW_H

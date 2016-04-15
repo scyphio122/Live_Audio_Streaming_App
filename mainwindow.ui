@@ -6,25 +6,31 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>848</width>
-    <height>548</height>
+    <width>1263</width>
+    <height>797</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Remote Boombox</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QGroupBox" name="gB_inputAudioDevice">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>20</y>
-      <width>341</width>
-      <height>91</height>
+      <width>421</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="title">
      <string>Input Audio Device</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
     <widget class="QComboBox" name="cb_inputAudioDevice">
      <property name="geometry">
@@ -42,8 +48,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>60</y>
+       <x>330</x>
+       <y>30</y>
        <width>80</width>
        <height>21</height>
       </rect>
@@ -56,9 +62,9 @@
    <widget class="QGroupBox" name="gB_outputAudioDevice">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>341</width>
+      <x>470</x>
+      <y>20</y>
+      <width>411</width>
       <height>61</height>
      </rect>
     </property>
@@ -82,13 +88,48 @@
      </property>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="gB_visualization">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>1221</width>
+      <height>631</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Visualziation</string>
+    </property>
+    <widget class="QLabel" name="lB_visualization">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>1181</width>
+       <height>561</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>848</width>
+     <width>1263</width>
      <height>20</height>
     </rect>
    </property>

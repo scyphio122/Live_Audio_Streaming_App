@@ -12,5 +12,8 @@ INPUT(
 ./debug/abstractvisualization.o
 ./debug/fftbars.o
 ./debug/audiosamplesplayer.o
+./debug/fftcalculator.o
+./debug/complex.o
 ./debug/moc_mainwindow.o
+./debug/moc_audiosamplesgetter.o
 );

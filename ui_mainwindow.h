@@ -16,6 +16,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -34,6 +35,8 @@ public:
     QPushButton *pB_startStopSampling;
     QGroupBox *gB_outputAudioDevice;
     QComboBox *cB_outputAudioDevice;
+    QGroupBox *gB_visualization;
+    QLabel *lB_visualization;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -42,31 +45,42 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(848, 548);
+        MainWindow->resize(1263, 797);
+        MainWindow->setTabShape(QTabWidget::Rounded);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gB_inputAudioDevice = new QGroupBox(centralWidget);
         gB_inputAudioDevice->setObjectName(QStringLiteral("gB_inputAudioDevice"));
-        gB_inputAudioDevice->setGeometry(QRect(10, 20, 341, 91));
+        gB_inputAudioDevice->setGeometry(QRect(20, 20, 421, 61));
+        gB_inputAudioDevice->setFlat(false);
         cb_inputAudioDevice = new QComboBox(gB_inputAudioDevice);
         cb_inputAudioDevice->setObjectName(QStringLiteral("cb_inputAudioDevice"));
         cb_inputAudioDevice->setGeometry(QRect(20, 30, 301, 22));
         pB_startStopSampling = new QPushButton(gB_inputAudioDevice);
         pB_startStopSampling->setObjectName(QStringLiteral("pB_startStopSampling"));
         pB_startStopSampling->setEnabled(false);
-        pB_startStopSampling->setGeometry(QRect(120, 60, 80, 21));
+        pB_startStopSampling->setGeometry(QRect(330, 30, 80, 21));
         gB_outputAudioDevice = new QGroupBox(centralWidget);
         gB_outputAudioDevice->setObjectName(QStringLiteral("gB_outputAudioDevice"));
-        gB_outputAudioDevice->setGeometry(QRect(10, 120, 341, 61));
+        gB_outputAudioDevice->setGeometry(QRect(470, 20, 411, 61));
         gB_outputAudioDevice->setCheckable(true);
         gB_outputAudioDevice->setChecked(false);
         cB_outputAudioDevice = new QComboBox(gB_outputAudioDevice);
         cB_outputAudioDevice->setObjectName(QStringLiteral("cB_outputAudioDevice"));
         cB_outputAudioDevice->setGeometry(QRect(20, 30, 301, 22));
+        gB_visualization = new QGroupBox(centralWidget);
+        gB_visualization->setObjectName(QStringLiteral("gB_visualization"));
+        gB_visualization->setGeometry(QRect(20, 110, 1221, 631));
+        lB_visualization = new QLabel(gB_visualization);
+        lB_visualization->setObjectName(QStringLiteral("lB_visualization"));
+        lB_visualization->setGeometry(QRect(20, 40, 1181, 561));
+        lB_visualization->setAutoFillBackground(true);
+        lB_visualization->setFrameShape(QFrame::Box);
+        lB_visualization->setFrameShadow(QFrame::Sunken);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 848, 20));
+        menuBar->setGeometry(QRect(0, 0, 1263, 20));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -82,10 +96,12 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Remote Boombox", 0));
         gB_inputAudioDevice->setTitle(QApplication::translate("MainWindow", "Input Audio Device", 0));
         pB_startStopSampling->setText(QApplication::translate("MainWindow", "Start Playing", 0));
         gB_outputAudioDevice->setTitle(QApplication::translate("MainWindow", "Output Audio Device", 0));
+        gB_visualization->setTitle(QApplication::translate("MainWindow", "Visualziation", 0));
+        lB_visualization->setText(QString());
     } // retranslateUi
 
 };

@@ -26,7 +26,9 @@ SOURCES += main.cpp\
     graphicsvisualizer.cpp \
     abstractvisualization.cpp \
     fftbars.cpp \
-    audiosamplesplayer.cpp
+    audiosamplesplayer.cpp \
+    fftcalculator.cpp \
+    complex.cpp
 
 HEADERS  += mainwindow.h \
     audiosamplesgetter.h \
@@ -39,7 +41,9 @@ HEADERS  += mainwindow.h \
     graphicsvisualizer.h \
     abstractvisualization.h \
     fftbars.h \
-    audiosamplesplayer.h
+    audiosamplesplayer.h \
+    fftcalculator.h \
+    complex.h
 
 INCLUDEPATH += D:/C++_Libs/boost_1_60_0/
 

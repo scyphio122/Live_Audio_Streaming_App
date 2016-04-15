@@ -8,6 +8,8 @@
 
 class AudioSamplesGetter : public QObject
 {
+    Q_OBJECT
+
 private:
     const int                                   AUDIO_IN_BUFFER_SIZE = 1024;
     AudioSamplesSender*                         audioSender;
@@ -18,8 +20,10 @@ private:
     bool                                        isMuted;
     bool                                        echoSound;
     bool                                        isCurrentlyPlaying;
-
     void playEchoedSamples(int leftSample, int rightSample);
+
+public slots:
+    void onSamplesCaptured();
 
 public:
     AudioSamplesGetter();
@@ -29,14 +33,12 @@ public:
     void setOutputAudioDevice(QAudioOutput* newAudioOutputDev);
     void setMuteEnabled(bool isMuted);
     void setEchoEnabled(bool isOn);
-    void captureSamples(int& leftSample, int& rightSample);
     bool audioMixerDeviceInit(std::string audioDeviceName);
     void startSampling();
     void stopSampling();
+    bool isPlaying();
     QList<QAudioDeviceInfo> listAvailableDevicesIn();
     QList<QAudioDeviceInfo> listAvailableDevicesOut();
-    bool isPlaying();
-
 
 
 };

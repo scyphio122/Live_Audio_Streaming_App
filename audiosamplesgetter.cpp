@@ -61,7 +61,7 @@ bool AudioSamplesGetter::audioMixerDeviceInit(std::string audioDeviceName)
     desiredFormat = audioDeviceInfo.nearestFormat(desiredFormat);
 
     setInputAudioDevice(new QAudioInput(audioDeviceInfo, desiredFormat));
-//    connect(audioInDevice, SIGNAL(readyRead()), this, SLOT(captureSamples()));
+    connect(capturingStream.get(), SIGNAL(readyRead()), this, SLOT(onSamplesCaptured()));
     return true;
 }
 
@@ -95,6 +95,7 @@ void AudioSamplesGetter::startSampling()
 {
     if(!isCurrentlyPlaying)
     {
+            inputDataBuffer->fill(0, inputDataBuffer->length());
         audioInDevice->start(capturingStream.get());
         isCurrentlyPlaying = true;
     }
@@ -110,9 +111,9 @@ void AudioSamplesGetter::stopSampling()
 }
 
 
-void AudioSamplesGetter::captureSamples(int& leftSample, int& rightSample)
+void AudioSamplesGetter::onSamplesCaptured()
 {
-
+    this->audioSender->sendSamples(this->capturingStream.get(), this->capturingStream->bytesAvailable());
 }
 
 void AudioSamplesGetter::playEchoedSamples(int leftSample, int rightSample)

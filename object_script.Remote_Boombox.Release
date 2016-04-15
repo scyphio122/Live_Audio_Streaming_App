@@ -12,5 +12,8 @@ INPUT(
 ./release/abstractvisualization.o
 ./release/fftbars.o
 ./release/audiosamplesplayer.o
+./release/fftcalculator.o
+./release/complex.o
 ./release/moc_mainwindow.o
+./release/moc_audiosamplesgetter.o
 );
