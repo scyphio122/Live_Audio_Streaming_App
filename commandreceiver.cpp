@@ -7,7 +7,7 @@ CommandReceiver::CommandReceiver()
 
 }
 
-void CommandReceiver::onDataReceived(QByteArray& data)
+void CommandReceiver::onDataReceived(QByteArray *data)
 {
 
 }

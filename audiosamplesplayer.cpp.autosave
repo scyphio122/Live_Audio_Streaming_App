@@ -13,7 +13,7 @@ AudioSamplesPlayer::~AudioSamplesPlayer()
 
 void AudioSamplesPlayer::setAudioPlayer(QAudioOutput audioOutput)
 {
-    this->audioOutput.s
+    this->audioOutput.
 }
 
 void AudioSamplesPlayer::onDataReceived(QByteArray* data)

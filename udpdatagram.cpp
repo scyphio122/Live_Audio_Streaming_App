@@ -42,6 +42,17 @@ uint16_t UdpDatagram::getDataSize()
     return *dataSize;
 }
 
+QByteArray* UdpDatagram::getDataCopy()
+{
+    char* buf = new char[getDataSize()];
+
+    QByteArray* byteBuf = new QByteArray(buf, getDataSize());
+    /// Copy the data
+    memcpy(byteBuf->data(),  this->data->data()+DATA_SIZE_INDEX+DATA_SIZE_SIZE, this->getDataSize());
+
+    return byteBuf;
+}
+
 void UdpDatagram::setCommand(UdpCommandEnum command)
 {
     this->data->data()[COMMAND_INDEX] = command;

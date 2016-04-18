@@ -43,6 +43,10 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete pixmap;
+    delete fft;
+    delete painter;
+    delete brush;
+    delete pen;
 }
 
 void MainWindow::paintEvent(QPaintEvent *)
@@ -149,7 +153,6 @@ void MainWindow::generateTestSin(double freq, double* dataOut, double xStart, do
         x += interpolator;
     }
 }
-
 
 
 void MainWindow::displayAudioInDevices()

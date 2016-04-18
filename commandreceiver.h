@@ -9,7 +9,7 @@ class CommandReceiver : public DatagramListener
 
 public:
     CommandReceiver();
-    void onDataReceived(QByteArray& data);
+    void onDataReceived(QByteArray* data);
 
 };
 

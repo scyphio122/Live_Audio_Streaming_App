@@ -29,10 +29,13 @@ public:
     QByteArray*         getDatagram();
     UdpCommandEnum      getCommand();
     uint16_t            getDataSize();
+    QByteArray*         getDataCopy();
+
     void                setDatagram(QByteArray* datagram);
     void                setCommand(UdpCommandEnum command);
     void                setDataSize(uint16_t dataSize);
     void                setData(QByteArray* data);
+
     void                displayDatagram();
     void                resize(int newSize);
 

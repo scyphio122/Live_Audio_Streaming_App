@@ -8,7 +8,7 @@ class DatagramListener
 public:
     DatagramListener();
 
-    virtual void onDataReceived(QByteArray& data) = 0;
+    virtual void onDataReceived(QByteArray* data) = 0;
 };
 
 #endif // DATAGRAMLISTENER_H

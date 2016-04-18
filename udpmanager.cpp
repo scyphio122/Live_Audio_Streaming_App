@@ -49,7 +49,7 @@ int UdpManager::sendData(UdpDatagram* datagram, const QHostAddress ip = QHostAdd
 {
     /// Write data to the socket
     qint64 retval = udpSocket->writeDatagram(*datagram->getDatagram(), ip, port);
-    qint64 dataSize = datagram->getDatagram()->at(2) + datagram->getDatagram()->at(3);
+    qint64 dataSize = datagram->getDatagram()->size();
     if(retval == (-1) || retval != dataSize)
     {
         return -1;

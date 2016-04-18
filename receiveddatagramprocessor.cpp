@@ -6,11 +6,34 @@ ReceivedDatagramProcessor::ReceivedDatagramProcessor()
 
 }
 
+ReceivedDatagramProcessor::ReceivedDatagramProcessor(AudioSamplesPlayer* player, CommandReceiver* cmdRec)
+{
+    this->audioPlayer = player;
+    this->cmdReceiver = cmdRec;
+}
+
+void ReceivedDatagramProcessor::setAudioSamplesPlayer(AudioSamplesPlayer* player)
+{
+    this->audioPlayer = player;
+}
+
+void ReceivedDatagramProcessor::setCommandReceiver(CommandReceiver* cmdRec)
+{
+    this->cmdReceiver = cmdRec;
+}
+
+
 void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram, QHostAddress ip, uint16_t port)
 {
     UdpDatagram::UdpCommandEnum command = (UdpDatagram::UdpCommandEnum)datagram->getDatagram()->at(0);
     switch(command)
     {
+        case UdpDatagram::SAMPLES:
+        {
+            QByteArray* data = datagram->getDataCopy();
+            this->audioPlayer->onDataReceived(data);
+            break;
+        }
 //        case ACK:
 //        {
 
