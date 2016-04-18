@@ -14,6 +14,7 @@ INPUT(
 ./debug/audiosamplesplayer.o
 ./debug/fftcalculator.o
 ./debug/complex.o
+./debug/udpdatagram.o
 ./debug/moc_mainwindow.o
 ./debug/moc_audiosamplesgetter.o
 );

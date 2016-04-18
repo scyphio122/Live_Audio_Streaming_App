@@ -113,7 +113,7 @@ void AudioSamplesGetter::stopSampling()
 
 void AudioSamplesGetter::onSamplesCaptured()
 {
-    this->audioSender->sendSamples(this->capturingStream.get(), this->capturingStream->bytesAvailable());
+    this->audioSender->sendSamples(this->capturingStream.get());
 }
 
 void AudioSamplesGetter::playEchoedSamples(int leftSample, int rightSample)

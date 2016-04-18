@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     fftbars.cpp \
     audiosamplesplayer.cpp \
     fftcalculator.cpp \
-    complex.cpp
+    complex.cpp \
+    udpdatagram.cpp
 
 HEADERS  += mainwindow.h \
     audiosamplesgetter.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     fftbars.h \
     audiosamplesplayer.h \
     fftcalculator.h \
-    complex.h
+    complex.h \
+    udpdatagram.h
 
 INCLUDEPATH += D:/C++_Libs/boost_1_60_0/
 

@@ -6,6 +6,7 @@
 #include <QUdpSocket>
 #include <QHostAddress>
 #include <QObject>
+#include <udpdatagram.h>
 
 class UdpManager : public QObject
 {
@@ -24,7 +25,7 @@ public:
 
 
     bool initSocket(int port);
-    int  sendData(uint8_t* data, uint64_t data_size, const QHostAddress ip, const int port);
+    int  sendData(UdpDatagram* datagram, const QHostAddress ip, const int port);
     void readData();
 };
 

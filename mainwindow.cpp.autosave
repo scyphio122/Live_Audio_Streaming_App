@@ -151,7 +151,6 @@ void MainWindow::generateTestSin(double freq, double* dataOut, double xStart, do
 }
 
 
-
 void MainWindow::displayAudioInDevices()
 {
     QList<QAudioDeviceInfo> audioInDev = this->audioSamplesGetter.listAvailableDevicesIn();

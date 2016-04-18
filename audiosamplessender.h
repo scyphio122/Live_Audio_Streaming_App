@@ -8,11 +8,14 @@
 class AudioSamplesSender
 {
 private:
+    const QHostAddress ip   = QHostAddress::LocalHost;
+    const int receiverPort  = 8002;
     UdpManager* udpManager;
+
 public:
     AudioSamplesSender();
     void setUdpManager(UdpManager* udpManager);
-    void sendSamples(QBuffer *sampleArray, qint64 bytesAvailable);
+    void sendSamples(QBuffer *sampleArray);
 };
 
 #endif // AUDIOSAMPLESSENDER_H

@@ -4,6 +4,8 @@
 #include <QtGlobal>
 #include <QObject>
 #include <QString>
+#include "udpdatagram.h"
+
 
 UdpManager::UdpManager()
 {
@@ -43,12 +45,12 @@ bool UdpManager::initSocket(int port)
     return true;
 }
 
-int UdpManager::sendData(uint8_t* data, uint64_t data_size, const QHostAddress ip = QHostAddress("localhost"), const int port = 8002)
+int UdpManager::sendData(UdpDatagram* datagram, const QHostAddress ip = QHostAddress("localhost"), const int port = 8002)
 {
-    QByteArray datagram = QByteArray((const char*)data, (int)data_size);
-    qint64 retval = udpSocket->writeDatagram(datagram, ip, port);
-
-    if(retval == (-1) || retval != (qint64)data_size)
+    /// Write data to the socket
+    qint64 retval = udpSocket->writeDatagram(*datagram->getDatagram(), ip, port);
+    qint64 dataSize = datagram->getDatagram()->at(2) + datagram->getDatagram()->at(3);
+    if(retval == (-1) || retval != dataSize)
     {
         return -1;
     }
@@ -58,17 +60,18 @@ int UdpManager::sendData(uint8_t* data, uint64_t data_size, const QHostAddress i
 
 void UdpManager::readData()
 {
-    QByteArray      datagram;
+    UdpDatagram     datagram;
     QHostAddress    senderIpAddress;
     uint16_t        port;
 
 
-    while(udpSocket->hasPendingDatagrams())
+    while(udpSocket->hasPendingDatagrams() != -1)
     {
-        datagram.resize(udpSocket->pendingDatagramSize());
+        qint64 datagramSize = udpSocket->pendingDatagramSize();
+        datagram.resize(datagramSize);
 
-        udpSocket->readDatagram(datagram.data(), datagram.size(), &senderIpAddress, &port);
-        this->datagramProc->processDatagram((uint8_t*)datagram.data(), datagram.size(), senderIpAddress, port);
+        udpSocket->readDatagram(datagram.getDatagram()->data(), datagramSize, &senderIpAddress, &port);
+        this->datagramProc->processDatagram(&datagram, senderIpAddress, port);
     }
 }
 
