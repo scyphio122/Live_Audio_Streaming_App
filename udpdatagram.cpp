@@ -6,22 +6,20 @@
 
 UdpDatagram::UdpDatagram()
 {
-    this->data.reserve(QBYTEARRAY_SIZE);
 }
 
 UdpDatagram::UdpDatagram(UdpCommandEnum command, QBuffer* data)
 {
-    char dataSize = data->data().size();
-    char tmp = 0;
-    this->data.reserve(QBYTEARRAY_SIZE);
-    this->data.push_back((char)command);
-    this->data.push_back(dataSize);
+    uint32_t dataSize = data->bytesAvailable();
 
-    while(dataSize>0)
+    this->data = data->readAll();
+    if(this->data != nullptr)
     {
-        data->getChar(&tmp);
-        this->data.push_back(tmp);
-        dataSize--;
+        this->data.push_front(dataSize>>24);
+        this->data.push_front(dataSize>>16);
+        this->data.push_front(dataSize>>8);
+        this->data.push_front(dataSize>>0);
+        this->data.push_front((char)command);
     }
 }
 
@@ -30,9 +28,9 @@ UdpDatagram::~UdpDatagram()
 
 }
 
-QByteArray UdpDatagram::getDatagram()
+QByteArray* UdpDatagram::getDatagram()
 {
-    return data;
+    return &data;
 }
 
 UdpDatagram::UdpCommandEnum UdpDatagram::getCommand()
@@ -51,9 +49,7 @@ uint16_t UdpDatagram::getDataSize()
 
 QByteArray* UdpDatagram::getDataCopy()
 {
-    char* buf = new char[getDataSize()];
-
-    QByteArray* byteBuf = new QByteArray(buf, getDataSize());
+    QByteArray* byteBuf = new QByteArray(getDataSize(), 0);
     /// Copy the data
     memcpy(byteBuf->data(),  this->data.data()+DATA_SIZE_INDEX+DATA_SIZE_SIZE, this->getDataSize());
 

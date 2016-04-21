@@ -14,9 +14,13 @@ void AudioSamplesSender::setUdpManager(UdpManager *udpManager)
 
 void AudioSamplesSender::sendSamples(QBuffer* sampleArray)
 {
-    int bytesAvailable = sampleArray->bytesAvailable();
+    sampleArray->seek(0);
     /// Create the datagram
     UdpDatagram datagram(UdpDatagram::SAMPLES, sampleArray);
-    /// SAend the datagram
-    this->udpManager->sendData(&datagram, this->ip, this->receiverPort);
+    sampleArray->seek(0);
+    if(datagram.getDatagram() != nullptr)
+    {
+        /// Send the datagram
+        this->udpManager->sendData(&datagram, this->ip, this->receiverPort);
+    }
 }

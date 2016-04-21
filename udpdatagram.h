@@ -11,10 +11,10 @@ private:
     const int               COMMAND_INDEX = 0;
     const int               COMMAND_SIZE  = 1;
     const int               DATA_SIZE_INDEX = 1;
-    const int               DATA_SIZE_SIZE  = 2;
+    const int               DATA_SIZE_SIZE  = 4;
 
     const int               QBYTEARRAY_SIZE = 8096;
-    QByteArray              data;
+    QByteArray             data;
 
 public:
 
@@ -28,7 +28,7 @@ public:
     ~UdpDatagram();
 
 
-    QByteArray          getDatagram();
+    QByteArray*         getDatagram();
     UdpCommandEnum      getCommand();
     uint16_t            getDataSize();
     QByteArray*         getDataCopy();

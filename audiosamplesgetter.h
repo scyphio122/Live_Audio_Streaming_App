@@ -13,10 +13,10 @@ class AudioSamplesGetter : public QObject
 private:
     const int                                   AUDIO_IN_BUFFER_SIZE = 1024;
     AudioSamplesSender*                         audioSender;
-    boost::scoped_ptr<QAudioInput>              audioInDevice;
-    boost::scoped_ptr<QAudioOutput>             audioOutDevice;
-    boost::scoped_ptr<QBuffer>                  capturingStream;
-    boost::scoped_ptr<QByteArray>               inputDataBuffer;
+    QAudioInput*              audioInDevice;
+    QAudioOutput*             audioOutDevice;
+    QBuffer*                  capturingStream;
+    QByteArray*               inputDataBuffer;
     bool                                        isMuted;
     bool                                        echoSound;
     bool                                        isCurrentlyPlaying;
@@ -27,6 +27,7 @@ public slots:
 
 public:
     AudioSamplesGetter();
+    ~AudioSamplesGetter();
 
     void setAudioSamplesSender(AudioSamplesSender* newAudioSamplesSender);
     void setInputAudioDevice(QAudioInput* newAudioInputDev);
