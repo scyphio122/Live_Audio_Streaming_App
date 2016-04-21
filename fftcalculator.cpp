@@ -4,7 +4,7 @@
 #include <cmath>
 
 
-FftCalculator::FftCalculator()
+FftCalculator::FftCalculator() : QObject(nullptr)
 {
     outputArray = nullptr;
 }
@@ -50,6 +50,22 @@ uint16_t FftCalculator::getOutputArraySize()
 Complex FftCalculator::getOutputElement(uint32_t index)
 {
     return outputArray[index];
+}
+
+void FftCalculator::appendSample(uint16_t c)
+{
+    this->inputArray[inputArrayIndex++];
+    if(inputArrayIndex == inputArraySize)
+    {
+        inputArrayIndex = 0;
+
+        emit updateGui();
+    }
+}
+
+uint16_t FftCalculator::getInputFillLevel()
+{
+    return this->inputArrayIndex;
 }
 
 void FftCalculator::runTransform()

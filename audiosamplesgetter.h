@@ -30,16 +30,14 @@ public:
 
     void setAudioSamplesSender(AudioSamplesSender* newAudioSamplesSender);
     void setInputAudioDevice(QAudioInput* newAudioInputDev);
+    void connectDeviceWithBuf();
     void setOutputAudioDevice(QAudioOutput* newAudioOutputDev);
     void setMuteEnabled(bool isMuted);
     void setEchoEnabled(bool isOn);
-    bool audioMixerDeviceInit(std::string audioDeviceName);
+//    bool audioMixerDeviceInit(std::string audioDeviceName);
     void startSampling();
     void stopSampling();
     bool isPlaying();
-    QList<QAudioDeviceInfo> listAvailableDevicesIn();
-    QList<QAudioDeviceInfo> listAvailableDevicesOut();
-
 
 };
 

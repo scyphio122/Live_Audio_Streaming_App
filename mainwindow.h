@@ -45,7 +45,7 @@ private:
     void setFftCalculator(FftCalculator* fft);
     void generateTestSin(double freq, double* dataOut, double xStart, double xEnd, uint32_t dataOutNumber);
     void displayAudioInDevices();
-
+    void displayAudioOutDevices();
 
 private slots:
 
@@ -54,6 +54,10 @@ private slots:
     void on_pB_startStopSampling_clicked();
 
     void on_cb_inputAudioDevice_activated(const QString &arg1);
+
+    void on_cB_outputAudioDevice_activated(const QString &arg1);
+
+    void on_pB_startStopPlaying_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

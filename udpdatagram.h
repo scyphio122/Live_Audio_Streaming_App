@@ -3,6 +3,7 @@
 
 #include <stdint-gcc.h>
 #include <QByteArray>
+#include <QBuffer>
 
 class UdpDatagram
 {
@@ -11,8 +12,9 @@ private:
     const int               COMMAND_SIZE  = 1;
     const int               DATA_SIZE_INDEX = 1;
     const int               DATA_SIZE_SIZE  = 2;
-    char*                   intBuffer;
-    QByteArray*             data;
+
+    const int               QBYTEARRAY_SIZE = 8096;
+    QByteArray              data;
 
 public:
 
@@ -22,11 +24,11 @@ public:
     };
 
     UdpDatagram();
-    UdpDatagram(UdpCommandEnum command, QByteArray* data);
+    UdpDatagram(UdpCommandEnum command, QBuffer *data);
     ~UdpDatagram();
 
 
-    QByteArray*         getDatagram();
+    QByteArray          getDatagram();
     UdpCommandEnum      getCommand();
     uint16_t            getDataSize();
     QByteArray*         getDataCopy();

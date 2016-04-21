@@ -48,29 +48,29 @@ bool UdpManager::initSocket(int port)
 int UdpManager::sendData(UdpDatagram* datagram, const QHostAddress ip = QHostAddress("localhost"), const int port = 8002)
 {
     /// Write data to the socket
-    qint64 retval = udpSocket->writeDatagram(*datagram->getDatagram(), ip, port);
-    qint64 dataSize = datagram->getDatagram()->size();
-    if(retval == (-1) || retval != dataSize)
-    {
-        return -1;
-    }
+//    qint64 retval = udpSocket->writeDatagram(datagram->getDatagram(), ip, port);
+//    qint64 dataSize = datagram->getDatagram().size();
+//    if(retval == (-1) || retval != dataSize)
+//    {
+//        return -1;
+//    }
 
     return 0;
 }
 
 void UdpManager::readData()
 {
-    UdpDatagram     datagram;
+
     QHostAddress    senderIpAddress;
     uint16_t        port;
 
 
     while(udpSocket->hasPendingDatagrams() != -1)
     {
+        UdpDatagram     datagram;
         qint64 datagramSize = udpSocket->pendingDatagramSize();
         datagram.resize(datagramSize);
-
-        udpSocket->readDatagram(datagram.getDatagram()->data(), datagramSize, &senderIpAddress, &port);
+        udpSocket->readDatagram(datagram.getDatagram().data(), datagramSize, &senderIpAddress, &port);
         this->datagramProc->processDatagram(&datagram, senderIpAddress, port);
     }
 }

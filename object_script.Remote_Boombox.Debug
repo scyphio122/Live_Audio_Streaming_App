@@ -15,6 +15,9 @@ INPUT(
 ./debug/fftcalculator.o
 ./debug/complex.o
 ./debug/udpdatagram.o
+./debug/audiodevicelister.o
 ./debug/moc_mainwindow.o
 ./debug/moc_audiosamplesgetter.o
+./debug/moc_udpmanager.o
+./debug/moc_fftcalculator.o
 );

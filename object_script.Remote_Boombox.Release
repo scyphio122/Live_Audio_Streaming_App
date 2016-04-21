@@ -15,6 +15,9 @@ INPUT(
 ./release/fftcalculator.o
 ./release/complex.o
 ./release/udpdatagram.o
+./release/audiodevicelister.o
 ./release/moc_mainwindow.o
 ./release/moc_audiosamplesgetter.o
+./release/moc_udpmanager.o
+./release/moc_fftcalculator.o
 );

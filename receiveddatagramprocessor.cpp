@@ -25,7 +25,7 @@ void ReceivedDatagramProcessor::setCommandReceiver(CommandReceiver* cmdRec)
 
 void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram, QHostAddress ip, uint16_t port)
 {
-    UdpDatagram::UdpCommandEnum command = (UdpDatagram::UdpCommandEnum)datagram->getDatagram()->at(0);
+    UdpDatagram::UdpCommandEnum command = (UdpDatagram::UdpCommandEnum)datagram->getDatagram().at(0);
     switch(command)
     {
         case UdpDatagram::SAMPLES:

@@ -11,59 +11,50 @@ AudioSamplesGetter::AudioSamplesGetter()
     this->isMuted               = true;
     this->echoSound             = false;
 
-    inputDataBuffer.reset(new QByteArray(new char[AUDIO_IN_BUFFER_SIZE], AUDIO_IN_BUFFER_SIZE));
+    inputDataBuffer.reset(new QByteArray(AUDIO_IN_BUFFER_SIZE, 0));
     capturingStream.reset(new QBuffer(this->inputDataBuffer.get()));
     capturingStream->open(QIODevice::ReadWrite);
 }
 
-QList<QAudioDeviceInfo> AudioSamplesGetter::listAvailableDevicesIn()
-{
-    return QAudioDeviceInfo::availableDevices(QAudio::AudioInput);
-}
-
-QList<QAudioDeviceInfo> AudioSamplesGetter::listAvailableDevicesOut()
-{
-    return QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
-}
 
 
-bool AudioSamplesGetter::audioMixerDeviceInit(std::string audioDeviceName)
-{
-    bool audioMixerFound = false;
-    QList<QAudioDeviceInfo> devices = QAudioDeviceInfo::availableDevices(QAudio::AudioInput);
-    QAudioDeviceInfo audioDeviceInfo;
-    for(int i=0; i<devices.size(); i++)
-    {
-        if(devices[i].deviceName().toStdString() == audioDeviceName)
-        {
-            audioDeviceInfo = devices[i];
-            audioMixerFound = true;
-            break;
-        }
-    }
+//bool AudioSamplesGetter::audioMixerDeviceInit(std::string audioDeviceName)
+//{
+//    bool audioMixerFound = false;
+//    QList<QAudioDeviceInfo> devices = QAudioDeviceInfo::availableDevices(QAudio::AudioInput);
+//    QAudioDeviceInfo audioDeviceInfo;
+//    for(int i=0; i<devices.size(); i++)
+//    {
+//        if(devices[i].deviceName().toStdString() == audioDeviceName)
+//        {
+//            audioDeviceInfo = devices[i];
+//            audioMixerFound = true;
+//            break;
+//        }
+//    }
 
-    if(!audioMixerFound)
-    {
-        QMessageBox errorWindow;
-        errorWindow.setText("Audio mixer device not found. Remote audio transmission not available.");
-        errorWindow.setIcon(QMessageBox::Warning);
-        errorWindow.exec();
-        return false;
-    }
+//    if(!audioMixerFound)
+//    {
+//        QMessageBox errorWindow;
+//        errorWindow.setText("Audio mixer device not found. Remote audio transmission not available.");
+//        errorWindow.setIcon(QMessageBox::Warning);
+//        errorWindow.exec();
+//        return false;
+//    }
 
 
-    QAudioFormat desiredFormat;
-    desiredFormat.setChannelCount(2);
-    desiredFormat.setCodec("audio/pcm");
-    desiredFormat.setSampleType(QAudioFormat::SignedInt);
-    desiredFormat.setSampleRate(48000);
-    desiredFormat.setSampleSize(16);
-    desiredFormat = audioDeviceInfo.nearestFormat(desiredFormat);
+//    QAudioFormat desiredFormat;
+//    desiredFormat.setChannelCount(2);
+//    desiredFormat.setCodec("audio/pcm");
+//    desiredFormat.setSampleType(QAudioFormat::SignedInt);
+//    desiredFormat.setSampleRate(48000);
+//    desiredFormat.setSampleSize(16);
+//    desiredFormat = audioDeviceInfo.nearestFormat(desiredFormat);
 
-    setInputAudioDevice(new QAudioInput(audioDeviceInfo, desiredFormat));
-    connect(capturingStream.get(), SIGNAL(readyRead()), this, SLOT(onSamplesCaptured()));
-    return true;
-}
+//    setInputAudioDevice(new QAudioInput(audioDeviceInfo, desiredFormat));
+//    connect(capturingStream.get(), SIGNAL(readyRead()), this, SLOT(onSamplesCaptured()));
+//    return true;
+//}
 
 void AudioSamplesGetter::setAudioSamplesSender(AudioSamplesSender* newAudioSamplesSender)
 {
@@ -76,9 +67,14 @@ void AudioSamplesGetter::setInputAudioDevice(QAudioInput* newAudioInputDev)
     this->audioInDevice.reset(newAudioInputDev);
 }
 
+void AudioSamplesGetter::connectDeviceWithBuf()
+{
+    connect(capturingStream.get(), SIGNAL(readyRead()), this, SLOT(onSamplesCaptured()));
+}
+
 void AudioSamplesGetter::setOutputAudioDevice(QAudioOutput* newAudioOutputDev)
 {
-    this->audioOutDevice .reset(newAudioOutputDev);
+    this->audioOutDevice.reset(newAudioOutputDev);
 }
 
 void AudioSamplesGetter::setMuteEnabled(bool isMuted)
@@ -95,7 +91,7 @@ void AudioSamplesGetter::startSampling()
 {
     if(!isCurrentlyPlaying)
     {
-            inputDataBuffer->fill(0, inputDataBuffer->length());
+        inputDataBuffer->fill(0, inputDataBuffer->length());
         audioInDevice->start(capturingStream.get());
         isCurrentlyPlaying = true;
     }

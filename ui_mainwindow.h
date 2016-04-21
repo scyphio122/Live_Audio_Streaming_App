@@ -35,6 +35,7 @@ public:
     QPushButton *pB_startStopSampling;
     QGroupBox *gB_outputAudioDevice;
     QComboBox *cB_outputAudioDevice;
+    QPushButton *pB_startStopPlaying;
     QGroupBox *gB_visualization;
     QLabel *lB_visualization;
     QMenuBar *menuBar;
@@ -59,15 +60,18 @@ public:
         pB_startStopSampling = new QPushButton(gB_inputAudioDevice);
         pB_startStopSampling->setObjectName(QStringLiteral("pB_startStopSampling"));
         pB_startStopSampling->setEnabled(false);
-        pB_startStopSampling->setGeometry(QRect(330, 30, 80, 21));
+        pB_startStopSampling->setGeometry(QRect(330, 30, 81, 21));
         gB_outputAudioDevice = new QGroupBox(centralWidget);
         gB_outputAudioDevice->setObjectName(QStringLiteral("gB_outputAudioDevice"));
-        gB_outputAudioDevice->setGeometry(QRect(470, 20, 411, 61));
+        gB_outputAudioDevice->setGeometry(QRect(470, 20, 471, 61));
         gB_outputAudioDevice->setCheckable(true);
         gB_outputAudioDevice->setChecked(false);
         cB_outputAudioDevice = new QComboBox(gB_outputAudioDevice);
         cB_outputAudioDevice->setObjectName(QStringLiteral("cB_outputAudioDevice"));
         cB_outputAudioDevice->setGeometry(QRect(20, 30, 301, 22));
+        pB_startStopPlaying = new QPushButton(gB_outputAudioDevice);
+        pB_startStopPlaying->setObjectName(QStringLiteral("pB_startStopPlaying"));
+        pB_startStopPlaying->setGeometry(QRect(340, 30, 80, 21));
         gB_visualization = new QGroupBox(centralWidget);
         gB_visualization->setObjectName(QStringLiteral("gB_visualization"));
         gB_visualization->setGeometry(QRect(20, 110, 1221, 631));
@@ -98,8 +102,9 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Remote Boombox", 0));
         gB_inputAudioDevice->setTitle(QApplication::translate("MainWindow", "Input Audio Device", 0));
-        pB_startStopSampling->setText(QApplication::translate("MainWindow", "Start Playing", 0));
+        pB_startStopSampling->setText(QApplication::translate("MainWindow", "Start Sampling", 0));
         gB_outputAudioDevice->setTitle(QApplication::translate("MainWindow", "Output Audio Device", 0));
+        pB_startStopPlaying->setText(QApplication::translate("MainWindow", "Start Playing", 0));
         gB_visualization->setTitle(QApplication::translate("MainWindow", "Visualziation", 0));
         lB_visualization->setText(QString());
     } // retranslateUi

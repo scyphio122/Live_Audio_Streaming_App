@@ -4,13 +4,24 @@
 #include <stdint-gcc.h>
 #include <QVector>
 #include <complex.h>
+#include <QObject>
 
 #define M_PI    3.14159265358979323846d
 
-class FftCalculator
+class FftCalculator : public QObject
 {
-public:
+    Q_OBJECT
 
+private:
+    int         inputArrayIndex;
+    double*     inputArray = nullptr;
+    Complex*    outputArray = nullptr;
+    uint16_t    inputArraySize;
+    uint16_t    outputArraySize;
+
+    Complex*    recursiveFFT(double subarray[], uint16_t subarraySize, unsigned long step = 1);
+
+public:
     FftCalculator();
 
     void        setInputArray(double array[]);
@@ -23,14 +34,12 @@ public:
     uint16_t    getOutputArraySize();
     Complex     getOutputElement(uint32_t index);
     void        runTransform();
-private:
+    void        appendSample(uint16_t c);
+    uint16_t    getInputFillLevel();
 
-    double*     inputArray = nullptr;
-    Complex*    outputArray = nullptr;
-    uint16_t    inputArraySize;
-    uint16_t    outputArraySize;
+signals:
+    void updateGui();
 
-    Complex*    recursiveFFT(double subarray[], uint16_t subarraySize, unsigned long step = 1);
 };
 
 
