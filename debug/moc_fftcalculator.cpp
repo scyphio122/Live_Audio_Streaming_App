@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_FftCalculator_t {
-    QByteArrayData data[3];
-    char stringdata[25];
+    QByteArrayData data[6];
+    char stringdata[65];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,11 +30,15 @@ struct qt_meta_stringdata_FftCalculator_t {
 static const qt_meta_stringdata_FftCalculator_t qt_meta_stringdata_FftCalculator = {
     {
 QT_MOC_LITERAL(0, 0, 13), // "FftCalculator"
-QT_MOC_LITERAL(1, 14, 9), // "updateGui"
-QT_MOC_LITERAL(2, 24, 0) // ""
+QT_MOC_LITERAL(1, 14, 12), // "fftCompleted"
+QT_MOC_LITERAL(2, 27, 0), // ""
+QT_MOC_LITERAL(3, 28, 8), // "Complex*"
+QT_MOC_LITERAL(4, 37, 11), // "outputArray"
+QT_MOC_LITERAL(5, 49, 15) // "outputArraySize"
 
     },
-    "FftCalculator\0updateGui\0"
+    "FftCalculator\0fftCompleted\0\0Complex*\0"
+    "outputArray\0outputArraySize"
 };
 #undef QT_MOC_LITERAL
 
@@ -52,10 +56,10 @@ static const uint qt_meta_data_FftCalculator[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   19,    2, 0x06 /* Public */,
+       1,    2,   19,    2, 0x06 /* Public */,
 
  // signals: parameters
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 3, QMetaType::Int,    4,    5,
 
        0        // eod
 };
@@ -65,20 +69,19 @@ void FftCalculator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     if (_c == QMetaObject::InvokeMetaMethod) {
         FftCalculator *_t = static_cast<FftCalculator *>(_o);
         switch (_id) {
-        case 0: _t->updateGui(); break;
+        case 0: _t->fftCompleted((*reinterpret_cast< Complex*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (FftCalculator::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&FftCalculator::updateGui)) {
+            typedef void (FftCalculator::*_t)(Complex * , int );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&FftCalculator::fftCompleted)) {
                 *result = 0;
             }
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject FftCalculator::staticMetaObject = {
@@ -118,8 +121,9 @@ int FftCalculator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void FftCalculator::updateGui()
+void FftCalculator::fftCompleted(Complex * _t1, int _t2)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

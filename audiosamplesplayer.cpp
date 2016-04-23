@@ -1,5 +1,5 @@
 #include "audiosamplesplayer.h"
-
+#include <QMessageBox>
 AudioSamplesPlayer::AudioSamplesPlayer()
 {
 
@@ -13,10 +13,12 @@ AudioSamplesPlayer::AudioSamplesPlayer(QObject* parent=0)
 void AudioSamplesPlayer::init()
 {
     this->audioOutputBuffer = new QBuffer(new QByteArray(new char[AUDIO_OUT_BUF_SIZE], AUDIO_OUT_BUF_SIZE));
-    this->muted = true;
+    this->muted = false;
 
     this->fft = new FftCalculator();
     this->fft->setInputArraySize(AUDIO_OUT_BUF_SIZE);
+
+    emit sendFft(fft);
 }
 
 AudioSamplesPlayer::~AudioSamplesPlayer()
@@ -58,27 +60,33 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 {
     int i = 0;
     uint16_t sample = 0;
-    int dataSize = data->size();
     if(!muted)
     {
-        if(fft->getInputArray() == nullptr)
-            fft->setInputArray(new int[8192]);
-        while(dataSize != 0)
+        /// TODO: Put here the code to play the samples on audio OUT
+        ///
+        ///
+        int dataSize = data->size();
+        int inputSize = AUDIO_OUT_BUF_SIZE;
+        if(dataSize > AUDIO_OUT_BUF_SIZE)
         {
-            /// Put data in the audio buffer
-            this->audioOutputBuffer->putChar(data->at(i));
-            if(dataSize % 2 == 0)
+            inputSize = dataSize/AUDIO_OUT_BUF_SIZE + AUDIO_OUT_BUF_SIZE;
+            data->resize(inputSize);
+            /// Fill the rest of the array with zeros
+            memset(data->data()+dataSize, 0, inputSize-dataSize);
+            if((inputSize % 8192) == 0)
             {
-                sample = (uint8_t)data->at(i) + ((uint8_t)data->at(i+1) >> 8);
-                fft->appendSample(sample);
-                if(fft->getInputFillLevel() == fft->getInputArraySize()-1)
-                {
-                    fft->runTransform();
-                }
+                QMessageBox w;
+                w.setIcon(QMessageBox::Icon::Warning);
+                w.setText("FFT: Rozmiar wejścia nieprawidłowy: " + QString::number(inputSize));
+                w.show();
+                w.exec();
+                return;
             }
-            i+=2;
-            dataSize -= 2;
         }
+        /// Set the input array
+        fft->setInputArray((int16_t*)data->data());
+        fft->setInputArraySize(inputSize/sizeof(int16_t));
+        /// Run the transform
+        fft->runTransform();
     }
-    delete data;
 }

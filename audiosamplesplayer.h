@@ -32,6 +32,7 @@ public slots:
     bool isMuted();
 signals:
     void isMutedSignal(bool value);
+    void sendFft(FftCalculator* fft);
 };
 
 #endif // AUDIOSAMPLESRECEIVER_H

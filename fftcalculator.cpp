@@ -7,9 +7,8 @@
 FftCalculator::FftCalculator() : QObject(nullptr)
 {
     outputArray = nullptr;
-    inputArray = new int[8096];
-    std::cout << &inputArray[0] <<std::endl;
-    inputArraySize = 8096;
+//    inputArray = new int[8096];
+//    inputArraySize = 8096;
 }
 
 FftCalculator::~FftCalculator()
@@ -17,7 +16,7 @@ FftCalculator::~FftCalculator()
     delete[] inputArray;
 }
 
-void FftCalculator::setInputArray(int *array)
+void FftCalculator::setInputArray(int16_t *array)
 {
     inputArray = array;
 }
@@ -36,7 +35,7 @@ void FftCalculator::setOutputArraySize(uint16_t size)
     outputArraySize = size;
 }
 
-int* FftCalculator::getInputArray()
+int16_t* FftCalculator::getInputArray()
 {
     return inputArray;
 }
@@ -66,8 +65,6 @@ void FftCalculator::appendSample(uint16_t c)
     if(inputArrayIndex == inputArraySize)
     {
         inputArrayIndex = 0;
-
-        emit updateGui();
     }
 }
 
@@ -79,9 +76,10 @@ uint16_t FftCalculator::getInputFillLevel()
 void FftCalculator::runTransform()
 {
     outputArray = recursiveFFT(inputArray, inputArraySize);
+    emit fftCompleted(outputArray, outputArraySize);
 }
 
-Complex* FftCalculator::recursiveFFT(int subarray[], uint16_t subarraySize, unsigned long int step)
+Complex* FftCalculator::recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long int step)
 {
     Complex* resultArray = nullptr;
     if(subarraySize == 1)

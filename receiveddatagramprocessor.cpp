@@ -32,6 +32,7 @@ void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram)
         {
             QByteArray* data = datagram->getDataCopy();
             this->audioPlayer->onDataReceived(data);
+            delete data;
             break;
         }
 //        case ACK:
@@ -59,6 +60,7 @@ void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram)
         default:
             break;
     }
+    delete datagram;
 }
 
 std::string ReceivedDatagramProcessor::parseName(uint8_t* data)

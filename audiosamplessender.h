@@ -16,6 +16,7 @@ private:
     const int           receiverPort      = 8002;
     UdpManager*         udpManager;
 
+
 public:
     AudioSamplesSender();
     AudioSamplesSender(AudioSamplesGetter* parent = 0);

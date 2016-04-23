@@ -23,7 +23,7 @@
 #include "complex.h"
 #include "audiodevicelister.h"
 #include <QThread>
-
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -49,27 +49,27 @@ private:
     QThread*                    audioReceiverThread;
 
     FftCalculator*  fft;
+    Complex*        fftOutArray = nullptr;
+    int             fftOutArraySize;
     QPixmap*        pixmap;
     QPainter*       painter;
     QBrush*         brush;
     QPen*           pen;
-    double          inputFreq;
-    volatile bool   redrawFlag = false;
-
+    QTimer*                     guiRefreshTimer;
     bool                        audioInSampling = false;
     bool                        audioOutMuted   = true;
 
     void paintEvent(QPaintEvent *);
     void visualizeFFT();
     void drawingDelay(uint32_t time_ms);
-    void setFftCalculator(FftCalculator* fft);
+
     void generateTestSin(double freq, int *dataOut, double xStart, double xEnd, uint32_t dataOutNumber);
     void displayAudioInDevices();
     void displayAudioOutDevices();
 
 private slots:
 
-    void fftTest();
+//    void fftTest();
 
     void on_pB_startStopSampling_clicked();
 
@@ -95,6 +95,7 @@ public:
     void setAudioSenderThread(QThread* o);
     void setUdpThread(QThread* o);
     void setAudioReceiverThread(QThread* o);
+
     void connectSignals();
     void runFftTest();
     ~MainWindow();
@@ -102,7 +103,8 @@ public:
 public slots:
     void audioGetterIsSampling(bool signalFromThread);
     void audioPlayerIsPlaying(bool signalFromThread);
-
+    void setFftOutArray(Complex* array, int arraySize);
+    void setFftCalculator(FftCalculator* fft);
 signals:
     void setInputAudioDeviceSignal(QAudioInput* newAudioInputDev);
     void setAudioOutputSignal(QAudioOutput *dev);
@@ -111,7 +113,6 @@ signals:
     void startSamplingSignal(bool value);
     void startPlayingSignal(bool value);
     void initializeUdpSocket(QString ip, int port);
-
 };
 
 

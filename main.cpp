@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
     /// Push objects into the threads
     audioSamplesGetter.moveToThread(&samplesGetterThread);
-//    udpManager.moveToThread(&udpMangerThread);
+    udpManager.moveToThread(&udpMangerThread);
     receivedDataProc.moveToThread(&samplesReceivedThread);
 
     /// Set pointer to the threads
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 
     /// Start threads
     samplesGetterThread.start();
-//    udpMangerThread.start();
+    udpMangerThread.start();
     samplesReceivedThread.start();
 
 

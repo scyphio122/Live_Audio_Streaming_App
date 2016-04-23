@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_AudioSamplesPlayer_t {
-    QByteArrayData data[10];
-    char stringdata[99];
+    QByteArrayData data[13];
+    char stringdata[126];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,17 +33,21 @@ QT_MOC_LITERAL(0, 0, 18), // "AudioSamplesPlayer"
 QT_MOC_LITERAL(1, 19, 13), // "isMutedSignal"
 QT_MOC_LITERAL(2, 33, 0), // ""
 QT_MOC_LITERAL(3, 34, 5), // "value"
-QT_MOC_LITERAL(4, 40, 4), // "init"
-QT_MOC_LITERAL(5, 45, 14), // "setAudioOutput"
-QT_MOC_LITERAL(6, 60, 13), // "QAudioOutput*"
-QT_MOC_LITERAL(7, 74, 3), // "dev"
-QT_MOC_LITERAL(8, 78, 12), // "startPlaying"
-QT_MOC_LITERAL(9, 91, 7) // "isMuted"
+QT_MOC_LITERAL(4, 40, 7), // "sendFft"
+QT_MOC_LITERAL(5, 48, 14), // "FftCalculator*"
+QT_MOC_LITERAL(6, 63, 3), // "fft"
+QT_MOC_LITERAL(7, 67, 4), // "init"
+QT_MOC_LITERAL(8, 72, 14), // "setAudioOutput"
+QT_MOC_LITERAL(9, 87, 13), // "QAudioOutput*"
+QT_MOC_LITERAL(10, 101, 3), // "dev"
+QT_MOC_LITERAL(11, 105, 12), // "startPlaying"
+QT_MOC_LITERAL(12, 118, 7) // "isMuted"
 
     },
     "AudioSamplesPlayer\0isMutedSignal\0\0"
-    "value\0init\0setAudioOutput\0QAudioOutput*\0"
-    "dev\0startPlaying\0isMuted"
+    "value\0sendFft\0FftCalculator*\0fft\0init\0"
+    "setAudioOutput\0QAudioOutput*\0dev\0"
+    "startPlaying\0isMuted"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,28 +57,30 @@ static const uint qt_meta_data_AudioSamplesPlayer[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   39,    2, 0x06 /* Public */,
+       1,    1,   44,    2, 0x06 /* Public */,
+       4,    1,   47,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   42,    2, 0x0a /* Public */,
-       5,    1,   43,    2, 0x0a /* Public */,
-       8,    1,   46,    2, 0x0a /* Public */,
-       9,    0,   49,    2, 0x0a /* Public */,
+       7,    0,   50,    2, 0x0a /* Public */,
+       8,    1,   51,    2, 0x0a /* Public */,
+      11,    1,   54,    2, 0x0a /* Public */,
+      12,    0,   57,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void, 0x80000000 | 5,    6,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, 0x80000000 | 9,   10,
     QMetaType::Void, QMetaType::Bool,    3,
     QMetaType::Bool,
 
@@ -87,17 +93,25 @@ void AudioSamplesPlayer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         AudioSamplesPlayer *_t = static_cast<AudioSamplesPlayer *>(_o);
         switch (_id) {
         case 0: _t->isMutedSignal((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 1: _t->init(); break;
-        case 2: _t->setAudioOutput((*reinterpret_cast< QAudioOutput*(*)>(_a[1]))); break;
-        case 3: _t->startPlaying((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 4: { bool _r = _t->isMuted();
+        case 1: _t->sendFft((*reinterpret_cast< FftCalculator*(*)>(_a[1]))); break;
+        case 2: _t->init(); break;
+        case 3: _t->setAudioOutput((*reinterpret_cast< QAudioOutput*(*)>(_a[1]))); break;
+        case 4: _t->startPlaying((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 5: { bool _r = _t->isMuted();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 2:
+        case 1:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< FftCalculator* >(); break;
+            }
+            break;
+        case 3:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -112,6 +126,12 @@ void AudioSamplesPlayer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
             typedef void (AudioSamplesPlayer::*_t)(bool );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&AudioSamplesPlayer::isMutedSignal)) {
                 *result = 0;
+            }
+        }
+        {
+            typedef void (AudioSamplesPlayer::*_t)(FftCalculator * );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&AudioSamplesPlayer::sendFft)) {
+                *result = 1;
             }
         }
     }
@@ -142,13 +162,13 @@ int AudioSamplesPlayer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }
@@ -158,5 +178,12 @@ void AudioSamplesPlayer::isMutedSignal(bool _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void AudioSamplesPlayer::sendFft(FftCalculator * _t1)
+{
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_END_MOC_NAMESPACE
