@@ -3,10 +3,11 @@
 
 #include "udpmanager.h"
 #include <QBuffer>
+#include "audiosamplesgetter.h"
 
-
-class AudioSamplesSender
+class AudioSamplesSender : public QObject
 {
+    Q_OBJECT
 private:
     const QHostAddress ip   = QHostAddress::LocalHost;
     const int receiverPort  = 8002;
@@ -14,8 +15,13 @@ private:
 
 public:
     AudioSamplesSender();
+    AudioSamplesSender();
     void setUdpManager(UdpManager* udpManager);
     void sendSamples(QBuffer *sampleArray);
+
+
+signals:
+    void sendSamplesSignal(UdpDatagram* datagram, const QHostAddress ip, const int port);
 };
 
 #endif // AUDIOSAMPLESSENDER_H

@@ -1,10 +1,15 @@
 #include "audiosamplessender.h"
 #include <QBuffer>
 #include "udpdatagram.h"
+#include <audiosamplesgetter.h>
 
 AudioSamplesSender::AudioSamplesSender()
 {
+}
 
+AudioSamplesSender::AudioSamplesSender(AudioSamplesGetter* parent = 0)
+{
+    this->setParent(parent);
 }
 
 void AudioSamplesSender::setUdpManager(UdpManager *udpManager)
@@ -20,6 +25,6 @@ void AudioSamplesSender::sendSamples(QBuffer* sampleArray)
     if(datagram.getDatagram() != nullptr)
     {
         /// Send the datagram
-        this->udpManager->sendData(&datagram, this->ip, this->receiverPort);
+        emit sendData(&datagram, this->ip, this->receiverPort);
     }
 }
