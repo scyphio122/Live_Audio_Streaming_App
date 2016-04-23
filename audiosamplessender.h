@@ -5,6 +5,8 @@
 #include <QBuffer>
 #include "audiosamplesgetter.h"
 
+class AudioSamplesGetter;
+
 class AudioSamplesSender : public QObject
 {
     Q_OBJECT
@@ -15,13 +17,13 @@ private:
 
 public:
     AudioSamplesSender();
-    AudioSamplesSender();
+    AudioSamplesSender(AudioSamplesGetter* parent = 0);
     void setUdpManager(UdpManager* udpManager);
     void sendSamples(QBuffer *sampleArray);
 
 
 signals:
-    void sendSamplesSignal(UdpDatagram* datagram, const QHostAddress ip, const int port);
+    void emitSendSamplesSignal(UdpDatagram* datagram, const QHostAddress ip, const int port);
 };
 
 #endif // AUDIOSAMPLESSENDER_H

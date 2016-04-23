@@ -20,5 +20,8 @@ INPUT(
 ./debug/moc_audiosamplesgetter.o
 ./debug/moc_audiosamplessender.o
 ./debug/moc_udpmanager.o
+./debug/moc_receiveddatagramprocessor.o
+./debug/moc_commandreceiver.o
+./debug/moc_audiosamplesplayer.o
 ./debug/moc_fftcalculator.o
 );

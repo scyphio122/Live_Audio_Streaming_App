@@ -2,12 +2,21 @@
 
 AudioSamplesPlayer::AudioSamplesPlayer()
 {
+
+}
+
+AudioSamplesPlayer::AudioSamplesPlayer(QObject* parent=0)
+{
+    setParent(parent);
+}
+
+void AudioSamplesPlayer::init()
+{
     this->audioOutputBuffer = new QBuffer(new QByteArray(new char[AUDIO_OUT_BUF_SIZE], AUDIO_OUT_BUF_SIZE));
     this->muted = true;
 
     this->fft = new FftCalculator();
-//    this->fft->setInputArray(new double[8096]);
-    this->fft->setInputArraySize(8096);
+    this->fft->setInputArraySize(AUDIO_OUT_BUF_SIZE);
 }
 
 AudioSamplesPlayer::~AudioSamplesPlayer()

@@ -34,8 +34,11 @@ void UdpManager::setReceiverIpAddress(std::string address)
     this->receiverIpAddress.reset(new QHostAddress(QString::fromStdString(address)));
 }
 
-bool UdpManager::initSocket(int port)
+bool UdpManager::initSocket(std::string ip, int port)
 {
+    this->setReceiverIpAddress(ip);
+    this->portNumberInUse = port;
+
     this->udpSocket.reset(new QUdpSocket(this));
     udpSocket->bind(port);
 
@@ -66,12 +69,15 @@ void UdpManager::readData()
 
     while(udpSocket->hasPendingDatagrams())
     {
-        UdpDatagram     datagram;
         qint64 datagramSize = udpSocket->pendingDatagramSize();
-        datagram.resize(datagramSize);
-        udpSocket->readDatagram(datagram.getDatagram()->data(), datagramSize, &senderIpAddress, &port);
+        UdpDatagram*     datagram = new UdpDatagram();
+        datagram->resize(datagramSize);
+        udpSocket->readDatagram(datagram->getDatagram()->data(), datagramSize, &senderIpAddress, &port);
 
-        this->datagramProc->processDatagram(&datagram, senderIpAddress, port);
+        /// Emit event that the datragram has been received
+        emit emitDataReceived(datagram);
+
+//        this->datagramProc->processDatagram(&datagram, senderIpAddress, port);
     }
 }
 

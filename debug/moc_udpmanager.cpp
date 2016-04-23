@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_UdpManager_t {
-    QByteArrayData data[3];
-    char stringdata[21];
+    QByteArrayData data[14];
+    char stringdata[154];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,11 +30,25 @@ struct qt_meta_stringdata_UdpManager_t {
 static const qt_meta_stringdata_UdpManager_t qt_meta_stringdata_UdpManager = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "UdpManager"
-QT_MOC_LITERAL(1, 11, 8), // "readData"
-QT_MOC_LITERAL(2, 20, 0) // ""
+QT_MOC_LITERAL(1, 11, 16), // "emitDataReceived"
+QT_MOC_LITERAL(2, 28, 0), // ""
+QT_MOC_LITERAL(3, 29, 12), // "UdpDatagram*"
+QT_MOC_LITERAL(4, 42, 8), // "datagram"
+QT_MOC_LITERAL(5, 51, 20), // "setReceiverIpAddress"
+QT_MOC_LITERAL(6, 72, 11), // "std::string"
+QT_MOC_LITERAL(7, 84, 7), // "address"
+QT_MOC_LITERAL(8, 92, 20), // "setSendingPortNumber"
+QT_MOC_LITERAL(9, 113, 10), // "portNumber"
+QT_MOC_LITERAL(10, 124, 8), // "sendData"
+QT_MOC_LITERAL(11, 133, 12), // "QHostAddress"
+QT_MOC_LITERAL(12, 146, 2), // "ip"
+QT_MOC_LITERAL(13, 149, 4) // "port"
 
     },
-    "UdpManager\0readData\0"
+    "UdpManager\0emitDataReceived\0\0UdpDatagram*\0"
+    "datagram\0setReceiverIpAddress\0std::string\0"
+    "address\0setSendingPortNumber\0portNumber\0"
+    "sendData\0QHostAddress\0ip\0port"
 };
 #undef QT_MOC_LITERAL
 
@@ -44,18 +58,28 @@ static const uint qt_meta_data_UdpManager[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    1,   34,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   19,    2, 0x0a /* Public */,
+       5,    1,   37,    2, 0x0a /* Public */,
+       8,    1,   40,    2, 0x0a /* Public */,
+      10,    3,   43,    2, 0x0a /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
 
  // slots: parameters
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, QMetaType::Int,    9,
+    QMetaType::Int, 0x80000000 | 3, 0x80000000 | 11, QMetaType::Int,    4,   12,   13,
 
        0        // eod
 };
@@ -65,11 +89,23 @@ void UdpManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::InvokeMetaMethod) {
         UdpManager *_t = static_cast<UdpManager *>(_o);
         switch (_id) {
-        case 0: _t->readData(); break;
+        case 0: _t->emitDataReceived((*reinterpret_cast< UdpDatagram*(*)>(_a[1]))); break;
+        case 1: _t->setReceiverIpAddress((*reinterpret_cast< std::string(*)>(_a[1]))); break;
+        case 2: _t->setSendingPortNumber((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 3: { int _r = _t->sendData((*reinterpret_cast< UdpDatagram*(*)>(_a[1])),(*reinterpret_cast< const QHostAddress(*)>(_a[2])),(*reinterpret_cast< const int(*)>(_a[3])));
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         default: ;
         }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (UdpManager::*_t)(UdpDatagram * );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&UdpManager::emitDataReceived)) {
+                *result = 0;
+            }
+        }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject UdpManager::staticMetaObject = {
@@ -97,14 +133,21 @@ int UdpManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 4)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 1;
+        _id -= 4;
     }
     return _id;
+}
+
+// SIGNAL 0
+void UdpManager::emitDataReceived(UdpDatagram * _t1)
+{
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

@@ -7,8 +7,10 @@
 #include <audiosamplesplayer.h>
 #include <commandreceiver.h>
 
-class ReceivedDatagramProcessor
+class ReceivedDatagramProcessor : public QObject
 {
+    Q_OBJECT
+
 private:
     UdpDatagram* datagram;
     AudioSamplesPlayer* audioPlayer;
@@ -23,6 +25,8 @@ public:
 
     void setAudioSamplesPlayer(AudioSamplesPlayer* player);
     void setCommandReceiver(CommandReceiver* cmdRec);
+
+public slots:
     void processDatagram(UdpDatagram *datagram, QHostAddress ip, uint16_t port);
 };
 

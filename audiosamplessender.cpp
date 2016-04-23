@@ -7,7 +7,7 @@ AudioSamplesSender::AudioSamplesSender()
 {
 }
 
-AudioSamplesSender::AudioSamplesSender(AudioSamplesGetter* parent = 0)
+AudioSamplesSender::AudioSamplesSender(AudioSamplesGetter* parent)
 {
     this->setParent(parent);
 }
@@ -24,7 +24,7 @@ void AudioSamplesSender::sendSamples(QBuffer* sampleArray)
     sampleArray->seek(0);
     if(datagram.getDatagram() != nullptr)
     {
-        /// Send the datagram
-        emit sendData(&datagram, this->ip, this->receiverPort);
+        /// Send the datagram to the thread with UdpManager
+        emit emitSendSamplesSignal(&datagram, this->ip, this->receiverPort);
     }
 }

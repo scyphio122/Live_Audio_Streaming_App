@@ -10,18 +10,10 @@
 
 AudioSamplesGetter::AudioSamplesGetter()
 {
-    this->isCurrentlyPlaying    = false;
-    this->isMuted               = true;
-    this->echoSound             = false;
 
-    inputDataBuffer = new QByteArray(AUDIO_IN_BUFFER_SIZE, 0);
-    capturingStream = new QBuffer(this->inputDataBuffer);
-    capturingStream->open(QIODevice::ReadWrite);
-    audioInDevice = new QAudioInput();
-    audioOutDevice = new QAudioOutput();
-
-    memset(inputDataBuffer->data(), 0, AUDIO_IN_BUFFER_SIZE);
 }
+
+
 
 AudioSamplesGetter::~AudioSamplesGetter()
 {
@@ -31,6 +23,21 @@ AudioSamplesGetter::~AudioSamplesGetter()
     delete audioOutDevice;
 }
 
+void AudioSamplesGetter::init()
+{
+    this->isCurrentlyPlaying    = false;
+    this->isMuted               = true;
+    this->echoSound             = false;
+
+    inputDataBuffer = new QByteArray(AUDIO_IN_BUFFER_SIZE, 0);
+    capturingStream = new QBuffer(this->inputDataBuffer);
+    audioInDevice   = new QAudioInput();
+    audioOutDevice  = new QAudioOutput();
+
+    capturingStream->open(QIODevice::ReadWrite);
+
+    memset(inputDataBuffer->data(), 0, AUDIO_IN_BUFFER_SIZE);
+}
 
 
 void AudioSamplesGetter::setAudioSamplesSender(AudioSamplesSender* newAudioSamplesSender)
@@ -42,6 +49,8 @@ void AudioSamplesGetter::setAudioSamplesSender(AudioSamplesSender* newAudioSampl
 void AudioSamplesGetter::setInputAudioDevice(QAudioInput* newAudioInputDev)
 {
     this->audioInDevice = newAudioInputDev;
+    /// Connect the just set device with the buffer for samples
+    connectDeviceWithBuf();
 }
 
 void AudioSamplesGetter::connectDeviceWithBuf()
@@ -64,20 +73,16 @@ void AudioSamplesGetter::setEchoEnabled(bool isOn)
     this->echoSound = isOn;
 }
 
-void AudioSamplesGetter::startSampling()
+void AudioSamplesGetter::startSampling(bool value)
 {
-    if(!isCurrentlyPlaying)
+    if(!isCurrentlyPlaying && value == true)
     {
         inputDataBuffer->fill(0, inputDataBuffer->length());
         audioInDevice->setBufferSize(AUDIO_IN_BUFFER_SIZE);
         audioInDevice->start(capturingStream);
         isCurrentlyPlaying = true;
     }
-}
-
-void AudioSamplesGetter::stopSampling()
-{
-    if(isCurrentlyPlaying)
+    else
     {
         audioInDevice->stop();
         isCurrentlyPlaying = false;
@@ -97,8 +102,8 @@ void AudioSamplesGetter::playEchoedSamples(int leftSample, int rightSample)
 
 }
 
-bool AudioSamplesGetter::isPlaying()
+void AudioSamplesGetter::isPlaying()
 {
-    return this->isCurrentlyPlaying;
+    emit isPlaying(&isCurrentlyPlaying);
 }
 

@@ -63,6 +63,9 @@ SOURCES       = main.cpp \
 		debug/moc_audiosamplesgetter.cpp \
 		debug/moc_audiosamplessender.cpp \
 		debug/moc_udpmanager.cpp \
+		debug/moc_receiveddatagramprocessor.cpp \
+		debug/moc_commandreceiver.cpp \
+		debug/moc_audiosamplesplayer.cpp \
 		debug/moc_fftcalculator.cpp
 OBJECTS       = debug/main.o \
 		debug/mainwindow.o \
@@ -85,6 +88,9 @@ OBJECTS       = debug/main.o \
 		debug/moc_audiosamplesgetter.o \
 		debug/moc_audiosamplessender.o \
 		debug/moc_udpmanager.o \
+		debug/moc_receiveddatagramprocessor.o \
+		debug/moc_commandreceiver.o \
+		debug/moc_audiosamplesplayer.o \
 		debug/moc_fftcalculator.o
 
 DIST          =  mainwindow.h \
@@ -157,7 +163,7 @@ dist:
 	$(ZIP) Remote_Boombox.zip $(SOURCES) $(DIST) Remote_Boombox.pro ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/spec_pre.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/qdevice.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/device_config.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/common/shell-unix.conf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/qconfig.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_axbase.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_axbase_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_axcontainer.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_axcontainer_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_axserver.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_axserver_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_bluetooth.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_bluetooth_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_bootstrap_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_clucene_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_concurrent.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_concurrent_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_core.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_core_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_dbus.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_dbus_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_declarative.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_declarative_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_designer.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_designer_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_designercomponents_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_enginio.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_enginio_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_gui.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_gui_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_help.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_help_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_location.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_location_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_multimedia.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_multimedia_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_multimediawidgets.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_network.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_network_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_nfc.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_nfc_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_opengl.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_opengl_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_openglextensions.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_openglextensions_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_platformsupport_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_positioning.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_positioning_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_printsupport.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_printsupport_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_qml.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_qml_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_qmldevtools_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_qmltest.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_qmltest_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_quick.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_quick_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_quickparticles_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_quickwidgets.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_quickwidgets_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_script.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_script_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_scripttools.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_scripttools_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_sensors.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_sensors_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_serialport.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_serialport_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_sql.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_sql_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_svg.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_svg_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_testlib.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_testlib_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_uitools.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_uitools_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_webchannel.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_webchannel_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_webkit.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_webkit_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_webkitwidgets.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_webkitwidgets_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_websockets.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_websockets_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_widgets.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_widgets_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_winextras.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_winextras_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_xml.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_xml_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_xmlpatterns.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/qt_functions.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/qt_config.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/win32/qt_config.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++/qmake.conf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/spec_post.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/exclusive_builds.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/default_pre.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/win32/default_pre.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/resolve_config.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/exclusive_builds_post.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/default_post.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/build_pass.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/c++11.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/qml_debug.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/win32/rtti.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/precompile_header.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/warn_on.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/qt.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/resources.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/moc.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/win32/opengl.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/uic.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/win32/windows.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/testcase_targets.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/exceptions.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/yacc.prf ../../Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/features/lex.prf Remote_Boombox.pro D:/Qt/Qt5.4.1/5.4/mingw491_32/lib/qtmaind.prl D:/Qt/Qt5.4.1/5.4/mingw491_32/lib/Qt5Cored.prl D:/Qt/Qt5.4.1/5.4/mingw491_32/lib/Qt5Multimediad.prl D:/Qt/Qt5.4.1/5.4/mingw491_32/lib/Qt5Widgetsd.prl D:/Qt/Qt5.4.1/5.4/mingw491_32/lib/Qt5Guid.prl D:/Qt/Qt5.4.1/5.4/mingw491_32/lib/Qt5Networkd.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug/main.o debug/mainwindow.o debug/audiosamplesgetter.o debug/audiosamplessender.o debug/commandssender.o debug/udpmanager.o debug/receiveddatagramprocessor.o debug/datagramlistener.o debug/commandreceiver.o debug/graphicsvisualizer.o debug/abstractvisualization.o debug/fftbars.o debug/audiosamplesplayer.o debug/fftcalculator.o debug/complex.o debug/udpdatagram.o debug/audiodevicelister.o debug/moc_mainwindow.o debug/moc_audiosamplesgetter.o debug/moc_audiosamplessender.o debug/moc_udpmanager.o debug/moc_fftcalculator.o
+	-$(DEL_FILE) debug/main.o debug/mainwindow.o debug/audiosamplesgetter.o debug/audiosamplessender.o debug/commandssender.o debug/udpmanager.o debug/receiveddatagramprocessor.o debug/datagramlistener.o debug/commandreceiver.o debug/graphicsvisualizer.o debug/abstractvisualization.o debug/fftbars.o debug/audiosamplesplayer.o debug/fftcalculator.o debug/complex.o debug/udpdatagram.o debug/audiodevicelister.o debug/moc_mainwindow.o debug/moc_audiosamplesgetter.o debug/moc_audiosamplessender.o debug/moc_udpmanager.o debug/moc_receiveddatagramprocessor.o debug/moc_commandreceiver.o debug/moc_audiosamplesplayer.o debug/moc_fftcalculator.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -173,9 +179,9 @@ compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_audiosamplesgetter.cpp debug/moc_audiosamplessender.cpp debug/moc_udpmanager.cpp debug/moc_fftcalculator.cpp
+compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_audiosamplesgetter.cpp debug/moc_audiosamplessender.cpp debug/moc_udpmanager.cpp debug/moc_receiveddatagramprocessor.cpp debug/moc_commandreceiver.cpp debug/moc_audiosamplesplayer.cpp debug/moc_fftcalculator.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug/moc_mainwindow.cpp debug/moc_audiosamplesgetter.cpp debug/moc_audiosamplessender.cpp debug/moc_udpmanager.cpp debug/moc_fftcalculator.cpp
+	-$(DEL_FILE) debug/moc_mainwindow.cpp debug/moc_audiosamplesgetter.cpp debug/moc_audiosamplessender.cpp debug/moc_udpmanager.cpp debug/moc_receiveddatagramprocessor.cpp debug/moc_commandreceiver.cpp debug/moc_audiosamplesplayer.cpp debug/moc_fftcalculator.cpp
 debug/moc_mainwindow.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QMainWindow \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qmainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qwidget.h \
@@ -303,10 +309,10 @@ debug/moc_mainwindow.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QMa
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -378,6 +384,12 @@ debug/moc_mainwindow.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QMa
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
 		commandssender.h \
 		graphicsvisualizer.h \
+		audiodevicelister.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QList \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioDeviceInfo \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudio \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QThread \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qthread.h \
 		mainwindow.h
 	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore mainwindow.h -o debug/moc_mainwindow.cpp
 
@@ -468,10 +480,10 @@ debug/moc_audiosamplesgetter.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMul
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -541,6 +553,7 @@ debug/moc_audiosamplesgetter.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMul
 		commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
+		audiosamplesgetter.h \
 		audiosamplesgetter.h
 	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore audiosamplesgetter.h -o debug/moc_audiosamplesgetter.cpp
 
@@ -621,6 +634,7 @@ debug/moc_audiosamplessender.cpp: udpmanager.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
@@ -631,7 +645,6 @@ debug/moc_audiosamplessender.cpp: udpmanager.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -701,6 +714,10 @@ debug/moc_audiosamplessender.cpp: udpmanager.h \
 		commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
+		audiosamplesgetter.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioInput \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioinput.h \
+		audiosamplessender.h \
 		audiosamplessender.h
 	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore audiosamplessender.h -o debug/moc_audiosamplessender.cpp
 
@@ -780,6 +797,7 @@ debug/moc_udpmanager.cpp: receiveddatagramprocessor.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
@@ -790,7 +808,6 @@ debug/moc_udpmanager.cpp: receiveddatagramprocessor.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -862,6 +879,360 @@ debug/moc_udpmanager.cpp: receiveddatagramprocessor.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
 		udpmanager.h
 	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore udpmanager.h -o debug/moc_udpmanager.cpp
+
+debug/moc_receiveddatagramprocessor.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QHostAddress \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qhostaddress.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpair.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobal.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qconfig.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qfeatures.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsystemdetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qprocessordetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcompilerdetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtypeinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtypetraits.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsysinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlogging.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qflags.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbasicatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_bootstrap.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qgenericatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_msvc.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv7.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv6.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv5.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_ia64.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_mips.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_x86.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_cxx11.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_gcc.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_unix.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobalstatic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmutex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnumeric.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qrefcount.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnamespace.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qarraydata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qabstractsocket.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearraylist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qdebug.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qhash.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmap.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtextstream.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlocale.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvariant.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qdatastream.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qregexp.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qshareddata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvector.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpoint.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qset.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
+		udpdatagram.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
+		audiosamplesplayer.h \
+		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qmultimedia.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudio.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioformat.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiodeviceinfo.h \
+		fftcalculator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
+		complex.h \
+		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/select_compiler_config.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/nvcc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/gcc_xml.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/cray.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/common_edg.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/comeau.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/pathscale.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/intel.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/visualc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/gcc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/clang.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/digitalmars.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/kai.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/sgi_mipspro.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/compaq_cxx.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/greenhills.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/codegear.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/borland.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/metrowerks.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/sunpro_cc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/hp_acc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/mpw.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/vacpp.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/pgi.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/select_stdlib_config.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/stlport.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/libcomo.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/no_tr1/utility.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/roguewave.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/libcpp.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/libstdcpp3.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/sgi.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/msl.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/posix_features.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/vacpp.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/modena.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/dinkumware.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/select_platform_config.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/linux.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/bsd.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/solaris.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/irix.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/hpux.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/cygwin.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/win32.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/beos.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/macos.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/aix.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/amigaos.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/qnxnto.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/vxworks.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/symbian.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/cray.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/vms.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/suffix.hpp \
+		../../C++_Libs/boost_1_60_0/boost/assert.hpp \
+		../../C++_Libs/boost_1_60_0/boost/current_function.hpp \
+		../../C++_Libs/boost_1_60_0/boost/checked_delete.hpp \
+		../../C++_Libs/boost_1_60_0/boost/core/checked_delete.hpp \
+		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_nullptr_t.hpp \
+		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
+		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
+		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		commandreceiver.h \
+		receiveddatagramprocessor.h
+	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore receiveddatagramprocessor.h -o debug/moc_receiveddatagramprocessor.cpp
+
+debug/moc_commandreceiver.cpp: datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qrefcount.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobal.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qconfig.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qfeatures.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsystemdetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qprocessordetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcompilerdetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtypeinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtypetraits.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsysinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlogging.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qflags.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobalstatic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmutex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnumeric.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbasicatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_bootstrap.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qgenericatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_msvc.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv7.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv6.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv5.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_ia64.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_mips.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_x86.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_cxx11.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_gcc.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_unix.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnamespace.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qarraydata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearraylist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		commandreceiver.h
+	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore commandreceiver.h -o debug/moc_commandreceiver.cpp
+
+debug/moc_audiosamplesplayer.cpp: datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qrefcount.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobal.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qconfig.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qfeatures.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsystemdetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qprocessordetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcompilerdetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtypeinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtypetraits.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsysinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlogging.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qflags.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobalstatic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmutex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnumeric.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbasicatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_bootstrap.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qgenericatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_msvc.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv7.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv6.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv5.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_ia64.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_mips.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_x86.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_cxx11.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_gcc.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_unix.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnamespace.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qarraydata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearraylist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qmultimedia.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpair.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudio.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioformat.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qshareddata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qhash.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiodeviceinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qdatastream.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qregexp.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
+		fftcalculator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvector.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpoint.h \
+		complex.h \
+		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/select_compiler_config.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/nvcc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/gcc_xml.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/cray.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/common_edg.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/comeau.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/pathscale.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/intel.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/visualc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/gcc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/clang.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/digitalmars.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/kai.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/sgi_mipspro.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/compaq_cxx.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/greenhills.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/codegear.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/borland.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/metrowerks.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/sunpro_cc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/hp_acc.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/mpw.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/vacpp.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/compiler/pgi.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/select_stdlib_config.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/stlport.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/libcomo.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/no_tr1/utility.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/roguewave.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/libcpp.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/libstdcpp3.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/sgi.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/msl.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/posix_features.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/vacpp.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/modena.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/stdlib/dinkumware.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/select_platform_config.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/linux.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/bsd.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/solaris.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/irix.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/hpux.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/cygwin.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/win32.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/beos.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/macos.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/aix.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/amigaos.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/qnxnto.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/vxworks.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/symbian.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/cray.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/platform/vms.hpp \
+		../../C++_Libs/boost_1_60_0/boost/config/suffix.hpp \
+		../../C++_Libs/boost_1_60_0/boost/assert.hpp \
+		../../C++_Libs/boost_1_60_0/boost/current_function.hpp \
+		../../C++_Libs/boost_1_60_0/boost/checked_delete.hpp \
+		../../C++_Libs/boost_1_60_0/boost/core/checked_delete.hpp \
+		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_nullptr_t.hpp \
+		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
+		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
+		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		audiosamplesplayer.h
+	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore audiosamplesplayer.h -o debug/moc_audiosamplesplayer.cpp
 
 debug/moc_fftcalculator.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvector.h \
@@ -1068,10 +1439,10 @@ debug/main.o: main.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -1143,6 +1514,12 @@ debug/main.o: main.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
 		commandssender.h \
 		graphicsvisualizer.h \
+		audiodevicelister.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QList \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioDeviceInfo \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudio \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QThread \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qthread.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QApplication \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qapplication.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
@@ -1280,10 +1657,10 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -1355,6 +1732,12 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
 		commandssender.h \
 		graphicsvisualizer.h \
+		audiodevicelister.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QList \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioDeviceInfo \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudio \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QThread \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qthread.h \
 		ui_mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVariant \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QAction \
@@ -1403,8 +1786,6 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QToolBar \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qtoolbar.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QWidget \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QList \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioDeviceInfo \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QString \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QTimer \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtimer.h \
@@ -1413,9 +1794,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainter.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPixmap \
-		audiodevicelister.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudio
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPixmap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/mainwindow.o mainwindow.cpp
 
 debug/audiosamplesgetter.o: audiosamplesgetter.cpp audiosamplesgetter.h \
@@ -1506,10 +1885,10 @@ debug/audiosamplesgetter.o: audiosamplesgetter.cpp audiosamplesgetter.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -1700,6 +2079,7 @@ debug/audiosamplessender.o: audiosamplessender.cpp audiosamplessender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
@@ -1710,7 +2090,6 @@ debug/audiosamplessender.o: audiosamplessender.cpp audiosamplessender.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -1779,7 +2158,10 @@ debug/audiosamplessender.o: audiosamplessender.cpp audiosamplessender.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
 		commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
+		audiosamplesgetter.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioInput \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioinput.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/audiosamplessender.o audiosamplessender.cpp
 
 debug/commandssender.o: commandssender.cpp commandssender.h \
@@ -1860,6 +2242,7 @@ debug/commandssender.o: commandssender.cpp commandssender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
@@ -1870,7 +2253,6 @@ debug/commandssender.o: commandssender.cpp commandssender.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2019,6 +2401,7 @@ debug/udpmanager.o: udpmanager.cpp udpmanager.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
@@ -2029,7 +2412,6 @@ debug/udpmanager.o: udpmanager.cpp udpmanager.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2179,6 +2561,7 @@ debug/receiveddatagramprocessor.o: receiveddatagramprocessor.cpp receiveddatagra
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
@@ -2189,7 +2572,6 @@ debug/receiveddatagramprocessor.o: receiveddatagramprocessor.cpp receiveddatagra
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2295,7 +2677,22 @@ debug/datagramlistener.o: datagramlistener.cpp datagramlistener.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qarraydata.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearraylist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/datagramlistener.o datagramlistener.cpp
 
 debug/commandreceiver.o: commandreceiver.cpp commandreceiver.h \
@@ -2336,14 +2733,7 @@ debug/commandreceiver.o: commandreceiver.cpp commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
-		udpmanager.h \
-		receiveddatagramprocessor.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QHostAddress \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qhostaddress.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpair.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qabstractsocket.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
@@ -2352,11 +2742,19 @@ debug/commandreceiver.o: commandreceiver.cpp commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiterator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearraylist.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmetatype.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		udpmanager.h \
+		receiveddatagramprocessor.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QHostAddress \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qhostaddress.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpair.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qabstractsocket.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qdebug.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qhash.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmap.h \
@@ -2386,7 +2784,6 @@ debug/commandreceiver.o: commandreceiver.cpp commandreceiver.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2565,9 +2962,7 @@ debug/audiosamplesplayer.o: audiosamplesplayer.cpp audiosamplesplayer.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
@@ -2582,6 +2977,9 @@ debug/audiosamplesplayer.o: audiosamplesplayer.cpp audiosamplesplayer.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qtmultimediadefs.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qmultimedia.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpair.h \
@@ -2601,7 +2999,6 @@ debug/audiosamplesplayer.o: audiosamplesplayer.cpp audiosamplesplayer.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvector.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpoint.h \
 		complex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QObject \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2929,6 +3326,15 @@ debug/moc_audiosamplessender.o: debug/moc_audiosamplessender.cpp
 
 debug/moc_udpmanager.o: debug/moc_udpmanager.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_udpmanager.o debug/moc_udpmanager.cpp
+
+debug/moc_receiveddatagramprocessor.o: debug/moc_receiveddatagramprocessor.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_receiveddatagramprocessor.o debug/moc_receiveddatagramprocessor.cpp
+
+debug/moc_commandreceiver.o: debug/moc_commandreceiver.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_commandreceiver.o debug/moc_commandreceiver.cpp
+
+debug/moc_audiosamplesplayer.o: debug/moc_audiosamplesplayer.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_audiosamplesplayer.o debug/moc_audiosamplesplayer.cpp
 
 debug/moc_fftcalculator.o: debug/moc_fftcalculator.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/moc_fftcalculator.o debug/moc_fftcalculator.cpp

@@ -11,6 +11,7 @@
 class UdpManager : public QObject
 {
     Q_OBJECT
+
 private:
     int                             portNumberInUse;
     boost::scoped_ptr<QHostAddress> receiverIpAddress;
@@ -21,14 +22,15 @@ public:
     UdpManager(QHostAddress* ip, int sendPort);
 
     void setDatagramProc(ReceivedDatagramProcessor* datagramProcessor);
+    bool initSocket(std::string ip, int port);
+    void readData();
+public slots:
     void setReceiverIpAddress(std::string address);
     void setSendingPortNumber(int portNumber);
-
-
-    bool initSocket(int port);
     int  sendData(UdpDatagram* datagram, const QHostAddress ip, const int port);
-public slots:
-    void readData();
+
+signals:
+    void emitDataReceived(UdpDatagram* datagram);
 };
 
 #endif // UDPMANAGER_H

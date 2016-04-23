@@ -2,8 +2,9 @@
 #define DATAGRAMLISTENER_H
 
 #include <QByteArray>
+#include <QObject>
 
-class DatagramListener
+class DatagramListener: public QObject
 {
 public:
     DatagramListener();

@@ -11,6 +11,19 @@
 #include "commandreceiver.h"
 #include "graphicsvisualizer.h"
 #include "fftcalculator.h"
+#include "audiosamplesgetter.h"
+#include "audiosamplessender.h"
+#include "commandssender.h"
+#include "udpmanager.h"
+#include "receiveddatagramprocessor.h"
+#include "audiosamplesplayer.h"
+#include "commandreceiver.h"
+#include "graphicsvisualizer.h"
+#include "fftcalculator.h"
+#include "complex.h"
+#include "audiodevicelister.h"
+#include <QThread>
+
 
 namespace Ui {
 class MainWindow;
@@ -21,14 +34,19 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
     Ui::MainWindow *ui;
-    AudioSamplesGetter audioSamplesGetter;
-    AudioSamplesSender audioSamplesSender;
-    CommandsSender commandsSender;
-    UdpManager udpManager;
-    ReceivedDatagramProcessor receivedDataProc;
-    AudioSamplesPlayer audioSamplesPlayer;
-    CommandReceiver commandsReceiver;
-    GraphicsVisualizer graphVisualizer;
+
+    AudioSamplesGetter*         audioGetter;
+    AudioSamplesSender*         audioSender;
+    CommandsSender*             cmdSender;
+    UdpManager*                 udpManager;
+    ReceivedDatagramProcessor*  datagramProc;
+    AudioSamplesPlayer*         audioPlayer;
+    CommandReceiver*            cmdReceived;
+    GraphicsVisualizer*         graphicVisualizer;
+
+    QThread*                    audioGetterThread;
+    QThread*                    udpManagerThread;
+    QThread*                    audioReceiverThread;
 
     FftCalculator*  fft;
     QPixmap*        pixmap;
@@ -38,6 +56,7 @@ private:
     double          inputFreq;
     volatile bool   redrawFlag = false;
 
+    bool                        audioInSampling = false;
 
     void paintEvent(QPaintEvent *);
     void visualizeFFT();
@@ -46,7 +65,7 @@ private:
     void generateTestSin(double freq, int *dataOut, double xStart, double xEnd, uint32_t dataOutNumber);
     void displayAudioInDevices();
     void displayAudioOutDevices();
-
+    bool audioGetterIsPlaying(bool* signalFromThread);
 private slots:
 
     void fftTest();
@@ -61,9 +80,26 @@ private slots:
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+
+    void setAudioSamplesGetter(AudioSamplesGetter* o);
+    void setAudioSamplesSender(AudioSamplesSender* o);
+    void setCommandSender(CommandsSender* o);
+    void setUdpManager(UdpManager* o);
+    void setReceivedDatagramProcessor(ReceivedDatagramProcessor* o);
+    void setAudioSamplesPlayer(AudioSamplesPlayer* o);
+    void setCommandReceiver(CommandReceiver* o);
+    void setGraphicVisualizer(GraphicsVisualizer* o);
+    void setAudioSenderThread(QThread* o);
+    void setUdpThread(QThread* o);
+    void setAudioReceiverThread(QThread* o);
+    void connectSignals();
     void runFftTest();
     ~MainWindow();
 
+signals:
+    void setInputAudioDeviceSignal(QAudioInput* newAudioInputDev);
+    void queryIfPlayingSignal();
+    void startPlayingSignal(bool value);
 
 };
 
