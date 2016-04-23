@@ -15,6 +15,7 @@ private:
     QString             ipText;
     const int           receiverPort      = 8002;
     UdpManager*         udpManager;
+    
 
 public:
     AudioSamplesSender();

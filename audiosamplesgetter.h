@@ -12,7 +12,7 @@ class AudioSamplesGetter : public QObject
     Q_OBJECT
 
 private:
-    const int                                   AUDIO_IN_BUFFER_SIZE = 8192;
+    const static int                            AUDIO_IN_BUFFER_SIZE = 8192;
 
     AudioSamplesSender*                         audioSender;
     QAudioInput*                                audioInDevice;
