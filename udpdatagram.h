@@ -28,7 +28,7 @@ public:
     ~UdpDatagram();
 
 
-    QByteArray*         getDatagram();
+    QByteArray&         getDatagram();
     UdpCommandEnum      getCommand();
     uint16_t            getDataSize();
     QByteArray*         getDataCopy();

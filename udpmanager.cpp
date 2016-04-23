@@ -54,9 +54,8 @@ void UdpManager::sendData(UdpDatagram* datagram)
     qint64 retval = 0;
     if(isConnected)
     {
-        QHostAddress ip("localhost");//*this->receiverIpAddress.get()
         /// Write data to the socket
-        retval = udpSocket->writeDatagram(*datagram->getDatagram(), ip, this->portNumberInUse);
+        retval = udpSocket->writeDatagram(datagram->getDatagram(), *this->receiverIpAddress.get(), this->portNumberInUse);
         qDebug()<<"Ilość wysłanych danych:"<<retval;
         if(retval == -1)
         {
@@ -64,6 +63,7 @@ void UdpManager::sendData(UdpDatagram* datagram)
             qDebug()<<"Błąd wysyłki:"<<err;
         }
     }
+    delete datagram;
 }
 
 void UdpManager::readData()
@@ -76,7 +76,7 @@ void UdpManager::readData()
         qint64 datagramSize = udpSocket->pendingDatagramSize();
         UdpDatagram*     datagram = new UdpDatagram();
         datagram->resize(datagramSize);
-        udpSocket->readDatagram(datagram->getDatagram()->data(), datagramSize, &senderIpAddress, &port);
+        udpSocket->readDatagram(datagram->getDatagram().data(), datagramSize, &senderIpAddress, &port);
 
         /// Emit event that the datragram has been received
         emit emitDataReceived(datagram);

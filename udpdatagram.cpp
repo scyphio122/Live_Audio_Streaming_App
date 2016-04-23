@@ -31,9 +31,9 @@ UdpDatagram::~UdpDatagram()
 
 }
 
-QByteArray* UdpDatagram::getDatagram()
+QByteArray& UdpDatagram::getDatagram()
 {
-    return &data;
+    return data;
 }
 
 UdpDatagram::UdpCommandEnum UdpDatagram::getCommand()

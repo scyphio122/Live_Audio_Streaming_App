@@ -62,7 +62,7 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
     if(!muted)
     {
         if(fft->getInputArray() == nullptr)
-            fft->setInputArray(new int[8096]);
+            fft->setInputArray(new int[8192]);
         while(dataSize != 0)
         {
             /// Put data in the audio buffer

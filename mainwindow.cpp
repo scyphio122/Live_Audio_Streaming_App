@@ -340,5 +340,8 @@ void MainWindow::on_pB_startStopPlaying_clicked()
 void MainWindow::on_pB_connect_clicked()
 {
     int port = ui->sB_udpPort->value();
-    emit initializeUdpSocket(ui->lE_peerIP->text(), port);
+    QString ip = ui->lE_peerIP->text();
+    if(ip == "localhost")
+        ip = "127.0.0.1";
+    emit initializeUdpSocket(ip, port);
 }
