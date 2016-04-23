@@ -5,7 +5,8 @@
 #include <QObject>
 #include <QString>
 #include "udpdatagram.h"
-
+#include <QDebug>
+#include <QAbstractSocket>
 
 UdpManager::UdpManager()
 {
@@ -50,10 +51,18 @@ void UdpManager::initSocket(QString ip, int port)
 
 void UdpManager::sendData(UdpDatagram* datagram)
 {
+    qint64 retval = 0;
     if(isConnected)
     {
+        QHostAddress ip("localhost");//*this->receiverIpAddress.get()
         /// Write data to the socket
-        qint64 retval = udpSocket->writeDatagram(*datagram->getDatagram(), *this->receiverIpAddress.get(), this->portNumberInUse);
+        retval = udpSocket->writeDatagram(*datagram->getDatagram(), ip, this->portNumberInUse);
+        qDebug()<<"Ilość wysłanych danych:"<<retval;
+        if(retval == -1)
+        {
+            QAbstractSocket::SocketError err =udpSocket->error();
+            qDebug()<<"Błąd wysyłki:"<<err;
+        }
     }
 }
 
