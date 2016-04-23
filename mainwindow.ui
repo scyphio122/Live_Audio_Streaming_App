@@ -136,6 +136,87 @@
      </property>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="gB_networkSettings">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>20</y>
+      <width>271</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Network Settings</string>
+    </property>
+    <widget class="QLabel" name="lb_peerIP">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Peer Ip:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lE_peerIP">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>113</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>localhost</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lb_peerPort">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>20</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Peer port:</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="sB_udpPort">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>40</y>
+       <width>71</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>65535</number>
+     </property>
+     <property name="value">
+      <number>8002</number>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pB_connect">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Connect</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

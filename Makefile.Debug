@@ -1775,12 +1775,20 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qitemselectionmodel.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QLabel \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qlabel.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QLineEdit \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qlineedit.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextcursor.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextformat.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QMenuBar \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qmenubar.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qmenu.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QPushButton \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QSpinBox \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QStatusBar \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qstatusbar.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QToolBar \
@@ -1792,8 +1800,6 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbasictimer.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPainter \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainter.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPixmap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/mainwindow.o mainwindow.cpp
 

@@ -25,7 +25,7 @@ AudioSamplesGetter::~AudioSamplesGetter()
 
 void AudioSamplesGetter::init()
 {
-    this->isCurrentlyPlaying    = false;
+    this->isCurrentlySampling    = false;
     this->isMuted               = true;
     this->echoSound             = false;
 
@@ -75,17 +75,17 @@ void AudioSamplesGetter::setEchoEnabled(bool isOn)
 
 void AudioSamplesGetter::startSampling(bool value)
 {
-    if(!isCurrentlyPlaying && value == true)
+    if(!isCurrentlySampling && value == true)
     {
         inputDataBuffer->fill(0, inputDataBuffer->length());
         audioInDevice->setBufferSize(AUDIO_IN_BUFFER_SIZE);
         audioInDevice->start(capturingStream);
-        isCurrentlyPlaying = true;
+        isCurrentlySampling = true;
     }
     else
     {
         audioInDevice->stop();
-        isCurrentlyPlaying = false;
+        isCurrentlySampling = false;
     }
 }
 
@@ -93,7 +93,7 @@ void AudioSamplesGetter::startSampling(bool value)
 void AudioSamplesGetter::onSamplesCaptured()
 {
     this->capturingStream->seek(0);
-    qDebug()<<QTime::currentTime()<<this->capturingStream->bytesAvailable() <<this->capturingStream->size();
+//    qDebug()<<QTime::currentTime()<<this->capturingStream->bytesAvailable() <<this->capturingStream->size();
     this->audioSender->sendSamples(this->capturingStream);
 }
 
@@ -102,8 +102,8 @@ void AudioSamplesGetter::playEchoedSamples(int leftSample, int rightSample)
 
 }
 
-void AudioSamplesGetter::isPlaying()
+void AudioSamplesGetter::isSampling()
 {
-    emit isPlaying(&isCurrentlyPlaying);
+    emit isSamplingSignal(isCurrentlySampling);
 }
 

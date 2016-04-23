@@ -35,7 +35,6 @@ MainWindow::MainWindow(QWidget *parent) :
     pen = new QPen(QColor(255, 0, 255));
     painter->setBrush(*brush);
     painter->setPen(*pen);
-    connect(fft, SIGNAL(updateGui()), this, SLOT(update()));
 
 }
 
@@ -156,17 +155,26 @@ void MainWindow::setAudioReceiverThread(QThread* o)
 
 void MainWindow::connectSignals()
 {
-    /** Audio Getter Thread **/
+    /** Thread Objects inits **/
     connect(audioGetterThread, SIGNAL(started()), audioGetter, SLOT(init()));                                                                       /// Signal for audioGetter Initialization
+    connect(audioReceiverThread, SIGNAL(started()), audioPlayer, SLOT(init()));                                                                     /// Signal for audioPlayer Initialization
+
+    /** Audio Getter Thread **/
+    connect(this, SIGNAL(setInputAudioDeviceSignal(QAudioInput*)), audioGetter, SLOT(setInputAudioDevice(QAudioInput*)));                           /// Signal for setting the Audio In device
     connect(audioSender, SIGNAL(emitSendSamplesSignal(UdpDatagram*,QHostAddress,int)), udpManager, SLOT(sendData(UdpDatagram*,QHostAddress,int)));  /// Signal for sending datagrams
-    connect(this, SIGNAL(queryIfPlayingSignal()), audioGetter, SLOT(isPlaying()));                                                                  /// Signal for querying if audioIn is playing
-    connect(this, SIGNAL(startPlayingSignal(bool)), audioGetter, SLOT(startSampling(bool)));                                                        /// Signal for sampling start
+    connect(this, SIGNAL(queryIfSamplingSignal()), audioGetter, SLOT(isSampling()));                                                                 /// Signal for querying if audioIn is playing
+    connect(audioGetter, SIGNAL(isSamplingSignal(bool)), this, SLOT(audioGetterIsSampling(bool)));
+    connect(this, SIGNAL(startSamplingSignal(bool)), audioGetter, SLOT(startSampling(bool)));                                                       /// Signal for sampling start
+    connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));                                   /// Signal for setting audioOut for audioPlayer
     /** Udp Manager Thread **/
-    connect(audioSender, SIGNAL(emitSendSamplesSignal(UdpDatagram*,QHostAddress,int)), udpManager, SLOT(sendData(UdpDatagram*,QHostAddress,int)));
+    connect(this, SIGNAL(initializeUdpSocket(QString,int)), udpManager, SLOT(initSocket(QString,int)));
 
     /** Audio Receiver Thread **/
-    connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*)), datagramProc, SLOT(processDatagram(UdpDatagram*,QHostAddress,uint16_t)));
-
+    connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*)), datagramProc, SLOT(processDatagram(UdpDatagram*)));
+    connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));
+    connect(this, SIGNAL(queryIfPlayingSignal()), audioPlayer, SLOT(isMuted()));
+    connect(audioPlayer, SIGNAL(isMutedSignal(bool)), this, SLOT(audioPlayerIsPlaying(bool)));
+    connect(this, SIGNAL(startPlayingSignal(bool)), audioPlayer, SLOT(startPlaying(bool)));
 }
 
 void MainWindow::setFftCalculator(FftCalculator* fft)
@@ -252,10 +260,10 @@ void MainWindow::displayAudioOutDevices()
 }
 
 
-bool MainWindow::audioGetterIsPlaying(bool* signalFromThread)
+void MainWindow::audioGetterIsSampling(bool signalFromThread)
 {
-    audioInSampling = *signalFromThread;
-    if(*signalFromThread)
+    audioInSampling = signalFromThread;
+    if(signalFromThread)
     {
         ui->pB_startStopSampling->setText("Stop Sampling");
     }
@@ -263,7 +271,20 @@ bool MainWindow::audioGetterIsPlaying(bool* signalFromThread)
     {
         ui->pB_startStopSampling->setText("Start Sampling");
     }
-    return *signalFromThread;
+
+}
+
+void MainWindow::audioPlayerIsPlaying(bool signalFromThread)
+{
+    audioOutMuted = signalFromThread;
+    if(signalFromThread)
+    {
+        ui->pB_startStopPlaying->setText("Stop Playing");
+    }
+    else
+    {
+        ui->pB_startStopPlaying->setText("Start Playing");
+    }
 }
 
 void MainWindow::on_cb_inputAudioDevice_activated(const QString &arg1)
@@ -277,38 +298,47 @@ void MainWindow::on_cb_inputAudioDevice_activated(const QString &arg1)
 
 void MainWindow::on_pB_startStopSampling_clicked()
 {
-    /// Query the audioGetter if it is currently playing
-    emit queryIfPlayingSignal();
-
     if(!audioInSampling)
     {
-        emit startPlayingSignal(true);
+        emit startSamplingSignal(true);
         ui->pB_startStopSampling->setText("Stop Sampling");
     }
     else
     {
-         emit startPlayingSignal(false);
+         emit startSamplingSignal(false);
          ui->pB_startStopSampling->setText("Start Sampling");
     }
+
+    /// Query the audioGetter To update the current state of audioPlayer
+    emit queryIfSamplingSignal();
 }
 
 void MainWindow::on_cB_outputAudioDevice_activated(const QString &arg1)
 {
     QAudioDeviceInfo dev = AudioDeviceLister::listAudioDevices(arg1.toStdString(), QAudio::AudioOutput);
-    this->audioPlayer->setAudioOutput(new QAudioOutput(dev, AudioDeviceLister::getFormat(dev, "audio/pcm")));
+    emit setAudioOutputSignal(new QAudioOutput(dev, AudioDeviceLister::getFormat(dev, "audio/pcm")));
     ui->pB_startStopPlaying->setEnabled(true);
 }
 
 void MainWindow::on_pB_startStopPlaying_clicked()
 {
-    if(audioPlayer->isMuted())
+    if(audioOutMuted)
     {
-        audioPlayer->startPlaying();
+        emit startPlayingSignal(true);
         ui->pB_startStopPlaying->setText("Stop Playing");
     }
     else
     {
-         audioPlayer->pausePlaying();
+         emit startPlayingSignal(false);
          ui->pB_startStopPlaying->setText("Start Playing");
     }
+
+    emit queryIfPlayingSignal();
+}
+
+
+void MainWindow::on_pB_connect_clicked()
+{
+    int port = ui->sB_udpPort->value();
+    emit initializeUdpSocket(ui->lE_peerIP->text(), port);
 }

@@ -17,9 +17,11 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -38,6 +40,12 @@ public:
     QPushButton *pB_startStopPlaying;
     QGroupBox *gB_visualization;
     QLabel *lB_visualization;
+    QGroupBox *gB_networkSettings;
+    QLabel *lb_peerIP;
+    QLineEdit *lE_peerIP;
+    QLabel *lb_peerPort;
+    QSpinBox *sB_udpPort;
+    QPushButton *pB_connect;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -81,6 +89,26 @@ public:
         lB_visualization->setAutoFillBackground(true);
         lB_visualization->setFrameShape(QFrame::Box);
         lB_visualization->setFrameShadow(QFrame::Sunken);
+        gB_networkSettings = new QGroupBox(centralWidget);
+        gB_networkSettings->setObjectName(QStringLiteral("gB_networkSettings"));
+        gB_networkSettings->setGeometry(QRect(960, 20, 271, 101));
+        lb_peerIP = new QLabel(gB_networkSettings);
+        lb_peerIP->setObjectName(QStringLiteral("lb_peerIP"));
+        lb_peerIP->setGeometry(QRect(10, 20, 47, 13));
+        lE_peerIP = new QLineEdit(gB_networkSettings);
+        lE_peerIP->setObjectName(QStringLiteral("lE_peerIP"));
+        lE_peerIP->setGeometry(QRect(20, 40, 113, 21));
+        lb_peerPort = new QLabel(gB_networkSettings);
+        lb_peerPort->setObjectName(QStringLiteral("lb_peerPort"));
+        lb_peerPort->setGeometry(QRect(150, 20, 47, 13));
+        sB_udpPort = new QSpinBox(gB_networkSettings);
+        sB_udpPort->setObjectName(QStringLiteral("sB_udpPort"));
+        sB_udpPort->setGeometry(QRect(170, 40, 71, 22));
+        sB_udpPort->setMaximum(65535);
+        sB_udpPort->setValue(8002);
+        pB_connect = new QPushButton(gB_networkSettings);
+        pB_connect->setObjectName(QStringLiteral("pB_connect"));
+        pB_connect->setGeometry(QRect(20, 70, 221, 21));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -107,6 +135,11 @@ public:
         pB_startStopPlaying->setText(QApplication::translate("MainWindow", "Start Playing", 0));
         gB_visualization->setTitle(QApplication::translate("MainWindow", "Visualziation", 0));
         lB_visualization->setText(QString());
+        gB_networkSettings->setTitle(QApplication::translate("MainWindow", "Network Settings", 0));
+        lb_peerIP->setText(QApplication::translate("MainWindow", "Peer Ip:", 0));
+        lE_peerIP->setText(QApplication::translate("MainWindow", "localhost", 0));
+        lb_peerPort->setText(QApplication::translate("MainWindow", "Peer port:", 0));
+        pB_connect->setText(QApplication::translate("MainWindow", "Connect", 0));
     } // retranslateUi
 
 };

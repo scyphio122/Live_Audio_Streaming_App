@@ -22,15 +22,16 @@ public:
     AudioSamplesPlayer(QObject* parent);
     ~AudioSamplesPlayer();
 
-    void setAudioOutput(QAudioOutput* dev);
-    void startPlaying();
-    void pausePlaying();
-    bool isMuted();
     FftCalculator* getFFT();
     void onDataReceived(QByteArray *data);
 
 public slots:
     void init();
+    void setAudioOutput(QAudioOutput* dev);
+    void startPlaying(bool value);
+    bool isMuted();
+signals:
+    void isMutedSignal(bool value);
 };
 
 #endif // AUDIOSAMPLESRECEIVER_H

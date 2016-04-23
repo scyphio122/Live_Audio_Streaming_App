@@ -57,6 +57,7 @@ private:
     volatile bool   redrawFlag = false;
 
     bool                        audioInSampling = false;
+    bool                        audioOutMuted   = true;
 
     void paintEvent(QPaintEvent *);
     void visualizeFFT();
@@ -65,7 +66,7 @@ private:
     void generateTestSin(double freq, int *dataOut, double xStart, double xEnd, uint32_t dataOutNumber);
     void displayAudioInDevices();
     void displayAudioOutDevices();
-    bool audioGetterIsPlaying(bool* signalFromThread);
+
 private slots:
 
     void fftTest();
@@ -77,6 +78,8 @@ private slots:
     void on_cB_outputAudioDevice_activated(const QString &arg1);
 
     void on_pB_startStopPlaying_clicked();
+
+    void on_pB_connect_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -96,10 +99,18 @@ public:
     void runFftTest();
     ~MainWindow();
 
+public slots:
+    void audioGetterIsSampling(bool signalFromThread);
+    void audioPlayerIsPlaying(bool signalFromThread);
+
 signals:
     void setInputAudioDeviceSignal(QAudioInput* newAudioInputDev);
+    void setAudioOutputSignal(QAudioOutput *dev);
+    void queryIfSamplingSignal();
     void queryIfPlayingSignal();
+    void startSamplingSignal(bool value);
     void startPlayingSignal(bool value);
+    void initializeUdpSocket(QString ip, int port);
 
 };
 

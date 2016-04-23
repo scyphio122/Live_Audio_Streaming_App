@@ -29,20 +29,23 @@ void AudioSamplesPlayer::setAudioOutput(QAudioOutput *dev)
     this->audioOutput.reset(dev);
 }
 
-void AudioSamplesPlayer::startPlaying()
+void AudioSamplesPlayer::startPlaying(bool value)
 {
-    muted = false;
-    this->audioOutput->start(this->audioOutputBuffer);
-}
-
-void AudioSamplesPlayer::pausePlaying()
-{
-    muted = true;
-    this->audioOutput->stop();
+    if(value == true)
+    {
+        muted = false;
+        this->audioOutput->start(this->audioOutputBuffer);
+    }
+    else
+    {
+        muted = true;
+        this->audioOutput->stop();
+    }
 }
 
 bool AudioSamplesPlayer::isMuted()
 {
+    emit isMutedSignal(this->muted);
     return this->muted;
 }
 

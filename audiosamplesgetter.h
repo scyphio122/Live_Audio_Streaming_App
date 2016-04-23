@@ -21,7 +21,7 @@ private:
     QByteArray*                                 inputDataBuffer;
     bool                                        isMuted;
     bool                                        echoSound;
-    bool                                        isCurrentlyPlaying;
+    bool                                        isCurrentlySampling;
 
     void playEchoedSamples(int leftSample, int rightSample);
 
@@ -33,7 +33,7 @@ public slots:
     void setMuteEnabled(bool isMuted);
     void setEchoEnabled(bool isOn);
     void startSampling(bool value);
-    void isPlaying();
+    void isSampling();
 public:
     AudioSamplesGetter();
     ~AudioSamplesGetter();
@@ -45,7 +45,7 @@ public:
 //    bool audioMixerDeviceInit(std::string audioDeviceName);
 
 signals:
-    void isPlaying(bool* isPlaying);
+    void isSamplingSignal(bool isSampling);
 
 };
 

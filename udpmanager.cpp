@@ -34,9 +34,10 @@ void UdpManager::setReceiverIpAddress(std::string address)
     this->receiverIpAddress.reset(new QHostAddress(QString::fromStdString(address)));
 }
 
-bool UdpManager::initSocket(std::string ip, int port)
+void UdpManager::initSocket(QString ip, int port)
 {
-    this->setReceiverIpAddress(ip);
+    isConnected = true;
+    this->setReceiverIpAddress(ip.toStdString());
     this->portNumberInUse = port;
 
     this->udpSocket.reset(new QUdpSocket(this));
@@ -45,29 +46,24 @@ bool UdpManager::initSocket(std::string ip, int port)
     /// Connect the receiver callback to call readPendingDatagrams each time readyRead event occurs
     connect(this->udpSocket.get(), SIGNAL(readyRead()), this, SLOT(readData()));
 
-    return true;
 }
 
-int UdpManager::sendData(UdpDatagram* datagram, const QHostAddress ip = QHostAddress("localhost"), const int port = 8002)
+void UdpManager::sendData(UdpDatagram* datagram, const QHostAddress ip = QHostAddress("localhost"), const int port = 8002)
 {
-    /// Write data to the socket
-    qint64 retval = udpSocket->writeDatagram(*datagram->getDatagram(), ip, port);
-    qint64 dataSize = datagram->getDatagram()->size();
-    if(retval == (-1) || retval != dataSize)
+    if(isConnected)
     {
-        return -1;
+        /// Write data to the socket
+        qint64 retval = udpSocket->writeDatagram(*datagram->getDatagram(), ip, port);
+        qint64 dataSize = datagram->getDatagram()->size();
     }
-
-    return 0;
 }
 
 void UdpManager::readData()
 {
-
     QHostAddress    senderIpAddress;
     uint16_t        port;
 
-    while(udpSocket->hasPendingDatagrams())
+    while(udpSocket->hasPendingDatagrams() && isConnected)
     {
         qint64 datagramSize = udpSocket->pendingDatagramSize();
         UdpDatagram*     datagram = new UdpDatagram();
@@ -76,7 +72,6 @@ void UdpManager::readData()
 
         /// Emit event that the datragram has been received
         emit emitDataReceived(datagram);
-
 //        this->datagramProc->processDatagram(&datagram, senderIpAddress, port);
     }
 }

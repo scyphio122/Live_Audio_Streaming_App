@@ -17,18 +17,19 @@ private:
     boost::scoped_ptr<QHostAddress> receiverIpAddress;
     boost::scoped_ptr<QUdpSocket>   udpSocket;
     ReceivedDatagramProcessor*      datagramProc;
+    bool                            isConnected = false;
 public:
     UdpManager();
     UdpManager(QHostAddress* ip, int sendPort);
 
     void setDatagramProc(ReceivedDatagramProcessor* datagramProcessor);
-    bool initSocket(std::string ip, int port);
-    void readData();
+
 public slots:
     void setReceiverIpAddress(std::string address);
     void setSendingPortNumber(int portNumber);
-    int  sendData(UdpDatagram* datagram, const QHostAddress ip, const int port);
-
+    void  sendData(UdpDatagram* datagram, const QHostAddress ip, const int port);
+    void initSocket(QString ip, int port);
+    void readData();
 signals:
     void emitDataReceived(UdpDatagram* datagram);
 };

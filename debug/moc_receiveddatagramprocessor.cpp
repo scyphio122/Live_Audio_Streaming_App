@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ReceivedDatagramProcessor_t {
-    QByteArrayData data[9];
-    char stringdata[95];
+    QByteArrayData data[5];
+    char stringdata[65];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,16 +33,11 @@ QT_MOC_LITERAL(0, 0, 25), // "ReceivedDatagramProcessor"
 QT_MOC_LITERAL(1, 26, 15), // "processDatagram"
 QT_MOC_LITERAL(2, 42, 0), // ""
 QT_MOC_LITERAL(3, 43, 12), // "UdpDatagram*"
-QT_MOC_LITERAL(4, 56, 8), // "datagram"
-QT_MOC_LITERAL(5, 65, 12), // "QHostAddress"
-QT_MOC_LITERAL(6, 78, 2), // "ip"
-QT_MOC_LITERAL(7, 81, 8), // "uint16_t"
-QT_MOC_LITERAL(8, 90, 4) // "port"
+QT_MOC_LITERAL(4, 56, 8) // "datagram"
 
     },
     "ReceivedDatagramProcessor\0processDatagram\0"
-    "\0UdpDatagram*\0datagram\0QHostAddress\0"
-    "ip\0uint16_t\0port"
+    "\0UdpDatagram*\0datagram"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,10 +55,10 @@ static const uint qt_meta_data_ReceivedDatagramProcessor[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    3,   19,    2, 0x0a /* Public */,
+       1,    1,   19,    2, 0x0a /* Public */,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5, 0x80000000 | 7,    4,    6,    8,
+    QMetaType::Void, 0x80000000 | 3,    4,
 
        0        // eod
 };
@@ -73,7 +68,7 @@ void ReceivedDatagramProcessor::qt_static_metacall(QObject *_o, QMetaObject::Cal
     if (_c == QMetaObject::InvokeMetaMethod) {
         ReceivedDatagramProcessor *_t = static_cast<ReceivedDatagramProcessor *>(_o);
         switch (_id) {
-        case 0: _t->processDatagram((*reinterpret_cast< UdpDatagram*(*)>(_a[1])),(*reinterpret_cast< QHostAddress(*)>(_a[2])),(*reinterpret_cast< uint16_t(*)>(_a[3]))); break;
+        case 0: _t->processDatagram((*reinterpret_cast< UdpDatagram*(*)>(_a[1]))); break;
         default: ;
         }
     }
