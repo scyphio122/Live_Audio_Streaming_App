@@ -2,14 +2,22 @@
 #include <stdint-gcc.h>
 #include "complex.h"
 #include <cmath>
-
+#include <iostream>
 
 FftCalculator::FftCalculator() : QObject(nullptr)
 {
     outputArray = nullptr;
+    inputArray = new int[8096];
+    std::cout << &inputArray[0] <<std::endl;
+    inputArraySize = 8096;
 }
 
-void FftCalculator::setInputArray(double array[])
+FftCalculator::~FftCalculator()
+{
+    delete[] inputArray;
+}
+
+void FftCalculator::setInputArray(int *array)
 {
     inputArray = array;
 }
@@ -28,7 +36,7 @@ void FftCalculator::setOutputArraySize(uint16_t size)
     outputArraySize = size;
 }
 
-double* FftCalculator::getInputArray()
+int* FftCalculator::getInputArray()
 {
     return inputArray;
 }
@@ -54,7 +62,7 @@ Complex FftCalculator::getOutputElement(uint32_t index)
 
 void FftCalculator::appendSample(uint16_t c)
 {
-    this->inputArray[inputArrayIndex++];
+    this->inputArray[inputArrayIndex++] = c;
     if(inputArrayIndex == inputArraySize)
     {
         inputArrayIndex = 0;
@@ -73,11 +81,11 @@ void FftCalculator::runTransform()
     outputArray = recursiveFFT(inputArray, inputArraySize);
 }
 
-Complex* FftCalculator::recursiveFFT(double subarray[], uint16_t subarraySize, unsigned long int step)
+Complex* FftCalculator::recursiveFFT(int subarray[], uint16_t subarraySize, unsigned long int step)
 {
     Complex* resultArray = nullptr;
     if(subarraySize == 1)
-        return new Complex(subarray[0], 0, Complex::CARTESIAN_COORD);
+        return new Complex((double)subarray[0], 0, Complex::CARTESIAN_COORD);
     else
     {
         Complex* evenArray = new Complex[subarraySize/2];

@@ -4,6 +4,10 @@ AudioSamplesPlayer::AudioSamplesPlayer()
 {
     this->audioOutputBuffer = new QBuffer(new QByteArray(new char[AUDIO_OUT_BUF_SIZE], AUDIO_OUT_BUF_SIZE));
     this->muted = true;
+
+    this->fft = new FftCalculator();
+//    this->fft->setInputArray(new double[8096]);
+    this->fft->setInputArraySize(8096);
 }
 
 AudioSamplesPlayer::~AudioSamplesPlayer()
@@ -35,29 +39,33 @@ bool AudioSamplesPlayer::isMuted()
 
 FftCalculator* AudioSamplesPlayer::getFFT()
 {
-    return &this->fft;
+    return this->fft;
 }
 
 void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 {
     int i = 0;
     uint16_t sample = 0;
+    int dataSize = data->size();
     if(!muted)
     {
-        while(data->size() != 0)
+        if(fft->getInputArray() == nullptr)
+            fft->setInputArray(new int[8096]);
+        while(dataSize != 0)
         {
             /// Put data in the audio buffer
             this->audioOutputBuffer->putChar(data->at(i));
-            if(data->size() % 2 == 0)
+            if(dataSize % 2 == 0)
             {
                 sample = (uint8_t)data->at(i) + ((uint8_t)data->at(i+1) >> 8);
-                fft.appendSample(sample);
-                if(fft.getInputFillLevel() == fft.getInputArraySize()-1)
+                fft->appendSample(sample);
+                if(fft->getInputFillLevel() == fft->getInputArraySize()-1)
                 {
-                    fft.runTransform();
+                    fft->runTransform();
                 }
             }
-            i++;
+            i+=2;
+            dataSize -= 2;
         }
     }
     delete data;

@@ -5,6 +5,9 @@
 #include <QAudioInput>
 #include <QAudioOutput>
 
+#include <QTime>
+#include <QDebug>
+
 AudioSamplesGetter::AudioSamplesGetter()
 {
     this->isCurrentlyPlaying    = false;
@@ -66,6 +69,7 @@ void AudioSamplesGetter::startSampling()
     if(!isCurrentlyPlaying)
     {
         inputDataBuffer->fill(0, inputDataBuffer->length());
+        audioInDevice->setBufferSize(AUDIO_IN_BUFFER_SIZE);
         audioInDevice->start(capturingStream);
         isCurrentlyPlaying = true;
     }
@@ -83,6 +87,8 @@ void AudioSamplesGetter::stopSampling()
 
 void AudioSamplesGetter::onSamplesCaptured()
 {
+    this->capturingStream->seek(0);
+    qDebug()<<QTime::currentTime()<<this->capturingStream->bytesAvailable() <<this->capturingStream->size();
     this->audioSender->sendSamples(this->capturingStream);
 }
 

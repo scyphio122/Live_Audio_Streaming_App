@@ -614,6 +614,8 @@ debug/moc_udpmanager.cpp: receiveddatagramprocessor.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
 		udpdatagram.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
@@ -623,8 +625,6 @@ debug/moc_udpmanager.cpp: receiveddatagramprocessor.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudio.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioformat.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiodeviceinfo.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
@@ -1454,7 +1454,10 @@ debug/audiosamplesgetter.o: audiosamplesgetter.cpp audiosamplesgetter.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qfile.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qfiledevice.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qvector2d.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtouchdevice.h
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QTime \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qdatetime.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/audiosamplesgetter.o audiosamplesgetter.cpp
 
 debug/audiosamplessender.o: audiosamplessender.cpp audiosamplessender.h \
@@ -1531,6 +1534,8 @@ debug/audiosamplessender.o: audiosamplessender.cpp audiosamplessender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
 		udpdatagram.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
@@ -1540,8 +1545,6 @@ debug/audiosamplessender.o: audiosamplessender.cpp audiosamplessender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudio.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioformat.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiodeviceinfo.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
@@ -1691,6 +1694,8 @@ debug/commandssender.o: commandssender.cpp commandssender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
 		udpdatagram.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
@@ -1700,8 +1705,6 @@ debug/commandssender.o: commandssender.cpp commandssender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudio.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioformat.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiodeviceinfo.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
@@ -1850,6 +1853,8 @@ debug/udpmanager.o: udpmanager.cpp udpmanager.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
 		udpdatagram.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
@@ -1859,8 +1864,6 @@ debug/udpmanager.o: udpmanager.cpp udpmanager.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudio.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioformat.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiodeviceinfo.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
@@ -2010,6 +2013,8 @@ debug/receiveddatagramprocessor.o: receiveddatagramprocessor.cpp receiveddatagra
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
 		udpdatagram.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QByteArray \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		datagramlistener.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
@@ -2019,8 +2024,6 @@ debug/receiveddatagramprocessor.o: receiveddatagramprocessor.cpp receiveddatagra
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudio.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioformat.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiodeviceinfo.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
@@ -2208,6 +2211,8 @@ debug/commandreceiver.o: commandreceiver.cpp commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qset.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontiguouscache.h \
 		udpdatagram.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		audiosamplesplayer.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioOutput \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiooutput.h \
@@ -2216,8 +2221,6 @@ debug/commandreceiver.o: commandreceiver.cpp commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudio.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudioformat.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/qaudiodeviceinfo.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
@@ -2601,7 +2604,24 @@ debug/udpdatagram.o: udpdatagram.cpp udpdatagram.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qarraydata.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QBuffer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbuffer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearraylist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/udpdatagram.o udpdatagram.cpp
 
 debug/audiodevicelister.o: audiodevicelister.cpp audiodevicelister.h \

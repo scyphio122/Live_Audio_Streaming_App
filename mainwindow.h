@@ -43,7 +43,7 @@ private:
     void visualizeFFT();
     void drawingDelay(uint32_t time_ms);
     void setFftCalculator(FftCalculator* fft);
-    void generateTestSin(double freq, double* dataOut, double xStart, double xEnd, uint32_t dataOutNumber);
+    void generateTestSin(double freq, int *dataOut, double xStart, double xEnd, uint32_t dataOutNumber);
     void displayAudioInDevices();
     void displayAudioOutDevices();
 
