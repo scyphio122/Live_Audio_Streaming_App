@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_AudioSamplesSender_t {
-    QByteArrayData data[8];
-    char stringdata[85];
+    QByteArrayData data[5];
+    char stringdata[64];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,15 +33,11 @@ QT_MOC_LITERAL(0, 0, 18), // "AudioSamplesSender"
 QT_MOC_LITERAL(1, 19, 21), // "emitSendSamplesSignal"
 QT_MOC_LITERAL(2, 41, 0), // ""
 QT_MOC_LITERAL(3, 42, 12), // "UdpDatagram*"
-QT_MOC_LITERAL(4, 55, 8), // "datagram"
-QT_MOC_LITERAL(5, 64, 12), // "QHostAddress"
-QT_MOC_LITERAL(6, 77, 2), // "ip"
-QT_MOC_LITERAL(7, 80, 4) // "port"
+QT_MOC_LITERAL(4, 55, 8) // "datagram"
 
     },
     "AudioSamplesSender\0emitSendSamplesSignal\0"
-    "\0UdpDatagram*\0datagram\0QHostAddress\0"
-    "ip\0port"
+    "\0UdpDatagram*\0datagram"
 };
 #undef QT_MOC_LITERAL
 
@@ -59,10 +55,10 @@ static const uint qt_meta_data_AudioSamplesSender[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    3,   19,    2, 0x06 /* Public */,
+       1,    1,   19,    2, 0x06 /* Public */,
 
  // signals: parameters
-    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5, QMetaType::Int,    4,    6,    7,
+    QMetaType::Void, 0x80000000 | 3,    4,
 
        0        // eod
 };
@@ -72,14 +68,14 @@ void AudioSamplesSender::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     if (_c == QMetaObject::InvokeMetaMethod) {
         AudioSamplesSender *_t = static_cast<AudioSamplesSender *>(_o);
         switch (_id) {
-        case 0: _t->emitSendSamplesSignal((*reinterpret_cast< UdpDatagram*(*)>(_a[1])),(*reinterpret_cast< const QHostAddress(*)>(_a[2])),(*reinterpret_cast< const int(*)>(_a[3]))); break;
+        case 0: _t->emitSendSamplesSignal((*reinterpret_cast< UdpDatagram*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (AudioSamplesSender::*_t)(UdpDatagram * , const QHostAddress , const int );
+            typedef void (AudioSamplesSender::*_t)(UdpDatagram * );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&AudioSamplesSender::emitSendSamplesSignal)) {
                 *result = 0;
             }
@@ -124,9 +120,9 @@ int AudioSamplesSender::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void AudioSamplesSender::emitSendSamplesSignal(UdpDatagram * _t1, const QHostAddress _t2, const int _t3)
+void AudioSamplesSender::emitSendSamplesSignal(UdpDatagram * _t1)
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE

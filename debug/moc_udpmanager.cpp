@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_UdpManager_t {
-    QByteArrayData data[16];
-    char stringdata[174];
+    QByteArrayData data[15];
+    char stringdata[161];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,18 +40,16 @@ QT_MOC_LITERAL(7, 84, 7), // "address"
 QT_MOC_LITERAL(8, 92, 20), // "setSendingPortNumber"
 QT_MOC_LITERAL(9, 113, 10), // "portNumber"
 QT_MOC_LITERAL(10, 124, 8), // "sendData"
-QT_MOC_LITERAL(11, 133, 12), // "QHostAddress"
-QT_MOC_LITERAL(12, 146, 2), // "ip"
-QT_MOC_LITERAL(13, 149, 4), // "port"
-QT_MOC_LITERAL(14, 154, 10), // "initSocket"
-QT_MOC_LITERAL(15, 165, 8) // "readData"
+QT_MOC_LITERAL(11, 133, 10), // "initSocket"
+QT_MOC_LITERAL(12, 144, 2), // "ip"
+QT_MOC_LITERAL(13, 147, 4), // "port"
+QT_MOC_LITERAL(14, 152, 8) // "readData"
 
     },
     "UdpManager\0emitDataReceived\0\0UdpDatagram*\0"
     "datagram\0setReceiverIpAddress\0std::string\0"
     "address\0setSendingPortNumber\0portNumber\0"
-    "sendData\0QHostAddress\0ip\0port\0initSocket\0"
-    "readData"
+    "sendData\0initSocket\0ip\0port\0readData"
 };
 #undef QT_MOC_LITERAL
 
@@ -74,9 +72,9 @@ static const uint qt_meta_data_UdpManager[] = {
  // slots: name, argc, parameters, tag, flags
        5,    1,   47,    2, 0x0a /* Public */,
        8,    1,   50,    2, 0x0a /* Public */,
-      10,    3,   53,    2, 0x0a /* Public */,
-      14,    2,   60,    2, 0x0a /* Public */,
-      15,    0,   65,    2, 0x0a /* Public */,
+      10,    1,   53,    2, 0x0a /* Public */,
+      11,    2,   56,    2, 0x0a /* Public */,
+      14,    0,   61,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -84,7 +82,7 @@ static const uint qt_meta_data_UdpManager[] = {
  // slots: parameters
     QMetaType::Void, 0x80000000 | 6,    7,
     QMetaType::Void, QMetaType::Int,    9,
-    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 11, QMetaType::Int,    4,   12,   13,
+    QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void, QMetaType::QString, QMetaType::Int,   12,   13,
     QMetaType::Void,
 
@@ -99,7 +97,7 @@ void UdpManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->emitDataReceived((*reinterpret_cast< UdpDatagram*(*)>(_a[1]))); break;
         case 1: _t->setReceiverIpAddress((*reinterpret_cast< std::string(*)>(_a[1]))); break;
         case 2: _t->setSendingPortNumber((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 3: _t->sendData((*reinterpret_cast< UdpDatagram*(*)>(_a[1])),(*reinterpret_cast< const QHostAddress(*)>(_a[2])),(*reinterpret_cast< const int(*)>(_a[3]))); break;
+        case 3: _t->sendData((*reinterpret_cast< UdpDatagram*(*)>(_a[1]))); break;
         case 4: _t->initSocket((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 5: _t->readData(); break;
         default: ;

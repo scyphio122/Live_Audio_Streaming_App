@@ -11,8 +11,9 @@ class AudioSamplesSender : public QObject
 {
     Q_OBJECT
 private:
-    const QHostAddress ip   = QHostAddress::LocalHost;
-    const int receiverPort  = 8002;
+    const QHostAddress ip       = QHostAddress::LocalHost;
+    QString            ipText;
+    const int receiverPort      = 8002;
     UdpManager* udpManager;
 
 public:
@@ -23,7 +24,7 @@ public:
 
 
 signals:
-    void emitSendSamplesSignal(UdpDatagram* datagram, const QHostAddress ip, const int port);
+    void emitSendSamplesSignal(UdpDatagram* datagram);
 };
 
 #endif // AUDIOSAMPLESSENDER_H

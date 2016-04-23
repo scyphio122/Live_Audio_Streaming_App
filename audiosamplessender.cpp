@@ -25,6 +25,6 @@ void AudioSamplesSender::sendSamples(QBuffer* sampleArray)
     if(datagram.getDatagram() != nullptr)
     {
         /// Send the datagram to the thread with UdpManager
-        emit emitSendSamplesSignal(&datagram, this->ip, this->receiverPort);
+        emit emitSendSamplesSignal(&datagram);
     }
 }

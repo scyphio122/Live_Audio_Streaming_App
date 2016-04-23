@@ -161,7 +161,7 @@ void MainWindow::connectSignals()
 
     /** Audio Getter Thread **/
     connect(this, SIGNAL(setInputAudioDeviceSignal(QAudioInput*)), audioGetter, SLOT(setInputAudioDevice(QAudioInput*)));                           /// Signal for setting the Audio In device
-    connect(audioSender, SIGNAL(emitSendSamplesSignal(UdpDatagram*,QHostAddress,int)), udpManager, SLOT(sendData(UdpDatagram*,QHostAddress,int)));  /// Signal for sending datagrams
+    connect(audioSender, SIGNAL(emitSendSamplesSignal(UdpDatagram*)), udpManager, SLOT(sendData(UdpDatagram*)));  /// Signal for sending datagrams
     connect(this, SIGNAL(queryIfSamplingSignal()), audioGetter, SLOT(isSampling()));                                                                 /// Signal for querying if audioIn is playing
     connect(audioGetter, SIGNAL(isSamplingSignal(bool)), this, SLOT(audioGetterIsSampling(bool)));
     connect(this, SIGNAL(startSamplingSignal(bool)), audioGetter, SLOT(startSampling(bool)));                                                       /// Signal for sampling start

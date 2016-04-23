@@ -48,13 +48,12 @@ void UdpManager::initSocket(QString ip, int port)
 
 }
 
-void UdpManager::sendData(UdpDatagram* datagram, const QHostAddress ip = QHostAddress("localhost"), const int port = 8002)
+void UdpManager::sendData(UdpDatagram* datagram)
 {
     if(isConnected)
     {
         /// Write data to the socket
-        qint64 retval = udpSocket->writeDatagram(*datagram->getDatagram(), ip, port);
-        qint64 dataSize = datagram->getDatagram()->size();
+        qint64 retval = udpSocket->writeDatagram(*datagram->getDatagram(), *this->receiverIpAddress.get(), this->portNumberInUse);
     }
 }
 

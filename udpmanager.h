@@ -27,7 +27,7 @@ public:
 public slots:
     void setReceiverIpAddress(std::string address);
     void setSendingPortNumber(int portNumber);
-    void  sendData(UdpDatagram* datagram, const QHostAddress ip, const int port);
+    void  sendData(UdpDatagram* datagram);
     void initSocket(QString ip, int port);
     void readData();
 signals:
