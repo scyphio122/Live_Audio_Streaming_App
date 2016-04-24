@@ -7,6 +7,7 @@
 FftCalculator::FftCalculator() : QObject(nullptr)
 {
     outputArray = nullptr;
+    inputArray = nullptr;
 //    inputArray = new int[8096];
 //    inputArraySize = 8096;
 }
@@ -73,10 +74,25 @@ uint16_t FftCalculator::getInputFillLevel()
     return this->inputArrayIndex;
 }
 
+void FftCalculator::FftArrayUsedByGui(bool value)
+{
+    this->fftArrayUsedByGui = value;
+}
+
 void FftCalculator::runTransform()
 {
-    outputArray = recursiveFFT(inputArray, inputArraySize);
-    emit fftCompleted(outputArray, outputArraySize);
+    /// Compute FFT only if the current array is not used by the GUI thread
+//    if(!fftArrayUsedByGui)
+//    {
+        if(outputArray != nullptr)
+        {
+            delete[] outputArray;
+            outputArray = nullptr;
+//            emit fftCompleted(nullptr, 0);
+        }
+        outputArray = recursiveFFT(inputArray, inputArraySize);
+//        emit fftCompleted(outputArray, outputArraySize);
+//    }
 }
 
 Complex* FftCalculator::recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long int step)

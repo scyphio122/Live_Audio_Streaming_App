@@ -36,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     painter->setBrush(*brush);
     painter->setPen(*pen);
 
+    fftOutArray = nullptr;
+
 }
 
 MainWindow::~MainWindow()
@@ -50,32 +52,46 @@ MainWindow::~MainWindow()
 
 void MainWindow::paintEvent(QPaintEvent *)
 {
+    if(fft != nullptr && fft->getInputArray() != nullptr)
+    {
+        fftArrayUsed = true;
         ui->lB_visualization->clear();
         double maxVal = 0;
-        painter->setBrush(QBrush(QColor(255,255,255)));
+        painter->setBrush(QBrush(QColor(0,0,0)));
         int windowWidth = ui->lB_visualization->width();
         int windowHeight = ui->lB_visualization->height();
         painter->drawRect(0,0, windowWidth, windowHeight);
         painter->setBrush(*brush);
         int coord = 15;
-        if(fftOutArray != nullptr)
-        {
-            for(uint32_t i=0; i<fftOutArraySize; i++)
+
+            /// Block the FFT thread from computing new FFT OUT array
+//            emit fftArrayBusy(fftArrayUsed);
+            /// Draw the pixmap
+//            for(uint32_t i=0; i<fftOutArraySize; i++)
+//            {
+//                if(i >= windowWidth)
+//                    break;
+//                Complex fftElement = fftOutArray[i];
+//                double  fftValue = fftElement.getMagnitude();
+//                if(fftElement.getMagnitude() > maxVal)
+//                    maxVal = fftValue;
+//                painter->drawLine(i+coord, 0, i+coord, 0.01*fftValue);
+//            }
+            uint32_t inputArraySize = fft->getInputArraySize();
+            int offset = windowHeight/2;
+            int16_t* ptr = fft->getInputArray();
+            for(uint32_t i=0; i<inputArraySize; i++)
             {
-                if(i >= windowWidth)
-                    break;
-                Complex fftElement = fftOutArray[i];
-                double  fftValue = fftElement.getMagnitude();
-                if(fftElement.getMagnitude() > maxVal)
-                    maxVal = fftValue;
-                coord += 1;
-                painter->drawLine(i+coord, 0, i+coord, 0.01*fftValue);
+                painter->drawLine(i+coord, offset, i+coord, offset + 0.005*ptr[i]);
             }
-            delete[] fftOutArray;
-            fftOutArray = nullptr;
-        }
-        ui->lB_visualization->setPixmap(*pixmap);
+
+            fftArrayUsed = false;
+            /// Notify the FFT Thread that it can comput new FFT OUT array now
+//            emit fftArrayBusy(fftArrayUsed);
+            ui->lB_visualization->setPixmap(*pixmap);
+    }
 }
+
 
 void MainWindow::setAudioSamplesGetter(AudioSamplesGetter* o)
 {
@@ -155,12 +171,14 @@ void MainWindow::connectSignals()
     connect(audioPlayer, SIGNAL(isMutedSignal(bool)), this, SLOT(audioPlayerIsPlaying(bool)));
     connect(this, SIGNAL(startPlayingSignal(bool)), audioPlayer, SLOT(startPlaying(bool)));
     connect(audioPlayer, SIGNAL(sendFft(FftCalculator*)), this, SLOT(setFftCalculator(FftCalculator*)));
+
 }
 
 void MainWindow::setFftCalculator(FftCalculator* fft)
 {
     this->fft = fft;
     connect(fft, SIGNAL(fftCompleted(Complex*,int)), this, SLOT(setFftOutArray(Complex*,int)));
+    connect(this, SIGNAL(fftArrayBusy(bool)), fft, SLOT(FftArrayUsedByGui(bool)));
 }
 
 
@@ -275,8 +293,6 @@ void MainWindow::setFftOutArray(Complex *array, int arraySize)
         this->fftOutArray = array;
         this->fftOutArraySize = arraySize;
     }
-    else
-        delete[] array;
 }
 
 void MainWindow::on_cb_inputAudioDevice_activated(const QString &arg1)
@@ -296,7 +312,7 @@ void MainWindow::on_pB_startStopSampling_clicked()
         ui->pB_startStopSampling->setText("Stop Sampling");
         guiRefreshTimer = new QTimer();
         connect(guiRefreshTimer, SIGNAL(timeout()), this, SLOT(repaint()));
-        guiRefreshTimer->start(100);
+        guiRefreshTimer->start(10);
     }
     else
     {

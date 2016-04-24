@@ -49,7 +49,8 @@ private:
     QThread*                    audioReceiverThread;
 
     FftCalculator*  fft;
-    Complex*        fftOutArray = nullptr;
+    bool            fftArrayUsed;
+    Complex*        fftOutArray;
     int             fftOutArraySize;
     QPixmap*        pixmap;
     QPainter*       painter;
@@ -113,6 +114,7 @@ signals:
     void startSamplingSignal(bool value);
     void startPlayingSignal(bool value);
     void initializeUdpSocket(QString ip, int port);
+    void fftArrayBusy(bool value);
 };
 
 

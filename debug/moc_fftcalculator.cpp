@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_FftCalculator_t {
-    QByteArrayData data[6];
-    char stringdata[65];
+    QByteArrayData data[8];
+    char stringdata[89];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,11 +34,14 @@ QT_MOC_LITERAL(1, 14, 12), // "fftCompleted"
 QT_MOC_LITERAL(2, 27, 0), // ""
 QT_MOC_LITERAL(3, 28, 8), // "Complex*"
 QT_MOC_LITERAL(4, 37, 11), // "outputArray"
-QT_MOC_LITERAL(5, 49, 15) // "outputArraySize"
+QT_MOC_LITERAL(5, 49, 15), // "outputArraySize"
+QT_MOC_LITERAL(6, 65, 17), // "FftArrayUsedByGui"
+QT_MOC_LITERAL(7, 83, 5) // "value"
 
     },
     "FftCalculator\0fftCompleted\0\0Complex*\0"
-    "outputArray\0outputArraySize"
+    "outputArray\0outputArraySize\0"
+    "FftArrayUsedByGui\0value"
 };
 #undef QT_MOC_LITERAL
 
@@ -48,7 +51,7 @@ static const uint qt_meta_data_FftCalculator[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -56,10 +59,16 @@ static const uint qt_meta_data_FftCalculator[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   19,    2, 0x06 /* Public */,
+       1,    2,   24,    2, 0x06 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags
+       6,    1,   29,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3, QMetaType::Int,    4,    5,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::Bool,    7,
 
        0        // eod
 };
@@ -70,6 +79,7 @@ void FftCalculator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         FftCalculator *_t = static_cast<FftCalculator *>(_o);
         switch (_id) {
         case 0: _t->fftCompleted((*reinterpret_cast< Complex*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 1: _t->FftArrayUsedByGui((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -109,13 +119,13 @@ int FftCalculator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }

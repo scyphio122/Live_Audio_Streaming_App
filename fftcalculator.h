@@ -15,9 +15,10 @@ class FftCalculator : public QObject
 private:
     int         inputArrayIndex = 0;
     int16_t*    inputArray;
-    Complex*    outputArray;
+    Complex*    outputArray = nullptr;
     uint16_t    inputArraySize;
     uint16_t    outputArraySize;
+    bool        fftArrayUsedByGui = false;
 
     Complex*    recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long step = 1);
 
@@ -29,7 +30,7 @@ public:
     void        setOutputArray(Complex* array);
     void        setInputArraySize(uint16_t size);
     void        setOutputArraySize(uint16_t size);
-    int16_t *getInputArray();
+    int16_t*    getInputArray();
     Complex*    getOutputArray();
     uint16_t    getInputArraySize();
     uint16_t    getOutputArraySize();
@@ -37,6 +38,8 @@ public:
     void        runTransform();
     void        appendSample(uint16_t c);
     uint16_t    getInputFillLevel();
+public slots:
+    void        FftArrayUsedByGui(bool value);
 
 signals:
     void        fftCompleted(Complex* outputArray, int outputArraySize);

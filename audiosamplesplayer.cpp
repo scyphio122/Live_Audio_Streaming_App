@@ -87,6 +87,6 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
         fft->setInputArray((int16_t*)data->data());
         fft->setInputArraySize(inputSize/sizeof(int16_t));
         /// Run the transform
-        fft->runTransform();
+//        fft->runTransform();
     }
 }
