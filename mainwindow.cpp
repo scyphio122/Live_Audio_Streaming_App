@@ -64,7 +64,7 @@ void MainWindow::paintEvent(QPaintEvent *)
         int coord = 1;
 
         /// Draw the pixmap
-        if(fftOutArray != nullptr)
+        if(fft->getFftEnable() == false && fftOutArray != nullptr)
         {
             for(uint32_t i=0; i<fftOutArraySize; i++)
             {
@@ -74,7 +74,7 @@ void MainWindow::paintEvent(QPaintEvent *)
                 double  fftValue = fftElement.getMagnitude();
                 if(fftElement.getMagnitude() > maxVal)
                     maxVal = fftValue;
-                painter->drawLine(i+coord, 0, i+coord, 0.01*fftValue);
+                painter->drawLine(i+coord, 0, i+coord, 0.001*fftValue);
             }
             /// Enable the fft calculator
             emit fftEnable(true);
@@ -280,7 +280,7 @@ void MainWindow::on_pB_startStopSampling_clicked()
         ui->pB_startStopSampling->setText("Stop Sampling");
         guiRefreshTimer = new QTimer();
         connect(guiRefreshTimer, SIGNAL(timeout()), this, SLOT(repaint()));
-        guiRefreshTimer->start(10);
+        guiRefreshTimer->start(30);
     }
     else
     {

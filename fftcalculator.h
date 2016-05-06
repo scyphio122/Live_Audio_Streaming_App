@@ -38,6 +38,7 @@ public:
     void        runTransform();
     void        appendSample(uint16_t c);
     uint16_t    getInputFillLevel();
+    bool        getFftEnable();
 
 public slots:
     void        fftEnable(bool value);

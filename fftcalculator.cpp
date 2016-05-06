@@ -76,6 +76,11 @@ void FftCalculator::fftEnable(bool value)
     this->fftEnabled = value;
 }
 
+bool FftCalculator::getFftEnable()
+{
+    return fftEnabled;
+}
+
 void FftCalculator::runTransform()
 {
     if(!fftEnabled)
