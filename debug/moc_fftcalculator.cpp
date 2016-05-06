@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_FftCalculator_t {
     QByteArrayData data[8];
-    char stringdata[89];
+    char stringdata[81];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,13 +35,13 @@ QT_MOC_LITERAL(2, 27, 0), // ""
 QT_MOC_LITERAL(3, 28, 8), // "Complex*"
 QT_MOC_LITERAL(4, 37, 11), // "outputArray"
 QT_MOC_LITERAL(5, 49, 15), // "outputArraySize"
-QT_MOC_LITERAL(6, 65, 17), // "FftArrayUsedByGui"
-QT_MOC_LITERAL(7, 83, 5) // "value"
+QT_MOC_LITERAL(6, 65, 9), // "fftEnable"
+QT_MOC_LITERAL(7, 75, 5) // "value"
 
     },
     "FftCalculator\0fftCompleted\0\0Complex*\0"
-    "outputArray\0outputArraySize\0"
-    "FftArrayUsedByGui\0value"
+    "outputArray\0outputArraySize\0fftEnable\0"
+    "value"
 };
 #undef QT_MOC_LITERAL
 
@@ -79,7 +79,7 @@ void FftCalculator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         FftCalculator *_t = static_cast<FftCalculator *>(_o);
         switch (_id) {
         case 0: _t->fftCompleted((*reinterpret_cast< Complex*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 1: _t->FftArrayUsedByGui((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 1: _t->fftEnable((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

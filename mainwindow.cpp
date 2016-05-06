@@ -52,9 +52,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::paintEvent(QPaintEvent *)
 {
-    if(fft != nullptr && fft->getInputArray() != nullptr)
+    if(fft != nullptr)
     {
-        fftArrayUsed = true;
         ui->lB_visualization->clear();
         double maxVal = 0;
         painter->setBrush(QBrush(QColor(0,0,0)));
@@ -62,32 +61,34 @@ void MainWindow::paintEvent(QPaintEvent *)
         int windowHeight = ui->lB_visualization->height();
         painter->drawRect(0,0, windowWidth, windowHeight);
         painter->setBrush(*brush);
-        int coord = 15;
+        int coord = 1;
 
-            /// Block the FFT thread from computing new FFT OUT array
-//            emit fftArrayBusy(fftArrayUsed);
-            /// Draw the pixmap
-//            for(uint32_t i=0; i<fftOutArraySize; i++)
-//            {
-//                if(i >= windowWidth)
-//                    break;
-//                Complex fftElement = fftOutArray[i];
-//                double  fftValue = fftElement.getMagnitude();
-//                if(fftElement.getMagnitude() > maxVal)
-//                    maxVal = fftValue;
-//                painter->drawLine(i+coord, 0, i+coord, 0.01*fftValue);
-//            }
-            uint32_t inputArraySize = fft->getInputArraySize();
-            int offset = windowHeight/2;
-            int16_t* ptr = fft->getInputArray();
-            for(uint32_t i=0; i<inputArraySize; i++)
+        /// Draw the pixmap
+        if(fftOutArray != nullptr)
+        {
+            for(uint32_t i=0; i<fftOutArraySize; i++)
             {
-                painter->drawLine(i+coord, offset, i+coord, offset + 0.005*ptr[i]);
+                if(i >= windowWidth)
+                    break;
+                Complex fftElement = fftOutArray[i];
+                double  fftValue = fftElement.getMagnitude();
+                if(fftElement.getMagnitude() > maxVal)
+                    maxVal = fftValue;
+                painter->drawLine(i+coord, 0, i+coord, 0.01*fftValue);
             }
+            /// Enable the fft calculator
+            emit fftEnable(true);
+        }
+//            uint32_t inputArraySize = fft->getInputArraySize();
+//            int offset = windowHeight/2;
+//            int16_t* ptr = fft->getInputArray();
+//            if(ptr != nullptr)
+//                for(uint32_t i=0; i<inputArraySize; i++)
+//                {
+//                    painter->drawLine(i+coord, offset, i+coord, offset + 0.05*ptr[i]);
+//                }
 
-            fftArrayUsed = false;
-            /// Notify the FFT Thread that it can comput new FFT OUT array now
-//            emit fftArrayBusy(fftArrayUsed);
+
             ui->lB_visualization->setPixmap(*pixmap);
     }
 }
@@ -178,29 +179,9 @@ void MainWindow::setFftCalculator(FftCalculator* fft)
 {
     this->fft = fft;
     connect(fft, SIGNAL(fftCompleted(Complex*,int)), this, SLOT(setFftOutArray(Complex*,int)));
-    connect(this, SIGNAL(fftArrayBusy(bool)), fft, SLOT(FftArrayUsedByGui(bool)));
+    connect(this, SIGNAL(fftEnable(bool)), fft, SLOT(fftEnable(bool)));
 }
 
-
-//void MainWindow::fftTest()
-//{
-//    static int cnt = 1;
-//    const int   size = 1024;
-//    int*     sampleArray = new int[size];
-//    fft->setInputArray(sampleArray);
-//    fft->setInputArraySize(size);
-//    fft->setOutputArraySize(fft->getInputArraySize());
-
-//    inputFreq = 10*cnt;
-//    generateTestSin(inputFreq, sampleArray, 0, 1, size);
-//    fft->runTransform();
-
-//    visualizeFFT();
-//    redrawFlag = true;
-//    drawingDelay(1000);
-//    if(cnt++ == 5)
-//        cnt = 1;
-//}
 
 void MainWindow::visualizeFFT()
 {
@@ -209,21 +190,11 @@ void MainWindow::visualizeFFT()
 
 
 
-void MainWindow::drawingDelay(uint32_t time_ms)
-{
-    QTimer::singleShot((int)time_ms, this, SLOT(fftTest()));
-}
-
-void MainWindow::runFftTest()
-{
-//    fftTest();
-}
-
 void MainWindow::generateTestSin(double freq, int* dataOut, double xStart, double xEnd, uint32_t sampleNumber)
 {
     double omega = 2*M_PI*freq;
     double x = xStart;
-    double interpolator = (xEnd - xStart)/sampleNumber;
+    double interpolator = (xEnd - xStart)/(double)sampleNumber;
     for(uint32_t i=0; i<sampleNumber; i++)
     {
         dataOut[i] = (sin(omega*x));//+0.2*sin(10*omega*x))*0.2*sin(15*omega*x);
@@ -288,11 +259,8 @@ void MainWindow::audioPlayerIsPlaying(bool signalFromThread)
 
 void MainWindow::setFftOutArray(Complex *array, int arraySize)
 {
-    if(fftOutArray == nullptr)
-    {
-        this->fftOutArray = array;
-        this->fftOutArraySize = arraySize;
-    }
+    this->fftOutArray = array;
+    this->fftOutArraySize = arraySize;
 }
 
 void MainWindow::on_cb_inputAudioDevice_activated(const QString &arg1)

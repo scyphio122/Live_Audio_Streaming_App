@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[33];
-    char stringdata[529];
+    char stringdata[526];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -45,23 +45,23 @@ QT_MOC_LITERAL(12, 176, 18), // "startPlayingSignal"
 QT_MOC_LITERAL(13, 195, 19), // "initializeUdpSocket"
 QT_MOC_LITERAL(14, 215, 2), // "ip"
 QT_MOC_LITERAL(15, 218, 4), // "port"
-QT_MOC_LITERAL(16, 223, 12), // "fftArrayBusy"
-QT_MOC_LITERAL(17, 236, 31), // "on_pB_startStopSampling_clicked"
-QT_MOC_LITERAL(18, 268, 32), // "on_cb_inputAudioDevice_activated"
-QT_MOC_LITERAL(19, 301, 4), // "arg1"
-QT_MOC_LITERAL(20, 306, 33), // "on_cB_outputAudioDevice_activ..."
-QT_MOC_LITERAL(21, 340, 30), // "on_pB_startStopPlaying_clicked"
-QT_MOC_LITERAL(22, 371, 21), // "on_pB_connect_clicked"
-QT_MOC_LITERAL(23, 393, 21), // "audioGetterIsSampling"
-QT_MOC_LITERAL(24, 415, 16), // "signalFromThread"
-QT_MOC_LITERAL(25, 432, 20), // "audioPlayerIsPlaying"
-QT_MOC_LITERAL(26, 453, 14), // "setFftOutArray"
-QT_MOC_LITERAL(27, 468, 8), // "Complex*"
-QT_MOC_LITERAL(28, 477, 5), // "array"
-QT_MOC_LITERAL(29, 483, 9), // "arraySize"
-QT_MOC_LITERAL(30, 493, 16), // "setFftCalculator"
-QT_MOC_LITERAL(31, 510, 14), // "FftCalculator*"
-QT_MOC_LITERAL(32, 525, 3) // "fft"
+QT_MOC_LITERAL(16, 223, 9), // "fftEnable"
+QT_MOC_LITERAL(17, 233, 31), // "on_pB_startStopSampling_clicked"
+QT_MOC_LITERAL(18, 265, 32), // "on_cb_inputAudioDevice_activated"
+QT_MOC_LITERAL(19, 298, 4), // "arg1"
+QT_MOC_LITERAL(20, 303, 33), // "on_cB_outputAudioDevice_activ..."
+QT_MOC_LITERAL(21, 337, 30), // "on_pB_startStopPlaying_clicked"
+QT_MOC_LITERAL(22, 368, 21), // "on_pB_connect_clicked"
+QT_MOC_LITERAL(23, 390, 21), // "audioGetterIsSampling"
+QT_MOC_LITERAL(24, 412, 16), // "signalFromThread"
+QT_MOC_LITERAL(25, 429, 20), // "audioPlayerIsPlaying"
+QT_MOC_LITERAL(26, 450, 14), // "setFftOutArray"
+QT_MOC_LITERAL(27, 465, 8), // "Complex*"
+QT_MOC_LITERAL(28, 474, 5), // "array"
+QT_MOC_LITERAL(29, 480, 9), // "arraySize"
+QT_MOC_LITERAL(30, 490, 16), // "setFftCalculator"
+QT_MOC_LITERAL(31, 507, 14), // "FftCalculator*"
+QT_MOC_LITERAL(32, 522, 3) // "fft"
 
     },
     "MainWindow\0setInputAudioDeviceSignal\0"
@@ -70,8 +70,7 @@ QT_MOC_LITERAL(32, 525, 3) // "fft"
     "dev\0queryIfSamplingSignal\0"
     "queryIfPlayingSignal\0startSamplingSignal\0"
     "value\0startPlayingSignal\0initializeUdpSocket\0"
-    "ip\0port\0fftArrayBusy\0"
-    "on_pB_startStopSampling_clicked\0"
+    "ip\0port\0fftEnable\0on_pB_startStopSampling_clicked\0"
     "on_cb_inputAudioDevice_activated\0arg1\0"
     "on_cB_outputAudioDevice_activated\0"
     "on_pB_startStopPlaying_clicked\0"
@@ -152,7 +151,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->startSamplingSignal((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 5: _t->startPlayingSignal((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 6: _t->initializeUdpSocket((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 7: _t->fftArrayBusy((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 7: _t->fftEnable((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 8: _t->on_pB_startStopSampling_clicked(); break;
         case 9: _t->on_cb_inputAudioDevice_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 10: _t->on_cB_outputAudioDevice_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
@@ -236,7 +235,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         }
         {
             typedef void (MainWindow::*_t)(bool );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::fftArrayBusy)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::fftEnable)) {
                 *result = 7;
             }
         }
@@ -327,7 +326,7 @@ void MainWindow::initializeUdpSocket(QString _t1, int _t2)
 }
 
 // SIGNAL 7
-void MainWindow::fftArrayBusy(bool _t1)
+void MainWindow::fftEnable(bool _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);

@@ -6,10 +6,7 @@
 
 FftCalculator::FftCalculator() : QObject(nullptr)
 {
-    outputArray = nullptr;
-    inputArray = nullptr;
-//    inputArray = new int[8096];
-//    inputArraySize = 8096;
+
 }
 
 FftCalculator::~FftCalculator()
@@ -74,25 +71,27 @@ uint16_t FftCalculator::getInputFillLevel()
     return this->inputArrayIndex;
 }
 
-void FftCalculator::FftArrayUsedByGui(bool value)
+void FftCalculator::fftEnable(bool value)
 {
-    this->fftArrayUsedByGui = value;
+    this->fftEnabled = value;
 }
 
 void FftCalculator::runTransform()
 {
-    /// Compute FFT only if the current array is not used by the GUI thread
-//    if(!fftArrayUsedByGui)
-//    {
-        if(outputArray != nullptr)
-        {
-            delete[] outputArray;
-            outputArray = nullptr;
-//            emit fftCompleted(nullptr, 0);
-        }
-        outputArray = recursiveFFT(inputArray, inputArraySize);
-//        emit fftCompleted(outputArray, outputArraySize);
-//    }
+    if(!fftEnabled)
+        return;
+    /// Release the previous resources
+    if(outputArray != nullptr)
+    {
+       delete[] outputArray;
+        outputArray = nullptr;
+    }
+    /// Calculate the new FFT
+    outputArray = recursiveFFT(inputArray, inputArraySize);
+    /// Clear the fftEnabled flag in order not to calculate FFT if not necessary
+    fftEnabled = false;
+    /// Send the output from FFT to the GUI thread
+    emit fftCompleted(outputArray, outputArraySize);
 }
 
 Complex* FftCalculator::recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long int step)
@@ -102,10 +101,8 @@ Complex* FftCalculator::recursiveFFT(int16_t subarray[], uint16_t subarraySize, 
         return new Complex((double)subarray[0], 0, Complex::CARTESIAN_COORD);
     else
     {
-        Complex* evenArray = new Complex[subarraySize/2];
-        Complex* oddArray = new Complex[subarraySize/2];
-
-
+        Complex* evenArray = nullptr;
+        Complex* oddArray = nullptr;
 
         evenArray   = recursiveFFT(subarray, subarraySize/2, step*2);
         oddArray    = recursiveFFT(subarray + step, subarraySize/2, step*2);

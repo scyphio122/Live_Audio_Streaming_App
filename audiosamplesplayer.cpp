@@ -69,7 +69,7 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
         int inputSize = AUDIO_OUT_BUF_SIZE;
         if(dataSize > AUDIO_OUT_BUF_SIZE)
         {
-            inputSize = dataSize/AUDIO_OUT_BUF_SIZE + AUDIO_OUT_BUF_SIZE;
+            inputSize = (dataSize/AUDIO_OUT_BUF_SIZE)*AUDIO_OUT_BUF_SIZE + AUDIO_OUT_BUF_SIZE;
             data->resize(inputSize);
             /// Fill the rest of the array with zeros
             memset(data->data()+dataSize, 0, inputSize-dataSize);
@@ -86,7 +86,8 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
         /// Set the input array
         fft->setInputArray((int16_t*)data->data());
         fft->setInputArraySize(inputSize/sizeof(int16_t));
+        fft->setOutputArraySize(inputSize/sizeof(int16_t));
         /// Run the transform
-//        fft->runTransform();
+        fft->runTransform();
     }
 }
