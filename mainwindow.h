@@ -52,10 +52,8 @@ private:
     Complex*        fftOutArray;
     int             fftOutArraySize;
     QPixmap*        pixmap;
-    QPainter*       painter;
     QBrush*         brush;
     QPen*           pen;
-    QTimer*                     guiRefreshTimer;
     bool                        audioInSampling = false;
     bool                        audioOutMuted   = true;
 
@@ -114,6 +112,8 @@ signals:
     void startPlayingSignal(bool value);
     void initializeUdpSocket(QString ip, int port);
     void fftEnable(bool value);
+    void finished();
+
 };
 
 

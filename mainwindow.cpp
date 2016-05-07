@@ -30,55 +30,92 @@ MainWindow::MainWindow(QWidget *parent) :
     displayAudioOutDevices();
 
     pixmap = new QPixmap(ui->lB_visualization->width(), ui->lB_visualization->height());
-    painter = new QPainter(pixmap);
     brush = new QBrush(QColor(255,255,255));
     pen = new QPen(QColor(255, 0, 0));
-    painter->setBrush(*brush);
-    painter->setPen(*pen);
 
     fftOutArray = nullptr;
-
 }
 
 MainWindow::~MainWindow()
 {
+    emit finished();
+
     delete ui;
     delete pixmap;
     delete fft;
-    delete painter;
     delete brush;
     delete pen;
 }
 
+void MainWindow::connectSignals()
+{
+    /** Thread Objects inits **/
+    connect(audioGetterThread, SIGNAL(started()), audioGetter, SLOT(init()));                                                                       /// Signal for audioGetter Initialization
+    connect(audioReceiverThread, SIGNAL(started()), audioPlayer, SLOT(init()));                                                                     /// Signal for audioPlayer Initialization
+
+    /// Cleanup code
+    connect(this, SIGNAL(finished()), audioGetterThread, SLOT(deleteLater()));
+    connect(this, SIGNAL(finished()), audioReceiverThread, SLOT(deleteLater()));
+    connect(this, SIGNAL(finished()), udpManagerThread, SLOT(deleteLater()));
+
+    /** Audio Getter Thread **/
+    connect(this, SIGNAL(setInputAudioDeviceSignal(QAudioInput*)), audioGetter, SLOT(setInputAudioDevice(QAudioInput*)));                           /// Signal for setting the Audio In device
+    connect(audioSender, SIGNAL(emitSendSamplesSignal(UdpDatagram*)), udpManager, SLOT(sendData(UdpDatagram*)));  /// Signal for sending datagrams
+    connect(this, SIGNAL(queryIfSamplingSignal()), audioGetter, SLOT(isSampling()));                                                                 /// Signal for querying if audioIn is playing
+    connect(audioGetter, SIGNAL(isSamplingSignal(bool)), this, SLOT(audioGetterIsSampling(bool)));
+    connect(this, SIGNAL(startSamplingSignal(bool)), audioGetter, SLOT(startSampling(bool)));                                                       /// Signal for sampling start
+    connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));                                   /// Signal for setting audioOut for audioPlayer
+    /** Udp Manager Thread **/
+    connect(this, SIGNAL(initializeUdpSocket(QString,int)), udpManager, SLOT(initSocket(QString,int)));
+
+    /** Audio Receiver Thread **/
+    connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*)), datagramProc, SLOT(processDatagram(UdpDatagram*)));
+    connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));
+    connect(this, SIGNAL(queryIfPlayingSignal()), audioPlayer, SLOT(isMuted()));
+    connect(audioPlayer, SIGNAL(isMutedSignal(bool)), this, SLOT(audioPlayerIsPlaying(bool)));
+    connect(this, SIGNAL(startPlayingSignal(bool)), audioPlayer, SLOT(startPlaying(bool)));
+    connect(audioPlayer, SIGNAL(sendFft(FftCalculator*)), this, SLOT(setFftCalculator(FftCalculator*)));
+
+}
+
 void MainWindow::paintEvent(QPaintEvent *)
 {
-    if(fft != nullptr)
+    /// Draw the pixmap
+    if(fft->getFftEnable() == false && fftOutArray != nullptr)
     {
-        ui->lB_visualization->clear();
-        double maxVal = 0;
-        painter->setBrush(QBrush(QColor(0,0,0)));
+        QPainter painter;
+        painter.begin(pixmap);
+        painter.setPen(*pen);
+
         int windowWidth = ui->lB_visualization->width();
         int windowHeight = ui->lB_visualization->height();
-        painter->drawRect(0,0, windowWidth, windowHeight);
-        painter->setBrush(*brush);
+        double maxVal = 0;
         int coord = 1;
 
-        /// Draw the pixmap
-        if(fft->getFftEnable() == false && fftOutArray != nullptr)
+        painter.setBrush(QBrush(QColor(0,0,0)));
+
+        painter.drawRect(0,0, windowWidth, windowHeight);
+
+
+
+        for(uint32_t i=0; i<fftOutArraySize; i++)
         {
-            for(uint32_t i=0; i<fftOutArraySize; i++)
+            if(i >= windowWidth)
             {
-                if(i >= windowWidth)
-                    break;
-                Complex fftElement = fftOutArray[i];
-                double  fftValue = fftElement.getMagnitude();
-                if(fftElement.getMagnitude() > maxVal)
-                    maxVal = fftValue;
-                painter->drawLine(i+coord, 0, i+coord, 0.001*fftValue);
+                break;
             }
+            Complex fftElement = fftOutArray[i];
+            double  fftValue = fftElement.getMagnitude();
+            if(fftElement.getMagnitude() > maxVal)
+                maxVal = fftValue;
+
+            painter.drawLine(i+coord, 0, i+coord, 0.0001*fftValue);
+        }
+        ui->lB_visualization->setPixmap(*pixmap);
             /// Enable the fft calculator
             emit fftEnable(true);
-        }
+
+    }
 //            uint32_t inputArraySize = fft->getInputArraySize();
 //            int offset = windowHeight/2;
 //            int16_t* ptr = fft->getInputArray();
@@ -89,9 +126,9 @@ void MainWindow::paintEvent(QPaintEvent *)
 //                }
 
 
-            ui->lB_visualization->setPixmap(*pixmap);
-    }
+
 }
+
 
 
 void MainWindow::setAudioSamplesGetter(AudioSamplesGetter* o)
@@ -149,37 +186,15 @@ void MainWindow::setAudioReceiverThread(QThread* o)
     this->audioReceiverThread = o;
 }
 
-void MainWindow::connectSignals()
-{
-    /** Thread Objects inits **/
-    connect(audioGetterThread, SIGNAL(started()), audioGetter, SLOT(init()));                                                                       /// Signal for audioGetter Initialization
-    connect(audioReceiverThread, SIGNAL(started()), audioPlayer, SLOT(init()));                                                                     /// Signal for audioPlayer Initialization
 
-    /** Audio Getter Thread **/
-    connect(this, SIGNAL(setInputAudioDeviceSignal(QAudioInput*)), audioGetter, SLOT(setInputAudioDevice(QAudioInput*)));                           /// Signal for setting the Audio In device
-    connect(audioSender, SIGNAL(emitSendSamplesSignal(UdpDatagram*)), udpManager, SLOT(sendData(UdpDatagram*)));  /// Signal for sending datagrams
-    connect(this, SIGNAL(queryIfSamplingSignal()), audioGetter, SLOT(isSampling()));                                                                 /// Signal for querying if audioIn is playing
-    connect(audioGetter, SIGNAL(isSamplingSignal(bool)), this, SLOT(audioGetterIsSampling(bool)));
-    connect(this, SIGNAL(startSamplingSignal(bool)), audioGetter, SLOT(startSampling(bool)));                                                       /// Signal for sampling start
-    connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));                                   /// Signal for setting audioOut for audioPlayer
-    /** Udp Manager Thread **/
-    connect(this, SIGNAL(initializeUdpSocket(QString,int)), udpManager, SLOT(initSocket(QString,int)));
-
-    /** Audio Receiver Thread **/
-    connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*)), datagramProc, SLOT(processDatagram(UdpDatagram*)));
-    connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));
-    connect(this, SIGNAL(queryIfPlayingSignal()), audioPlayer, SLOT(isMuted()));
-    connect(audioPlayer, SIGNAL(isMutedSignal(bool)), this, SLOT(audioPlayerIsPlaying(bool)));
-    connect(this, SIGNAL(startPlayingSignal(bool)), audioPlayer, SLOT(startPlaying(bool)));
-    connect(audioPlayer, SIGNAL(sendFft(FftCalculator*)), this, SLOT(setFftCalculator(FftCalculator*)));
-
-}
 
 void MainWindow::setFftCalculator(FftCalculator* fft)
 {
     this->fft = fft;
     connect(fft, SIGNAL(fftCompleted(Complex*,int)), this, SLOT(setFftOutArray(Complex*,int)));
+    connect(fft, SIGNAL(repaintGUI()), this, SLOT(repaint()));
     connect(this, SIGNAL(fftEnable(bool)), fft, SLOT(fftEnable(bool)));
+
 }
 
 
@@ -278,20 +293,20 @@ void MainWindow::on_pB_startStopSampling_clicked()
     {
         emit startSamplingSignal(true);
         ui->pB_startStopSampling->setText("Stop Sampling");
-        guiRefreshTimer = new QTimer();
-        connect(guiRefreshTimer, SIGNAL(timeout()), this, SLOT(repaint()));
-        guiRefreshTimer->start(30);
+//        guiRefreshTimer = new QTimer();
+//        connect(guiRefreshTimer, SIGNAL(timeout()), this, SLOT(repaint()));
+//        guiRefreshTimer->start(10);
     }
     else
     {
          emit startSamplingSignal(false);
          ui->pB_startStopSampling->setText("Start Sampling");
-         if(guiRefreshTimer != nullptr)
-         {
-             guiRefreshTimer->stop();
-             delete guiRefreshTimer;
-             guiRefreshTimer = nullptr;
-         }
+//         if(guiRefreshTimer != nullptr)
+//         {
+//             guiRefreshTimer->stop();
+//             delete guiRefreshTimer;
+//             guiRefreshTimer = nullptr;
+//         }
     }
 
     /// Query the audioGetter To update the current state of audioPlayer

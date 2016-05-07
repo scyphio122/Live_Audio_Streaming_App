@@ -89,6 +89,7 @@ public:
         lB_visualization->setAutoFillBackground(true);
         lB_visualization->setFrameShape(QFrame::Box);
         lB_visualization->setFrameShadow(QFrame::Sunken);
+        lB_visualization->setScaledContents(false);
         gB_networkSettings = new QGroupBox(centralWidget);
         gB_networkSettings->setObjectName(QStringLiteral("gB_networkSettings"));
         gB_networkSettings->setGeometry(QRect(960, 20, 271, 101));

@@ -45,7 +45,7 @@ public slots:
 
 signals:
     void        fftCompleted(Complex* outputArray, int outputArraySize);
-
+    void        repaintGUI();
 };
 
 

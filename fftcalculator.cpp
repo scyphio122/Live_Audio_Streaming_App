@@ -97,6 +97,7 @@ void FftCalculator::runTransform()
     fftEnabled = false;
     /// Send the output from FFT to the GUI thread
     emit fftCompleted(outputArray, outputArraySize);
+    emit repaintGUI();
 }
 
 Complex* FftCalculator::recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long int step)

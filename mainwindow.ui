@@ -134,6 +134,9 @@
      <property name="text">
       <string/>
      </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
     </widget>
    </widget>
    <widget class="QGroupBox" name="gB_networkSettings">
