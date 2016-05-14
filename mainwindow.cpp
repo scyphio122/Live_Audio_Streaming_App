@@ -17,7 +17,7 @@
 #include "fftcalculator.h"
 #include "complex.h"
 #include "audiodevicelister.h"
-
+#include <cfloat>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -75,46 +75,72 @@ void MainWindow::connectSignals()
     connect(audioPlayer, SIGNAL(isMutedSignal(bool)), this, SLOT(audioPlayerIsPlaying(bool)));
     connect(this, SIGNAL(startPlayingSignal(bool)), audioPlayer, SLOT(startPlaying(bool)));
     connect(audioPlayer, SIGNAL(sendFft(FftCalculator*)), this, SLOT(setFftCalculator(FftCalculator*)));
+    connect(this, SIGNAL(changeOutputVolume(int)), audioPlayer, SLOT(changeVolume(int)));
 
 }
+void MainWindow::drawScale(QPainter& painter, int windowWidth, int windowHeight, int sampleIndexMult)
+{
+    const int fs = 44100;
+    int N  = fft->getOutputArraySize();
+
+    int one_kHzIndex = (int)((double)1000*N/fs + 0.5);
+
+    for(int i=0; i<N; i++)
+    {
+        if(i>windowWidth)
+            break;
+        painter.drawLine(i*one_kHzIndex, windowHeight-35, i*one_kHzIndex, windowHeight-25);
+        if(i > 0)
+        {
+            QString frequency = QString::number(i*sampleIndexMult) + " kHz";
+            painter.drawText(i*one_kHzIndex-12, windowHeight - 10, frequency);
+        }
+    }
+}
+
 
 void MainWindow::paintEvent(QPaintEvent *)
 {
     /// Draw the pixmap
-    if(fft->getFftEnable() == false && fftOutArray != nullptr)
+    if(fft != nullptr)
     {
-        QPainter painter;
-        painter.begin(pixmap);
-        painter.setPen(*pen);
-
-        int windowWidth = ui->lB_visualization->width();
-        int windowHeight = ui->lB_visualization->height();
-        double maxVal = 0;
-        int coord = 1;
-
-        painter.setBrush(QBrush(QColor(0,0,0)));
-
-        painter.drawRect(0,0, windowWidth, windowHeight);
-
-
-
-        for(uint32_t i=0; i<fftOutArraySize; i++)
+        if(fft->getFftEnable() == false && fftOutArray != nullptr)
         {
-            if(i >= windowWidth)
-            {
-                break;
-            }
-            Complex fftElement = fftOutArray[i];
-            double  fftValue = fftElement.getMagnitude();
-            if(fftElement.getMagnitude() > maxVal)
-                maxVal = fftValue;
+            QPainter painter;
+            painter.begin(pixmap);
+            painter.setPen(*pen);
 
-            painter.drawLine(i+coord, 0, i+coord, 0.0001*fftValue);
-        }
-        ui->lB_visualization->setPixmap(*pixmap);
+            int windowWidth = ui->lB_visualization->width();
+            int windowHeight = ui->lB_visualization->height();
+            double maxVal = 0;
+            int coord = 1;
+
+            painter.setBrush(QBrush(QColor(0,0,0)));
+
+            painter.drawRect(0,0, windowWidth, windowHeight);
+
+            drawScale(painter, windowWidth, windowHeight, 2);
+
+            /// Draw every second sample
+            for(uint32_t fftOutIndex=0; fftOutIndex<fftOutArraySize/2; fftOutIndex += 2)
+            {
+                if(fftOutIndex >= windowWidth)
+                {
+                    break;
+                }
+                Complex fftElement = fftOutArray[fftOutIndex];
+                double  fftValue = fftElement.getMagnitude();
+                if(fftElement.getMagnitude() > maxVal)
+                    maxVal = fftValue;
+
+                painter.drawLine(coord, 0, coord, 0.005*fftValue);
+                coord++;
+            }
+            ui->lB_visualization->setPixmap(*pixmap);
             /// Enable the fft calculator
             emit fftEnable(true);
 
+        }
     }
 //            uint32_t inputArraySize = fft->getInputArraySize();
 //            int offset = windowHeight/2;
@@ -276,6 +302,7 @@ void MainWindow::setFftOutArray(Complex *array, int arraySize)
 {
     this->fftOutArray = array;
     this->fftOutArraySize = arraySize;
+    repaint();
 }
 
 void MainWindow::on_cb_inputAudioDevice_activated(const QString &arg1)
@@ -293,20 +320,11 @@ void MainWindow::on_pB_startStopSampling_clicked()
     {
         emit startSamplingSignal(true);
         ui->pB_startStopSampling->setText("Stop Sampling");
-//        guiRefreshTimer = new QTimer();
-//        connect(guiRefreshTimer, SIGNAL(timeout()), this, SLOT(repaint()));
-//        guiRefreshTimer->start(10);
     }
     else
     {
          emit startSamplingSignal(false);
          ui->pB_startStopSampling->setText("Start Sampling");
-//         if(guiRefreshTimer != nullptr)
-//         {
-//             guiRefreshTimer->stop();
-//             delete guiRefreshTimer;
-//             guiRefreshTimer = nullptr;
-//         }
     }
 
     /// Query the audioGetter To update the current state of audioPlayer
@@ -344,4 +362,9 @@ void MainWindow::on_pB_connect_clicked()
     if(ip == "localhost")
         ip = "127.0.0.1";
     emit initializeUdpSocket(ip, port);
+}
+
+void MainWindow::on_hSlider_outputVolume_valueChanged(int value)
+{
+    emit changeOutputVolume(value);
 }

@@ -89,15 +89,18 @@ void FftCalculator::runTransform()
     if(outputArray != nullptr)
     {
        delete[] outputArray;
-        outputArray = nullptr;
+       outputArray = nullptr;
     }
+
     /// Calculate the new FFT
     outputArray = recursiveFFT(inputArray, inputArraySize);
+    emit fftCompleted(outputArray, outputArraySize);
+
     /// Clear the fftEnabled flag in order not to calculate FFT if not necessary
     fftEnabled = false;
     /// Send the output from FFT to the GUI thread
-    emit fftCompleted(outputArray, outputArraySize);
-    emit repaintGUI();
+
+//    emit repaintGUI();
 }
 
 Complex* FftCalculator::recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long int step)

@@ -60,6 +60,7 @@ private:
     void paintEvent(QPaintEvent *);
     void visualizeFFT();
     void drawingDelay(uint32_t time_ms);
+    void drawScale(QPainter& painter, int windowWidth, int windowHeight, int sampleIndexMult);
 
     void generateTestSin(double freq, int *dataOut, double xStart, double xEnd, uint32_t dataOutNumber);
     void displayAudioInDevices();
@@ -78,6 +79,8 @@ private slots:
     void on_pB_startStopPlaying_clicked();
 
     void on_pB_connect_clicked();
+
+    void on_hSlider_outputVolume_valueChanged(int value);
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -113,6 +116,7 @@ signals:
     void initializeUdpSocket(QString ip, int port);
     void fftEnable(bool value);
     void finished();
+    void changeOutputVolume(int);
 
 };
 

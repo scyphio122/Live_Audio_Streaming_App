@@ -21,6 +21,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -38,6 +39,8 @@ public:
     QGroupBox *gB_outputAudioDevice;
     QComboBox *cB_outputAudioDevice;
     QPushButton *pB_startStopPlaying;
+    QSlider *hSlider_outputVolume;
+    QLabel *label;
     QGroupBox *gB_visualization;
     QLabel *lB_visualization;
     QGroupBox *gB_networkSettings;
@@ -71,7 +74,7 @@ public:
         pB_startStopSampling->setGeometry(QRect(330, 30, 81, 21));
         gB_outputAudioDevice = new QGroupBox(centralWidget);
         gB_outputAudioDevice->setObjectName(QStringLiteral("gB_outputAudioDevice"));
-        gB_outputAudioDevice->setGeometry(QRect(470, 20, 471, 61));
+        gB_outputAudioDevice->setGeometry(QRect(470, 20, 471, 101));
         gB_outputAudioDevice->setCheckable(true);
         gB_outputAudioDevice->setChecked(false);
         cB_outputAudioDevice = new QComboBox(gB_outputAudioDevice);
@@ -80,6 +83,17 @@ public:
         pB_startStopPlaying = new QPushButton(gB_outputAudioDevice);
         pB_startStopPlaying->setObjectName(QStringLiteral("pB_startStopPlaying"));
         pB_startStopPlaying->setGeometry(QRect(340, 30, 80, 21));
+        hSlider_outputVolume = new QSlider(gB_outputAudioDevice);
+        hSlider_outputVolume->setObjectName(QStringLiteral("hSlider_outputVolume"));
+        hSlider_outputVolume->setGeometry(QRect(20, 70, 301, 16));
+        hSlider_outputVolume->setMaximum(100);
+        hSlider_outputVolume->setValue(100);
+        hSlider_outputVolume->setOrientation(Qt::Horizontal);
+        hSlider_outputVolume->setTickPosition(QSlider::TicksAbove);
+        hSlider_outputVolume->setTickInterval(10);
+        label = new QLabel(gB_outputAudioDevice);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 50, 101, 16));
         gB_visualization = new QGroupBox(centralWidget);
         gB_visualization->setObjectName(QStringLiteral("gB_visualization"));
         gB_visualization->setGeometry(QRect(20, 110, 1221, 631));
@@ -134,6 +148,7 @@ public:
         pB_startStopSampling->setText(QApplication::translate("MainWindow", "Start Sampling", 0));
         gB_outputAudioDevice->setTitle(QApplication::translate("MainWindow", "Output Audio Device", 0));
         pB_startStopPlaying->setText(QApplication::translate("MainWindow", "Start Playing", 0));
+        label->setText(QApplication::translate("MainWindow", "Change Volume:", 0));
         gB_visualization->setTitle(QApplication::translate("MainWindow", "Visualziation", 0));
         lB_visualization->setText(QString());
         gB_networkSettings->setTitle(QApplication::translate("MainWindow", "Network Settings", 0));

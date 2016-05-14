@@ -14,16 +14,16 @@ class AudioSamplesGetter : public QObject
 private:
 
 
-    AudioSamplesSender*                         audioSender;
-    QAudioInput*                                audioInDevice;
-    QAudioOutput*                               audioOutDevice;
-    QBuffer*                                    capturingStream;
-    QByteArray*                                 inputDataBuffer;
+    AudioSamplesSender*                         audioSender         = nullptr;
+    QAudioInput*                                audioInDevice       = nullptr;
+    QAudioOutput*                               audioOutDevice      = nullptr;
+    QBuffer*                                    capturingStream     = nullptr;
+    QByteArray*                                 inputDataBuffer     = nullptr;
     bool                                        isMuted;
     bool                                        echoSound;
     bool                                        isCurrentlySampling;
 
-    void playEchoedSamples(int leftSample, int rightSample);
+    void playEchoedSamples();
 
 public slots:
     void init();

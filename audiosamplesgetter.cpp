@@ -31,8 +31,6 @@ void AudioSamplesGetter::init()
 
     inputDataBuffer = new QByteArray(AUDIO_IN_BUFFER_SIZE, 0);
     capturingStream = new QBuffer(this->inputDataBuffer);
-    audioInDevice   = new QAudioInput();
-    audioOutDevice  = new QAudioOutput();
 
     capturingStream->open(QIODevice::ReadWrite);
 
@@ -97,7 +95,7 @@ void AudioSamplesGetter::onSamplesCaptured()
     this->audioSender->sendSamples(this->capturingStream);
 }
 
-void AudioSamplesGetter::playEchoedSamples(int leftSample, int rightSample)
+void AudioSamplesGetter::playEchoedSamples()
 {
 
 }

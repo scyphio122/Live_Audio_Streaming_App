@@ -12,8 +12,10 @@ AudioSamplesPlayer::AudioSamplesPlayer(QObject* parent=0)
 
 void AudioSamplesPlayer::init()
 {
-    this->audioOutputBuffer = new QBuffer(new QByteArray(new char[AUDIO_OUT_BUF_SIZE], AUDIO_OUT_BUF_SIZE));
     this->muted = false;
+
+    if(fft != nullptr)
+        delete fft;
 
     this->fft = new FftCalculator();
     this->fft->setInputArraySize(AUDIO_OUT_BUF_SIZE);
@@ -28,11 +30,21 @@ AudioSamplesPlayer::~AudioSamplesPlayer()
 
 void AudioSamplesPlayer::setAudioOutput(QAudioOutput *dev)
 {
-    this->audioOutput.reset(dev);
+    if(audioOutput != nullptr)
+        delete audioOutput;
+
+    this->audioOutput = dev;
 }
 
 void AudioSamplesPlayer::startPlaying(bool value)
 {
+    if(this->audioOutputBuffer != nullptr)
+        delete audioOutputBuffer;
+    this->audioOutputBuffer = new QBuffer();
+    this->audioOutputBuffer->open(QIODevice::WriteOnly);
+
+    memset(audioOutputBuffer->buffer().data(), 0, audioOutputBuffer->size());
+
     if(value == true)
     {
         muted = false;
@@ -51,6 +63,11 @@ bool AudioSamplesPlayer::isMuted()
     return this->muted;
 }
 
+void AudioSamplesPlayer::changeVolume(int volumePercentage)
+{
+    this->audioOutput->setVolume((double)volumePercentage/100);
+}
+
 FftCalculator* AudioSamplesPlayer::getFFT()
 {
     return this->fft;
@@ -62,9 +79,6 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
     uint16_t sample = 0;
     if(!muted)
     {
-        /// TODO: Put here the code to play the samples on audio OUT
-        ///
-        ///
         int dataSize = data->size();
         int inputSize = AUDIO_OUT_BUF_SIZE;
         if(dataSize > AUDIO_OUT_BUF_SIZE)
@@ -83,6 +97,15 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
                 return;
             }
         }
+
+        if(audioOutputBuffer != nullptr)
+        {
+            delete audioOutputBuffer->buffer().data();
+            audioOutputBuffer->setBuffer(data);
+        }
+
+
+        /// Calculate FFT
         /// Set the input array
         fft->setInputArray((int16_t*)data->data());
         fft->setInputArraySize(inputSize/sizeof(int16_t));

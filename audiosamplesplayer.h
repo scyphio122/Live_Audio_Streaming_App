@@ -13,10 +13,11 @@ class AudioSamplesPlayer : public DatagramListener
 
 private:
     const int                           AUDIO_OUT_BUF_SIZE  =   8192;
-    FftCalculator*                      fft;
-    QBuffer*                            audioOutputBuffer;
-    boost::scoped_ptr<QAudioOutput>     audioOutput;
+    FftCalculator*                      fft                 =   nullptr;
+    QBuffer*                            audioOutputBuffer   =   nullptr;
+    QAudioOutput*                       audioOutput         =   nullptr;
     bool                                muted;
+
 public:
     AudioSamplesPlayer();
     AudioSamplesPlayer(QObject* parent);
@@ -30,6 +31,7 @@ public slots:
     void setAudioOutput(QAudioOutput* dev);
     void startPlaying(bool value);
     bool isMuted();
+    void changeVolume(int volumePercentage);
 signals:
     void isMutedSignal(bool value);
     void sendFft(FftCalculator* fft);
