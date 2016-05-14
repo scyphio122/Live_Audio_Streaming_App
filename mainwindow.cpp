@@ -87,7 +87,7 @@ void MainWindow::setMutex(QMutex* mutex)
 void MainWindow::drawScale(QPainter& painter, int windowWidth, int windowHeight, int sampleIndexMult)
 {
     const int fs = 44100;
-    int N  = fft->getOutputArraySize();
+    int N  = fft->getOutputArraySize()/2;
 
     int one_kHzIndex = (int)((double)1000*N/fs + 0.5);
 
@@ -127,7 +127,7 @@ void MainWindow::paintEvent(QPaintEvent *)
 
             painter.drawRect(0,0, windowWidth, windowHeight);
 
-//            drawScale(painter, windowWidth, windowHeight, 1);
+            drawScale(painter, windowWidth, windowHeight, 2);
 
             /// Draw every second sample
             for(uint32_t fftOutIndex=0; fftOutIndex<fftOutArraySize/2; fftOutIndex += 2)
@@ -139,14 +139,14 @@ void MainWindow::paintEvent(QPaintEvent *)
                 }
                 Complex fftElement = fftOutArray[fftOutIndex];
                 double  fftValue = fftElement.getMagnitude();
-//                if(fftValue < 0)
-//                    fftValue = 0;
-//                if(0.005*fftValue > windowHeight)
-//                    continue;
+                fftValue *= 0.005;
+
+                if(fftValue > windowHeight || fftValue < 0)
+                    continue;
                 if(fftElement.getMagnitude() > maxVal)
                     maxVal = fftValue;
 
-                painter.drawLine(coord, 0, coord, 0.005*fftValue);
+                painter.drawLine(coord, 0, coord, fftValue);
 
             }
             ui->lB_visualization->setPixmap(*pixmap);
