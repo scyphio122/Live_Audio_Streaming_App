@@ -5,6 +5,8 @@
 #include <QVector>
 #include <complex.h>
 #include <QObject>
+#include <QMutex>
+
 
 #define M_PI    3.14159265358979323846d
 
@@ -19,12 +21,14 @@ private:
     uint16_t    inputArraySize = 0;
     uint16_t    outputArraySize = 0;
     bool        fftEnabled = true;
-
+    QMutex*     mutex;
     Complex*    recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long step = 1);
 
 public:
     FftCalculator();
     ~FftCalculator();
+
+    void        setMutex(QMutex* mutex);
 
     void        setInputArray(int16_t *array);
     void        setOutputArray(Complex* array);

@@ -66,6 +66,11 @@ void FftCalculator::appendSample(uint16_t c)
     }
 }
 
+void FftCalculator::setMutex(QMutex* mutex)
+{
+    this->mutex = mutex;
+}
+
 uint16_t FftCalculator::getInputFillLevel()
 {
     return this->inputArrayIndex;

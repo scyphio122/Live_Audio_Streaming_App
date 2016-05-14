@@ -78,6 +78,12 @@ void MainWindow::connectSignals()
     connect(this, SIGNAL(changeOutputVolume(int)), audioPlayer, SLOT(changeVolume(int)));
 
 }
+
+void MainWindow::setMutex(QMutex* mutex)
+{
+    this->mutex = mutex;
+}
+
 void MainWindow::drawScale(QPainter& painter, int windowWidth, int windowHeight, int sampleIndexMult)
 {
     const int fs = 44100;
@@ -104,8 +110,10 @@ void MainWindow::paintEvent(QPaintEvent *)
     /// Draw the pixmap
     if(fft != nullptr)
     {
-        if(fft->getFftEnable() == false && fftOutArray != nullptr)
+        if(fftOutArray != nullptr && fft->getFftEnable() == false)
         {
+//            mutex->lock();
+
             QPainter painter;
             painter.begin(pixmap);
             painter.setPen(*pen);
@@ -144,6 +152,7 @@ void MainWindow::paintEvent(QPaintEvent *)
             ui->lB_visualization->setPixmap(*pixmap);
             /// Enable the fft calculator
             emit fftEnable(true);
+//            mutex->unlock();
 
         }
     }

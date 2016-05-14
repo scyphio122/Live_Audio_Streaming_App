@@ -12,9 +12,12 @@
 #include "complex.h"
 #include "audiodevicelister.h"
 #include <QObject>
+#include <QMutex>
+
 
 int main(int argc, char *argv[])
 {
+//    QMutex  guiMutex;
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
@@ -40,6 +43,8 @@ int main(int argc, char *argv[])
     receivedDataProc.setAudioSamplesPlayer(&audioSamplesPlayer);
     receivedDataProc.setCommandReceiver(&commandsReceiver);
 
+//    w.setMutex(&guiMutex);
+//    audioSamplesPlayer.getFFT()->setMutex(&guiMutex);
 
     /// Set the pointers in the mainwindow, to connect signals
     w.setAudioSamplesGetter(&audioSamplesGetter);

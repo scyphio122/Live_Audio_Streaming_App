@@ -23,7 +23,8 @@
 #include "complex.h"
 #include "audiodevicelister.h"
 #include <QThread>
-#include <QTimer>
+#include <QMutex>
+
 
 namespace Ui {
 class MainWindow;
@@ -47,6 +48,7 @@ private:
     QThread*                    audioGetterThread;
     QThread*                    udpManagerThread;
     QThread*                    audioReceiverThread;
+    QMutex*                     mutex;
 
     FftCalculator*  fft = nullptr;
     Complex*        fftOutArray;
@@ -96,6 +98,7 @@ public:
     void setAudioSenderThread(QThread* o);
     void setUdpThread(QThread* o);
     void setAudioReceiverThread(QThread* o);
+    void setMutex(QMutex* mutex);
 
     void connectSignals();
     void runFftTest();
