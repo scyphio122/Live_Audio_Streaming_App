@@ -113,28 +113,33 @@ void MainWindow::paintEvent(QPaintEvent *)
             int windowWidth = ui->lB_visualization->width();
             int windowHeight = ui->lB_visualization->height();
             double maxVal = 0;
-            int coord = 1;
+            int coord = 0;
 
             painter.setBrush(QBrush(QColor(0,0,0)));
 
             painter.drawRect(0,0, windowWidth, windowHeight);
 
-            drawScale(painter, windowWidth, windowHeight, 2);
+//            drawScale(painter, windowWidth, windowHeight, 1);
 
             /// Draw every second sample
             for(uint32_t fftOutIndex=0; fftOutIndex<fftOutArraySize/2; fftOutIndex += 2)
             {
-                if(fftOutIndex >= windowWidth)
+                coord++;
+                if(coord >= windowWidth)
                 {
                     break;
                 }
                 Complex fftElement = fftOutArray[fftOutIndex];
                 double  fftValue = fftElement.getMagnitude();
+//                if(fftValue < 0)
+//                    fftValue = 0;
+//                if(0.005*fftValue > windowHeight)
+//                    continue;
                 if(fftElement.getMagnitude() > maxVal)
                     maxVal = fftValue;
 
                 painter.drawLine(coord, 0, coord, 0.005*fftValue);
-                coord++;
+
             }
             ui->lB_visualization->setPixmap(*pixmap);
             /// Enable the fft calculator

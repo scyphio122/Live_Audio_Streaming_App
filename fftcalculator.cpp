@@ -98,16 +98,13 @@ void FftCalculator::runTransform()
 
     /// Clear the fftEnabled flag in order not to calculate FFT if not necessary
     fftEnabled = false;
-    /// Send the output from FFT to the GUI thread
-
-//    emit repaintGUI();
 }
 
 Complex* FftCalculator::recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long int step)
 {
     Complex* resultArray = nullptr;
     if(subarraySize == 1)
-        return new Complex((double)subarray[0], 0, Complex::CARTESIAN_COORD);
+        return new Complex(subarray[0], 0, Complex::CARTESIAN_COORD);
     else
     {
         Complex* evenArray = nullptr;

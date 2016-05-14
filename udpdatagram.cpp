@@ -52,10 +52,10 @@ uint16_t UdpDatagram::getDataSize()
 
 QByteArray* UdpDatagram::getDataCopy()
 {
-    QByteArray* byteBuf = new QByteArray(getDataSize(), 0);
+    QByteArray* byteBuf = new QByteArray((int)getDataSize(), 0);
     int size = getDataSize();
     /// Copy the data
-    memcpy(byteBuf->data(),  this->data.data()+DATA_SIZE_INDEX+DATA_SIZE_SIZE, size);
+    memcpy(byteBuf->data(),  ((char*)this->data.data())+DATA_SIZE_INDEX+DATA_SIZE_SIZE, size);
 
     return byteBuf;
 }
