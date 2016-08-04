@@ -47,7 +47,8 @@ HEADERS  += mainwindow.h \
     fftcalculator.h \
     complex.h \
     udpdatagram.h \
-    audiodevicelister.h
+    audiodevicelister.h \
+    audio_config.h
 
 INCLUDEPATH += D:/C++_Libs/boost_1_60_0/
 
