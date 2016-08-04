@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     brush = new QBrush(QColor(255,255,255));
     pen = new QPen(QColor(255, 0, 0));
 
+
     fftOutArray = nullptr;
 }
 
@@ -112,42 +113,15 @@ void MainWindow::paintEvent(QPaintEvent *)
     {
         if(fftOutArray != nullptr && fft->getFftEnable() == false)
         {
-//            mutex->lock();
-            const int barWidth = 4;
             QPainter painter;
             painter.begin(pixmap);
             painter.setPen(*pen);
 
             int windowWidth = ui->lB_visualization->width();
             int windowHeight = ui->lB_visualization->height();
-            double maxVal = 0;
-            int coord = 0;
 
             painter.setBrush(QBrush(QColor(0,0,0)));
-
             painter.drawRect(0,0, windowWidth, windowHeight);
-
-//            drawScale(painter, windowWidth, windowHeight, 1);
-
-            /// Draw every second sample
-//            for(uint32_t fftOutIndex=0; fftOutIndex<fftOutArraySize/2; fftOutIndex += barWidth)
-//            {
-//                if(coord >= windowWidth)
-//                {
-//                    break;
-//                }
-//                Complex fftElement = fftOutArray[fftOutIndex];
-//                double  fftValue = fftElement.getMagnitude();
-//                fftValue *= 0.005;
-
-//                if(fftValue > windowHeight || fftValue < 0)
-//                    continue;
-//                if(fftElement.getMagnitude() > maxVal)
-//                    maxVal = fftValue;
-
-//                painter.drawRect(coord, 0, barWidth, fftValue);//, Qt::SolidPattern);
-//                coord += barWidth;
-//            }
 
             /// Draw the frame
             graphicVisualizer->draw(fftOutArray, fftOutArraySize, painter, windowHeight, windowWidth);
@@ -156,23 +130,12 @@ void MainWindow::paintEvent(QPaintEvent *)
             ui->lB_visualization->setPixmap(*pixmap);
             /// Enable the fft calculator
             emit fftEnable(true);
-//            mutex->unlock();
-           delete[] fftOutArray;
+
+            delete[] fftOutArray;
             fftOutArray = nullptr;
 
         }
     }
-//            uint32_t inputArraySize = fft->getInputArraySize();
-//            int offset = windowHeight/2;
-//            int16_t* ptr = fft->getInputArray();
-//            if(ptr != nullptr)
-//                for(uint32_t i=0; i<inputArraySize; i++)
-//                {
-//                    painter->drawLine(i+coord, offset, i+coord, offset + 0.05*ptr[i]);
-//                }
-
-
-
 }
 
 
@@ -215,6 +178,9 @@ void MainWindow::setCommandReceiver(CommandReceiver* o)
 void MainWindow::setGraphicVisualizer(GraphicsVisualizer* o)
 {
     this->graphicVisualizer = o;
+    graphicVisualizer->fftBars.setWindowHeight(ui->lB_visualization->height());
+    graphicVisualizer->fftBars.setWindowWidth(ui->lB_visualization->width());
+    graphicVisualizer->fftBars.calcOffset();
 }
 
 void MainWindow::setAudioSenderThread(QThread* o)

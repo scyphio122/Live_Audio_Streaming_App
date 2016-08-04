@@ -11,3 +11,13 @@ uint32_t AbstractVisualization::getFreqIndex(Complex* inputArray, int inputArray
 {
     return (double)(frequency*inputArraySize)/samplingFrequency;
 }
+
+void AbstractVisualization::setWindowHeight(int h)
+{
+    this->windowHeight = h;
+}
+
+void AbstractVisualization::setWindowWidth(int w)
+{
+    this->windowWidth = w;
+}

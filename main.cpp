@@ -56,6 +56,8 @@ int main(int argc, char *argv[])
     w.setCommandReceiver(&commandsReceiver);
     w.setGraphicVisualizer(&graphVisualizer);
 
+
+
     /// Create threads
     QThread samplesGetterThread;
     QThread udpMangerThread;

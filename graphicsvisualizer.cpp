@@ -13,3 +13,4 @@ void GraphicsVisualizer::draw(Complex *inputArray, int size, QPainter &painter, 
 {
     fftBars.draw(inputArray, size, painter, windowHeight, windowWidth);
 }
+

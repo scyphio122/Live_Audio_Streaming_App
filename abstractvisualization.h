@@ -9,14 +9,20 @@ class AbstractVisualization
 {
 public:
     QRgb color;
+    int       windowHeight;
+    int       windowWidth;
 
     AbstractVisualization();
 
     void setColor(QRgb color);
 
-    virtual void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
+    void setWindowHeight(int h);
+
+    void setWindowWidth(int w);
 
     uint32_t getFreqIndex(Complex* inputArray, int inputArraySize, int frequency);
+
+    virtual void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
 };
 
 #endif // ABSTRACTVISUALIZATION_H

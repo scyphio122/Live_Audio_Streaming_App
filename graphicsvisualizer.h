@@ -9,11 +9,12 @@
 class GraphicsVisualizer
 {
 private:
-    FFTBars fftBars;
+
+
 public:
     GraphicsVisualizer();
 
-
+    FFTBars fftBars;
     void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
 };
 
