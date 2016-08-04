@@ -3,12 +3,18 @@
 
 #include <stdint-gcc.h>
 #include <complex.h>
+#include "fftbars.h"
+
 
 class GraphicsVisualizer
 {
+private:
+    FFTBars fftBars;
 public:
     GraphicsVisualizer();
-    static uint32_t getFreqIndex(Complex* inputArray, int inputArraySize, int frequency);
+
+
+    void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
 };
 
 #endif // GRAPHICSVISUALIZER_H

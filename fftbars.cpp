@@ -12,8 +12,8 @@ FFTBars::FFTBars()
 
 void FFTBars::drawBar(Complex* inputArray, int size, int frequency, int x, int y, QPainter& painter)
 {
-    int freqIndex = GraphicsVisualizer::getFreqIndex(inputArray, size, frequency);
-    int numOfRects = inputArray[freqIndex]/barSizeY;
+    int freqIndex = getFreqIndex(inputArray, size, frequency);
+    int numOfRects = inputArray[freqIndex].getMagnitude()/barSizeY;
 
     for(int i=0; i<numOfRects; ++i)
     {

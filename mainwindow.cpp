@@ -130,24 +130,29 @@ void MainWindow::paintEvent(QPaintEvent *)
             drawScale(painter, windowWidth, windowHeight, 1);
 
             /// Draw every second sample
-            for(uint32_t fftOutIndex=0; fftOutIndex<fftOutArraySize/2; fftOutIndex += barWidth)
-            {
-                if(coord >= windowWidth)
-                {
-                    break;
-                }
-                Complex fftElement = fftOutArray[fftOutIndex];
-                double  fftValue = fftElement.getMagnitude();
-                fftValue *= 0.005;
+//            for(uint32_t fftOutIndex=0; fftOutIndex<fftOutArraySize/2; fftOutIndex += barWidth)
+//            {
+//                if(coord >= windowWidth)
+//                {
+//                    break;
+//                }
+//                Complex fftElement = fftOutArray[fftOutIndex];
+//                double  fftValue = fftElement.getMagnitude();
+//                fftValue *= 0.005;
 
-                if(fftValue > windowHeight || fftValue < 0)
-                    continue;
-                if(fftElement.getMagnitude() > maxVal)
-                    maxVal = fftValue;
+//                if(fftValue > windowHeight || fftValue < 0)
+//                    continue;
+//                if(fftElement.getMagnitude() > maxVal)
+//                    maxVal = fftValue;
 
-                painter.drawRect(coord, 0, barWidth, fftValue);//, Qt::SolidPattern);
-                coord += barWidth;
-            }
+//                painter.drawRect(coord, 0, barWidth, fftValue);//, Qt::SolidPattern);
+//                coord += barWidth;
+//            }
+
+            /// Draw the frame
+            graphicVisualizer->draw(fftOutArray, fftOutArraySize, painter, windowHeight, windowWidth);
+
+
             ui->lB_visualization->setPixmap(*pixmap);
             /// Enable the fft calculator
             emit fftEnable(true);

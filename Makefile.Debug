@@ -108,7 +108,8 @@ DIST          =  mainwindow.h \
 		fftcalculator.h \
 		complex.h \
 		udpdatagram.h \
-		audiodevicelister.h main.cpp \
+		audiodevicelister.h \
+		audio_config.h main.cpp \
 		mainwindow.cpp \
 		audiosamplesgetter.cpp \
 		audiosamplessender.cpp \
@@ -313,6 +314,7 @@ debug/moc_mainwindow.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QMa
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -384,15 +386,19 @@ debug/moc_mainwindow.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QMa
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
 		commandssender.h \
 		graphicsvisualizer.h \
+		fftbars.h \
+		abstractvisualization.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QRgb \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPainter \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainter.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
 		audiodevicelister.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QList \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioDeviceInfo \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudio \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QThread \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qthread.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QTimer \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtimer.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbasictimer.h \
 		mainwindow.h
 	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore mainwindow.h -o debug/moc_mainwindow.cpp
 
@@ -487,6 +493,7 @@ debug/moc_audiosamplesgetter.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMul
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -648,6 +655,7 @@ debug/moc_audiosamplessender.cpp: udpmanager.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -811,6 +819,7 @@ debug/moc_udpmanager.cpp: receiveddatagramprocessor.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -969,6 +978,7 @@ debug/moc_receiveddatagramprocessor.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/includ
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -1168,6 +1178,7 @@ debug/moc_audiosamplesplayer.cpp: datagramlistener.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvector.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpoint.h \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -1291,6 +1302,7 @@ debug/moc_fftcalculator.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVe
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		fftcalculator.h
 	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore fftcalculator.h -o debug/moc_fftcalculator.cpp
 
@@ -1446,6 +1458,7 @@ debug/main.o: main.cpp mainwindow.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -1517,15 +1530,19 @@ debug/main.o: main.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
 		commandssender.h \
 		graphicsvisualizer.h \
+		fftbars.h \
+		abstractvisualization.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QRgb \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPainter \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainter.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
 		audiodevicelister.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QList \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioDeviceInfo \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudio \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QThread \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qthread.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QTimer \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtimer.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbasictimer.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QApplication \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qapplication.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreapplication.h \
@@ -1667,6 +1684,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -1738,15 +1756,19 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
 		commandssender.h \
 		graphicsvisualizer.h \
+		fftbars.h \
+		abstractvisualization.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QRgb \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPainter \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainter.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
 		audiodevicelister.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QList \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudioDeviceInfo \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia/QAudio \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QThread \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qthread.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QTimer \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtimer.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbasictimer.h \
 		ui_mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVariant \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QAction \
@@ -1788,14 +1810,13 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qlineedit.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextcursor.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextformat.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QMenuBar \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qmenubar.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qmenu.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QPushButton \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qabstractbutton.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QSlider \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QSpinBox \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qspinbox.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QStatusBar \
@@ -1804,8 +1825,9 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qtoolbar.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QWidget \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QString \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPainter \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainter.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QTimer \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtimer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbasictimer.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPixmap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/mainwindow.o mainwindow.cpp
 
@@ -1901,6 +1923,7 @@ debug/audiosamplesgetter.o: audiosamplesgetter.cpp audiosamplesgetter.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2102,6 +2125,7 @@ debug/audiosamplessender.o: audiosamplessender.cpp audiosamplessender.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2265,6 +2289,7 @@ debug/commandssender.o: commandssender.cpp commandssender.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2424,6 +2449,7 @@ debug/udpmanager.o: udpmanager.cpp udpmanager.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2586,6 +2612,7 @@ debug/receiveddatagramprocessor.o: receiveddatagramprocessor.cpp receiveddatagra
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2798,6 +2825,7 @@ debug/commandreceiver.o: commandreceiver.cpp commandreceiver.h \
 		fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QVector \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -2868,7 +2896,98 @@ debug/commandreceiver.o: commandreceiver.cpp commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/commandreceiver.o commandreceiver.cpp
 
-debug/graphicsvisualizer.o: graphicsvisualizer.cpp graphicsvisualizer.h
+debug/graphicsvisualizer.o: graphicsvisualizer.cpp graphicsvisualizer.h \
+		complex.h \
+		fftbars.h \
+		abstractvisualization.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QRgb \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qrgb.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobal.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qconfig.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qfeatures.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsystemdetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qprocessordetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcompilerdetection.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtypeinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qtypetraits.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsysinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlogging.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qflags.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbasicatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_bootstrap.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qgenericatomic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_msvc.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv7.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv6.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_armv5.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_ia64.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_mips.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_x86.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_cxx11.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_gcc.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_unix.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobalstatic.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmutex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnumeric.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPainter \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainter.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnamespace.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qrect.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmargins.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsize.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpoint.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpixmap.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpaintdevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qwindowdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qwindowdefs_win.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qcolor.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qdatastream.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qrefcount.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qarraydata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearraylist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpair.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qregexp.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsharedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qshareddata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qhash.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsharedpointer_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qimage.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtransform.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qmatrix.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpolygon.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvector.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qregion.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qline.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainterpath.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpixelformat.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qbrush.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qfontinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qfont.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qfontmetrics.h \
+		audio_config.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/graphicsvisualizer.o graphicsvisualizer.cpp
 
 debug/abstractvisualization.o: abstractvisualization.cpp abstractvisualization.h \
@@ -2901,7 +3020,65 @@ debug/abstractvisualization.o: abstractvisualization.cpp abstractvisualization.h
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_unix.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobalstatic.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmutex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnumeric.h
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnumeric.h \
+		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPainter \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainter.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnamespace.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qrect.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmargins.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsize.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpoint.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpixmap.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpaintdevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qwindowdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qwindowdefs_win.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qcolor.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qdatastream.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qrefcount.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qarraydata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearraylist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpair.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qregexp.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsharedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qshareddata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qhash.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsharedpointer_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qimage.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtransform.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qmatrix.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpolygon.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvector.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qregion.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qline.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainterpath.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpixelformat.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qbrush.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qfontinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qfont.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qfontmetrics.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/abstractvisualization.o abstractvisualization.cpp
 
 debug/fftbars.o: fftbars.cpp fftbars.h \
@@ -2935,7 +3112,67 @@ debug/fftbars.o: fftbars.cpp fftbars.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qatomic_unix.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qglobalstatic.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmutex.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnumeric.h
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnumeric.h \
+		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/QPainter \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainter.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qnamespace.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qrect.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmargins.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsize.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpoint.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qscopedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpixmap.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpaintdevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qwindowdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobjectdefs_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qwindowdefs_win.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qcolor.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qalgorithms.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qdatastream.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiodevice.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstring.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qchar.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qrefcount.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qarraydata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringbuilder.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qlist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qiterator.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qbytearraylist.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcoreevent.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qmetatype.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpair.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qregexp.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qstringmatcher.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsharedpointer.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qshareddata.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qhash.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qsharedpointer_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qimage.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtransform.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qmatrix.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpolygon.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvector.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qregion.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qline.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpainterpath.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpixelformat.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qtextoption.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qpen.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qbrush.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qfontinfo.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qfont.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui/qfontmetrics.h \
+		graphicsvisualizer.h \
+		audio_config.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/fftbars.o fftbars.cpp
 
 debug/audiosamplesplayer.o: audiosamplesplayer.cpp audiosamplesplayer.h \
@@ -3013,6 +3250,7 @@ debug/audiosamplesplayer.o: audiosamplesplayer.cpp audiosamplesplayer.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvector.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qpoint.h \
 		complex.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/scoped_ptr.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config.hpp \
 		../../C++_Libs/boost_1_60_0/boost/config/user.hpp \
@@ -3180,7 +3418,8 @@ debug/fftcalculator.o: fftcalculator.cpp fftcalculator.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qvarlengtharray.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qcontainerfwd.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qisenum.h \
-		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qobject_impl.h \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QMutex
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/fftcalculator.o fftcalculator.cpp
 
 debug/complex.o: complex.cpp complex.h
