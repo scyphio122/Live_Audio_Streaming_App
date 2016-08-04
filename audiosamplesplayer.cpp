@@ -30,30 +30,30 @@ AudioSamplesPlayer::~AudioSamplesPlayer()
 
 void AudioSamplesPlayer::setAudioOutput(QAudioOutput *dev)
 {
-    if(audioOutput != nullptr)
-        delete audioOutput;
+//    if(audioOutput != nullptr)
+//        delete audioOutput;
 
-    this->audioOutput = dev;
+//    this->audioOutput = dev;
 }
 
 void AudioSamplesPlayer::startPlaying(bool value)
 {
-    if(this->audioOutputBuffer != nullptr)
-        delete audioOutputBuffer;
-    this->audioOutputBuffer = new QBuffer();
-    this->audioOutputBuffer->open(QIODevice::WriteOnly);
-
-    memset(audioOutputBuffer->buffer().data(), 0, audioOutputBuffer->size());
-
     if(value == true)
     {
+        if(this->audioOutputBuffer != nullptr)
+            delete audioOutputBuffer;
+        this->audioOutputBuffer = new QBuffer(new QByteArray(AUDIO_OUT_BUF_SIZE, 0));
+        bool retval = this->audioOutputBuffer->open(QIODevice::ReadOnly);
+
+        memset(audioOutputBuffer->buffer().data(), 0, audioOutputBuffer->size());
+        audioOutputBuffer->seek(0);
+        this->audioOutput.start(this->audioOutputBuffer);
         muted = false;
-        this->audioOutput->start(this->audioOutputBuffer);
     }
     else
     {
         muted = true;
-        this->audioOutput->stop();
+        this->audioOutput.stop();
     }
 }
 
@@ -65,7 +65,7 @@ bool AudioSamplesPlayer::isMuted()
 
 void AudioSamplesPlayer::changeVolume(int volumePercentage)
 {
-    this->audioOutput->setVolume((double)volumePercentage/100);
+    this->audioOutput.setVolume((double)volumePercentage/100);
 }
 
 FftCalculator* AudioSamplesPlayer::getFFT()

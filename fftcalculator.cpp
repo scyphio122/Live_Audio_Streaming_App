@@ -91,11 +91,11 @@ void FftCalculator::runTransform()
     if(!fftEnabled)
         return;
     /// Release the previous resources
-    if(outputArray != nullptr)
-    {
-       delete[] outputArray;
-       outputArray = nullptr;
-    }
+//    if(outputArray != nullptr)
+//    {
+//       delete[] outputArray;
+//       outputArray = nullptr;
+//    }
 
     /// Calculate the new FFT
     outputArray = recursiveFFT(inputArray, inputArraySize);

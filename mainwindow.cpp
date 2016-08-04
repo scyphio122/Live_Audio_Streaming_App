@@ -113,7 +113,7 @@ void MainWindow::paintEvent(QPaintEvent *)
         if(fftOutArray != nullptr && fft->getFftEnable() == false)
         {
 //            mutex->lock();
-
+            const int barWidth = 4;
             QPainter painter;
             painter.begin(pixmap);
             painter.setPen(*pen);
@@ -127,12 +127,11 @@ void MainWindow::paintEvent(QPaintEvent *)
 
             painter.drawRect(0,0, windowWidth, windowHeight);
 
-            drawScale(painter, windowWidth, windowHeight, 2);
+            drawScale(painter, windowWidth, windowHeight, 1);
 
             /// Draw every second sample
-            for(uint32_t fftOutIndex=0; fftOutIndex<fftOutArraySize/2; fftOutIndex += 2)
+            for(uint32_t fftOutIndex=0; fftOutIndex<fftOutArraySize/2; fftOutIndex += barWidth)
             {
-                coord++;
                 if(coord >= windowWidth)
                 {
                     break;
@@ -146,13 +145,15 @@ void MainWindow::paintEvent(QPaintEvent *)
                 if(fftElement.getMagnitude() > maxVal)
                     maxVal = fftValue;
 
-                painter.drawLine(coord, 0, coord, fftValue);
-
+                painter.drawRect(coord, 0, barWidth, fftValue);//, Qt::SolidPattern);
+                coord += barWidth;
             }
             ui->lB_visualization->setPixmap(*pixmap);
             /// Enable the fft calculator
             emit fftEnable(true);
 //            mutex->unlock();
+           delete[] fftOutArray;
+            fftOutArray = nullptr;
 
         }
     }

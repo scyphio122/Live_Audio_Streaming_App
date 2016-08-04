@@ -6,6 +6,7 @@ class GraphicsVisualizer
 {
 public:
     GraphicsVisualizer();
+
 };
 
 #endif // GRAPHICSVISUALIZER_H

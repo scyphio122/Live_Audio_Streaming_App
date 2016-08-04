@@ -12,10 +12,10 @@ class AudioSamplesPlayer : public DatagramListener
     Q_OBJECT
 
 private:
-    const int                           AUDIO_OUT_BUF_SIZE  =   8192;
+    const int                           AUDIO_OUT_BUF_SIZE  =   16384;
     FftCalculator*                      fft                 =   nullptr;
     QBuffer*                            audioOutputBuffer   =   nullptr;
-    QAudioOutput*                       audioOutput         =   nullptr;
+    QAudioOutput                        audioOutput;
     bool                                muted;
 
 public:

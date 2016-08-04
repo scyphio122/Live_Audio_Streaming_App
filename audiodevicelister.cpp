@@ -33,7 +33,7 @@ QAudioFormat AudioDeviceLister::getFormat(QAudioDeviceInfo audioDeviceInfo, std:
     desiredFormat.setSampleRate(48000);
     desiredFormat.setSampleSize(16);
     desiredFormat = audioDeviceInfo.nearestFormat(desiredFormat);
-
+    bool isSupported = audioDeviceInfo.isFormatSupported(desiredFormat);
     return desiredFormat;
 }
 

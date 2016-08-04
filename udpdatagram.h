@@ -13,7 +13,6 @@ private:
     const int               DATA_SIZE_INDEX = 1;
     const int               DATA_SIZE_SIZE  = 4;
 
-    const int               QBYTEARRAY_SIZE = 9001;
     QByteArray             data;
 
 public:
