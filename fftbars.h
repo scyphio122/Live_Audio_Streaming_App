@@ -4,16 +4,19 @@
 #include "abstractvisualization.h"
 #include "complex.h"
 #include <QPainter>
-
+#include "audio_config.h"
 
 class FFTBars : public AbstractVisualization
 {
 private:
-    const int barSizeX = 200;
-    const int barSizeY = 100;
+    const int barSizeX = 50;
+    const int barSizeY = 5;
+    const int numOfFreqs = sizeof(freqDisplayed)/sizeof(int);
+
+    void drawScale(QPainter& painter, int x, int y);
+    void drawBar(Complex* inputArray, int size, int frequency, int x, int y, QPainter& painter, int windowHeight);
 public:
     FFTBars();
-    void drawBar(Complex* inputArray, int size, int frequency, int x, int y, QPainter& painter);
     void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
 };
 

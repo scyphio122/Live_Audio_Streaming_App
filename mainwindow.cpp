@@ -127,7 +127,7 @@ void MainWindow::paintEvent(QPaintEvent *)
 
             painter.drawRect(0,0, windowWidth, windowHeight);
 
-            drawScale(painter, windowWidth, windowHeight, 1);
+//            drawScale(painter, windowWidth, windowHeight, 1);
 
             /// Draw every second sample
 //            for(uint32_t fftOutIndex=0; fftOutIndex<fftOutArraySize/2; fftOutIndex += barWidth)
