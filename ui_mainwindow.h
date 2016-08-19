@@ -58,12 +58,22 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(1263, 797);
+        MainWindow->setAutoFillBackground(false);
+        MainWindow->setStyleSheet(QLatin1String("#MainWindow {\n"
+"background-color: rgb(49, 49, 49);\n"
+"}\n"
+"\n"
+""));
         MainWindow->setTabShape(QTabWidget::Rounded);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gB_inputAudioDevice = new QGroupBox(centralWidget);
         gB_inputAudioDevice->setObjectName(QStringLiteral("gB_inputAudioDevice"));
         gB_inputAudioDevice->setGeometry(QRect(20, 20, 421, 61));
+        gB_inputAudioDevice->setStyleSheet(QLatin1String("#Text \n"
+"{\n"
+"text-color:orange;\n"
+"}"));
         gB_inputAudioDevice->setFlat(false);
         cb_inputAudioDevice = new QComboBox(gB_inputAudioDevice);
         cb_inputAudioDevice->setObjectName(QStringLiteral("cb_inputAudioDevice"));
@@ -75,6 +85,9 @@ public:
         gB_outputAudioDevice = new QGroupBox(centralWidget);
         gB_outputAudioDevice->setObjectName(QStringLiteral("gB_outputAudioDevice"));
         gB_outputAudioDevice->setGeometry(QRect(470, 20, 471, 101));
+        gB_outputAudioDevice->setStyleSheet(QLatin1String("#Text {\n"
+"font-color:orange;\n"
+"}"));
         gB_outputAudioDevice->setCheckable(true);
         gB_outputAudioDevice->setChecked(false);
         cB_outputAudioDevice = new QComboBox(gB_outputAudioDevice);
@@ -107,6 +120,9 @@ public:
         gB_networkSettings = new QGroupBox(centralWidget);
         gB_networkSettings->setObjectName(QStringLiteral("gB_networkSettings"));
         gB_networkSettings->setGeometry(QRect(960, 20, 271, 101));
+        gB_networkSettings->setStyleSheet(QLatin1String("#Text {\n"
+"font-color:orange;\n"
+"}"));
         lb_peerIP = new QLabel(gB_networkSettings);
         lb_peerIP->setObjectName(QStringLiteral("lb_peerIP"));
         lb_peerIP->setGeometry(QRect(10, 20, 47, 13));

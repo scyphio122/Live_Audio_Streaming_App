@@ -46,7 +46,7 @@ void FFTBars::drawScale(QPainter& painter, int x, int y, int freq)
             frequency = QString::number(freq/1000);
             frequency += "kHz";
         }
-        painter.drawText(x + barSizeX/2 - 5, y, frequency);
+        painter.drawText(x + barSizeX/2 - 10, y, frequency);
 }
 
 void FFTBars::draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth)

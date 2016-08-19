@@ -13,6 +13,16 @@
   <property name="windowTitle">
    <string>Remote Boombox</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#MainWindow {
+background-color: rgb(49, 49, 49);
+}
+
+</string>
+  </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
   </property>
@@ -25,6 +35,13 @@
       <width>421</width>
       <height>61</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+    text-align: left; /* align the text to the left */
+	color:orange;
+    padding-left: 5px;
+}</string>
     </property>
     <property name="title">
      <string>Input Audio Device</string>
@@ -67,6 +84,13 @@
       <width>471</width>
       <height>101</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox::title {
+    text-align: left; /* align the text to the left */
+	color:orange;
+    padding-left: 5px;
+}</string>
     </property>
     <property name="title">
      <string>Output Audio Device</string>
@@ -148,6 +172,13 @@
       <height>631</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox::title {
+    text-align: left; /* align the text to the left */
+	color:orange;
+    padding-left: 5px;
+}</string>
+    </property>
     <property name="title">
      <string>Visualziation</string>
     </property>
@@ -186,6 +217,13 @@
       <height>101</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox::title {
+    text-align: left; /* align the text to the left */
+	color:orange;
+    padding-left: 5px;
+}</string>
+    </property>
     <property name="title">
      <string>Network Settings</string>
     </property>
@@ -197,6 +235,11 @@
        <width>47</width>
        <height>13</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel::text {
+	color:orange;
+}</string>
      </property>
      <property name="text">
       <string>Peer Ip:</string>
@@ -223,6 +266,11 @@
        <width>47</width>
        <height>13</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel::text{
+	color:orange;
+}</string>
      </property>
      <property name="text">
       <string>Peer port:</string>
