@@ -216,6 +216,9 @@ QPushButton:pressed
        <height>16</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
       <string notr="true">QSlider::groove:horizontal {
     border: 1px solid #999999;

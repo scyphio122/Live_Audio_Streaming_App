@@ -57,7 +57,9 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1263, 797);
+        MainWindow->resize(1263, 820);
+        MainWindow->setMinimumSize(QSize(1263, 820));
+        MainWindow->setMaximumSize(QSize(1263, 820));
         MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QLatin1String("#MainWindow {\n"
 "background-color: rgb(49, 49, 49);\n"
@@ -69,77 +71,237 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gB_inputAudioDevice = new QGroupBox(centralWidget);
         gB_inputAudioDevice->setObjectName(QStringLiteral("gB_inputAudioDevice"));
-        gB_inputAudioDevice->setGeometry(QRect(20, 20, 421, 61));
-        gB_inputAudioDevice->setStyleSheet(QLatin1String("#Text \n"
-"{\n"
-"text-color:orange;\n"
+        gB_inputAudioDevice->setGeometry(QRect(10, 20, 421, 61));
+        gB_inputAudioDevice->setStyleSheet(QLatin1String("QGroupBox {\n"
+"    text-align: left; /* align the text to the left */\n"
+"	color:rgb(255,127,39);\n"
+"    padding-left: 5px;\n"
+"	border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"	border-radius:5px;\n"
 "}"));
         gB_inputAudioDevice->setFlat(false);
         cb_inputAudioDevice = new QComboBox(gB_inputAudioDevice);
         cb_inputAudioDevice->setObjectName(QStringLiteral("cb_inputAudioDevice"));
         cb_inputAudioDevice->setGeometry(QRect(20, 30, 301, 22));
+        cb_inputAudioDevice->setStyleSheet(QLatin1String("QComboBox\n"
+"{\n"
+"    color:orange;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(55, 55, 55, 100), stop: 0 rgba(75, 75, 75, 100));\n"
+"    border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"}"));
         pB_startStopSampling = new QPushButton(gB_inputAudioDevice);
         pB_startStopSampling->setObjectName(QStringLiteral("pB_startStopSampling"));
         pB_startStopSampling->setEnabled(false);
         pB_startStopSampling->setGeometry(QRect(330, 30, 81, 21));
+        pB_startStopSampling->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    color:orange;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: outset;\n"
+"	border-radius:3;\n"
+"}\n"
+"\n"
+"QPushButton:pressed\n"
+"{\n"
+"    color:orange;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: inset;\n"
+"	border-radius:3;\n"
+"}"));
         gB_outputAudioDevice = new QGroupBox(centralWidget);
         gB_outputAudioDevice->setObjectName(QStringLiteral("gB_outputAudioDevice"));
-        gB_outputAudioDevice->setGeometry(QRect(470, 20, 471, 101));
-        gB_outputAudioDevice->setStyleSheet(QLatin1String("#Text {\n"
-"font-color:orange;\n"
+        gB_outputAudioDevice->setGeometry(QRect(470, 20, 431, 101));
+        gB_outputAudioDevice->setStyleSheet(QLatin1String("QGroupBox{\n"
+"    border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"\n"
+"    text-align: left; /* align the text to the left */\n"
+"	color:rgb(255,127,39);\n"
+"    padding-left: 5px;\n"
+"	border-radius:5px;\n"
 "}"));
         gB_outputAudioDevice->setCheckable(true);
         gB_outputAudioDevice->setChecked(false);
         cB_outputAudioDevice = new QComboBox(gB_outputAudioDevice);
         cB_outputAudioDevice->setObjectName(QStringLiteral("cB_outputAudioDevice"));
         cB_outputAudioDevice->setGeometry(QRect(20, 30, 301, 22));
+        cB_outputAudioDevice->setStyleSheet(QLatin1String("QComboBox\n"
+"{\n"
+"    color:orange;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(55, 55, 55, 100), stop: 0 rgba(75, 75, 75, 100));\n"
+"    border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"}"));
         pB_startStopPlaying = new QPushButton(gB_outputAudioDevice);
         pB_startStopPlaying->setObjectName(QStringLiteral("pB_startStopPlaying"));
-        pB_startStopPlaying->setGeometry(QRect(340, 30, 80, 21));
+        pB_startStopPlaying->setGeometry(QRect(330, 30, 80, 21));
+        pB_startStopPlaying->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    color:orange;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: outset;\n"
+"	border-radius:3;\n"
+"}\n"
+"\n"
+"QPushButton:pressed\n"
+"{\n"
+"    color:orange;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: inset;\n"
+"	border-radius:3;\n"
+"}"));
         hSlider_outputVolume = new QSlider(gB_outputAudioDevice);
         hSlider_outputVolume->setObjectName(QStringLiteral("hSlider_outputVolume"));
-        hSlider_outputVolume->setGeometry(QRect(20, 70, 301, 16));
+        hSlider_outputVolume->setGeometry(QRect(20, 80, 391, 16));
+        hSlider_outputVolume->setStyleSheet(QLatin1String("QSlider::groove:horizontal {\n"
+"    border: 1px solid #999999;\n"
+"    height: 1px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */\n"
+"    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B1B1B1, stop:1 #c4c4c4);\n"
+"    margin: 2px 0;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);\n"
+"    border: 1px solid #5c5c5c;\n"
+"    width: 18px;\n"
+"    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */\n"
+"    border-radius: 3px;\n"
+"}\n"
+"/*\n"
+"QSlider::handle:horizontal {\n"
+"    height: 10px;\n"
+"    color: green;\n"
+"    margin: 0 -4px; \n"
+"}\n"
+"\n"
+"QSlider::sub-page:vertical {\n"
+"    background: orange;\n"
+"}*/"));
         hSlider_outputVolume->setMaximum(100);
         hSlider_outputVolume->setValue(100);
         hSlider_outputVolume->setOrientation(Qt::Horizontal);
-        hSlider_outputVolume->setTickPosition(QSlider::TicksAbove);
+        hSlider_outputVolume->setTickPosition(QSlider::TicksBelow);
         hSlider_outputVolume->setTickInterval(10);
         label = new QLabel(gB_outputAudioDevice);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(10, 50, 101, 16));
+        label->setGeometry(QRect(20, 60, 101, 16));
+        label->setStyleSheet(QLatin1String("QLabel\n"
+"{\n"
+"	color:rgb(255,127,39);\n"
+"}"));
         gB_visualization = new QGroupBox(centralWidget);
         gB_visualization->setObjectName(QStringLiteral("gB_visualization"));
-        gB_visualization->setGeometry(QRect(20, 110, 1221, 631));
+        gB_visualization->setGeometry(QRect(10, 130, 1201, 621));
+        gB_visualization->setStyleSheet(QLatin1String("QGroupBox\n"
+"{\n"
+"    text-align: left; /* align the text to the left */\n"
+"	color:rgb(255,127,39);\n"
+"    padding-left: 5px;\n"
+"	border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"	border-radius:5px;\n"
+"}"));
         lB_visualization = new QLabel(gB_visualization);
         lB_visualization->setObjectName(QStringLiteral("lB_visualization"));
-        lB_visualization->setGeometry(QRect(20, 40, 1181, 561));
-        lB_visualization->setAutoFillBackground(true);
+        lB_visualization->setGeometry(QRect(10, 20, 1181, 561));
+        lB_visualization->setAutoFillBackground(false);
+        lB_visualization->setStyleSheet(QLatin1String("QLabel\n"
+"{\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(55, 55, 55, 100), stop: 0 rgba(65, 65, 65, 100));\n"
+"	border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"}"));
         lB_visualization->setFrameShape(QFrame::Box);
         lB_visualization->setFrameShadow(QFrame::Sunken);
         lB_visualization->setScaledContents(false);
         gB_networkSettings = new QGroupBox(centralWidget);
         gB_networkSettings->setObjectName(QStringLiteral("gB_networkSettings"));
-        gB_networkSettings->setGeometry(QRect(960, 20, 271, 101));
-        gB_networkSettings->setStyleSheet(QLatin1String("#Text {\n"
-"font-color:orange;\n"
+        gB_networkSettings->setGeometry(QRect(940, 20, 271, 101));
+        gB_networkSettings->setStyleSheet(QLatin1String("QGroupBox{\n"
+"    text-align: left; /* align the text to the left */\n"
+"	color:rgb(255,127,39);\n"
+"    padding-left: 5px;\n"
+"    border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"	border-radius:5px;\n"
 "}"));
         lb_peerIP = new QLabel(gB_networkSettings);
         lb_peerIP->setObjectName(QStringLiteral("lb_peerIP"));
         lb_peerIP->setGeometry(QRect(10, 20, 47, 13));
+        lb_peerIP->setStyleSheet(QLatin1String("QLabel\n"
+"{\n"
+"	color:rgb(255,127,39);\n"
+"}"));
         lE_peerIP = new QLineEdit(gB_networkSettings);
         lE_peerIP->setObjectName(QStringLiteral("lE_peerIP"));
         lE_peerIP->setGeometry(QRect(20, 40, 113, 21));
+        lE_peerIP->setStyleSheet(QLatin1String("QLineEdit\n"
+"{\n"
+"	background:rgb(75,75,75);\n"
+"	color:orange;\n"
+"    border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"}"));
         lb_peerPort = new QLabel(gB_networkSettings);
         lb_peerPort->setObjectName(QStringLiteral("lb_peerPort"));
         lb_peerPort->setGeometry(QRect(150, 20, 47, 13));
+        lb_peerPort->setStyleSheet(QLatin1String("QLabel\n"
+"{\n"
+"	color:rgb(255,127,39);\n"
+"}"));
         sB_udpPort = new QSpinBox(gB_networkSettings);
         sB_udpPort->setObjectName(QStringLiteral("sB_udpPort"));
         sB_udpPort->setGeometry(QRect(170, 40, 71, 22));
+        sB_udpPort->setStyleSheet(QLatin1String("QSpinBox\n"
+"{\n"
+"	color:orange;\n"
+"	background:rgb(65,65,65);\n"
+"    border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"}"));
         sB_udpPort->setMaximum(65535);
         sB_udpPort->setValue(8002);
         pB_connect = new QPushButton(gB_networkSettings);
         pB_connect->setObjectName(QStringLiteral("pB_connect"));
         pB_connect->setGeometry(QRect(20, 70, 221, 21));
+        pB_connect->setStyleSheet(QLatin1String("QPushButton\n"
+"{\n"
+"    color:orange;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: outset;\n"
+"	border-radius:3;\n"
+"}\n"
+"\n"
+"QPushButton:pressed\n"
+"{\n"
+"    color:orange;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: inset;\n"
+"	border-radius:3;\n"
+"}"));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
