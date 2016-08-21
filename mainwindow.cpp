@@ -31,9 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     pixmap = new QPixmap(ui->lB_visualization->width(), ui->lB_visualization->height());
     brush = new QBrush(QColor(255,255,255));
-    pen = new QPen(QColor(255, 0, 0));
-
-
+    pen = new QPen(QColor(255,127, 39));
     fftOutArray = nullptr;
 }
 

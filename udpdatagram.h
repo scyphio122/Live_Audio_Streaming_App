@@ -19,7 +19,11 @@ public:
 
     enum UdpCommandEnum : char
     {
-        SAMPLES = 0
+        SAMPLES = 0,
+
+        CONNECT_REQ,
+        CONNECT_ACK,
+        CONNECT_NACK
     };
 
     UdpDatagram();

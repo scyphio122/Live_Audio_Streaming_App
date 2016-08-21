@@ -26,7 +26,7 @@ void FFTBars::drawBar(Complex* inputArray, int size, int frequency, int x, int y
         if(_y <= windowHeight - 50)
             painter.drawRect(x, _y, this->barSizeX, this->barSizeY);
         else if(_y <= windowHeight - 40)
-            painter.fillRect(x, _y, this->barSizeX, this->barSizeY, Qt::GlobalColor::red);
+            painter.fillRect(x, _y, this->barSizeX, this->barSizeY, QColor(255,127, 39));
         else
             break;
     }

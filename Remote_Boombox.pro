@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     fftcalculator.cpp \
     complex.cpp \
     udpdatagram.cpp \
-    audiodevicelister.cpp
+    audiodevicelister.cpp \
+    connectdialog.cpp
 
 HEADERS  += mainwindow.h \
     audiosamplesgetter.h \
@@ -48,10 +49,12 @@ HEADERS  += mainwindow.h \
     complex.h \
     udpdatagram.h \
     audiodevicelister.h \
-    audio_config.h
+    audio_config.h \
+    connectdialog.h
 
 INCLUDEPATH += D:/C++_Libs/boost_1_60_0/
 
 LIBS += "-LD:/C++_Libs/boost_1_60_0/"
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    connectdialog.ui

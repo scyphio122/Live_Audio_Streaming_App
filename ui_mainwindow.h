@@ -57,9 +57,9 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1263, 820);
-        MainWindow->setMinimumSize(QSize(1263, 820));
-        MainWindow->setMaximumSize(QSize(1263, 820));
+        MainWindow->resize(1253, 790);
+        MainWindow->setMinimumSize(QSize(1253, 790));
+        MainWindow->setMaximumSize(QSize(1253, 790));
         MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QLatin1String("#MainWindow {\n"
 "background-color: rgb(49, 49, 49);\n"
@@ -71,7 +71,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gB_inputAudioDevice = new QGroupBox(centralWidget);
         gB_inputAudioDevice->setObjectName(QStringLiteral("gB_inputAudioDevice"));
-        gB_inputAudioDevice->setGeometry(QRect(10, 20, 421, 61));
+        gB_inputAudioDevice->setGeometry(QRect(10, 20, 431, 71));
         gB_inputAudioDevice->setStyleSheet(QLatin1String("QGroupBox {\n"
 "    text-align: left; /* align the text to the left */\n"
 "	color:rgb(255,127,39);\n"
@@ -97,13 +97,23 @@ public:
         pB_startStopSampling->setObjectName(QStringLiteral("pB_startStopSampling"));
         pB_startStopSampling->setEnabled(false);
         pB_startStopSampling->setGeometry(QRect(330, 30, 81, 21));
-        pB_startStopSampling->setStyleSheet(QLatin1String("QPushButton\n"
+        pB_startStopSampling->setStyleSheet(QLatin1String("QPushButton:enabled\n"
 "{\n"
 "    color:orange;\n"
 "    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
 "    border-color: rgba(70,70,70,200);\n"
 "    border-width: 1px;\n"
 "    border-style: outset;\n"
+"	border-radius:3;\n"
+"}\n"
+"\n"
+"QPushButton:disabled\n"
+"{\n"
+"    color:gray;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: inset;\n"
 "	border-radius:3;\n"
 "}\n"
 "\n"
@@ -118,7 +128,7 @@ public:
 "}"));
         gB_outputAudioDevice = new QGroupBox(centralWidget);
         gB_outputAudioDevice->setObjectName(QStringLiteral("gB_outputAudioDevice"));
-        gB_outputAudioDevice->setGeometry(QRect(470, 20, 431, 101));
+        gB_outputAudioDevice->setGeometry(QRect(490, 20, 431, 101));
         gB_outputAudioDevice->setStyleSheet(QLatin1String("QGroupBox{\n"
 "    border-color: rgba(85,85,85,200);\n"
 "    border-width: 1px;\n"
@@ -134,18 +144,28 @@ public:
         cB_outputAudioDevice = new QComboBox(gB_outputAudioDevice);
         cB_outputAudioDevice->setObjectName(QStringLiteral("cB_outputAudioDevice"));
         cB_outputAudioDevice->setGeometry(QRect(20, 30, 301, 22));
-        cB_outputAudioDevice->setStyleSheet(QLatin1String("QComboBox\n"
+        cB_outputAudioDevice->setStyleSheet(QLatin1String("QComboBox:enabled\n"
 "{\n"
 "    color:orange;\n"
 "    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(55, 55, 55, 100), stop: 0 rgba(75, 75, 75, 100));\n"
 "    border-color: rgba(85,85,85,200);\n"
 "    border-width: 1px;\n"
 "    border-style: solid;\n"
+"}\n"
+"\n"
+"QComboBox:disabled\n"
+"{\n"
+"    color:gray;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: inset;\n"
+"	border-radius:3;\n"
 "}"));
         pB_startStopPlaying = new QPushButton(gB_outputAudioDevice);
         pB_startStopPlaying->setObjectName(QStringLiteral("pB_startStopPlaying"));
         pB_startStopPlaying->setGeometry(QRect(330, 30, 80, 21));
-        pB_startStopPlaying->setStyleSheet(QLatin1String("QPushButton\n"
+        pB_startStopPlaying->setStyleSheet(QLatin1String("QPushButton:enabled\n"
 "{\n"
 "    color:orange;\n"
 "    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
@@ -155,6 +175,15 @@ public:
 "	border-radius:3;\n"
 "}\n"
 "\n"
+"QPushButton:disabled\n"
+"{\n"
+"    color:gray;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: inset;\n"
+"	border-radius:3;\n"
+"}\n"
 "QPushButton:pressed\n"
 "{\n"
 "    color:orange;\n"
@@ -167,30 +196,43 @@ public:
         hSlider_outputVolume = new QSlider(gB_outputAudioDevice);
         hSlider_outputVolume->setObjectName(QStringLiteral("hSlider_outputVolume"));
         hSlider_outputVolume->setGeometry(QRect(20, 80, 391, 16));
-        hSlider_outputVolume->setStyleSheet(QLatin1String("QSlider::groove:horizontal {\n"
-"    border: 1px solid #999999;\n"
-"    height: 1px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */\n"
-"    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B1B1B1, stop:1 #c4c4c4);\n"
+        hSlider_outputVolume->setCursor(QCursor(Qt::PointingHandCursor));
+        hSlider_outputVolume->setStyleSheet(QLatin1String("QSlider::groove:horizontal:enabled {\n"
+"    border: 1px solid rgb(255,127,39);\n"
+"    height: 2px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */\n"
+"    background: orange;\n"
 "    margin: 2px 0;\n"
 "}\n"
 "\n"
-"QSlider::handle:horizontal {\n"
-"    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);\n"
-"    border: 1px solid #5c5c5c;\n"
+"QSlider::handle:horizontal:enabled {\n"
+"    background: rgb(255,127,39); \n"
+"    border: 1px solid rgb(236,95,0);\n"
 "    width: 18px;\n"
 "    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */\n"
 "    border-radius: 3px;\n"
 "}\n"
-"/*\n"
-"QSlider::handle:horizontal {\n"
-"    height: 10px;\n"
-"    color: green;\n"
-"    margin: 0 -4px; \n"
+"\n"
+"QSlider::groove:horizontal:hover\n"
+"{\n"
+"	border:1px;\n"
+"	background:orange;\n"
 "}\n"
 "\n"
-"QSlider::sub-page:vertical {\n"
-"    background: orange;\n"
-"}*/"));
+"QSlider::groove:horizontal:disabled {\n"
+"    border: 1px solidrgb(60,60,60);\n"
+"    height: 2px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */\n"
+"    background: gray;\n"
+"    margin: 2px 0;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizonta:disabled {\n"
+"    background: gray; \n"
+"    border: 1px soli"
+                        "d rgb(60,60,60);\n"
+"    width: 18px;\n"
+"    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */\n"
+"    border-radius: 3px;\n"
+"}"));
         hSlider_outputVolume->setMaximum(100);
         hSlider_outputVolume->setValue(100);
         hSlider_outputVolume->setOrientation(Qt::Horizontal);
@@ -205,7 +247,7 @@ public:
 "}"));
         gB_visualization = new QGroupBox(centralWidget);
         gB_visualization->setObjectName(QStringLiteral("gB_visualization"));
-        gB_visualization->setGeometry(QRect(10, 130, 1201, 621));
+        gB_visualization->setGeometry(QRect(10, 140, 1221, 591));
         gB_visualization->setStyleSheet(QLatin1String("QGroupBox\n"
 "{\n"
 "    text-align: left; /* align the text to the left */\n"
@@ -218,7 +260,7 @@ public:
 "}"));
         lB_visualization = new QLabel(gB_visualization);
         lB_visualization->setObjectName(QStringLiteral("lB_visualization"));
-        lB_visualization->setGeometry(QRect(10, 20, 1181, 561));
+        lB_visualization->setGeometry(QRect(20, 20, 1181, 561));
         lB_visualization->setAutoFillBackground(false);
         lB_visualization->setStyleSheet(QLatin1String("QLabel\n"
 "{\n"
@@ -232,7 +274,7 @@ public:
         lB_visualization->setScaledContents(false);
         gB_networkSettings = new QGroupBox(centralWidget);
         gB_networkSettings->setObjectName(QStringLiteral("gB_networkSettings"));
-        gB_networkSettings->setGeometry(QRect(940, 20, 271, 101));
+        gB_networkSettings->setGeometry(QRect(960, 20, 271, 101));
         gB_networkSettings->setStyleSheet(QLatin1String("QGroupBox{\n"
 "    text-align: left; /* align the text to the left */\n"
 "	color:rgb(255,127,39);\n"
@@ -283,13 +325,23 @@ public:
         pB_connect = new QPushButton(gB_networkSettings);
         pB_connect->setObjectName(QStringLiteral("pB_connect"));
         pB_connect->setGeometry(QRect(20, 70, 221, 21));
-        pB_connect->setStyleSheet(QLatin1String("QPushButton\n"
+        pB_connect->setStyleSheet(QLatin1String("QPushButton:enabled\n"
 "{\n"
 "    color:orange;\n"
 "    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
 "    border-color: rgba(70,70,70,200);\n"
 "    border-width: 1px;\n"
 "    border-style: outset;\n"
+"	border-radius:3;\n"
+"}\n"
+"\n"
+"QPushButton:disabled\n"
+"{\n"
+"    color:gray;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: inset;\n"
 "	border-radius:3;\n"
 "}\n"
 "\n"
@@ -305,7 +357,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1263, 20));
+        menuBar->setGeometry(QRect(0, 0, 1253, 20));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

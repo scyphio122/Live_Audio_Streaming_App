@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1263</width>
-    <height>820</height>
+    <width>1253</width>
+    <height>790</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1263</width>
-    <height>820</height>
+    <width>1253</width>
+    <height>790</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1263</width>
-    <height>820</height>
+    <width>1253</width>
+    <height>790</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -44,8 +44,8 @@ background-color: rgb(49, 49, 49);
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>421</width>
-      <height>61</height>
+      <width>431</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -98,13 +98,23 @@ background-color: rgb(49, 49, 49);
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton
+      <string notr="true">QPushButton:enabled
 {
     color:orange;
     background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));
     border-color: rgba(70,70,70,200);
     border-width: 1px;
     border-style: outset;
+	border-radius:3;
+}
+
+QPushButton:disabled
+{
+    color:gray;
+    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));
+    border-color: rgba(70,70,70,200);
+    border-width: 1px;
+    border-style: inset;
 	border-radius:3;
 }
 
@@ -126,7 +136,7 @@ QPushButton:pressed
    <widget class="QGroupBox" name="gB_outputAudioDevice">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>490</x>
       <y>20</y>
       <width>431</width>
       <height>101</height>
@@ -163,13 +173,23 @@ QPushButton:pressed
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QComboBox
+      <string notr="true">QComboBox:enabled
 {
     color:orange;
     background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(55, 55, 55, 100), stop: 0 rgba(75, 75, 75, 100));
     border-color: rgba(85,85,85,200);
     border-width: 1px;
     border-style: solid;
+}
+
+QComboBox:disabled
+{
+    color:gray;
+    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));
+    border-color: rgba(70,70,70,200);
+    border-width: 1px;
+    border-style: inset;
+	border-radius:3;
 }</string>
      </property>
     </widget>
@@ -183,7 +203,7 @@ QPushButton:pressed
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton
+      <string notr="true">QPushButton:enabled
 {
     color:orange;
     background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));
@@ -193,6 +213,15 @@ QPushButton:pressed
 	border-radius:3;
 }
 
+QPushButton:disabled
+{
+    color:gray;
+    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));
+    border-color: rgba(70,70,70,200);
+    border-width: 1px;
+    border-style: inset;
+	border-radius:3;
+}
 QPushButton:pressed
 {
     color:orange;
@@ -216,31 +245,45 @@ QPushButton:pressed
        <height>16</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
-      <string notr="true">QSlider::groove:horizontal {
-    border: 1px solid #999999;
-    height: 1px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
-    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B1B1B1, stop:1 #c4c4c4);
+      <string notr="true">QSlider::groove:horizontal:enabled {
+    border: 1px solid rgb(255,127,39);
+    height: 2px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+    background: orange;
     margin: 2px 0;
 }
 
-QSlider::handle:horizontal {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);
-    border: 1px solid #5c5c5c;
+QSlider::handle:horizontal:enabled {
+    background: rgb(255,127,39); 
+    border: 1px solid rgb(236,95,0);
     width: 18px;
     margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
     border-radius: 3px;
 }
-/*
-QSlider::handle:horizontal {
-    height: 10px;
-    color: green;
-    margin: 0 -4px; 
+
+QSlider::groove:horizontal:hover
+{
+	border:1px;
+	background:orange;
 }
 
-QSlider::sub-page:vertical {
-    background: orange;
-}*/</string>
+QSlider::groove:horizontal:disabled {
+    border: 1px solidrgb(60,60,60);
+    height: 2px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
+    background: gray;
+    margin: 2px 0;
+}
+
+QSlider::handle:horizonta:disabled {
+    background: gray; 
+    border: 1px solid rgb(60,60,60);
+    width: 18px;
+    margin: -2px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+    border-radius: 3px;
+}</string>
      </property>
      <property name="maximum">
       <number>100</number>
@@ -282,9 +325,9 @@ QSlider::sub-page:vertical {
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
-      <width>1201</width>
-      <height>621</height>
+      <y>140</y>
+      <width>1221</width>
+      <height>591</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -305,7 +348,7 @@ QSlider::sub-page:vertical {
     <widget class="QLabel" name="lB_visualization">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>20</y>
        <width>1181</width>
        <height>561</height>
@@ -340,7 +383,7 @@ QSlider::sub-page:vertical {
    <widget class="QGroupBox" name="gB_networkSettings">
     <property name="geometry">
      <rect>
-      <x>940</x>
+      <x>960</x>
       <y>20</y>
       <width>271</width>
       <height>101</height>
@@ -457,13 +500,23 @@ QSlider::sub-page:vertical {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton
+      <string notr="true">QPushButton:enabled
 {
     color:orange;
     background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));
     border-color: rgba(70,70,70,200);
     border-width: 1px;
     border-style: outset;
+	border-radius:3;
+}
+
+QPushButton:disabled
+{
+    color:gray;
+    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));
+    border-color: rgba(70,70,70,200);
+    border-width: 1px;
+    border-style: inset;
 	border-radius:3;
 }
 
@@ -488,7 +541,7 @@ QPushButton:pressed
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1263</width>
+     <width>1253</width>
      <height>20</height>
     </rect>
    </property>

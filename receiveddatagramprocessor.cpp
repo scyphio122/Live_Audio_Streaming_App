@@ -1,5 +1,7 @@
 #include "receiveddatagramprocessor.h"
 #include "udpdatagram.h"
+#include "connectdialog.h"
+
 
 ReceivedDatagramProcessor::ReceivedDatagramProcessor()
 {
@@ -35,28 +37,51 @@ void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram)
             delete data;
             break;
         }
-//        case ACK:
-//        {
 
-//        }break;
+        case UdpDatagram::CONNECT_REQ:
+        {
+            ConnectDialog connectDialog;
+            int retval = connectDialog.exec();
+            if(retval == QDialog::Accepted)
+            {
+
+            }
+            else
+            if(retval == QDialog::Rejected)
+            {
+
+            }
+
+        }break;
+
+        case UdpDatagram::CONNECT_ACK:
+        {
+
+        }break;
+
+        case UdpDatagram::CONNECT_NACK:
+        {
+
+        }break;
+
 //        case DEVICE_NAME:
 //        {
 //            std::string name = parseName(raw_data);
-////            const UdpDevice dev = UdpDevice(name, ip, port);
+//            const UdpDevice dev = UdpDevice(name, ip, port);
 
-////            if(!devicesFound.contains(dev))
-////            {
-////                devicesFound.append(dev);
-////            }
+//            if(!devicesFound.contains(dev))
+//            {
+//               devicesFound.append(dev);
+//            }
 
-////            sendACK(ip, port);
-//            break;
-//        }
+//            sendACK(ip, port);
+//        }break;
+
 //        case VOLUME_VALUE:
 //        {
 
-//            break;
-//        }
+//        }break;
+
         default:
             break;
     }
