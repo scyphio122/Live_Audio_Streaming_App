@@ -7,6 +7,9 @@
 #include <audiosamplesplayer.h>
 #include <commandreceiver.h>
 
+class CommandReceiver;
+
+
 class ReceivedDatagramProcessor : public QObject
 {
     Q_OBJECT

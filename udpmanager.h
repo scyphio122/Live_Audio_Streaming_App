@@ -8,6 +8,9 @@
 #include <QObject>
 #include <udpdatagram.h>
 
+class ReceivedDatagramProcessor;
+
+
 class UdpManager : public QObject
 {
     Q_OBJECT
@@ -23,12 +26,14 @@ public:
     UdpManager(QHostAddress* ip, int sendPort);
 
     void setDatagramProc(ReceivedDatagramProcessor* datagramProcessor);
+    void setConnectionState(bool state);
+    bool getConnectionState();
 
 public slots:
     void setReceiverIpAddress(std::string address);
     void setSendingPortNumber(int portNumber);
     void  sendData(UdpDatagram* datagram);
-    void initSocket(QString ip, int port);
+    void connectUDP(QString ip, int port);
     void readData();
 signals:
     void emitDataReceived(UdpDatagram* datagram);

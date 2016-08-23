@@ -3,7 +3,6 @@ INPUT(
 ./debug/mainwindow.o
 ./debug/audiosamplesgetter.o
 ./debug/audiosamplessender.o
-./debug/commandssender.o
 ./debug/udpmanager.o
 ./debug/receiveddatagramprocessor.o
 ./debug/datagramlistener.o
@@ -16,6 +15,8 @@ INPUT(
 ./debug/complex.o
 ./debug/udpdatagram.o
 ./debug/audiodevicelister.o
+./debug/connectdialog.o
+./debug/commandsender.o
 ./debug/moc_mainwindow.o
 ./debug/moc_audiosamplesgetter.o
 ./debug/moc_audiosamplessender.o
@@ -24,4 +25,6 @@ INPUT(
 ./debug/moc_commandreceiver.o
 ./debug/moc_audiosamplesplayer.o
 ./debug/moc_fftcalculator.o
+./debug/moc_connectdialog.o
+./debug/moc_commandsender.o
 );

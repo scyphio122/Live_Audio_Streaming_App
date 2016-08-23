@@ -8,7 +8,7 @@
 #include <QPixmap>
 #include "audiosamplesgetter.h"
 #include "audiosamplessender.h"
-#include "commandssender.h"
+#include "commandsender.h"
 #include "udpmanager.h"
 #include "receiveddatagramprocessor.h"
 #include "audiosamplesplayer.h"
@@ -64,8 +64,8 @@ void MainWindow::connectSignals()
     connect(audioGetter, SIGNAL(isSamplingSignal(bool)), this, SLOT(audioGetterIsSampling(bool)));
     connect(this, SIGNAL(startSamplingSignal(bool)), audioGetter, SLOT(startSampling(bool)));                                                       /// Signal for sampling start
     connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));                                   /// Signal for setting audioOut for audioPlayer
-    /** Udp Manager Thread **/
-    connect(this, SIGNAL(initializeUdpSocket(QString,int)), udpManager, SLOT(initSocket(QString,int)));
+    /** Udp Thread **/
+    connect(this, SIGNAL(tryToConnect(QString,int)), cmdSender, SLOT(sendConnectionRequest(QString,int)));
 
     /** Audio Receiver Thread **/
     connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*)), datagramProc, SLOT(processDatagram(UdpDatagram*)));
@@ -75,7 +75,8 @@ void MainWindow::connectSignals()
     connect(this, SIGNAL(startPlayingSignal(bool)), audioPlayer, SLOT(startPlaying(bool)));
     connect(audioPlayer, SIGNAL(sendFft(FftCalculator*)), this, SLOT(setFftCalculator(FftCalculator*)));
     connect(this, SIGNAL(changeOutputVolume(int)), audioPlayer, SLOT(changeVolume(int)));
-
+    /** Command Receiver **/
+    connect(cmdReceived, SIGNAL(connectionUpdateSignal(bool)), this, SLOT(updateConnectionStateButton(bool)));
 }
 
 void MainWindow::setMutex(QMutex* mutex)
@@ -83,24 +84,12 @@ void MainWindow::setMutex(QMutex* mutex)
     this->mutex = mutex;
 }
 
-void MainWindow::drawScale(QPainter& painter, int windowWidth, int windowHeight, int sampleIndexMult)
+void MainWindow::updateConnectionStateButton(bool connected)
 {
-    const int fs = 44100;
-    int N  = fft->getOutputArraySize()/2;
-
-    int one_kHzIndex = (int)((double)1000*N/fs + 0.5);
-
-    for(int i=0; i<N; i++)
-    {
-        if(i>windowWidth)
-            break;
-        painter.drawLine(i*one_kHzIndex, windowHeight-35, i*one_kHzIndex, windowHeight-25);
-        if(i > 0)
-        {
-            QString frequency = QString::number(i*sampleIndexMult) + " kHz";
-            painter.drawText(i*one_kHzIndex-12, windowHeight - 10, frequency);
-        }
-    }
+    if(connected)
+        ui->pB_connect->setText("Disconnect");
+    else
+        ui->pB_connect->setText("Connect");
 }
 
 
@@ -148,7 +137,7 @@ void MainWindow::setAudioSamplesSender(AudioSamplesSender* o)
     this->audioSender = o;
 }
 
-void MainWindow::setCommandSender(CommandsSender* o)
+void MainWindow::setCommandSender(CommandSender *o)
 {
     this->cmdSender = o;
 }
@@ -345,7 +334,7 @@ void MainWindow::on_pB_connect_clicked()
     QString ip = ui->lE_peerIP->text();
     if(ip == "localhost")
         ip = "127.0.0.1";
-    emit initializeUdpSocket(ip, port);
+    emit tryToConnect(ip, port);
 }
 
 void MainWindow::on_hSlider_outputVolume_valueChanged(int value)

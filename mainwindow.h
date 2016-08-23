@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include "audiosamplesgetter.h"
 #include "audiosamplessender.h"
-#include "commandssender.h"
+#include "commandsender.h"
 #include "udpmanager.h"
 #include "receiveddatagramprocessor.h"
 #include "audiosamplesplayer.h"
@@ -13,7 +13,7 @@
 #include "fftcalculator.h"
 #include "audiosamplesgetter.h"
 #include "audiosamplessender.h"
-#include "commandssender.h"
+#include "commandsender.h"
 #include "udpmanager.h"
 #include "receiveddatagramprocessor.h"
 #include "audiosamplesplayer.h"
@@ -38,7 +38,7 @@ private:
 
     AudioSamplesGetter*         audioGetter;
     AudioSamplesSender*         audioSender;
-    CommandsSender*             cmdSender;
+    CommandSender*              cmdSender;
     UdpManager*                 udpManager;
     ReceivedDatagramProcessor*  datagramProc;
     AudioSamplesPlayer*         audioPlayer;
@@ -89,7 +89,7 @@ public:
 
     void setAudioSamplesGetter(AudioSamplesGetter* o);
     void setAudioSamplesSender(AudioSamplesSender* o);
-    void setCommandSender(CommandsSender* o);
+    void setCommandSender(CommandSender* o);
     void setUdpManager(UdpManager* o);
     void setReceivedDatagramProcessor(ReceivedDatagramProcessor* o);
     void setAudioSamplesPlayer(AudioSamplesPlayer* o);
@@ -109,6 +109,8 @@ public slots:
     void audioPlayerIsPlaying(bool signalFromThread);
     void setFftOutArray(Complex* array, int arraySize);
     void setFftCalculator(FftCalculator* fft);
+    void updateConnectionStateButton(bool status);
+
 signals:
     void setInputAudioDeviceSignal(QAudioInput* newAudioInputDev);
     void setAudioOutputSignal(QAudioOutput *dev);
@@ -116,7 +118,7 @@ signals:
     void queryIfPlayingSignal();
     void startSamplingSignal(bool value);
     void startPlayingSignal(bool value);
-    void initializeUdpSocket(QString ip, int port);
+    void tryToConnect(QString ip, int port);
     void fftEnable(bool value);
     void finished();
     void changeOutputVolume(int);

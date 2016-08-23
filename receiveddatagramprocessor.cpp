@@ -28,64 +28,25 @@ void ReceivedDatagramProcessor::setCommandReceiver(CommandReceiver* cmdRec)
 void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram)
 {
     UdpDatagram::UdpCommandEnum command = (UdpDatagram::UdpCommandEnum)datagram->getDatagram().at(0);
+    QByteArray* data = datagram->getDataCopy();
+
     switch(command)
     {
         case UdpDatagram::SAMPLES:
         {
-            QByteArray* data = datagram->getDataCopy();
             this->audioPlayer->onDataReceived(data);
-            delete data;
-            break;
-        }
-
-        case UdpDatagram::CONNECT_REQ:
-        {
-            ConnectDialog connectDialog;
-            int retval = connectDialog.exec();
-            if(retval == QDialog::Accepted)
-            {
-
-            }
-            else
-            if(retval == QDialog::Rejected)
-            {
-
-            }
-
         }break;
-
-        case UdpDatagram::CONNECT_ACK:
-        {
-
-        }break;
-
-        case UdpDatagram::CONNECT_NACK:
-        {
-
-        }break;
-
-//        case DEVICE_NAME:
-//        {
-//            std::string name = parseName(raw_data);
-//            const UdpDevice dev = UdpDevice(name, ip, port);
-
-//            if(!devicesFound.contains(dev))
-//            {
-//               devicesFound.append(dev);
-//            }
-
-//            sendACK(ip, port);
-//        }break;
-
-//        case VOLUME_VALUE:
-//        {
-
-//        }break;
 
         default:
-            break;
+        {
+            this->cmdReceiver->onDataReceived(data);
+        }break;
     }
+
+    delete data;
     delete datagram;
+
+    return;
 }
 
 std::string ReceivedDatagramProcessor::parseName(uint8_t* data)

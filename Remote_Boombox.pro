@@ -18,7 +18,6 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     audiosamplesgetter.cpp \
     audiosamplessender.cpp \
-    commandssender.cpp \
     udpmanager.cpp \
     receiveddatagramprocessor.cpp \
     datagramlistener.cpp \
@@ -31,12 +30,12 @@ SOURCES += main.cpp\
     complex.cpp \
     udpdatagram.cpp \
     audiodevicelister.cpp \
-    connectdialog.cpp
+    connectdialog.cpp \
+    commandsender.cpp
 
 HEADERS  += mainwindow.h \
     audiosamplesgetter.h \
     audiosamplessender.h \
-    commandssender.h \
     udpmanager.h \
     receiveddatagramprocessor.h \
     datagramlistener.h \
@@ -50,7 +49,8 @@ HEADERS  += mainwindow.h \
     udpdatagram.h \
     audiodevicelister.h \
     audio_config.h \
-    connectdialog.h
+    connectdialog.h \
+    commandsender.h
 
 INCLUDEPATH += D:/C++_Libs/boost_1_60_0/
 

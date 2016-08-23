@@ -5,6 +5,7 @@
 #include <QBuffer>
 #include "audiosamplesgetter.h"
 
+
 class AudioSamplesGetter;
 
 class AudioSamplesSender : public QObject
@@ -26,6 +27,7 @@ public:
 
 signals:
     void emitSendSamplesSignal(UdpDatagram* datagram);
+
 };
 
 #endif // AUDIOSAMPLESSENDER_H

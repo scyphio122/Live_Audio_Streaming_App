@@ -2,7 +2,7 @@
 #include <QApplication>
 #include "audiosamplesgetter.h"
 #include "audiosamplessender.h"
-#include "commandssender.h"
+#include "commandsender.h"
 #include "udpmanager.h"
 #include "receiveddatagramprocessor.h"
 #include "audiosamplesplayer.h"
@@ -32,13 +32,13 @@ int main(int argc, char *argv[])
     AudioSamplesPlayer audioSamplesPlayer(&receivedDataProc);
     CommandReceiver commandsReceiver(&receivedDataProc);;
 
-    CommandsSender commandsSender;
+    CommandSender commandSender;
     GraphicsVisualizer graphVisualizer;
 
     /// Set inter-object dependencies
     audioSamplesGetter.setAudioSamplesSender(&audioSamplesSender);
     audioSamplesSender.setUdpManager(&udpManager);
-    commandsSender.setUdpManager(&udpManager);
+    commandSender.setUdpManager(&udpManager);
     udpManager.setDatagramProc(&receivedDataProc);
     receivedDataProc.setAudioSamplesPlayer(&audioSamplesPlayer);
     receivedDataProc.setCommandReceiver(&commandsReceiver);
@@ -49,14 +49,12 @@ int main(int argc, char *argv[])
     /// Set the pointers in the mainwindow, to connect signals
     w.setAudioSamplesGetter(&audioSamplesGetter);
     w.setAudioSamplesSender(&audioSamplesSender);
-    w.setCommandSender(&commandsSender);
+    w.setCommandSender(&commandSender);
     w.setUdpManager(&udpManager);
     w.setReceivedDatagramProcessor(&receivedDataProc);
     w.setAudioSamplesPlayer(&audioSamplesPlayer);
     w.setCommandReceiver(&commandsReceiver);
     w.setGraphicVisualizer(&graphVisualizer);
-
-
 
     /// Create threads
     QThread samplesGetterThread;

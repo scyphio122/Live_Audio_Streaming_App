@@ -35,7 +35,7 @@ void UdpManager::setReceiverIpAddress(std::string address)
     this->receiverIpAddress.reset(new QHostAddress(QString::fromStdString(address)));
 }
 
-void UdpManager::initSocket(QString ip, int port)
+void UdpManager::connectUDP(QString ip, int port)
 {
     isConnected = true;
     this->setReceiverIpAddress(ip.toStdString());
@@ -52,8 +52,8 @@ void UdpManager::initSocket(QString ip, int port)
 void UdpManager::sendData(UdpDatagram* datagram)
 {
     qint64 retval = 0;
-    if(isConnected)
-    {
+//    if(isConnected)
+//    {
         /// Write data to the socket
         retval = udpSocket->writeDatagram(datagram->getDatagram(), *this->receiverIpAddress.get(), this->portNumberInUse);
         qDebug()<<"Ilość wysłanych danych:"<<retval;
@@ -62,7 +62,7 @@ void UdpManager::sendData(UdpDatagram* datagram)
             QAbstractSocket::SocketError err =udpSocket->error();
             qDebug()<<"Błąd wysyłki:"<<err;
         }
-    }
+//    }
     delete datagram;
 }
 
@@ -84,4 +84,12 @@ void UdpManager::readData()
     }
 }
 
+void UdpManager::setConnectionState(bool state)
+{
+    isConnected = state;
+}
 
+bool UdpManager::getConnectionState()
+{
+    return isConnected;
+}
