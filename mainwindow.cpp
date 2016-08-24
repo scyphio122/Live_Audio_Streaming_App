@@ -66,6 +66,7 @@ void MainWindow::connectSignals()
     connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));                                   /// Signal for setting audioOut for audioPlayer
     /** Udp Thread **/
     connect(this, SIGNAL(tryToConnect(QString,int)), cmdSender, SLOT(sendConnectionRequest(QString,int)));
+    connect(cmdSender, SIGNAL(sendCommandSignal(UdpDatagram*)), udpManager, SLOT(sendData(UdpDatagram*)));
 
     /** Audio Receiver Thread **/
     connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*)), datagramProc, SLOT(processDatagram(UdpDatagram*)));

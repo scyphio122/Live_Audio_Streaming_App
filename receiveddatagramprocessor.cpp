@@ -28,22 +28,23 @@ void ReceivedDatagramProcessor::setCommandReceiver(CommandReceiver* cmdRec)
 void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram)
 {
     UdpDatagram::UdpCommandEnum command = (UdpDatagram::UdpCommandEnum)datagram->getDatagram().at(0);
-    QByteArray* data = datagram->getDataCopy();
 
     switch(command)
     {
         case UdpDatagram::SAMPLES:
         {
+            QByteArray* data = datagram->getDataCopy();
             this->audioPlayer->onDataReceived(data);
+            delete data;
         }break;
 
         default:
         {
-            this->cmdReceiver->onDataReceived(data);
+            this->cmdReceiver->onDataReceived(&datagram->getDatagram());
         }break;
     }
 
-    delete data;
+
     delete datagram;
 
     return;

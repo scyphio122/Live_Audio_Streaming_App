@@ -18,7 +18,10 @@ public:
     void sendCommand(UdpDatagram* datagram);
 
 public slots:
-    void sendConnectionRequest(QString myIP, int myPort);
+    void sendConnectionRequest(QString myIP, int receiverPort);
+
+signals:
+    void sendCommandSignal(UdpDatagram *datagram);
 };
 
 #endif // COMMANDSSENDER_H

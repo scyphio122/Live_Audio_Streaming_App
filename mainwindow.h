@@ -122,6 +122,7 @@ signals:
     void fftEnable(bool value);
     void finished();
     void changeOutputVolume(int);
+    void udpConnectionEstablished(bool);
 
 };
 
