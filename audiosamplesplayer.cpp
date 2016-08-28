@@ -75,10 +75,10 @@ FftCalculator* AudioSamplesPlayer::getFFT()
 
 void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 {
+    int dataSize = data->size();
+    int inputSize = AUDIO_OUT_BUF_SIZE;
     if(!muted)
     {
-        int dataSize = data->size();
-        int inputSize = AUDIO_OUT_BUF_SIZE;
         if(dataSize > AUDIO_OUT_BUF_SIZE)
         {
             inputSize = (dataSize/AUDIO_OUT_BUF_SIZE)*AUDIO_OUT_BUF_SIZE + AUDIO_OUT_BUF_SIZE;
