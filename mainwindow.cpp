@@ -73,9 +73,9 @@ void MainWindow::connectSignals()
     connect(cmdReceiver, SIGNAL(connectionEstablishSignal(QString,int)), udpManager, SLOT(connectUDP(QString,int)));
     /** Audio Receiver Thread **/
     connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*)), datagramProc, SLOT(processDatagram(UdpDatagram*)));
-    connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));
+//    connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));
     connect(this, SIGNAL(queryIfPlayingSignal()), audioPlayer, SLOT(isMuted()));
-    connect(audioPlayer, SIGNAL(isMutedSignal(bool)), this, SLOT(audioPlayerIsPlaying(bool)));
+//    connect(audioPlayer, SIGNAL(isMutedSignal(bool)), this, SLOT(audioPlayerIsPlaying(bool)));
     connect(this, SIGNAL(startPlayingSignal(bool)), audioPlayer, SLOT(startPlaying(bool)));
     connect(audioPlayer, SIGNAL(sendFft(FftCalculator*)), this, SLOT(setFftCalculator(FftCalculator*)));
     connect(this, SIGNAL(changeOutputVolume(int)), audioPlayer, SLOT(changeVolume(int)));
@@ -213,18 +213,18 @@ void MainWindow::audioGetterIsSampling(bool signalFromThread)
 
 }
 
-void MainWindow::audioPlayerIsPlaying(bool signalFromThread)
-{
-    audioOutMuted = signalFromThread;
-    if(signalFromThread)
-    {
-        ui->pB_startStopPlaying->setText("Stop Playing");
-    }
-    else
-    {
-        ui->pB_startStopPlaying->setText("Start Playing");
-    }
-}
+//void MainWindow::audioPlayerIsPlaying(bool signalFromThread)
+//{
+//    audioOutMuted = signalFromThread;
+//    if(signalFromThread)
+//    {
+//        ui->pB_startStopPlaying->setText("Stop Playing");
+//    }
+//    else
+//    {
+//        ui->pB_startStopPlaying->setText("Start Playing");
+//    }
+//}
 
 void MainWindow::setFftOutArray(Complex *array, int arraySize)
 {
@@ -268,15 +268,16 @@ void MainWindow::on_cB_outputAudioDevice_activated(const QString &arg1)
 
 void MainWindow::on_pB_startStopPlaying_clicked()
 {
-    if(audioOutMuted)
+    if(audioPlayer->isMuted())
     {
-        emit startPlayingSignal(true);
         ui->pB_startStopPlaying->setText("Stop Playing");
+        emit startPlayingSignal(true);
+
     }
     else
     {
-         emit startPlayingSignal(false);
-         ui->pB_startStopPlaying->setText("Start Playing");
+        ui->pB_startStopPlaying->setText("Start Playing");
+        emit startPlayingSignal(false);
     }
 
     emit queryIfPlayingSignal();

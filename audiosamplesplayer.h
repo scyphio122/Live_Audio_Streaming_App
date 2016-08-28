@@ -15,8 +15,8 @@ private:
     const int                           AUDIO_OUT_BUF_SIZE  =   16384;
     FftCalculator*                      fft                 =   nullptr;
     QBuffer*                            audioOutputBuffer   =   nullptr;
-    QAudioOutput                        audioOutput;
-    bool                                muted;
+    QAudioOutput*                       audioOutput         =   nullptr;
+    bool                                muted               =   true;
 
 public:
     AudioSamplesPlayer();

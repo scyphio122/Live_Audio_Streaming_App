@@ -12,8 +12,6 @@ AudioSamplesPlayer::AudioSamplesPlayer(QObject* parent=0)
 
 void AudioSamplesPlayer::init()
 {
-    this->muted = false;
-
     if(fft != nullptr)
         delete fft;
 
@@ -30,10 +28,13 @@ AudioSamplesPlayer::~AudioSamplesPlayer()
 
 void AudioSamplesPlayer::setAudioOutput(QAudioOutput *dev)
 {
-//    if(audioOutput != nullptr)
-//        delete audioOutput;
+    if(audioOutput != nullptr)
+    {
+        delete audioOutput;
+        audioOutput = nullptr;
+    }
 
-//    this->audioOutput = dev;
+    this->audioOutput = dev;
 }
 
 void AudioSamplesPlayer::startPlaying(bool value)
@@ -43,29 +44,28 @@ void AudioSamplesPlayer::startPlaying(bool value)
         if(this->audioOutputBuffer != nullptr)
             delete audioOutputBuffer;
         this->audioOutputBuffer = new QBuffer(new QByteArray(AUDIO_OUT_BUF_SIZE, 0));
-        bool retval = this->audioOutputBuffer->open(QIODevice::ReadOnly);
+        bool retval = this->audioOutputBuffer->open(QIODevice::ReadWrite);
 
         memset(audioOutputBuffer->buffer().data(), 0, audioOutputBuffer->size());
         audioOutputBuffer->seek(0);
-        this->audioOutput.start(this->audioOutputBuffer);
+        this->audioOutput->start(this->audioOutputBuffer);
         muted = false;
     }
     else
     {
         muted = true;
-        this->audioOutput.stop();
+        this->audioOutput->stop();
     }
 }
 
 bool AudioSamplesPlayer::isMuted()
 {
-    emit isMutedSignal(this->muted);
     return this->muted;
 }
 
 void AudioSamplesPlayer::changeVolume(int volumePercentage)
 {
-    this->audioOutput.setVolume((double)volumePercentage/100);
+    this->audioOutput->setVolume((double)volumePercentage/100);
 }
 
 FftCalculator* AudioSamplesPlayer::getFFT()
@@ -102,9 +102,12 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 
         if(audioOutputBuffer != nullptr)
         {
-            delete audioOutputBuffer->buffer().data();
-            audioOutputBuffer->setBuffer(data);
-            audioOutputBuffer->open(QIODevice::ReadOnly);
+//            delete audioOutputBuffer->buffer().data();
+//            audioOutputBuffer->setBuffer(data);
+//            audioOutputBuffer->open(QIODevice::ReadOnly);
+            audioOutputBuffer->seek(0);
+            audioOutputBuffer->write(*data);
+            audioOutputBuffer->seek(0);
         }
 
 

@@ -57,7 +57,7 @@ private:
     QBrush*         brush;
     QPen*           pen;
     bool                        audioInSampling = false;
-    bool                        audioOutMuted   = true;
+//    bool                        audioOutMuted   = true;
 
     void paintEvent(QPaintEvent *);
     void visualizeFFT();
@@ -106,7 +106,7 @@ public:
 
 public slots:
     void audioGetterIsSampling(bool signalFromThread);
-    void audioPlayerIsPlaying(bool signalFromThread);
+//    void audioPlayerIsPlaying(bool signalFromThread);
     void setFftOutArray(Complex* array, int arraySize);
     void setFftCalculator(FftCalculator* fft);
     void updateConnectionStateButton();
