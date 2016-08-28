@@ -10,7 +10,16 @@
 
 UdpManager::UdpManager()
 {
+    if(udpSocket != nullptr)
+    {
+        delete udpSocket;
+        udpSocket = nullptr;
+    }
 
+    this->udpSocket = new QUdpSocket(this);
+
+    /// Connect the receiver callback to call readPendingDatagrams each time readyRead event occurs
+    connect(this->udpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
 }
 
 UdpManager::UdpManager(QHostAddress* ip, int sendPort)
@@ -18,6 +27,15 @@ UdpManager::UdpManager(QHostAddress* ip, int sendPort)
     setReceiverIpAddress(ip->toString().toStdString());
     this->portNumberInUse = sendPort;
 
+    if(udpSocket != nullptr)
+    {
+        delete udpSocket;
+        udpSocket = nullptr;
+    }
+
+    this->udpSocket = new QUdpSocket(this);
+    /// Connect the receiver callback to call readPendingDatagrams each time readyRead event occurs
+    connect(this->udpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
 }
 
 UdpManager::~UdpManager()
@@ -65,16 +83,7 @@ void UdpManager::connectUDP(QString ip, int port)
     this->m_setReceiverIpAddress(ip.toStdString());
     this->portNumberInUse = port;
 
-    if(udpSocket != nullptr)
-    {
-        delete udpSocket;
-        udpSocket = nullptr;
-    }
-
-    this->udpSocket = new QUdpSocket(this);
     udpSocket->bind(*receiverIpAddress, port);
-    /// Connect the receiver callback to call readPendingDatagrams each time readyRead event occurs
-    connect(this->udpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
 
     isConnected = true;
     mutex.unlock();
