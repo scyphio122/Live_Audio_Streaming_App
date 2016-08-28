@@ -17,6 +17,9 @@ class CommandReceiver : public DatagramListener
 private:
     CommandSender*  cmdSender;
     UdpManager*     udpManager;
+
+    QString         connRequesterIP;
+    int             connRequesterPort;
 public:
     CommandReceiver();
     CommandReceiver(QObject* parent);
@@ -27,8 +30,16 @@ public:
 
     void setUdpManager(UdpManager* manager);
 
+public slots:
+    void connectionUpdateGUICallback(bool connectionEstablished);
+
 signals:
-    void connectionUpdateSignal(bool status);
+    /// Signal used to display connection request window
+    void connectionRequestSignal();
+
+    /// Signal used to establish connection in the UdpManager
+    void connectionEstablishSignal(QString ip, int port);
+
 };
 
 #endif // COMMANDRECEIVER_H

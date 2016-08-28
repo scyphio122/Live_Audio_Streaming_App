@@ -75,8 +75,6 @@ FftCalculator* AudioSamplesPlayer::getFFT()
 
 void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 {
-    int i = 0;
-    uint16_t sample = 0;
     if(!muted)
     {
         int dataSize = data->size();

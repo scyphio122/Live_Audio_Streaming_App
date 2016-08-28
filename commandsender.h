@@ -22,6 +22,9 @@ public slots:
 
 signals:
     void sendCommandSignal(UdpDatagram *datagram);
+
+    /// Signal used to establish connection in the UdpManager
+    void connectionEstablishSignal(QString ip, int port);
 };
 
 #endif // COMMANDSSENDER_H

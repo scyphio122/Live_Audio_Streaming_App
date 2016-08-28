@@ -11,6 +11,7 @@ UdpDatagram::UdpDatagram()
 
 UdpDatagram::UdpDatagram(UdpCommandEnum command, QBuffer* data)
 {
+
     uint32_t dataSize = data->bytesAvailable();
 
     this->data = data->readAll();
@@ -98,3 +99,5 @@ void UdpDatagram::displayDatagram()
     std::cout << std::endl;
 
 }
+
+

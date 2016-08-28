@@ -24,37 +24,20 @@ void CommandReceiver::onDataReceived(QByteArray *data)
     {
         case UdpDatagram::CONNECT_REQ:
         {
-            ConnectDialog connectDialog;
-            QString ip;
+            connRequesterIP.clear();
 
-            for(int i = 2; i < data->data()[1] - sizeof(int); i++)
+            memcpy(&connRequesterPort, &data->data()[5], sizeof(int));
+
+            int ipSize = 0;
+            memcpy(&ipSize, data->data()+1, sizeof(int));
+            ipSize -= sizeof(connRequesterPort);  /// Decrease by size of connRequesterPort
+            for(int i = 9; i < ipSize + 9; i++)
             {
-                ip.append(data->at(i));
+                connRequesterIP.append(data->at(i));
             }
 
-            ip.append('\0');
-
-            int port = 0;
-            memcpy(&port, data+1+data->data()[1]-sizeof(int), sizeof(int));
-
-            int retval = connectDialog.exec();
-            if(retval == QDialog::Accepted)
-            {
-                UdpDatagram datagram(UdpDatagram::CONNECT_ACK, nullptr);
-                cmdSender->sendCommand(&datagram);
-                udpManager->connectUDP(ip, port);
-                udpManager->setConnectionState(true);
-                emit connectionUpdateSignal(true);
-            }
-            else
-            if(retval == QDialog::Rejected)
-            {
-                UdpDatagram datagram(UdpDatagram::CONNECT_NACK, nullptr);
-                cmdSender->sendCommand(&datagram);
-                udpManager->setConnectionState(false);
-                emit connectionUpdateSignal(false);
-            }
-
+            connRequesterIP.append('\0');
+            emit connectionRequestSignal();
         }break;
 
         case UdpDatagram::CONNECT_ACK:
@@ -95,4 +78,32 @@ void CommandReceiver::setCommandSender(CommandSender* cmdSender)
 void CommandReceiver::setUdpManager(UdpManager *manager)
 {
     this->udpManager = manager;
+}
+
+void CommandReceiver::connectionUpdateGUICallback(bool connectionEstablished)
+{
+    QBuffer* buf = new QBuffer(new QByteArray(1, '\0'));
+    buf->open(QIODevice::ReadWrite);
+
+    /// Connect either way in order to be able to send response
+//    udpManager->connectUDP(connRequesterIP, connRequesterPort);
+    emit connectionEstablishSignal(connRequesterIP, connRequesterPort);
+    /// Wait till connection established
+    while(!udpManager->getConnectionState())
+    {}
+
+    /// If user agreed to connection
+    if(connectionEstablished)
+    {
+        UdpDatagram* datagram = new UdpDatagram(UdpDatagram::CONNECT_ACK, buf);
+
+        cmdSender->sendCommand(datagram);
+//        udpManager->setConnectionState(true);
+    }
+    else    /// Otherwise send back response about non-agreement
+    {
+        UdpDatagram* datagram = new UdpDatagram(UdpDatagram::CONNECT_NACK, buf);
+        cmdSender->sendCommand(datagram);
+        udpManager->setConnectionState(false);
+    }
 }

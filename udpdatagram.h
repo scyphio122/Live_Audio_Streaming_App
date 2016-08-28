@@ -44,6 +44,7 @@ public:
     void                displayDatagram();
     void                resize(int newSize);
 
+
 };
 
 #endif // UDPDATAGRAM_H

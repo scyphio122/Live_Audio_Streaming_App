@@ -17,13 +17,17 @@ class UdpManager : public QObject
 
 private:
     int                             portNumberInUse;
-    boost::scoped_ptr<QHostAddress> receiverIpAddress;
-    boost::scoped_ptr<QUdpSocket>   udpSocket;
-    ReceivedDatagramProcessor*      datagramProc;
+    QHostAddress*                   receiverIpAddress = nullptr;
+    QUdpSocket*                     udpSocket = nullptr;
+    ReceivedDatagramProcessor*      datagramProc = nullptr;
     bool                            isConnected = false;
+    QMutex                          mutex;
+
+    void m_setReceiverIpAddress(std::string address);
 public:
     UdpManager();
     UdpManager(QHostAddress* ip, int sendPort);
+    ~UdpManager();
 
     void setDatagramProc(ReceivedDatagramProcessor* datagramProcessor);
     void setConnectionState(bool state);
@@ -32,11 +36,15 @@ public:
 public slots:
     void setReceiverIpAddress(std::string address);
     void setSendingPortNumber(int portNumber);
-    void  sendData(UdpDatagram* datagram);
+
     void connectUDP(QString ip, int port);
+    void sendData(UdpDatagram* datagram);
+    void sendCmd(UdpDatagram* datagram);
     void readData();
 signals:
     void emitDataReceived(UdpDatagram* datagram);
+
+    void connectedSignal();
 };
 
 #endif // UDPMANAGER_H

@@ -18,6 +18,7 @@
 #include "complex.h"
 #include "audiodevicelister.h"
 #include <cfloat>
+#include <connectdialog.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -64,10 +65,12 @@ void MainWindow::connectSignals()
     connect(audioGetter, SIGNAL(isSamplingSignal(bool)), this, SLOT(audioGetterIsSampling(bool)));
     connect(this, SIGNAL(startSamplingSignal(bool)), audioGetter, SLOT(startSampling(bool)));                                                       /// Signal for sampling start
     connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));                                   /// Signal for setting audioOut for audioPlayer
+
     /** Udp Thread **/
     connect(this, SIGNAL(tryToConnect(QString,int)), cmdSender, SLOT(sendConnectionRequest(QString,int)));
-    connect(cmdSender, SIGNAL(sendCommandSignal(UdpDatagram*)), udpManager, SLOT(sendData(UdpDatagram*)));
-
+    connect(cmdSender, SIGNAL(sendCommandSignal(UdpDatagram*)), udpManager, SLOT(sendCmd(UdpDatagram*)));
+    connect(cmdSender, SIGNAL(connectionEstablishSignal(QString,int)), udpManager, SLOT(connectUDP(QString,int)));
+    connect(cmdReceiver, SIGNAL(connectionEstablishSignal(QString,int)), udpManager, SLOT(connectUDP(QString,int)));
     /** Audio Receiver Thread **/
     connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*)), datagramProc, SLOT(processDatagram(UdpDatagram*)));
     connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));
@@ -77,7 +80,8 @@ void MainWindow::connectSignals()
     connect(audioPlayer, SIGNAL(sendFft(FftCalculator*)), this, SLOT(setFftCalculator(FftCalculator*)));
     connect(this, SIGNAL(changeOutputVolume(int)), audioPlayer, SLOT(changeVolume(int)));
     /** Command Receiver **/
-    connect(cmdReceived, SIGNAL(connectionUpdateSignal(bool)), this, SLOT(updateConnectionStateButton(bool)));
+    connect(cmdReceiver, SIGNAL(connectionRequestSignal()), this, SLOT(updateConnectionStateButton()));
+    connect(this, SIGNAL(connectionUpdatedSignal(bool)), cmdReceiver, SLOT(connectionUpdateGUICallback(bool)));
 }
 
 void MainWindow::setMutex(QMutex* mutex)
@@ -85,12 +89,24 @@ void MainWindow::setMutex(QMutex* mutex)
     this->mutex = mutex;
 }
 
-void MainWindow::updateConnectionStateButton(bool connected)
+void MainWindow::updateConnectionStateButton()
 {
-    if(connected)
+    ConnectDialog connectDialog;
+
+    int retval = connectDialog.exec();
+    if(retval == QDialog::Accepted)
+    {
         ui->pB_connect->setText("Disconnect");
+
+        emit connectionUpdatedSignal(true);
+    }
     else
+    if(retval == QDialog::Rejected)
+    {
         ui->pB_connect->setText("Connect");
+        emit connectionUpdatedSignal(false);
+    }
+
 }
 
 
@@ -125,68 +141,6 @@ void MainWindow::paintEvent(QPaintEvent *)
         }
     }
 }
-
-
-
-void MainWindow::setAudioSamplesGetter(AudioSamplesGetter* o)
-{
-    this->audioGetter = o;
-}
-
-void MainWindow::setAudioSamplesSender(AudioSamplesSender* o)
-{
-    this->audioSender = o;
-}
-
-void MainWindow::setCommandSender(CommandSender *o)
-{
-    this->cmdSender = o;
-}
-
-void MainWindow::setUdpManager(UdpManager* o)
-{
-    this->udpManager = o;
-}
-
-void MainWindow::setReceivedDatagramProcessor(ReceivedDatagramProcessor* o)
-{
-    this->datagramProc = o;
-}
-
-void MainWindow::setAudioSamplesPlayer(AudioSamplesPlayer* o)
-{
-    this->audioPlayer = o;
-}
-
-void MainWindow::setCommandReceiver(CommandReceiver* o)
-{
-    this->cmdReceived = o;
-}
-
-void MainWindow::setGraphicVisualizer(GraphicsVisualizer* o)
-{
-    this->graphicVisualizer = o;
-    graphicVisualizer->fftBars.setWindowHeight(ui->lB_visualization->height());
-    graphicVisualizer->fftBars.setWindowWidth(ui->lB_visualization->width());
-    graphicVisualizer->fftBars.calcOffset();
-}
-
-void MainWindow::setAudioSenderThread(QThread* o)
-{
- this->audioGetterThread = o;
-}
-
-void MainWindow::setUdpThread(QThread* o)
-{
-    this->udpManagerThread = o;
-}
-
-void MainWindow::setAudioReceiverThread(QThread* o)
-{
-    this->audioReceiverThread = o;
-}
-
-
 
 void MainWindow::setFftCalculator(FftCalculator* fft)
 {
@@ -335,10 +289,69 @@ void MainWindow::on_pB_connect_clicked()
     QString ip = ui->lE_peerIP->text();
     if(ip == "localhost")
         ip = "127.0.0.1";
+
     emit tryToConnect(ip, port);
 }
 
 void MainWindow::on_hSlider_outputVolume_valueChanged(int value)
 {
     emit changeOutputVolume(value);
+}
+
+void MainWindow::setAudioSamplesGetter(AudioSamplesGetter* o)
+{
+    this->audioGetter = o;
+}
+
+void MainWindow::setAudioSamplesSender(AudioSamplesSender* o)
+{
+    this->audioSender = o;
+}
+
+void MainWindow::setCommandSender(CommandSender *o)
+{
+    this->cmdSender = o;
+}
+
+void MainWindow::setUdpManager(UdpManager* o)
+{
+    this->udpManager = o;
+}
+
+void MainWindow::setReceivedDatagramProcessor(ReceivedDatagramProcessor* o)
+{
+    this->datagramProc = o;
+}
+
+void MainWindow::setAudioSamplesPlayer(AudioSamplesPlayer* o)
+{
+    this->audioPlayer = o;
+}
+
+void MainWindow::setCommandReceiver(CommandReceiver* o)
+{
+    this->cmdReceiver = o;
+}
+
+void MainWindow::setGraphicVisualizer(GraphicsVisualizer* o)
+{
+    this->graphicVisualizer = o;
+    graphicVisualizer->fftBars.setWindowHeight(ui->lB_visualization->height());
+    graphicVisualizer->fftBars.setWindowWidth(ui->lB_visualization->width());
+    graphicVisualizer->fftBars.calcOffset();
+}
+
+void MainWindow::setAudioSenderThread(QThread* o)
+{
+ this->audioGetterThread = o;
+}
+
+void MainWindow::setUdpThread(QThread* o)
+{
+    this->udpManagerThread = o;
+}
+
+void MainWindow::setAudioReceiverThread(QThread* o)
+{
+    this->audioReceiverThread = o;
 }

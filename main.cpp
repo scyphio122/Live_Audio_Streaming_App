@@ -42,9 +42,8 @@ int main(int argc, char *argv[])
     udpManager.setDatagramProc(&receivedDataProc);
     receivedDataProc.setAudioSamplesPlayer(&audioSamplesPlayer);
     receivedDataProc.setCommandReceiver(&commandsReceiver);
-
-//    w.setMutex(&guiMutex);
-//    audioSamplesPlayer.getFFT()->setMutex(&guiMutex);
+    commandsReceiver.setUdpManager(&udpManager);
+    commandsReceiver.setCommandSender(&commandSender);
 
     /// Set the pointers in the mainwindow, to connect signals
     w.setAudioSamplesGetter(&audioSamplesGetter);

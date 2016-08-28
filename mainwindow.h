@@ -42,7 +42,7 @@ private:
     UdpManager*                 udpManager;
     ReceivedDatagramProcessor*  datagramProc;
     AudioSamplesPlayer*         audioPlayer;
-    CommandReceiver*            cmdReceived;
+    CommandReceiver*            cmdReceiver;
     GraphicsVisualizer*         graphicVisualizer;
 
     QThread*                    audioGetterThread;
@@ -109,7 +109,7 @@ public slots:
     void audioPlayerIsPlaying(bool signalFromThread);
     void setFftOutArray(Complex* array, int arraySize);
     void setFftCalculator(FftCalculator* fft);
-    void updateConnectionStateButton(bool status);
+    void updateConnectionStateButton();
 
 signals:
     void setInputAudioDeviceSignal(QAudioInput* newAudioInputDev);
@@ -123,6 +123,7 @@ signals:
     void finished();
     void changeOutputVolume(int);
     void udpConnectionEstablished(bool);
+    void connectionUpdatedSignal(bool);
 
 };
 
