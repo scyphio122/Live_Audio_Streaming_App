@@ -85,7 +85,7 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
             data->resize(inputSize);
             /// Fill the rest of the array with zeros
             memset(data->data()+dataSize, 0, inputSize-dataSize);
-            if((inputSize % 8192) == 0)
+            if((inputSize % AUDIO_OUT_BUF_SIZE) == 0)
             {
                 QMessageBox w;
                 w.setIcon(QMessageBox::Icon::Warning);
@@ -95,11 +95,16 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
                 return;
             }
         }
+        else if(dataSize < AUDIO_OUT_BUF_SIZE)
+        {
+            return;
+        }
 
         if(audioOutputBuffer != nullptr)
         {
             delete audioOutputBuffer->buffer().data();
             audioOutputBuffer->setBuffer(data);
+            audioOutputBuffer->open(QIODevice::ReadOnly);
         }
 
 

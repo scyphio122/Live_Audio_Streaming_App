@@ -46,15 +46,23 @@ UdpDatagram::UdpCommandEnum UdpDatagram::getCommand()
 
 uint16_t UdpDatagram::getDataSize()
 {
+    /*
     uint16_t* dataSize = (uint16_t*)(this->data.data() + DATA_SIZE_INDEX);
 
     return *dataSize;
+    */
+    return data.size() - 5;
 }
 
 QByteArray* UdpDatagram::getDataCopy()
 {
-    QByteArray* byteBuf = new QByteArray((int)getDataSize(), 0);
     int size = getDataSize();
+    QByteArray* byteBuf = new QByteArray(size, 0);
+    if((size + 5) != data.size())
+    {
+        qDebug() << "Niespojnosc rozmiaru pakietu. Rozmiar size: " << size + 5 << " rozmiar pakietu: " << data.size();
+
+    }
     /// Copy the data
     memcpy(byteBuf->data(),  ((char*)this->data.data())+DATA_SIZE_INDEX+DATA_SIZE_SIZE, size);
 
