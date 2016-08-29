@@ -19,13 +19,14 @@
 #include "audiodevicelister.h"
 #include <cfloat>
 #include <connectdialog.h>
+#include <cstdlib>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
 
     displayAudioInDevices();
     displayAudioOutDevices();
@@ -160,17 +161,17 @@ void MainWindow::visualizeFFT()
 
 
 
-void MainWindow::generateTestSin(double freq, int* dataOut, double xStart, double xEnd, uint32_t sampleNumber)
-{
-    double omega = 2*M_PI*freq;
-    double x = xStart;
-    double interpolator = (xEnd - xStart)/(double)sampleNumber;
-    for(uint32_t i=0; i<sampleNumber; i++)
-    {
-        dataOut[i] = (sin(omega*x));//+0.2*sin(10*omega*x))*0.2*sin(15*omega*x);
-        x += interpolator;
-    }
-}
+//void MainWindow::generateTestSin(double freq, int* dataOut, double xStart, double xEnd, uint32_t sampleNumber)
+//{
+//    double omega = 2*M_PI*freq;
+//    double x = xStart;
+//    double interpolator = (xEnd - xStart)/(double)sampleNumber;
+//    for(uint32_t i=0; i<sampleNumber; i++)
+//    {
+//        dataOut[i] = (sin(omega*x));//+0.2*sin(10*omega*x))*0.2*sin(15*omega*x);
+//        x += interpolator;
+//    }
+//}
 
 
 void MainWindow::displayAudioInDevices()

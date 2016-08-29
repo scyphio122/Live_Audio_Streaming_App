@@ -6,6 +6,7 @@
 #include <QBuffer>
 #include "fftcalculator.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
+#include <QQueue>
 
 class AudioSamplesPlayer : public DatagramListener
 {
@@ -13,9 +14,12 @@ class AudioSamplesPlayer : public DatagramListener
 
 private:
     const int                           AUDIO_OUT_BUF_SIZE  =   16384;
+    const int                           OUTPUT_QUEUE_SIZE   =   20;
+
     FftCalculator*                      fft                 =   nullptr;
     QBuffer*                            audioOutputBuffer   =   nullptr;
     QAudioOutput*                       audioOutput         =   nullptr;
+    QQueue<QBuffer*>                    audioOutputQueue;
     bool                                muted               =   true;
 
 public:
@@ -32,6 +36,8 @@ public slots:
     void startPlaying(bool value);
     bool isMuted();
     void changeVolume(int volumePercentage);
+    void bufferEmptyEvent(QAudio::State state);
+
 signals:
     void isMutedSignal(bool value);
     void sendFft(FftCalculator* fft);

@@ -5,6 +5,8 @@
 #include <QtMultimedia/QAudioOutput>
 #include <QBuffer>
 #include "audiosamplessender.h"
+#include <QQueue>
+
 
 class AudioSamplesSender;
 class AudioSamplesGetter : public QObject
@@ -12,14 +14,15 @@ class AudioSamplesGetter : public QObject
     Q_OBJECT
 
 private:
-
-
-    AudioSamplesSender*                         audioSender         = nullptr;
-    QAudioInput*                                audioInDevice       = nullptr;
-    QAudioOutput*                               audioOutDevice      = nullptr;
-    QBuffer*                                    capturingStream     = nullptr;
-    QByteArray*                                 inputDataBuffer     = nullptr;
+    const int                                   INPUT_QUEUE_SIZE        = 20;
+    const int                                   INPUT_QUEUE_WATERMARK   = 10;
+    AudioSamplesSender*                         audioSender             = nullptr;
+    QAudioInput*                                audioInDevice           = nullptr;
+    QAudioOutput*                               audioOutDevice          = nullptr;
+    QBuffer*                                    capturingStream         = nullptr;
+    QByteArray*                                 inputDataBuffer         = nullptr;
     bool                                        isMuted;
+    QQueue<QBuffer*>                            inputQueue;
     bool                                        echoSound;
     bool                                        isCurrentlySampling;
 

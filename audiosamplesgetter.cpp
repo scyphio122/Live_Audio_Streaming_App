@@ -4,13 +4,14 @@
 #include <string>
 #include <QAudioInput>
 #include <QAudioOutput>
+#include <QQueue>
 
 #include <QTime>
 #include <QDebug>
 
 AudioSamplesGetter::AudioSamplesGetter()
 {
-
+    inputQueue.reserve(INPUT_QUEUE_SIZE);
 }
 
 
@@ -91,8 +92,25 @@ void AudioSamplesGetter::startSampling(bool value)
 void AudioSamplesGetter::onSamplesCaptured()
 {
     this->capturingStream->seek(0);
-//    qDebug()<<QTime::currentTime()<<this->capturingStream->bytesAvailable() <<this->capturingStream->size();
-    this->audioSender->sendSamples(this->capturingStream);
+    if(inputQueue.count() == INPUT_QUEUE_SIZE)
+    {
+        delete this->capturingStream;
+    }
+    else
+    {
+        inputQueue.enqueue(this->capturingStream);
+    }
+
+    this->inputDataBuffer = new QByteArray(AUDIO_IN_BUFFER_SIZE, 0);
+    this->capturingStream = new QBuffer(inputDataBuffer);
+    this->capturingStream->open(QIODevice::ReadWrite);
+    this->audioInDevice->start(this->capturingStream);
+
+    if(inputQueue.count() > INPUT_QUEUE_WATERMARK)
+    {
+        while(inputQueue.count() > 0)
+        this->audioSender->sendSamples(inputQueue.dequeue());
+    }
 }
 
 void AudioSamplesGetter::playEchoedSamples()

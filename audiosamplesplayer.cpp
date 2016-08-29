@@ -1,5 +1,8 @@
 #include "audiosamplesplayer.h"
 #include <QMessageBox>
+#include <QQueue>
+
+
 AudioSamplesPlayer::AudioSamplesPlayer()
 {
 
@@ -8,6 +11,7 @@ AudioSamplesPlayer::AudioSamplesPlayer()
 AudioSamplesPlayer::AudioSamplesPlayer(QObject* parent=0)
 {
     setParent(parent);
+    audioOutputQueue.reserve(OUTPUT_QUEUE_SIZE);
 }
 
 void AudioSamplesPlayer::init()
@@ -48,6 +52,7 @@ void AudioSamplesPlayer::startPlaying(bool value)
 
         memset(audioOutputBuffer->buffer().data(), 0, audioOutputBuffer->size());
         audioOutputBuffer->seek(0);
+        connect(audioOutput, SIGNAL(stateChanged(QAudio::State)), this, SLOT(bufferEmptyEvent(QAudio::State)));
         this->audioOutput->start(this->audioOutputBuffer);
         muted = false;
     }
@@ -105,9 +110,20 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 //            delete audioOutputBuffer->buffer().data();
 //            audioOutputBuffer->setBuffer(data);
 //            audioOutputBuffer->open(QIODevice::ReadOnly);
-            audioOutputBuffer->seek(0);
-            audioOutputBuffer->write(data->right(data->size()-5));
-            audioOutputBuffer->seek(0);
+              if(audioOutputQueue.count() < OUTPUT_QUEUE_SIZE)
+              {
+                QBuffer* _t = new QBuffer(data);
+                _t->open(QIODevice::ReadWrite);
+                audioOutputQueue.enqueue(_t);
+              }
+              else
+              {
+                  delete data;
+                  return;
+              }
+//            audioOutputBuffer->seek(0);
+//            audioOutputBuffer->write(data->right(data->size()-5));
+//            audioOutputBuffer->seek(0);
         }
     }
     /// Calculate FFT
@@ -118,3 +134,18 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 //    /// Run the transform
 //    fft->runTransform();
 }
+
+void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
+{
+    if(state == QAudio::IdleState && !audioOutputQueue.isEmpty())
+    {
+        if(audioOutputBuffer != nullptr)
+        {
+            delete audioOutputBuffer;
+            audioOutputBuffer = nullptr;
+        }
+        audioOutputBuffer = audioOutputQueue.dequeue();
+        audioOutput->start(audioOutputBuffer);
+    }
+}
+

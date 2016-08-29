@@ -52,9 +52,9 @@ HEADERS  += mainwindow.h \
     connectdialog.h \
     commandsender.h
 
-INCLUDEPATH += C:/boost_1_60_0/
+INCLUDEPATH += D:/C++_Libs/boost_1_60_0/
 
-LIBS += "-LC:/boost_1_60_0/"
+LIBS += "-LD:/C++_Libs/boost_1_60_0/"
 
 FORMS    += mainwindow.ui \
     connectdialog.ui
