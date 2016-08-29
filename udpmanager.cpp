@@ -17,7 +17,7 @@ UdpManager::UdpManager()
     }
 
     this->udpSocket = new QUdpSocket(this);
-
+    this->udpSocket->bind(8002);
     /// Connect the receiver callback to call readPendingDatagrams each time readyRead event occurs
     connect(this->udpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
 }

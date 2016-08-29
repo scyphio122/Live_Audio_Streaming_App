@@ -8,7 +8,7 @@
 #include <QMutex>
 
 
-#define M_PI    3.14159265358979323846d
+//#define M_PI    3.14159265358979323846d
 
 class FftCalculator : public QObject
 {

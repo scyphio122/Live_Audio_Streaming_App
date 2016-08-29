@@ -75,7 +75,7 @@ FftCalculator* AudioSamplesPlayer::getFFT()
 
 void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 {
-    int dataSize = data->size();
+    int dataSize = data->size()-5;
     int inputSize = AUDIO_OUT_BUF_SIZE;
     if(!muted)
     {
@@ -106,15 +106,15 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 //            audioOutputBuffer->setBuffer(data);
 //            audioOutputBuffer->open(QIODevice::ReadOnly);
             audioOutputBuffer->seek(0);
-            audioOutputBuffer->write(*data);
+            audioOutputBuffer->write(data->right(data->size()-5));
             audioOutputBuffer->seek(0);
         }
     }
     /// Calculate FFT
     /// Set the input array
-    fft->setInputArray((int16_t*)data->data());
-    fft->setInputArraySize(inputSize/sizeof(int16_t));
-    fft->setOutputArraySize(inputSize/sizeof(int16_t));
-    /// Run the transform
-    fft->runTransform();
+//    fft->setInputArray((int16_t*)data->data());
+//    fft->setInputArraySize(inputSize/sizeof(int16_t));
+//    fft->setOutputArraySize(inputSize/sizeof(int16_t));
+//    /// Run the transform
+//    fft->runTransform();
 }
