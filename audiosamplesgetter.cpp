@@ -94,22 +94,21 @@ void AudioSamplesGetter::onSamplesCaptured()
     this->capturingStream->seek(0);
     if(inputQueue.count() == INPUT_QUEUE_SIZE)
     {
-        delete this->capturingStream;
+        return;
     }
     else
     {
-        inputQueue.enqueue(this->capturingStream);
+        QByteArray* _tempBuffer = new QByteArray(AUDIO_IN_BUFFER_SIZE, 0);
+        memcpy(_tempBuffer->data(), capturingStream->data(), AUDIO_IN_BUFFER_SIZE);
+        QBuffer* _temp = new QBuffer(_tempBuffer);
+        _temp->open(QIODevice::ReadWrite);
+        inputQueue.enqueue(_temp);
     }
-
-    this->inputDataBuffer = new QByteArray(AUDIO_IN_BUFFER_SIZE, 0);
-    this->capturingStream = new QBuffer(inputDataBuffer);
-    this->capturingStream->open(QIODevice::ReadWrite);
-    this->audioInDevice->start(this->capturingStream);
 
     if(inputQueue.count() > INPUT_QUEUE_WATERMARK)
     {
         while(inputQueue.count() > 0)
-        this->audioSender->sendSamples(inputQueue.dequeue());
+            this->audioSender->sendSamples(inputQueue.dequeue());
     }
 }
 

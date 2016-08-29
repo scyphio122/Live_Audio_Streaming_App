@@ -389,6 +389,8 @@ debug/moc_mainwindow.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QMa
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
@@ -569,6 +571,8 @@ debug/moc_audiosamplesgetter.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtMul
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
@@ -732,6 +736,8 @@ debug/moc_audiosamplessender.cpp: udpmanager.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
@@ -897,6 +903,8 @@ debug/moc_udpmanager.cpp: receiveddatagramprocessor.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		udpmanager.h \
@@ -1058,6 +1066,8 @@ debug/moc_receiveddatagramprocessor.cpp: ../../Qt/Qt5.4.1/5.4/mingw491_32/includ
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		udpmanager.h \
@@ -1223,6 +1233,8 @@ debug/moc_commandreceiver.cpp: datagramlistener.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
@@ -1370,6 +1382,8 @@ debug/moc_audiosamplesplayer.cpp: datagramlistener.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		audiosamplesplayer.h
 	'D:\Qt\Qt5.4.1\5.4\mingw491_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/mkspecs/win32-g++ -ID:/C++_workspace/Remote_Boombox -ID:/C++_Libs/boost_1_60_0 -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtMultimedia -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtGui -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork -ID:/Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore audiosamplesplayer.h -o debug/moc_audiosamplesplayer.cpp
 
@@ -1692,6 +1706,8 @@ debug/moc_commandsender.cpp: udpmanager.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
@@ -1921,6 +1937,8 @@ debug/main.o: main.cpp mainwindow.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
@@ -2148,6 +2166,8 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
@@ -2389,6 +2409,8 @@ debug/audiosamplesgetter.o: audiosamplesgetter.cpp audiosamplesgetter.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
@@ -2592,6 +2614,8 @@ debug/audiosamplessender.o: audiosamplessender.cpp audiosamplessender.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
@@ -2756,6 +2780,8 @@ debug/udpmanager.o: udpmanager.cpp udpmanager.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
@@ -2920,6 +2946,8 @@ debug/receiveddatagramprocessor.o: receiveddatagramprocessor.cpp receiveddatagra
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		commandsender.h \
 		udpmanager.h \
@@ -3176,6 +3204,8 @@ debug/commandreceiver.o: commandreceiver.cpp commandreceiver.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QDialog \
@@ -3641,6 +3671,8 @@ debug/audiosamplesplayer.o: audiosamplesplayer.cpp audiosamplesplayer.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/QMessageBox \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qmessagebox.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtWidgets/qdialog.h \
@@ -4236,6 +4268,8 @@ debug/commandsender.o: commandsender.cpp commandsender.h \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/sp_disable_deprecated.hpp \
 		../../C++_Libs/boost_1_60_0/boost/detail/workaround.hpp \
 		../../C++_Libs/boost_1_60_0/boost/smart_ptr/detail/operator_bool.hpp \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/QQueue \
+		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtCore/qqueue.h \
 		commandreceiver.h \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/QUdpSocket \
 		../../Qt/Qt5.4.1/5.4/mingw491_32/include/QtNetwork/qudpsocket.h

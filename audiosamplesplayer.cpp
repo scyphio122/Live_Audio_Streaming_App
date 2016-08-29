@@ -139,13 +139,12 @@ void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
 {
     if(state == QAudio::IdleState && !audioOutputQueue.isEmpty())
     {
-        if(audioOutputBuffer != nullptr)
-        {
-            delete audioOutputBuffer;
-            audioOutputBuffer = nullptr;
-        }
-        audioOutputBuffer = audioOutputQueue.dequeue();
-        audioOutput->start(audioOutputBuffer);
+        QBuffer* _temp = audioOutputQueue.dequeue();
+
+        audioOutputBuffer->seek(0);
+        audioOutputBuffer->write(_temp->data().right(_temp->data().size() - 5));
+        audioOutputBuffer->seek(0);
+        delete _temp;
     }
 }
 
