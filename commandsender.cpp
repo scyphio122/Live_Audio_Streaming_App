@@ -28,7 +28,7 @@ void CommandSender::sendConnectionRequest(QString myIP, int receiverPort)
     memcpy(array->data(), &receiverPort, sizeof(receiverPort));
     memcpy(array->data() + sizeof(int), ip.data(), ip.size());
 
-    udpManager->setSendingPortNumber(receiverPort);
+    udpManager->setSendingPortNumber(8002);
     udpManager->setReceiverIpAddress(ip);
     QBuffer* buf = new QBuffer(array);
     buf->setBuffer(array);
