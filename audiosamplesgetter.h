@@ -22,7 +22,6 @@ private:
     QBuffer*                                    capturingStream         = nullptr;
     QByteArray*                                 inputDataBuffer         = nullptr;
     bool                                        isMuted;
-    QQueue<QBuffer*>                            inputQueue;
     bool                                        echoSound;
     bool                                        isCurrentlySampling;
 

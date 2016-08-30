@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.0.3, 2016-08-28T23:18:13. -->
+<!-- Written by QtCreator 3.6.0, 2016-08-30T18:35:23. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{6d7abfaf-6259-4c7c-8c41-1f6cc1fdaa2b}</value>
+  <value type="QByteArray">{7c953a43-a65c-4a76-8979-2437f46ba701}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -40,7 +40,6 @@
    <value type="bool" key="EditorConfiguration.ScrollWheelZooming">true</value>
    <value type="bool" key="EditorConfiguration.ShowMargin">false</value>
    <value type="int" key="EditorConfiguration.SmartBackspaceBehavior">2</value>
-   <value type="bool" key="EditorConfiguration.SmartSelectionChanging">true</value>
    <value type="bool" key="EditorConfiguration.SpacesForTabs">true</value>
    <value type="int" key="EditorConfiguration.TabKeyBehavior">0</value>
    <value type="int" key="EditorConfiguration.TabSize">8</value>
@@ -59,14 +58,14 @@
  <data>
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 5.7.0 MinGW 32bit</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 5.7.0 MinGW 32bit</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.57.win32_mingw53_kit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 5.4.2 MinGW 32bit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 5.4.2 MinGW 32bit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.54.win32_mingw491_kit</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/Ola/build-Remote_Boombox-Desktop_Qt_5_7_0_MinGW_32bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:/C++_workspace/Remote_Boombox</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -120,7 +119,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/Ola/build-Remote_Boombox-Desktop_Qt_5_7_0_MinGW_32bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:/C++_workspace/build-Remote_Boombox-Desktop_Qt_5_4_2_MinGW_32bit-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -174,7 +173,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/Ola/build-Remote_Boombox-Desktop_Qt_5_7_0_MinGW_32bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:/C++_workspace/build-Remote_Boombox-Desktop_Qt_5_4_2_MinGW_32bit-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -243,7 +242,6 @@
    <value type="int" key="ProjectExplorer.Target.DeployConfigurationCount">1</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.PluginSettings"/>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.0">
-    <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
     <value type="bool" key="Analyzer.QmlProfiler.FlushEnabled">false</value>
     <value type="uint" key="Analyzer.QmlProfiler.FlushInterval">1000</value>
     <value type="QString" key="Analyzer.QmlProfiler.LastTraceFile"></value>
@@ -257,7 +255,7 @@
     <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
     <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
     <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
-    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">2</value>
     <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
     <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
     <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
@@ -286,13 +284,13 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Remote_Boombox</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Ola/remote_boombox/Remote_Boombox.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/C++_workspace/Remote_Boombox/Remote_Boombox.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">Remote_Boombox.pro</value>
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
+    <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseTerminal">false</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory"></value>
-    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default"></value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>

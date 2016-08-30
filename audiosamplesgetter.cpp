@@ -11,7 +11,6 @@
 
 AudioSamplesGetter::AudioSamplesGetter()
 {
-    inputQueue.reserve(INPUT_QUEUE_SIZE);
 }
 
 
@@ -92,24 +91,7 @@ void AudioSamplesGetter::startSampling(bool value)
 void AudioSamplesGetter::onSamplesCaptured()
 {
     this->capturingStream->seek(0);
-    if(inputQueue.count() == INPUT_QUEUE_SIZE)
-    {
-        return;
-    }
-    else
-    {
-        QByteArray* _tempBuffer = new QByteArray(AUDIO_IN_BUFFER_SIZE, 0);
-        memcpy(_tempBuffer->data(), capturingStream->data(), AUDIO_IN_BUFFER_SIZE);
-        QBuffer* _temp = new QBuffer(_tempBuffer);
-        _temp->open(QIODevice::ReadWrite);
-        inputQueue.enqueue(_temp);
-    }
-
-    if(inputQueue.count() > INPUT_QUEUE_WATERMARK)
-    {
-        while(inputQueue.count() > 0)
-            this->audioSender->sendSamples(inputQueue.dequeue());
-    }
+    this->audioSender->sendSamples(capturingStream);
 }
 
 void AudioSamplesGetter::playEchoedSamples()
