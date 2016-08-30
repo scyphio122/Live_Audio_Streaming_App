@@ -10,7 +10,16 @@
 
 UdpManager::UdpManager()
 {
+    if(udpSocket != nullptr)
+    {
+        delete udpSocket;
+        udpSocket = nullptr;
+    }
 
+    this->udpSocket = new QUdpSocket(this);
+    this->udpSocket->bind(8002);
+    /// Connect the receiver callback to call readPendingDatagrams each time readyRead event occurs
+    connect(this->udpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
 }
 
 UdpManager::UdpManager(QHostAddress* ip, int sendPort)
@@ -18,6 +27,15 @@ UdpManager::UdpManager(QHostAddress* ip, int sendPort)
     setReceiverIpAddress(ip->toString().toStdString());
     this->portNumberInUse = sendPort;
 
+    if(udpSocket != nullptr)
+    {
+        delete udpSocket;
+        udpSocket = nullptr;
+    }
+
+    this->udpSocket = new QUdpSocket(this);
+    /// Connect the receiver callback to call readPendingDatagrams each time readyRead event occurs
+    connect(this->udpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
 }
 
 UdpManager::~UdpManager()
@@ -65,16 +83,7 @@ void UdpManager::connectUDP(QString ip, int port)
     this->m_setReceiverIpAddress(ip.toStdString());
     this->portNumberInUse = port;
 
-    if(udpSocket != nullptr)
-    {
-        delete udpSocket;
-        udpSocket = nullptr;
-    }
-
-    this->udpSocket = new QUdpSocket(this);
-    udpSocket->bind(port);
-    /// Connect the receiver callback to call readPendingDatagrams each time readyRead event occurs
-    connect(this->udpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
+    udpSocket->bind(*receiverIpAddress, port);
 
     isConnected = true;
     mutex.unlock();
@@ -82,18 +91,17 @@ void UdpManager::connectUDP(QString ip, int port)
 
 void UdpManager::sendData(UdpDatagram* datagram)
 {
-
     qint64 retval = 0;
 
     mutex.lock();
-        /// Write data to the socket
-        retval = udpSocket->writeDatagram(datagram->getDatagram(), *receiverIpAddress, this->portNumberInUse);
-        qDebug()<<"Ilość wysłanych danych:"<<retval;
-        if(retval == -1)
-        {
-            QAbstractSocket::SocketError err =udpSocket->error();
-            qDebug()<<"Błąd wysyłki:"<<err;
-        }
+    /// Write data to the socket
+    retval = udpSocket->writeDatagram(datagram->getDatagram(), *receiverIpAddress, this->portNumberInUse);
+    qDebug()<<"Ilość wysłanych danych:"<<retval;
+    if(retval == -1)
+    {
+        QAbstractSocket::SocketError err =udpSocket->error();
+        qDebug()<<"Błąd wysyłki:"<<err;
+    }
     delete datagram;
     mutex.unlock();
 }
@@ -108,8 +116,7 @@ void UdpManager::readData()
     QHostAddress    senderIpAddress;
     uint16_t        port;
 
-
-    while(udpSocket->hasPendingDatagrams() && isConnected)
+    while(udpSocket->hasPendingDatagrams())
     {
         mutex.lock();
 
@@ -120,7 +127,6 @@ void UdpManager::readData()
         mutex.unlock();
         /// Emit event that the datragram has been received
         emit emitDataReceived(datagram);
-//        this->datagramProc->processDatagram(&datagram, senderIpAddress, port);
     }
 }
 

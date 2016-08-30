@@ -4,13 +4,13 @@
 #include <string>
 #include <QAudioInput>
 #include <QAudioOutput>
+#include <QQueue>
 
 #include <QTime>
 #include <QDebug>
 
 AudioSamplesGetter::AudioSamplesGetter()
 {
-
 }
 
 
@@ -91,8 +91,7 @@ void AudioSamplesGetter::startSampling(bool value)
 void AudioSamplesGetter::onSamplesCaptured()
 {
     this->capturingStream->seek(0);
-//    qDebug()<<QTime::currentTime()<<this->capturingStream->bytesAvailable() <<this->capturingStream->size();
-    this->audioSender->sendSamples(this->capturingStream);
+    this->audioSender->sendSamples(capturingStream);
 }
 
 void AudioSamplesGetter::playEchoedSamples()

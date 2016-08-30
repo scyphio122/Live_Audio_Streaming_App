@@ -26,14 +26,14 @@ int main(int argc, char *argv[])
     AudioSamplesGetter audioSamplesGetter;
     AudioSamplesSender audioSamplesSender(&audioSamplesGetter);
 
-    UdpManager udpManager;
-
     ReceivedDatagramProcessor receivedDataProc;
     AudioSamplesPlayer audioSamplesPlayer(&receivedDataProc);
     CommandReceiver commandsReceiver(&receivedDataProc);;
 
     CommandSender commandSender;
     GraphicsVisualizer graphVisualizer;
+
+    UdpManager udpManager;
 
     /// Set inter-object dependencies
     audioSamplesGetter.setAudioSamplesSender(&audioSamplesSender);
