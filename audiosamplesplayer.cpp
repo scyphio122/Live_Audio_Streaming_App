@@ -5,7 +5,7 @@
 
 AudioSamplesPlayer::AudioSamplesPlayer()
 {
-
+    audioOutputQueue.reserve(OUTPUT_QUEUE_SIZE);
 }
 
 AudioSamplesPlayer::AudioSamplesPlayer(QObject* parent=0)
@@ -80,7 +80,7 @@ FftCalculator* AudioSamplesPlayer::getFFT()
 
 void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 {
-    int dataSize = data->size()-5;
+    int dataSize = data->size();
     int inputSize = AUDIO_OUT_BUF_SIZE;
     if(!muted)
     {
@@ -114,7 +114,10 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
               {
                 QBuffer* _t = new QBuffer(data);
                 _t->open(QIODevice::ReadWrite);
-                audioOutputQueue.enqueue(_t);
+                if(audioOutputBuffer->data().isEmpty())
+                    audioOutputBuffer->setBuffer(data);
+                else
+                    audioOutputQueue.enqueue(_t);
               }
               else
               {
@@ -137,14 +140,16 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 
 void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
 {
-    if(state == QAudio::IdleState && !audioOutputQueue.isEmpty())
+    bool queueEmpty = audioOutputQueue.isEmpty();
+    if(state == QAudio::IdleState && !queueEmpty)
     {
         QBuffer* _temp = audioOutputQueue.dequeue();
         QByteArray* _b = &(_temp->buffer());
-        int size = _b->size() - 5;
+        int size = _b->size();
         audioOutputBuffer->seek(0);
         audioOutputBuffer->write(_temp->data().right(size));
         audioOutputBuffer->seek(0);
+       audioOutput->start(audioOutputBuffer);
         delete _temp;
     }
 }
