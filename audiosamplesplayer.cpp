@@ -46,16 +46,20 @@ void AudioSamplesPlayer::startPlaying(bool value)
 {
     if(value == true)
     {
-        if(this->audioOutputBuffer != nullptr)
-            delete audioOutputBuffer;
-        this->audioOutputBuffer = new QBuffer(new QByteArray(AUDIO_OUT_BUF_SIZE, 0));
-        bool retval = this->audioOutputBuffer->open(QIODevice::ReadWrite);
+//        if(this->audioOutputBuffer != nullptr)
+//            delete audioOutputBuffer;
+//        this->audioOutputBuffer = new QBuffer(new QByteArray(AUDIO_OUT_BUF_SIZE, 0));
+//        bool retval = this->audioOutputBuffer->open(QIODevice::ReadWrite);
 
 //        memset(audioOutputBuffer->buffer().data(), 0, audioOutputBuffer->size());
-        audioOutputBuffer->buffer().clear();
-        audioOutputBuffer->seek(0);
-        connect(audioOutput, SIGNAL(stateChanged(QAudio::State)), this, SLOT(bufferEmptyEvent(QAudio::State)));
-        this->audioOutput->start(this->audioOutputBuffer);
+//        audioOutputBuffer->buffer().clear();
+//        audioOutputBuffer->seek(0);
+//        connect(audioOutput, SIGNAL(stateChanged(QAudio::State)), this, SLOT(bufferEmptyEvent(QAudio::State)));
+//        this->audioOutput->start(this->audioOutputBuffer);
+        static int pck_n = 0;
+        qDebug() << "AUDIO SAMPLER " << "Pakiet nr: " << ++pck_n;
+
+        this->audioOutputBuffer = (QBuffer*)this->audioOutput->start();
         muted = false;
     }
     else
@@ -112,20 +116,20 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 //            delete audioOutputBuffer->buffer().data();
 //            audioOutputBuffer->setBuffer(data);
 //            audioOutputBuffer->open(QIODevice::ReadOnly);
-              if(audioOutputQueue.count() < OUTPUT_QUEUE_SIZE)
-              {
-                QBuffer* _t = new QBuffer(data);
-                _t->open(QIODevice::ReadWrite);
-                 audioOutputQueue.enqueue(_t);
-              }
-              else
-              {
-                  delete data;
-                  return;
-              }
-//            audioOutputBuffer->seek(0);
-//            audioOutputBuffer->write(data->right(data->size()-5));
-//            audioOutputBuffer->seek(0);
+//              if(audioOutputQueue.count() < OUTPUT_QUEUE_SIZE)
+//              {
+//                QBuffer* _t = new QBuffer(data);
+//                _t->open(QIODevice::ReadWrite);
+//                 audioOutputQueue.enqueue(_t);
+//              }
+//              else
+//              {
+//                  delete data;
+//                  return;
+//              }
+            audioOutputBuffer->seek(0);
+            audioOutputBuffer->write(data->right(data->size()-5));
+            audioOutputBuffer->seek(0);
         }
     }
     /// Calculate FFT

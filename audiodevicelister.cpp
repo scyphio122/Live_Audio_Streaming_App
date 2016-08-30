@@ -1,5 +1,7 @@
 #include "audiodevicelister.h"
 #include <QMessageBox>
+#include <QDebug>
+
 AudioDeviceLister::AudioDeviceLister()
 {
 
@@ -30,10 +32,14 @@ QAudioFormat AudioDeviceLister::getFormat(QAudioDeviceInfo audioDeviceInfo, std:
     desiredFormat.setChannelCount(2);
     desiredFormat.setCodec("audio/pcm");
     desiredFormat.setSampleType(QAudioFormat::SignedInt);
-    desiredFormat.setSampleRate(48000);
-    desiredFormat.setSampleSize(16);
+    desiredFormat.setSampleRate(32000);
+    desiredFormat.setSampleSize(8);
     desiredFormat = audioDeviceInfo.nearestFormat(desiredFormat);
     bool isSupported = audioDeviceInfo.isFormatSupported(desiredFormat);
+
+    qDebug() << "Sample Rate: " << desiredFormat.sampleRate();
+    qDebug() << "Sample Size: " << desiredFormat.sampleSize();
+    qDebug() << "Num of channels" << desiredFormat.channelCount();
     return desiredFormat;
 }
 

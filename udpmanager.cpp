@@ -116,7 +116,6 @@ void UdpManager::readData()
     QHostAddress    senderIpAddress;
     uint16_t        port;
 
-
     while(udpSocket->hasPendingDatagrams())
     {
         mutex.lock();
