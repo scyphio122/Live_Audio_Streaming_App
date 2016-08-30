@@ -15,7 +15,7 @@ class AudioSamplesPlayer : public DatagramListener
     Q_OBJECT
 
 private:
-    const int                           AUDIO_OUT_BUF_SIZE  =   1024;//16384;
+    const int                           AUDIO_OUT_BUF_SIZE  =   2*8192;
     const int                           OUTPUT_QUEUE_SIZE   =   100;
 
     FftCalculator*                      fft                 =   nullptr;

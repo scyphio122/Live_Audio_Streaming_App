@@ -1,7 +1,7 @@
 #include "audiosamplesplayer.h"
 #include <QMessageBox>
 #include <QQueue>
-
+#include <QDebug>
 
 AudioSamplesPlayer::AudioSamplesPlayer()
 {
@@ -82,7 +82,7 @@ FftCalculator* AudioSamplesPlayer::getFFT()
 
 void AudioSamplesPlayer::onDataReceived(QByteArray* data)
 {
-    int dataSize = data->size();
+    int dataSize = data->size() - 5;
     int inputSize = AUDIO_OUT_BUF_SIZE;
     if(!muted)
     {
@@ -130,11 +130,11 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
     }
     /// Calculate FFT
     /// Set the input array
-    fft->setInputArray((int16_t*)data->data());
-    fft->setInputArraySize(inputSize/sizeof(int16_t));
-    fft->setOutputArraySize(inputSize/sizeof(int16_t));
-    /// Run the transform
-    fft->runTransform();
+//    fft->setInputArray((int16_t*)data->data());
+//    fft->setInputArraySize(inputSize/sizeof(int16_t));
+//    fft->setOutputArraySize(inputSize/sizeof(int16_t));
+//    /// Run the transform
+//    fft->runTransform();
 }
 
 void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
@@ -151,19 +151,20 @@ void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
     {
         QBuffer* _temp = audioOutputQueue.dequeue();
         QByteArray* _b = &(_temp->buffer());
-        int size = _b->size();
+        int size = _b->size() - 5;
         audioOutputBuffer->seek(0);
         audioOutputBuffer->write(_temp->data().right(size));
         audioOutputBuffer->seek(0);
 //       audioOutput->start(audioOutputBuffer);
         delete _temp;
+        qDebug() << "Liczba pakietow w kolejce: " << audioOutputQueue.count();
     }
     timer = new QTimer();
-    timer->singleShot(5, Qt::PreciseTimer, this, m_AudioOutWatchdog);
+//    timer->singleShot(50, Qt::PreciseTimer, this, m_AudioOutWatchdog);
 }
 
 void AudioSamplesPlayer::m_AudioOutWatchdog()
 {
-    emit audioOutput->stateChanged(QAudio::IdleState);
+    emit audioOutput->stateChanged(audioOutput->state());
 }
 

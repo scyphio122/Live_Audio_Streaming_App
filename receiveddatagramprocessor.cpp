@@ -33,7 +33,7 @@ void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram)
     {
         case UdpDatagram::SAMPLES:
         {
-            QByteArray* data = datagram->getDataCopy();//&datagram->getDatagram();//
+            QByteArray* data = &datagram->getDatagram();//getDataCopy();//
 //            qDebug() << "Samples FFT_size: " << data->size();
             this->audioPlayer->onDataReceived(data);
 //            delete data;
@@ -45,7 +45,7 @@ void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram)
 
         }break;
     }
-    delete datagram;
+//    delete datagram;
     return;
 }
 
