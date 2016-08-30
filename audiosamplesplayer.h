@@ -7,21 +7,25 @@
 #include "fftcalculator.h"
 #include <boost/smart_ptr/scoped_ptr.hpp>
 #include <QQueue>
+#include <QTimer>
+
 
 class AudioSamplesPlayer : public DatagramListener
 {
     Q_OBJECT
 
 private:
-    const int                           AUDIO_OUT_BUF_SIZE  =   16384;
-    const int                           OUTPUT_QUEUE_SIZE   =   20;
+    const int                           AUDIO_OUT_BUF_SIZE  =   1024;//16384;
+    const int                           OUTPUT_QUEUE_SIZE   =   100;
 
     FftCalculator*                      fft                 =   nullptr;
     QBuffer*                            audioOutputBuffer   =   nullptr;
     QAudioOutput*                       audioOutput         =   nullptr;
     QQueue<QBuffer*>                    audioOutputQueue;
     bool                                muted               =   true;
+    QTimer*                             timer               =   nullptr;
 
+    void m_AudioOutWatchdog();
 public:
     AudioSamplesPlayer();
     AudioSamplesPlayer(QObject* parent);

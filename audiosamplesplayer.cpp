@@ -28,8 +28,9 @@ void AudioSamplesPlayer::init()
 AudioSamplesPlayer::~AudioSamplesPlayer()
 {
     delete this->audioOutputBuffer;
+    if(timer != nullptr)
+        delete timer;
 }
-
 void AudioSamplesPlayer::setAudioOutput(QAudioOutput *dev)
 {
     if(audioOutput != nullptr)
@@ -50,7 +51,8 @@ void AudioSamplesPlayer::startPlaying(bool value)
         this->audioOutputBuffer = new QBuffer(new QByteArray(AUDIO_OUT_BUF_SIZE, 0));
         bool retval = this->audioOutputBuffer->open(QIODevice::ReadWrite);
 
-        memset(audioOutputBuffer->buffer().data(), 0, audioOutputBuffer->size());
+//        memset(audioOutputBuffer->buffer().data(), 0, audioOutputBuffer->size());
+        audioOutputBuffer->buffer().clear();
         audioOutputBuffer->seek(0);
         connect(audioOutput, SIGNAL(stateChanged(QAudio::State)), this, SLOT(bufferEmptyEvent(QAudio::State)));
         this->audioOutput->start(this->audioOutputBuffer);
@@ -114,10 +116,7 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
               {
                 QBuffer* _t = new QBuffer(data);
                 _t->open(QIODevice::ReadWrite);
-                if(audioOutputBuffer->data().isEmpty())
-                    audioOutputBuffer->setBuffer(data);
-                else
-                    audioOutputQueue.enqueue(_t);
+                 audioOutputQueue.enqueue(_t);
               }
               else
               {
@@ -131,16 +130,23 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data)
     }
     /// Calculate FFT
     /// Set the input array
-//    fft->setInputArray((int16_t*)data->data());
-//    fft->setInputArraySize(inputSize/sizeof(int16_t));
-//    fft->setOutputArraySize(inputSize/sizeof(int16_t));
-//    /// Run the transform
-//    fft->runTransform();
+    fft->setInputArray((int16_t*)data->data());
+    fft->setInputArraySize(inputSize/sizeof(int16_t));
+    fft->setOutputArraySize(inputSize/sizeof(int16_t));
+    /// Run the transform
+    fft->runTransform();
 }
 
 void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
 {
     bool queueEmpty = audioOutputQueue.isEmpty();
+
+    if(timer != nullptr)
+    {
+        timer->stop();
+        delete timer;
+    }
+
     if(state == QAudio::IdleState && !queueEmpty)
     {
         QBuffer* _temp = audioOutputQueue.dequeue();
@@ -149,8 +155,15 @@ void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
         audioOutputBuffer->seek(0);
         audioOutputBuffer->write(_temp->data().right(size));
         audioOutputBuffer->seek(0);
-       audioOutput->start(audioOutputBuffer);
+//       audioOutput->start(audioOutputBuffer);
         delete _temp;
     }
+    timer = new QTimer();
+    timer->singleShot(5, Qt::PreciseTimer, this, m_AudioOutWatchdog);
+}
+
+void AudioSamplesPlayer::m_AudioOutWatchdog()
+{
+    emit audioOutput->stateChanged(QAudio::IdleState);
 }
 
