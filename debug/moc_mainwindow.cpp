@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[38];
-    char stringdata[640];
+    QByteArrayData data[39];
+    char stringdata[649];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -66,7 +66,8 @@ QT_MOC_LITERAL(33, 566, 9), // "arraySize"
 QT_MOC_LITERAL(34, 576, 16), // "setFftCalculator"
 QT_MOC_LITERAL(35, 593, 14), // "FftCalculator*"
 QT_MOC_LITERAL(36, 608, 3), // "fft"
-QT_MOC_LITERAL(37, 612, 27) // "updateConnectionStateButton"
+QT_MOC_LITERAL(37, 612, 27), // "updateConnectionStateButton"
+QT_MOC_LITERAL(38, 640, 8) // "senderIP"
 
     },
     "MainWindow\0setInputAudioDeviceSignal\0"
@@ -87,7 +88,7 @@ QT_MOC_LITERAL(37, 612, 27) // "updateConnectionStateButton"
     "audioGetterIsSampling\0signalFromThread\0"
     "setFftOutArray\0Complex*\0array\0arraySize\0"
     "setFftCalculator\0FftCalculator*\0fft\0"
-    "updateConnectionStateButton"
+    "updateConnectionStateButton\0senderIP"
 };
 #undef QT_MOC_LITERAL
 
@@ -128,7 +129,7 @@ static const uint qt_meta_data_MainWindow[] = {
       28,    1,  168,    2, 0x0a /* Public */,
       30,    2,  171,    2, 0x0a /* Public */,
       34,    1,  176,    2, 0x0a /* Public */,
-      37,    0,  179,    2, 0x0a /* Public */,
+      37,    1,  179,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -154,7 +155,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Bool,   29,
     QMetaType::Void, 0x80000000 | 31, QMetaType::Int,   32,   33,
     QMetaType::Void, 0x80000000 | 35,   36,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   38,
 
        0        // eod
 };
@@ -185,7 +186,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 18: _t->audioGetterIsSampling((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 19: _t->setFftOutArray((*reinterpret_cast< Complex*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 20: _t->setFftCalculator((*reinterpret_cast< FftCalculator*(*)>(_a[1]))); break;
-        case 21: _t->updateConnectionStateButton(); break;
+        case 21: _t->updateConnectionStateButton((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {

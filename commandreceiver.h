@@ -24,7 +24,7 @@ public:
     CommandReceiver();
     CommandReceiver(QObject* parent);
 
-    void onDataReceived(QByteArray* data);
+    void onDataReceived(QByteArray* data, QHostAddress &senderIP);
 
     void setCommandSender(CommandSender* cmdSender);
 
@@ -35,7 +35,7 @@ public slots:
 
 signals:
     /// Signal used to display connection request window
-    void connectionRequestSignal();
+    void connectionRequestSignal(QString hostIP);
 
     /// Signal used to establish connection in the UdpManager
     void connectionEstablishSignal(QString ip, int port);

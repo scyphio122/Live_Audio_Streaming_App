@@ -25,23 +25,23 @@ class Ui_ConnectDialog
 public:
     QDialogButtonBox *buttonBox;
     QLabel *label;
-    QLabel *label_2;
+    QLabel *lE_IP;
     QLabel *label_3;
 
     void setupUi(QDialog *ConnectDialog)
     {
         if (ConnectDialog->objectName().isEmpty())
             ConnectDialog->setObjectName(QStringLiteral("ConnectDialog"));
-        ConnectDialog->resize(550, 100);
-        ConnectDialog->setMinimumSize(QSize(550, 100));
-        ConnectDialog->setMaximumSize(QSize(550, 100));
+        ConnectDialog->resize(500, 100);
+        ConnectDialog->setMinimumSize(QSize(500, 100));
+        ConnectDialog->setMaximumSize(QSize(500, 100));
         ConnectDialog->setStyleSheet(QLatin1String("QDialog{\n"
 "background-color: rgb(49, 49, 49);\n"
 "}\n"
 ""));
         buttonBox = new QDialogButtonBox(ConnectDialog);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(440, 40, 81, 241));
+        buttonBox->setGeometry(QRect(370, 30, 81, 241));
         buttonBox->setStyleSheet(QLatin1String("QPushButton:enabled\n"
 "{\n"
 "    color:orange;\n"
@@ -72,7 +72,8 @@ public:
 "	border-radius:3;\n"
 "}"));
         buttonBox->setOrientation(Qt::Vertical);
-        buttonBox->setStandardButtons(QDialogButtonBox::Discard|QDialogButtonBox::Ok);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        buttonBox->setCenterButtons(false);
         label = new QLabel(ConnectDialog);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 30, 261, 16));
@@ -81,16 +82,12 @@ public:
 "	color:rgb(255,127,39);\n"
 "}"));
         label->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
-        label_2 = new QLabel(ConnectDialog);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(290, 30, 121, 16));
-        label_2->setStyleSheet(QLatin1String("QLineEdit\n"
+        lE_IP = new QLabel(ConnectDialog);
+        lE_IP->setObjectName(QStringLiteral("lE_IP"));
+        lE_IP->setGeometry(QRect(280, 27, 121, 20));
+        lE_IP->setStyleSheet(QLatin1String("QLabel\n"
 "{\n"
-"	background:rgb(75,75,75);\n"
 "	color:orange;\n"
-"    border-color: rgba(85,85,85,200);\n"
-"    border-width: 1px;\n"
-"    border-style: solid;\n"
 "}"));
         label_3 = new QLabel(ConnectDialog);
         label_3->setObjectName(QStringLiteral("label_3"));
@@ -111,7 +108,7 @@ public:
     {
         ConnectDialog->setWindowTitle(QApplication::translate("ConnectDialog", "Connection Request", 0));
         label->setText(QApplication::translate("ConnectDialog", "Otrzymano pro\305\233b\304\231 na po\305\202\304\205czenie od urz\304\205dzenia o IP:", 0));
-        label_2->setText(QString());
+        lE_IP->setText(QString());
         label_3->setText(QApplication::translate("ConnectDialog", "Zezwoli\304\207?", 0));
     } // retranslateUi
 

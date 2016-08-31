@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ReceivedDatagramProcessor_t {
-    QByteArrayData data[5];
-    char stringdata[65];
+    QByteArrayData data[6];
+    char stringdata[74];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,11 +33,12 @@ QT_MOC_LITERAL(0, 0, 25), // "ReceivedDatagramProcessor"
 QT_MOC_LITERAL(1, 26, 15), // "processDatagram"
 QT_MOC_LITERAL(2, 42, 0), // ""
 QT_MOC_LITERAL(3, 43, 12), // "UdpDatagram*"
-QT_MOC_LITERAL(4, 56, 8) // "datagram"
+QT_MOC_LITERAL(4, 56, 8), // "datagram"
+QT_MOC_LITERAL(5, 65, 8) // "senderIP"
 
     },
     "ReceivedDatagramProcessor\0processDatagram\0"
-    "\0UdpDatagram*\0datagram"
+    "\0UdpDatagram*\0datagram\0senderIP"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,10 +56,10 @@ static const uint qt_meta_data_ReceivedDatagramProcessor[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   19,    2, 0x0a /* Public */,
+       1,    2,   19,    2, 0x0a /* Public */,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3, QMetaType::QString,    4,    5,
 
        0        // eod
 };
@@ -68,7 +69,7 @@ void ReceivedDatagramProcessor::qt_static_metacall(QObject *_o, QMetaObject::Cal
     if (_c == QMetaObject::InvokeMetaMethod) {
         ReceivedDatagramProcessor *_t = static_cast<ReceivedDatagramProcessor *>(_o);
         switch (_id) {
-        case 0: _t->processDatagram((*reinterpret_cast< UdpDatagram*(*)>(_a[1]))); break;
+        case 0: _t->processDatagram((*reinterpret_cast< UdpDatagram*(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         default: ;
         }
     }

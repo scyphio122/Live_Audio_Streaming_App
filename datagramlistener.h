@@ -3,13 +3,14 @@
 
 #include <QByteArray>
 #include <QObject>
+#include <QHostAddress>
 
 class DatagramListener: public QObject
 {
 public:
     DatagramListener();
 
-    virtual void onDataReceived(QByteArray* data) = 0;
+    virtual void onDataReceived(QByteArray* data, QHostAddress& senderIP) = 0;
 };
 
 #endif // DATAGRAMLISTENER_H

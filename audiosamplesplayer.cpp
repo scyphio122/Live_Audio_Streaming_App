@@ -84,7 +84,7 @@ FftCalculator* AudioSamplesPlayer::getFFT()
     return this->fft;
 }
 
-void AudioSamplesPlayer::onDataReceived(QByteArray* data)
+void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP)
 {
     int dataSize = data->size() - 5;
     int inputSize = AUDIO_OUT_BUF_SIZE;

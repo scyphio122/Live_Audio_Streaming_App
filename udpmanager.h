@@ -42,7 +42,7 @@ public slots:
     void sendCmd(UdpDatagram* datagram);
     void readData();
 signals:
-    void emitDataReceived(UdpDatagram* datagram);
+    void emitDataReceived(UdpDatagram* datagram, QString senderIP);
 
     void connectedSignal();
 };

@@ -30,7 +30,7 @@ public:
     void setCommandReceiver(CommandReceiver* cmdRec);
 
 public slots:
-    void processDatagram(UdpDatagram *datagram);
+    void processDatagram(UdpDatagram *datagram, QString senderIP);
 };
 
 #endif // RECEIVEDDATAGRAMPROCESSOR_H

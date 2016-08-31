@@ -32,7 +32,7 @@ public:
     ~AudioSamplesPlayer();
 
     FftCalculator* getFFT();
-    void onDataReceived(QByteArray *data);
+    void onDataReceived(QByteArray *data, QHostAddress& senderIP);
 
 public slots:
     void init();

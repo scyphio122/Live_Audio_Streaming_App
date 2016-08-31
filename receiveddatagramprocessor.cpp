@@ -25,9 +25,10 @@ void ReceivedDatagramProcessor::setCommandReceiver(CommandReceiver* cmdRec)
 }
 
 
-void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram)
+void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram, QString senderIP)
 {
     UdpDatagram::UdpCommandEnum command = (UdpDatagram::UdpCommandEnum)datagram->getDatagram().at(0);
+    QHostAddress _senderIP(senderIP);
 
     switch(command)
     {
@@ -35,13 +36,13 @@ void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram)
         {
             QByteArray* data = &datagram->getDatagram();//getDataCopy();//
 //            qDebug() << "Samples FFT_size: " << data->size();
-            this->audioPlayer->onDataReceived(data);
+            this->audioPlayer->onDataReceived(data, _senderIP);
 //            delete data;
         }break;
 
         default:
         {
-            this->cmdReceiver->onDataReceived(&datagram->getDatagram());
+            this->cmdReceiver->onDataReceived(&datagram->getDatagram(), _senderIP);
 
         }break;
     }

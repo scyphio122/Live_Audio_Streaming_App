@@ -15,7 +15,7 @@ CommandReceiver::CommandReceiver(QObject* parent=0)
     setParent(parent);
 }
 
-void CommandReceiver::onDataReceived(QByteArray *data)
+void CommandReceiver::onDataReceived(QByteArray *data, QHostAddress& senderIP)
 {
     uint8_t cmd;
     cmd = data->at(0);
@@ -37,7 +37,7 @@ void CommandReceiver::onDataReceived(QByteArray *data)
             }
 
             connRequesterIP.append('\0');
-            emit connectionRequestSignal();
+            emit connectionRequestSignal(senderIP.toString());
         }break;
 
         case UdpDatagram::CONNECT_ACK:

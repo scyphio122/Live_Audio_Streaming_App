@@ -124,9 +124,10 @@ void UdpManager::readData()
         UdpDatagram*     datagram = new UdpDatagram();
         datagram->resize(datagramSize);
         udpSocket->readDatagram(datagram->getDatagram().data(), datagramSize, &senderIpAddress, &port);
+
         mutex.unlock();
         /// Emit event that the datragram has been received
-        emit emitDataReceived(datagram);
+        emit emitDataReceived(datagram, senderIpAddress.toString());
     }
 }
 

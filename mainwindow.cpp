@@ -74,7 +74,7 @@ void MainWindow::connectSignals()
     connect(cmdSender, SIGNAL(connectionEstablishSignal(QString,int)), udpManager, SLOT(connectUDP(QString,int)));
     connect(cmdReceiver, SIGNAL(connectionEstablishSignal(QString,int)), udpManager, SLOT(connectUDP(QString,int)));
     /** Audio Receiver Thread **/
-    connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*)), datagramProc, SLOT(processDatagram(UdpDatagram*)));
+    connect(udpManager, SIGNAL(emitDataReceived(UdpDatagram*,QString)), datagramProc, SLOT(processDatagram(UdpDatagram*,QString)));
 //    connect(this, SIGNAL(setAudioOutputSignal(QAudioOutput*)), audioPlayer, SLOT(setAudioOutput(QAudioOutput*)));
     connect(this, SIGNAL(queryIfPlayingSignal()), audioPlayer, SLOT(isMuted()));
 //    connect(audioPlayer, SIGNAL(isMutedSignal(bool)), this, SLOT(audioPlayerIsPlaying(bool)));
@@ -82,7 +82,7 @@ void MainWindow::connectSignals()
     connect(audioPlayer, SIGNAL(sendFft(FftCalculator*)), this, SLOT(setFftCalculator(FftCalculator*)));
     connect(this, SIGNAL(changeOutputVolume(int)), audioPlayer, SLOT(changeVolume(int)));
     /** Command Receiver **/
-    connect(cmdReceiver, SIGNAL(connectionRequestSignal()), this, SLOT(updateConnectionStateButton()));
+    connect(cmdReceiver, SIGNAL(connectionRequestSignal(QString)), this, SLOT(updateConnectionStateButton(QString)));
     connect(this, SIGNAL(connectionUpdatedSignal(bool)), cmdReceiver, SLOT(connectionUpdateGUICallback(bool)));
 }
 
@@ -91,10 +91,10 @@ void MainWindow::setMutex(QMutex* mutex)
     this->mutex = mutex;
 }
 
-void MainWindow::updateConnectionStateButton()
+void MainWindow::updateConnectionStateButton(QString senderIP)
 {
     ConnectDialog connectDialog;
-
+    connectDialog.setRequesterIP(senderIP);
     int retval = connectDialog.exec();
     if(retval == QDialog::Accepted)
     {
@@ -346,7 +346,7 @@ void MainWindow::setGraphicVisualizer(GraphicsVisualizer* o)
 
 void MainWindow::setAudioSenderThread(QThread* o)
 {
- this->audioGetterThread = o;
+    this->audioGetterThread = o;
 }
 
 void MainWindow::setUdpThread(QThread* o)
