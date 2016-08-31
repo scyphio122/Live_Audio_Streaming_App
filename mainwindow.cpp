@@ -82,8 +82,9 @@ void MainWindow::connectSignals()
     connect(audioPlayer, SIGNAL(sendFft(FftCalculator*)), this, SLOT(setFftCalculator(FftCalculator*)));
     connect(this, SIGNAL(changeOutputVolume(int)), audioPlayer, SLOT(changeVolume(int)));
     /** Command Receiver **/
-    connect(cmdReceiver, SIGNAL(connectionRequestSignal(QString)), this, SLOT(updateConnectionStateButton(QString)));
+    connect(cmdReceiver, SIGNAL(connectionRequestSignal(QString)), this, SLOT(ManageConnectionRequest(QString)));
     connect(this, SIGNAL(connectionUpdatedSignal(bool)), cmdReceiver, SLOT(connectionUpdateGUICallback(bool)));
+    connect(cmdReceiver, SIGNAL(connectionStatusUpdate(bool)), this, SLOT(updateConnectButton(bool)));
 }
 
 void MainWindow::setMutex(QMutex* mutex)
@@ -91,24 +92,28 @@ void MainWindow::setMutex(QMutex* mutex)
     this->mutex = mutex;
 }
 
-void MainWindow::updateConnectionStateButton(QString senderIP)
+void MainWindow::ManageConnectionRequest(QString senderIP)
 {
     ConnectDialog connectDialog;
     connectDialog.setRequesterIP(senderIP);
     int retval = connectDialog.exec();
-    if(retval == QDialog::Accepted)
+
+    updateConnectButton((bool)retval);
+}
+
+void MainWindow::updateConnectButton(bool isConnected)
+{
+    if(isConnected)
     {
         ui->pB_connect->setText("Disconnect");
 
         emit connectionUpdatedSignal(true);
     }
     else
-    if(retval == QDialog::Rejected)
     {
         ui->pB_connect->setText("Connect");
         emit connectionUpdatedSignal(false);
     }
-
 }
 
 

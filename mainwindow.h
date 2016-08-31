@@ -109,8 +109,8 @@ public slots:
 //    void audioPlayerIsPlaying(bool signalFromThread);
     void setFftOutArray(Complex* array, int arraySize);
     void setFftCalculator(FftCalculator* fft);
-    void updateConnectionStateButton(QString senderIP);
-
+    void ManageConnectionRequest(QString senderIP);
+    void updateConnectButton(bool isConnected);
 signals:
     void setInputAudioDeviceSignal(QAudioInput* newAudioInputDev);
     void setAudioOutputSignal(QAudioOutput *dev);

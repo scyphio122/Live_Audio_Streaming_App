@@ -40,6 +40,9 @@ signals:
     /// Signal used to establish connection in the UdpManager
     void connectionEstablishSignal(QString ip, int port);
 
+    /// This signal is used to update connect button's text
+    void connectionStatusUpdate(bool isConnected);
+
 };
 
 #endif // COMMANDRECEIVER_H

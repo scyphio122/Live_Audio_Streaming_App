@@ -43,11 +43,13 @@ void CommandReceiver::onDataReceived(QByteArray *data, QHostAddress& senderIP)
         case UdpDatagram::CONNECT_ACK:
         {
             udpManager->setConnectionState(true);
+            emit connectionStatusUpdate(true);
         }break;
 
         case UdpDatagram::CONNECT_NACK:
         {
             udpManager->setConnectionState(false);
+            emit connectionStatusUpdate(false);
         }break;
 
 //        case DEVICE_NAME:
