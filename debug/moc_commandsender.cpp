@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_CommandSender_t {
-    QByteArrayData data[11];
-    char stringdata[129];
+    QByteArrayData data[12];
+    char stringdata[151];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,13 +39,14 @@ QT_MOC_LITERAL(6, 81, 2), // "ip"
 QT_MOC_LITERAL(7, 84, 4), // "port"
 QT_MOC_LITERAL(8, 89, 21), // "sendConnectionRequest"
 QT_MOC_LITERAL(9, 111, 4), // "myIP"
-QT_MOC_LITERAL(10, 116, 12) // "receiverPort"
+QT_MOC_LITERAL(10, 116, 12), // "receiverPort"
+QT_MOC_LITERAL(11, 129, 21) // "sendDisconnectCommand"
 
     },
     "CommandSender\0sendCommandSignal\0\0"
     "UdpDatagram*\0datagram\0connectionEstablishSignal\0"
     "ip\0port\0sendConnectionRequest\0myIP\0"
-    "receiverPort"
+    "receiverPort\0sendDisconnectCommand"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,7 +56,7 @@ static const uint qt_meta_data_CommandSender[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,11 +64,12 @@ static const uint qt_meta_data_CommandSender[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   29,    2, 0x06 /* Public */,
-       5,    2,   32,    2, 0x06 /* Public */,
+       1,    1,   34,    2, 0x06 /* Public */,
+       5,    2,   37,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       8,    2,   37,    2, 0x0a /* Public */,
+       8,    2,   42,    2, 0x0a /* Public */,
+      11,    0,   47,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -75,6 +77,7 @@ static const uint qt_meta_data_CommandSender[] = {
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::Int,    9,   10,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -87,6 +90,7 @@ void CommandSender::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->sendCommandSignal((*reinterpret_cast< UdpDatagram*(*)>(_a[1]))); break;
         case 1: _t->connectionEstablishSignal((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 2: _t->sendConnectionRequest((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 3: _t->sendDisconnectCommand(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -132,13 +136,13 @@ int CommandSender::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[41];
-    char stringdata[677];
+    QByteArrayData data[43];
+    char stringdata[707];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -50,26 +50,28 @@ QT_MOC_LITERAL(17, 226, 8), // "finished"
 QT_MOC_LITERAL(18, 235, 18), // "changeOutputVolume"
 QT_MOC_LITERAL(19, 254, 24), // "udpConnectionEstablished"
 QT_MOC_LITERAL(20, 279, 23), // "connectionUpdatedSignal"
-QT_MOC_LITERAL(21, 303, 31), // "on_pB_startStopSampling_clicked"
-QT_MOC_LITERAL(22, 335, 32), // "on_cb_inputAudioDevice_activated"
-QT_MOC_LITERAL(23, 368, 4), // "arg1"
-QT_MOC_LITERAL(24, 373, 33), // "on_cB_outputAudioDevice_activ..."
-QT_MOC_LITERAL(25, 407, 30), // "on_pB_startStopPlaying_clicked"
-QT_MOC_LITERAL(26, 438, 21), // "on_pB_connect_clicked"
-QT_MOC_LITERAL(27, 460, 36), // "on_hSlider_outputVolume_value..."
-QT_MOC_LITERAL(28, 497, 21), // "audioGetterIsSampling"
-QT_MOC_LITERAL(29, 519, 16), // "signalFromThread"
-QT_MOC_LITERAL(30, 536, 14), // "setFftOutArray"
-QT_MOC_LITERAL(31, 551, 8), // "Complex*"
-QT_MOC_LITERAL(32, 560, 5), // "array"
-QT_MOC_LITERAL(33, 566, 9), // "arraySize"
-QT_MOC_LITERAL(34, 576, 16), // "setFftCalculator"
-QT_MOC_LITERAL(35, 593, 14), // "FftCalculator*"
-QT_MOC_LITERAL(36, 608, 3), // "fft"
-QT_MOC_LITERAL(37, 612, 23), // "ManageConnectionRequest"
-QT_MOC_LITERAL(38, 636, 8), // "senderIP"
-QT_MOC_LITERAL(39, 645, 19), // "updateConnectButton"
-QT_MOC_LITERAL(40, 665, 11) // "isConnected"
+QT_MOC_LITERAL(21, 303, 16), // "disconnectSignal"
+QT_MOC_LITERAL(22, 320, 31), // "on_pB_startStopSampling_clicked"
+QT_MOC_LITERAL(23, 352, 32), // "on_cb_inputAudioDevice_activated"
+QT_MOC_LITERAL(24, 385, 4), // "arg1"
+QT_MOC_LITERAL(25, 390, 33), // "on_cB_outputAudioDevice_activ..."
+QT_MOC_LITERAL(26, 424, 30), // "on_pB_startStopPlaying_clicked"
+QT_MOC_LITERAL(27, 455, 21), // "on_pB_connect_clicked"
+QT_MOC_LITERAL(28, 477, 36), // "on_hSlider_outputVolume_value..."
+QT_MOC_LITERAL(29, 514, 21), // "audioGetterIsSampling"
+QT_MOC_LITERAL(30, 536, 16), // "signalFromThread"
+QT_MOC_LITERAL(31, 553, 14), // "setFftOutArray"
+QT_MOC_LITERAL(32, 568, 8), // "Complex*"
+QT_MOC_LITERAL(33, 577, 5), // "array"
+QT_MOC_LITERAL(34, 583, 9), // "arraySize"
+QT_MOC_LITERAL(35, 593, 16), // "setFftCalculator"
+QT_MOC_LITERAL(36, 610, 14), // "FftCalculator*"
+QT_MOC_LITERAL(37, 625, 3), // "fft"
+QT_MOC_LITERAL(38, 629, 23), // "ManageConnectionRequest"
+QT_MOC_LITERAL(39, 653, 8), // "senderIP"
+QT_MOC_LITERAL(40, 662, 19), // "updateConnectButton"
+QT_MOC_LITERAL(41, 682, 11), // "isConnected"
+QT_MOC_LITERAL(42, 694, 12) // "onDisconnect"
 
     },
     "MainWindow\0setInputAudioDeviceSignal\0"
@@ -80,7 +82,7 @@ QT_MOC_LITERAL(40, 665, 11) // "isConnected"
     "value\0startPlayingSignal\0tryToConnect\0"
     "ip\0port\0fftEnable\0finished\0"
     "changeOutputVolume\0udpConnectionEstablished\0"
-    "connectionUpdatedSignal\0"
+    "connectionUpdatedSignal\0disconnectSignal\0"
     "on_pB_startStopSampling_clicked\0"
     "on_cb_inputAudioDevice_activated\0arg1\0"
     "on_cB_outputAudioDevice_activated\0"
@@ -91,7 +93,8 @@ QT_MOC_LITERAL(40, 665, 11) // "isConnected"
     "setFftOutArray\0Complex*\0array\0arraySize\0"
     "setFftCalculator\0FftCalculator*\0fft\0"
     "ManageConnectionRequest\0senderIP\0"
-    "updateConnectButton\0isConnected"
+    "updateConnectButton\0isConnected\0"
+    "onDisconnect"
 };
 #undef QT_MOC_LITERAL
 
@@ -101,39 +104,41 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      23,   14, // methods
+      25,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-      12,       // signalCount
+      13,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,  129,    2, 0x06 /* Public */,
-       5,    1,  132,    2, 0x06 /* Public */,
-       8,    0,  135,    2, 0x06 /* Public */,
-       9,    0,  136,    2, 0x06 /* Public */,
-      10,    1,  137,    2, 0x06 /* Public */,
-      12,    1,  140,    2, 0x06 /* Public */,
-      13,    2,  143,    2, 0x06 /* Public */,
-      16,    1,  148,    2, 0x06 /* Public */,
-      17,    0,  151,    2, 0x06 /* Public */,
-      18,    1,  152,    2, 0x06 /* Public */,
-      19,    1,  155,    2, 0x06 /* Public */,
-      20,    1,  158,    2, 0x06 /* Public */,
+       1,    1,  139,    2, 0x06 /* Public */,
+       5,    1,  142,    2, 0x06 /* Public */,
+       8,    0,  145,    2, 0x06 /* Public */,
+       9,    0,  146,    2, 0x06 /* Public */,
+      10,    1,  147,    2, 0x06 /* Public */,
+      12,    1,  150,    2, 0x06 /* Public */,
+      13,    2,  153,    2, 0x06 /* Public */,
+      16,    1,  158,    2, 0x06 /* Public */,
+      17,    0,  161,    2, 0x06 /* Public */,
+      18,    1,  162,    2, 0x06 /* Public */,
+      19,    1,  165,    2, 0x06 /* Public */,
+      20,    1,  168,    2, 0x06 /* Public */,
+      21,    0,  171,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      21,    0,  161,    2, 0x08 /* Private */,
-      22,    1,  162,    2, 0x08 /* Private */,
-      24,    1,  165,    2, 0x08 /* Private */,
-      25,    0,  168,    2, 0x08 /* Private */,
-      26,    0,  169,    2, 0x08 /* Private */,
-      27,    1,  170,    2, 0x08 /* Private */,
-      28,    1,  173,    2, 0x0a /* Public */,
-      30,    2,  176,    2, 0x0a /* Public */,
-      34,    1,  181,    2, 0x0a /* Public */,
-      37,    1,  184,    2, 0x0a /* Public */,
-      39,    1,  187,    2, 0x0a /* Public */,
+      22,    0,  172,    2, 0x08 /* Private */,
+      23,    1,  173,    2, 0x08 /* Private */,
+      25,    1,  176,    2, 0x08 /* Private */,
+      26,    0,  179,    2, 0x08 /* Private */,
+      27,    0,  180,    2, 0x08 /* Private */,
+      28,    1,  181,    2, 0x08 /* Private */,
+      29,    1,  184,    2, 0x0a /* Public */,
+      31,    2,  187,    2, 0x0a /* Public */,
+      35,    1,  192,    2, 0x0a /* Public */,
+      38,    1,  195,    2, 0x0a /* Public */,
+      40,    1,  198,    2, 0x0a /* Public */,
+      42,    0,  201,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -148,19 +153,21 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Int,    2,
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   23,
-    QMetaType::Void, QMetaType::QString,   23,
+    QMetaType::Void, QMetaType::QString,   24,
+    QMetaType::Void, QMetaType::QString,   24,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   11,
-    QMetaType::Void, QMetaType::Bool,   29,
-    QMetaType::Void, 0x80000000 | 31, QMetaType::Int,   32,   33,
-    QMetaType::Void, 0x80000000 | 35,   36,
-    QMetaType::Void, QMetaType::QString,   38,
-    QMetaType::Void, QMetaType::Bool,   40,
+    QMetaType::Void, QMetaType::Bool,   30,
+    QMetaType::Void, 0x80000000 | 32, QMetaType::Int,   33,   34,
+    QMetaType::Void, 0x80000000 | 36,   37,
+    QMetaType::Void, QMetaType::QString,   39,
+    QMetaType::Void, QMetaType::Bool,   41,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -182,17 +189,19 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 9: _t->changeOutputVolume((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 10: _t->udpConnectionEstablished((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 11: _t->connectionUpdatedSignal((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 12: _t->on_pB_startStopSampling_clicked(); break;
-        case 13: _t->on_cb_inputAudioDevice_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 14: _t->on_cB_outputAudioDevice_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 15: _t->on_pB_startStopPlaying_clicked(); break;
-        case 16: _t->on_pB_connect_clicked(); break;
-        case 17: _t->on_hSlider_outputVolume_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 18: _t->audioGetterIsSampling((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 19: _t->setFftOutArray((*reinterpret_cast< Complex*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 20: _t->setFftCalculator((*reinterpret_cast< FftCalculator*(*)>(_a[1]))); break;
-        case 21: _t->ManageConnectionRequest((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 22: _t->updateConnectButton((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 12: _t->disconnectSignal(); break;
+        case 13: _t->on_pB_startStopSampling_clicked(); break;
+        case 14: _t->on_cb_inputAudioDevice_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 15: _t->on_cB_outputAudioDevice_activated((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 16: _t->on_pB_startStopPlaying_clicked(); break;
+        case 17: _t->on_pB_connect_clicked(); break;
+        case 18: _t->on_hSlider_outputVolume_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 19: _t->audioGetterIsSampling((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 20: _t->setFftOutArray((*reinterpret_cast< Complex*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 21: _t->setFftCalculator((*reinterpret_cast< FftCalculator*(*)>(_a[1]))); break;
+        case 22: _t->ManageConnectionRequest((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 23: _t->updateConnectButton((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 24: _t->onDisconnect(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -212,7 +221,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QAudioOutput* >(); break;
             }
             break;
-        case 20:
+        case 21:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -295,6 +304,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 *result = 11;
             }
         }
+        {
+            typedef void (MainWindow::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::disconnectSignal)) {
+                *result = 12;
+            }
+        }
     }
 }
 
@@ -323,13 +338,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 23)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 25;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 23)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 25;
     }
     return _id;
 }
@@ -413,5 +428,11 @@ void MainWindow::connectionUpdatedSignal(bool _t1)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 11, _a);
+}
+
+// SIGNAL 12
+void MainWindow::disconnectSignal()
+{
+    QMetaObject::activate(this, &staticMetaObject, 12, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

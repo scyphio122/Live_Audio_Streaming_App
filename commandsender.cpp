@@ -47,6 +47,6 @@ void CommandSender::sendConnectionRequest(QString myIP, int receiverPort)
 
 void CommandSender::sendDisconnectCommand()
 {
-    UdpDatagram* datagram = new UdpDatagram(UdpDatagram::DISCONNECT, new QByteArray(0, 2));
+    UdpDatagram* datagram = new UdpDatagram(UdpDatagram::DISCONNECT, new QBuffer(new QByteArray(2, '\0')));
     emit sendCommandSignal(datagram);
 }
