@@ -317,6 +317,8 @@ void MainWindow::on_pB_connect_clicked()
     }
     else
     {
+        updateConnectButton(false);
+        udpManager->setConnectionState(false);
         emit disconnectSignal();
     }
 }
