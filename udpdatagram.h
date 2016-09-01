@@ -22,8 +22,10 @@ public:
         SAMPLES = 0,
 
         CONNECT_REQ,
+        DISCONNECT,
         CONNECT_ACK,
-        CONNECT_NACK
+        CONNECT_NACK,
+
     };
 
     UdpDatagram();

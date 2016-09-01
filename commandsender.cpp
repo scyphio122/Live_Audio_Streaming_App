@@ -44,3 +44,9 @@ void CommandSender::sendConnectionRequest(QString myIP, int receiverPort)
 //    delete array;
 //    delete datagram;
 }
+
+void CommandSender::sendDisconnectCommand()
+{
+    UdpDatagram* datagram = new UdpDatagram(UdpDatagram::DISCONNECT, new QByteArray(0, 2));
+    emit sendCommandSignal(datagram);
+}

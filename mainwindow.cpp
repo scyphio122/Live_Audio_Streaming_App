@@ -20,7 +20,7 @@
 #include <cfloat>
 #include <connectdialog.h>
 #include <cstdlib>
-
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -85,6 +85,9 @@ void MainWindow::connectSignals()
     connect(cmdReceiver, SIGNAL(connectionRequestSignal(QString)), this, SLOT(ManageConnectionRequest(QString)));
     connect(this, SIGNAL(connectionUpdatedSignal(bool)), cmdReceiver, SLOT(connectionUpdateGUICallback(bool)));
     connect(cmdReceiver, SIGNAL(connectionStatusUpdate(bool)), this, SLOT(updateConnectButton(bool)));
+
+    connect(this, SIGNAL(disconnectSignal()), cmdSender, SLOT(sendDisconnectCommand()));
+    connect(cmdReceiver, SIGNAL(disconnectGUICallback()), this, SLOT(onDisconnect()));
 }
 
 void MainWindow::setMutex(QMutex* mutex)
@@ -99,6 +102,7 @@ void MainWindow::ManageConnectionRequest(QString senderIP)
     int retval = connectDialog.exec();
 
     updateConnectButton((bool)retval);
+    emit connectionUpdatedSignal((bool)(retval));
 }
 
 void MainWindow::updateConnectButton(bool isConnected)
@@ -106,13 +110,10 @@ void MainWindow::updateConnectButton(bool isConnected)
     if(isConnected)
     {
         ui->pB_connect->setText("Disconnect");
-
-        emit connectionUpdatedSignal(true);
     }
     else
     {
         ui->pB_connect->setText("Connect");
-        emit connectionUpdatedSignal(false);
     }
 }
 
@@ -220,6 +221,18 @@ void MainWindow::audioGetterIsSampling(bool signalFromThread)
 
 }
 
+
+void MainWindow::onDisconnect()
+{
+    QMessageBox disconnectWindow;
+
+    updateConnectButton(false);
+
+    disconnectWindow.setText("Połączenie zostało zakończone.");
+    disconnectWindow.setIcon(QMessageBox::Information);
+    disconnectWindow.exec();
+}
+
 //void MainWindow::audioPlayerIsPlaying(bool signalFromThread)
 //{
 //    audioOutMuted = signalFromThread;
@@ -293,12 +306,19 @@ void MainWindow::on_pB_startStopPlaying_clicked()
 
 void MainWindow::on_pB_connect_clicked()
 {
-    int port = ui->sB_udpPort->value();
-    QString ip = ui->lE_peerIP->text();
-    if(ip == "localhost")
-        ip = "127.0.0.1";
+    if(!udpManager->getConnectionState())
+    {
+        int port = ui->sB_udpPort->value();
+        QString ip = ui->lE_peerIP->text();
+        if(ip == "localhost")
+            ip = "127.0.0.1";
 
-    emit tryToConnect(ip, port);
+        emit tryToConnect(ip, port);
+    }
+    else
+    {
+        emit disconnectSignal();
+    }
 }
 
 void MainWindow::on_hSlider_outputVolume_valueChanged(int value)

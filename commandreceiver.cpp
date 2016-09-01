@@ -31,12 +31,12 @@ void CommandReceiver::onDataReceived(QByteArray *data, QHostAddress& senderIP)
             int ipSize = 0;
             memcpy(&ipSize, data->data()+1, sizeof(int));
             ipSize -= sizeof(connRequesterPort);  /// Decrease by size of connRequesterPort
-            for(int i = 9; i < ipSize + 9; i++)
-            {
-                connRequesterIP.append(data->at(i));
-            }
-
-            connRequesterIP.append('\0');
+//            for(int i = 9; i < ipSize + 9; i++)
+//            {
+//                connRequesterIP.append(data->at(i));
+//            }
+            connRequesterIP = senderIP.toString();
+//            connRequesterIP.append('\0');
             emit connectionRequestSignal(senderIP.toString());
         }break;
 
@@ -52,6 +52,12 @@ void CommandReceiver::onDataReceived(QByteArray *data, QHostAddress& senderIP)
             emit connectionStatusUpdate(false);
         }break;
 
+        case UdpDatagram::DISCONNECT:
+        {
+            udpManager->setConnectionState(false);
+            emit connectionStatusUpdate(false);
+            emit disconnectGUICallback();
+        }break;
 //        case DEVICE_NAME:
 //        {
 //            std::string name = parseName(raw_data);

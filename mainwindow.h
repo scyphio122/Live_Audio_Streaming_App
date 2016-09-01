@@ -111,6 +111,7 @@ public slots:
     void setFftCalculator(FftCalculator* fft);
     void ManageConnectionRequest(QString senderIP);
     void updateConnectButton(bool isConnected);
+    void onDisconnect();
 signals:
     void setInputAudioDeviceSignal(QAudioInput* newAudioInputDev);
     void setAudioOutputSignal(QAudioOutput *dev);
@@ -124,7 +125,7 @@ signals:
     void changeOutputVolume(int);
     void udpConnectionEstablished(bool);
     void connectionUpdatedSignal(bool);
-
+    void disconnectSignal();
 };
 
 

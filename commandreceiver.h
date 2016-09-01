@@ -43,6 +43,7 @@ signals:
     /// This signal is used to update connect button's text
     void connectionStatusUpdate(bool isConnected);
 
+    void disconnectGUICallback();
 };
 
 #endif // COMMANDRECEIVER_H

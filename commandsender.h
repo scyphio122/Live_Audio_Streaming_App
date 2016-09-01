@@ -19,7 +19,7 @@ public:
 
 public slots:
     void sendConnectionRequest(QString myIP, int receiverPort);
-
+    void sendDisconnectCommand();
 signals:
     void sendCommandSignal(UdpDatagram *datagram);
 
