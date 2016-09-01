@@ -37,7 +37,7 @@ public slots:
     void startSampling(bool value);
     void isSampling();
 public:
-    const static int                            AUDIO_IN_BUFFER_SIZE = 8192*8 - 100;
+    const static int                            AUDIO_IN_BUFFER_SIZE = 8192*4;//8192*8 - 100;
 
     AudioSamplesGetter();
     ~AudioSamplesGetter();

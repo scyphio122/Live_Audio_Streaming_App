@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_AudioSamplesPlayer_t {
-    QByteArrayData data[18];
-    char stringdata[193];
+    QByteArrayData data[19];
+    char stringdata[215];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -46,7 +46,8 @@ QT_MOC_LITERAL(13, 126, 12), // "changeVolume"
 QT_MOC_LITERAL(14, 139, 16), // "volumePercentage"
 QT_MOC_LITERAL(15, 156, 16), // "bufferEmptyEvent"
 QT_MOC_LITERAL(16, 173, 13), // "QAudio::State"
-QT_MOC_LITERAL(17, 187, 5) // "state"
+QT_MOC_LITERAL(17, 187, 5), // "state"
+QT_MOC_LITERAL(18, 193, 21) // "changeConnectionState"
 
     },
     "AudioSamplesPlayer\0isMutedSignal\0\0"
@@ -54,7 +55,7 @@ QT_MOC_LITERAL(17, 187, 5) // "state"
     "setAudioOutput\0QAudioOutput*\0dev\0"
     "startPlaying\0isMuted\0changeVolume\0"
     "volumePercentage\0bufferEmptyEvent\0"
-    "QAudio::State\0state"
+    "QAudio::State\0state\0changeConnectionState"
 };
 #undef QT_MOC_LITERAL
 
@@ -64,7 +65,7 @@ static const uint qt_meta_data_AudioSamplesPlayer[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -72,16 +73,17 @@ static const uint qt_meta_data_AudioSamplesPlayer[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   54,    2, 0x06 /* Public */,
-       4,    1,   57,    2, 0x06 /* Public */,
+       1,    1,   59,    2, 0x06 /* Public */,
+       4,    1,   62,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       7,    0,   60,    2, 0x0a /* Public */,
-       8,    1,   61,    2, 0x0a /* Public */,
-      11,    1,   64,    2, 0x0a /* Public */,
-      12,    0,   67,    2, 0x0a /* Public */,
-      13,    1,   68,    2, 0x0a /* Public */,
-      15,    1,   71,    2, 0x0a /* Public */,
+       7,    0,   65,    2, 0x0a /* Public */,
+       8,    1,   66,    2, 0x0a /* Public */,
+      11,    1,   69,    2, 0x0a /* Public */,
+      12,    0,   72,    2, 0x0a /* Public */,
+      13,    1,   73,    2, 0x0a /* Public */,
+      15,    1,   76,    2, 0x0a /* Public */,
+      18,    1,   79,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    3,
@@ -94,6 +96,7 @@ static const uint qt_meta_data_AudioSamplesPlayer[] = {
     QMetaType::Bool,
     QMetaType::Void, QMetaType::Int,   14,
     QMetaType::Void, 0x80000000 | 16,   17,
+    QMetaType::Void, QMetaType::Bool,   17,
 
        0        // eod
 };
@@ -112,6 +115,7 @@ void AudioSamplesPlayer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 6: _t->changeVolume((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 7: _t->bufferEmptyEvent((*reinterpret_cast< QAudio::State(*)>(_a[1]))); break;
+        case 8: _t->changeConnectionState((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -182,13 +186,13 @@ int AudioSamplesPlayer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

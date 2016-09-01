@@ -134,11 +134,11 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP
     }
     /// Calculate FFT
     /// Set the input array
-//    fft->setInputArray((int16_t*)data->data());
-//    fft->setInputArraySize(inputSize/sizeof(int16_t));
-//    fft->setOutputArraySize(inputSize/sizeof(int16_t));
-//    /// Run the transform
-//    fft->runTransform();
+    fft->setInputArray((int16_t*)data->data());
+    fft->setInputArraySize(inputSize/sizeof(int16_t));
+    fft->setOutputArraySize(inputSize/sizeof(int16_t));
+    /// Run the transform
+    fft->runTransform();
 }
 
 void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
