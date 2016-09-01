@@ -38,10 +38,10 @@ private:
 
     AudioSamplesGetter*         audioGetter;
     AudioSamplesSender*         audioSender;
+    AudioSamplesPlayer*         audioPlayer;
     CommandSender*              cmdSender;
     UdpManager*                 udpManager;
     ReceivedDatagramProcessor*  datagramProc;
-    AudioSamplesPlayer*         audioPlayer;
     CommandReceiver*            cmdReceiver;
     GraphicsVisualizer*         graphicVisualizer;
 

@@ -44,7 +44,7 @@ public slots:
 signals:
     void emitDataReceived(UdpDatagram* datagram, QString senderIP);
 
-    void connectedSignal();
+    void onConnectionStateChangedSignal(bool state);
 };
 
 #endif // UDPMANAGER_H

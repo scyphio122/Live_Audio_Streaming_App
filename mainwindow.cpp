@@ -88,6 +88,7 @@ void MainWindow::connectSignals()
 
     connect(this, SIGNAL(disconnectSignal()), cmdSender, SLOT(sendDisconnectCommand()));
     connect(cmdReceiver, SIGNAL(disconnectGUICallback()), this, SLOT(onDisconnect()));
+    connect(udpManager, SIGNAL(onConnectionStateChangedSignal(bool)), audioPlayer, SLOT(changeConnectionState(bool)));
 }
 
 void MainWindow::setMutex(QMutex* mutex)
@@ -385,3 +386,5 @@ void MainWindow::setAudioReceiverThread(QThread* o)
 {
     this->audioReceiverThread = o;
 }
+
+

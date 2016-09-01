@@ -88,7 +88,7 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP
 {
     int dataSize = data->size() - 5;
     int inputSize = AUDIO_OUT_BUF_SIZE;
-    if(!muted)
+    if(!muted && isConnected)
     {
         if(dataSize > AUDIO_OUT_BUF_SIZE)
         {
@@ -172,3 +172,7 @@ void AudioSamplesPlayer::m_AudioOutWatchdog()
     emit audioOutput->stateChanged(audioOutput->state());
 }
 
+void AudioSamplesPlayer::changeConnectionState(bool state)
+{
+    this->isConnected = state;
+}

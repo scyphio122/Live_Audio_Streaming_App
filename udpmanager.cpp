@@ -110,7 +110,6 @@ void UdpManager::sendCmd(UdpDatagram* datagram)
 {
     sendData(datagram);
 }
-
 void UdpManager::readData()
 {
     QHostAddress    senderIpAddress;
@@ -135,6 +134,7 @@ void UdpManager::setConnectionState(bool state)
 {
     mutex.lock();
     isConnected = state;
+    emit onConnectionStateChangedSignal(state);
     mutex.unlock();
 }
 

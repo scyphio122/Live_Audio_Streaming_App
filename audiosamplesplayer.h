@@ -24,7 +24,7 @@ private:
     QQueue<QBuffer*>                    audioOutputQueue;
     bool                                muted               =   true;
     QTimer*                             timer               =   nullptr;
-
+    bool                                isConnected         =   false;
     void m_AudioOutWatchdog();
 public:
     AudioSamplesPlayer();
@@ -41,6 +41,7 @@ public slots:
     bool isMuted();
     void changeVolume(int volumePercentage);
     void bufferEmptyEvent(QAudio::State state);
+    void changeConnectionState(bool state);
 
 signals:
     void isMutedSignal(bool value);
