@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     udpdatagram.cpp \
     audiodevicelister.cpp \
     connectdialog.cpp \
-    commandsender.cpp
+    commandsender.cpp \
+    signaldrawer.cpp
 
 HEADERS  += mainwindow.h \
     audiosamplesgetter.h \
@@ -50,7 +51,8 @@ HEADERS  += mainwindow.h \
     audiodevicelister.h \
     audio_config.h \
     connectdialog.h \
-    commandsender.h
+    commandsender.h \
+    signaldrawer.h
 
 INCLUDEPATH += D:/C++_Libs/boost_1_60_0/
 

@@ -17,6 +17,7 @@ INPUT(
 ./debug/audiodevicelister.o
 ./debug/connectdialog.o
 ./debug/commandsender.o
+./debug/signaldrawer.o
 ./debug/moc_mainwindow.o
 ./debug/moc_audiosamplesgetter.o
 ./debug/moc_audiosamplessender.o

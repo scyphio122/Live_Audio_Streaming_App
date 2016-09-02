@@ -12,5 +12,6 @@ GraphicsVisualizer::GraphicsVisualizer()
 void GraphicsVisualizer::draw(Complex *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
 {
     fftBars.draw(inputArray, size, painter, windowHeight, windowWidth);
+//    signalDrawer.draw(inputArray, size, painter, windowHeight, windowWidth);
 }
 

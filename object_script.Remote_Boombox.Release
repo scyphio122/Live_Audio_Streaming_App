@@ -17,6 +17,7 @@ INPUT(
 ./release/audiodevicelister.o
 ./release/connectdialog.o
 ./release/commandsender.o
+./release/signaldrawer.o
 ./release/moc_mainwindow.o
 ./release/moc_audiosamplesgetter.o
 ./release/moc_audiosamplessender.o
