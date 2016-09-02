@@ -7,6 +7,11 @@
 
 FFTBars::FFTBars()
 {
+    inputType = INPUT_FFT;
+}
+
+FFTBars::~FFTBars()
+{
 
 }
 
@@ -58,4 +63,7 @@ void FFTBars::draw(Complex* inputArray, int size, QPainter& painter, int windowH
         drawScale(painter, x, windowHeight - 10, freqDisplayed[i]);
     }
 }
+void FFTBars::draw(int16_t* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth)
+{
 
+}

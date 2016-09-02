@@ -89,6 +89,8 @@ void MainWindow::connectSignals()
     connect(this, SIGNAL(disconnectSignal()), cmdSender, SLOT(sendDisconnectCommand()));
     connect(cmdReceiver, SIGNAL(disconnectGUICallback()), this, SLOT(onDisconnect()));
     connect(udpManager, SIGNAL(onConnectionStateChangedSignal(bool)), audioPlayer, SLOT(changeConnectionState(bool)));
+    connect(audioPlayer, SIGNAL(sendSamplesSignal(int16_t*)), this, SLOT(setAudioSamplesArray(int16_t*)));
+    connect(graphicVisualizer, SIGNAL(on_VisualizationSwitch(int)), audioPlayer, SLOT(on_VisualizationChange(int)));
 }
 
 void MainWindow::setMutex(QMutex* mutex)
@@ -124,7 +126,7 @@ void MainWindow::paintEvent(QPaintEvent *)
     /// Draw the pixmap
     if(fft != nullptr)
     {
-        if(fftOutArray != nullptr && fft->getFftEnable() == false)
+        if((fftOutArray != nullptr || inputSamplesArray != nullptr))//  && fft->getFftEnable() == false)
         {
             QPainter painter;
             painter.begin(pixmap);
@@ -136,16 +138,31 @@ void MainWindow::paintEvent(QPaintEvent *)
             painter.setBrush(QBrush(QColor(0,0,0)));
             painter.drawRect(0,0, windowWidth, windowHeight);
 
-            /// Draw the frame
-            graphicVisualizer->draw(fftOutArray, fftOutArraySize, painter, windowHeight, windowWidth);
-
+            if(graphicVisualizer->GetInputType() == AbstractVisualization::INPUT_FFT)
+            {
+                /// Draw the frame
+                graphicVisualizer->draw(fftOutArray, fftOutArraySize, painter, windowHeight, windowWidth);
+                if(fftOutArray != nullptr)
+                {
+                    delete[] fftOutArray;
+                    fftOutArray = nullptr;
+                }
+            }
+            else
+            {
+                graphicVisualizer->draw(inputSamplesArray, audioPlayer->getInputArraySize(), painter, windowHeight, windowWidth);
+                if(inputSamplesArray != nullptr)
+                {
+                    delete[] inputSamplesArray;
+                    inputSamplesArray = nullptr;
+                }
+            }
 
             ui->lB_visualization->setPixmap(*pixmap);
             /// Enable the fft calculator
             emit fftEnable(true);
 
-            delete[] fftOutArray;
-            fftOutArray = nullptr;
+
 
         }
     }
@@ -367,9 +384,15 @@ void MainWindow::setCommandReceiver(CommandReceiver* o)
 void MainWindow::setGraphicVisualizer(GraphicsVisualizer* o)
 {
     this->graphicVisualizer = o;
-    graphicVisualizer->fftBars.setWindowHeight(ui->lB_visualization->height());
-    graphicVisualizer->fftBars.setWindowWidth(ui->lB_visualization->width());
-    graphicVisualizer->fftBars.calcOffset();
+    graphicVisualizer->currentVisualization->setWindowHeight(ui->lB_visualization->height());
+    graphicVisualizer->currentVisualization->setWindowWidth(ui->lB_visualization->width());
+
+   FFTBars* bars = dynamic_cast<FFTBars*>(graphicVisualizer->currentVisualization);
+   if(bars != nullptr)
+   {
+        bars->calcOffset();
+   }
+
 }
 
 void MainWindow::setAudioSenderThread(QThread* o)
@@ -387,4 +410,27 @@ void MainWindow::setAudioReceiverThread(QThread* o)
     this->audioReceiverThread = o;
 }
 
+void MainWindow::setAudioSamplesArray(int16_t* array)
+{
+    this->inputSamplesArray = array;
+}
 
+
+void MainWindow::on_cB_Visualization_currentIndexChanged(int index)
+{
+    switch(index)
+    {
+        case 0:
+        {
+            graphicVisualizer->switchVisualization(new FFTBars());
+        }break;
+
+        case 1:
+        {
+            graphicVisualizer->switchVisualization(new SignalDrawer());
+        }break;
+
+        default:
+            return;
+    }
+}

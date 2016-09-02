@@ -6,20 +6,24 @@
 #include "fftbars.h"
 #include "signaldrawer.h"
 
-class GraphicsVisualizer
+class GraphicsVisualizer : public  QObject
 {
+    Q_OBJECT
 private:
-
 
 public:
     GraphicsVisualizer();
     ~GraphicsVisualizer();
 
     AbstractVisualization* currentVisualization;
-    FFTBars         fftBars;
-    SignalDrawer    signalDrawer;
+
     void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
+    void draw(int16_t *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth);
     void switchVisualization(AbstractVisualization* newVisualization);
+    AbstractVisualization::InputType GetInputType();
+
+signals:
+    void on_VisualizationSwitch(int);
 };
 
 #endif // GRAPHICSVISUALIZER_H

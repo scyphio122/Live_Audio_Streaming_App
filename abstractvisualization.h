@@ -12,7 +12,17 @@ public:
     int       windowHeight;
     int       windowWidth;
 
+    enum InputType
+    {
+        INPUT_SAMPLES,
+        INPUT_FFT
+    };
+
+    InputType inputType = INPUT_FFT;
+
     AbstractVisualization();
+    virtual ~AbstractVisualization();
+
 
     void setColor(QRgb color);
 
@@ -23,6 +33,8 @@ public:
     uint32_t getFreqIndex(Complex* inputArray, int inputArraySize, int frequency);
 
     virtual void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
+
+    virtual void draw(int16_t* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
 };
 
 #endif // ABSTRACTVISUALIZATION_H

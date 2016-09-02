@@ -5,7 +5,7 @@
 
 GraphicsVisualizer::GraphicsVisualizer()
 {
-    currentVisualization = new fftBars();
+    currentVisualization = new FFTBars();
 }
 
 GraphicsVisualizer::~GraphicsVisualizer()
@@ -17,11 +17,14 @@ GraphicsVisualizer::~GraphicsVisualizer()
     }
 }
 
-
 void GraphicsVisualizer::draw(Complex *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
 {
     currentVisualization->draw(inputArray, size, painter, windowHeight, windowWidth);
-//    signalDrawer.draw(inputArray, size, painter, windowHeight, windowWidth);
+}
+
+void GraphicsVisualizer::draw(int16_t *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
+{
+    currentVisualization->draw(inputArray, size, painter, windowHeight, windowWidth);
 }
 
 
@@ -34,4 +37,11 @@ void GraphicsVisualizer::switchVisualization(AbstractVisualization* newVisualiza
     }
 
     currentVisualization = newVisualization;
+
+    emit on_VisualizationSwitch((int)newVisualization->inputType);
+}
+
+AbstractVisualization::InputType GraphicsVisualizer::GetInputType()
+{
+    return currentVisualization->inputType;
 }

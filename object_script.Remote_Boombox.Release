@@ -24,6 +24,7 @@ INPUT(
 ./release/moc_udpmanager.o
 ./release/moc_receiveddatagramprocessor.o
 ./release/moc_commandreceiver.o
+./release/moc_graphicsvisualizer.o
 ./release/moc_audiosamplesplayer.o
 ./release/moc_fftcalculator.o
 ./release/moc_connectdialog.o

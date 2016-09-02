@@ -5,13 +5,11 @@
 
 AudioSamplesPlayer::AudioSamplesPlayer()
 {
-    audioOutputQueue.reserve(OUTPUT_QUEUE_SIZE);
 }
 
 AudioSamplesPlayer::AudioSamplesPlayer(QObject* parent=0)
 {
     setParent(parent);
-    audioOutputQueue.reserve(OUTPUT_QUEUE_SIZE);
 }
 
 void AudioSamplesPlayer::init()
@@ -28,8 +26,6 @@ void AudioSamplesPlayer::init()
 AudioSamplesPlayer::~AudioSamplesPlayer()
 {
     delete this->audioOutputBuffer;
-    if(timer != nullptr)
-        delete timer;
 }
 void AudioSamplesPlayer::setAudioOutput(QAudioOutput *dev)
 {
@@ -132,40 +128,47 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP
             audioOutputBuffer->seek(0);
         }
     }
-    /// Calculate FFT
-    /// Set the input array
-    fft->setInputArray((int16_t*)data->data());
-    fft->setInputArraySize(inputSize/sizeof(int16_t));
-    fft->setOutputArraySize(inputSize/sizeof(int16_t));
-    /// Run the transform
-    fft->runTransform();
+    if(inputType == AbstractVisualization::INPUT_FFT)
+    {
+        /// Calculate FFT
+        /// Set the input array
+        fft->setInputArray((int16_t*)data->data());
+        fft->setInputArraySize(inputSize/sizeof(int16_t));
+        fft->setOutputArraySize(inputSize/sizeof(int16_t));
+        /// Run the transform
+        fft->runTransform();
+    }
+    else
+    {
+        emit sendSamplesSignal(((int16_t*)data->data()));
+    }
 }
 
-void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
-{
-    bool queueEmpty = audioOutputQueue.isEmpty();
+//void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
+//{
+//    bool queueEmpty = audioOutputQueue.isEmpty();
 
-    if(timer != nullptr)
-    {
-        timer->stop();
-        delete timer;
-    }
+//    if(timer != nullptr)
+//    {
+//        timer->stop();
+//        delete timer;
+//    }
 
-    if(state == QAudio::IdleState && !queueEmpty)
-    {
-        QBuffer* _temp = audioOutputQueue.dequeue();
-        QByteArray* _b = &(_temp->buffer());
-        int size = _b->size() - 5;
-        audioOutputBuffer->seek(0);
-        audioOutputBuffer->write(_temp->data().right(size));
-        audioOutputBuffer->seek(0);
-//       audioOutput->start(audioOutputBuffer);
-        delete _temp;
-        qDebug() << "Liczba pakietow w kolejce: " << audioOutputQueue.count();
-    }
-    timer = new QTimer();
-//    timer->singleShot(50, Qt::PreciseTimer, this, m_AudioOutWatchdog);
-}
+//    if(state == QAudio::IdleState && !queueEmpty)
+//    {
+//        QBuffer* _temp = audioOutputQueue.dequeue();
+//        QByteArray* _b = &(_temp->buffer());
+//        int size = _b->size() - 5;
+//        audioOutputBuffer->seek(0);
+//        audioOutputBuffer->write(_temp->data().right(size));
+//        audioOutputBuffer->seek(0);
+////       audioOutput->start(audioOutputBuffer);
+//        delete _temp;
+//        qDebug() << "Liczba pakietow w kolejce: " << audioOutputQueue.count();
+//    }
+//    timer = new QTimer();
+////    timer->singleShot(50, Qt::PreciseTimer, this, m_AudioOutWatchdog);
+//}
 
 void AudioSamplesPlayer::m_AudioOutWatchdog()
 {
@@ -175,4 +178,9 @@ void AudioSamplesPlayer::m_AudioOutWatchdog()
 void AudioSamplesPlayer::changeConnectionState(bool state)
 {
     this->isConnected = state;
+}
+
+void AudioSamplesPlayer::on_VisualizationChange(int inputType)
+{
+    this->inputType = (AbstractVisualization::InputType)inputType;
 }
