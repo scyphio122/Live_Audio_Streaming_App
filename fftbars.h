@@ -22,7 +22,7 @@ public:
 
     void calcOffset();
     void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
-    void draw(int16_t* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
+    void draw(uint16_t *inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
 };
 
 #endif // FFTBARS_H

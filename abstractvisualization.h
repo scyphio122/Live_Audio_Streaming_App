@@ -34,7 +34,7 @@ public:
 
     virtual void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
 
-    virtual void draw(int16_t* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
+    virtual void draw(uint16_t* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
 };
 
 #endif // ABSTRACTVISUALIZATION_H

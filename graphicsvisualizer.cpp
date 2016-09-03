@@ -24,7 +24,7 @@ void GraphicsVisualizer::draw(Complex *inputArray, int size, QPainter &painter, 
 
 void GraphicsVisualizer::draw(int16_t *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
 {
-    currentVisualization->draw(inputArray, size, painter, windowHeight, windowWidth);
+    currentVisualization->draw((uint16_t*)inputArray, size, painter, windowHeight, windowWidth);
 }
 
 
