@@ -46,6 +46,7 @@ MainWindow::~MainWindow()
     delete fft;
     delete brush;
     delete pen;
+
 }
 
 void MainWindow::connectSignals()

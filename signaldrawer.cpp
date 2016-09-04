@@ -16,20 +16,20 @@ void SignalDrawer::draw(uint16_t *inputArray, int size, QPainter &painter, int w
     QPoint prevPoint(0, windowHeight/2);
     /// Calculate the offset of samples in the axis of time
     int sampleOffset = size/windowWidth;
-    int sampleIndex = 0;
+    int sampleIndex = sampleOffset;
     double sampleHeightOffset = (double)(windowHeight/2) / ZERO_LEVEL_SAMPLE;
     int windowHalfHeight = windowHeight/2;
 
     if(inputArray != nullptr)
     {
-        for(int px=0; px<windowWidth; ++px)
+        for(int px=5; px<windowWidth; px += 5)
         {
             if(sampleIndex >= size)
             {
                 break;
             }
 
-            int result = ((inputArray[sampleIndex] - ZERO_LEVEL_SAMPLE)) / (ZERO_LEVEL_SAMPLE/windowHalfHeight + 1);
+            int result = ((inputArray[sampleIndex] - ZERO_LEVEL_SAMPLE)) / (ZERO_LEVEL_SAMPLE/windowHalfHeight);
             double y = windowHalfHeight - result;
 
             painter.drawLine(prevPoint, QPoint(px, y));
