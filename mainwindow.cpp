@@ -92,6 +92,7 @@ void MainWindow::connectSignals()
     connect(audioPlayer, SIGNAL(sendSamplesSignal(int16_t*)), this, SLOT(setAudioSamplesArray(int16_t*)));
     connect(graphicVisualizer, SIGNAL(on_VisualizationSwitch(int)), audioPlayer, SLOT(on_VisualizationChange(int)));
     connect(audioPlayer, SIGNAL(redrawGUI()), this, SLOT(updateGUI()));
+    connect(cmdReceiver, SIGNAL(connectionStatusUpdate(bool)), audioPlayer, SLOT(changeConnectionState(bool)));
 }
 
 void MainWindow::setMutex(QMutex* mutex)
@@ -191,21 +192,6 @@ void MainWindow::visualizeFFT()
     update();
 }
 
-
-
-//void MainWindow::generateTestSin(double freq, int* dataOut, double xStart, double xEnd, uint32_t sampleNumber)
-//{
-//    double omega = 2*M_PI*freq;
-//    double x = xStart;
-//    double interpolator = (xEnd - xStart)/(double)sampleNumber;
-//    for(uint32_t i=0; i<sampleNumber; i++)
-//    {
-//        dataOut[i] = (sin(omega*x));//+0.2*sin(10*omega*x))*0.2*sin(15*omega*x);
-//        x += interpolator;
-//    }
-//}
-
-
 void MainWindow::displayAudioInDevices()
 {
     QList<QAudioDeviceInfo> audioInDev = AudioDeviceLister::listAvailableDevicesIn();
@@ -258,19 +244,6 @@ void MainWindow::onDisconnect()
     disconnectWindow.setIcon(QMessageBox::Information);
     disconnectWindow.exec();
 }
-
-//void MainWindow::audioPlayerIsPlaying(bool signalFromThread)
-//{
-//    audioOutMuted = signalFromThread;
-//    if(signalFromThread)
-//    {
-//        ui->pB_startStopPlaying->setText("Stop Playing");
-//    }
-//    else
-//    {
-//        ui->pB_startStopPlaying->setText("Start Playing");
-//    }
-//}
 
 void MainWindow::setFftOutArray(Complex *array, int arraySize)
 {

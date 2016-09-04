@@ -52,9 +52,8 @@ void AudioSamplesPlayer::startPlaying(bool value)
 //        audioOutputBuffer->seek(0);
 //        connect(audioOutput, SIGNAL(stateChanged(QAudio::State)), this, SLOT(bufferEmptyEvent(QAudio::State)));
 //        this->audioOutput->start(this->audioOutputBuffer);
-        static int pck_n = 0;
-        qDebug() << "AUDIO SAMPLER " << "Pakiet nr: " << ++pck_n;
 
+        audioOutput->setBufferSize(AUDIO_OUT_BUF_SIZE);
         this->audioOutputBuffer = (QBuffer*)this->audioOutput->start();
         muted = false;
     }
@@ -124,10 +123,10 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP
 //                  delete data;
 //                  return;
 //              }
-            if(audioOutput->state() == QAudio::IdleState)
+//            if(audioOutput->state() == QAudio::IdleState)
             {
                 audioOutputBuffer->seek(0);
-                audioOutputBuffer->write(data->right(data->size()-5));
+                qDebug() << "Wpisano bajtow: " << audioOutputBuffer->write(data->right(data->size()-5));
                 audioOutputBuffer->seek(0);
             }
         }

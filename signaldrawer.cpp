@@ -9,7 +9,6 @@ SignalDrawer::SignalDrawer()
 #include <QDebug>
 void SignalDrawer::draw(uint16_t *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
 {
-    qDebug() << "Zaczalem przerysowywac GUI";
     mutex.lock();
     /// Number of samples (each sample has 2 bytes)
     size /= 2;
@@ -47,7 +46,6 @@ void SignalDrawer::draw(uint16_t *inputArray, int size, QPainter &painter, int w
 
         }
     }
-    qDebug() << "Koniec przerysowywania GUI";
     mutex.unlock();
     return;
 }
