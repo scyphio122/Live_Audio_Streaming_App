@@ -19,12 +19,18 @@ GraphicsVisualizer::~GraphicsVisualizer()
 
 void GraphicsVisualizer::draw(Complex *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
 {
-    currentVisualization->draw(inputArray, size, painter, windowHeight, windowWidth);
+    if(inputArray != nullptr)
+    {
+        currentVisualization->draw(inputArray, size, painter, windowHeight, windowWidth);
+    }
 }
 
 void GraphicsVisualizer::draw(int16_t *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
 {
-    currentVisualization->draw((uint16_t*)inputArray, size, painter, windowHeight, windowWidth);
+    if(inputArray != nullptr)
+    {
+        currentVisualization->draw((uint16_t*)inputArray, size, painter, windowHeight, windowWidth);
+    }
 }
 
 

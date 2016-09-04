@@ -96,10 +96,6 @@ void MainWindow::connectSignals()
     connect(cmdReceiver, SIGNAL(connectionStatusUpdate(bool)), audioPlayer, SLOT(changeConnectionState(bool)));
 }
 
-void MainWindow::setMutex(QMutex* mutex)
-{
-    this->mutex = mutex;
-}
 
 void MainWindow::ManageConnectionRequest(QString senderIP)
 {
@@ -137,7 +133,9 @@ void MainWindow::paintEvent(QPaintEvent *)
     {
         if((fftOutArray != nullptr || inputSamplesArray != nullptr) && repaintFlag)//  && fft->getFftEnable() == false)
         {
+            mutex.lock();
             repaintFlag = false;
+
             QPainter painter;
             painter.begin(pixmap);
             painter.setPen(*pen);
@@ -169,11 +167,10 @@ void MainWindow::paintEvent(QPaintEvent *)
             }
 
             ui->lB_visualization->setPixmap(*pixmap);
+
+            mutex.unlock();
             /// Enable the fft calculator
             emit fftEnable(true);
-
-
-
         }
     }
 }
@@ -248,8 +245,10 @@ void MainWindow::onDisconnect()
 
 void MainWindow::setFftOutArray(Complex *array, int arraySize)
 {
+    mutex.lock();
     this->fftOutArray = array;
     this->fftOutArraySize = arraySize;
+    mutex.unlock();
     repaint();
 }
 
@@ -394,7 +393,9 @@ void MainWindow::setAudioReceiverThread(QThread* o)
 
 void MainWindow::setAudioSamplesArray(int16_t* array)
 {
+    mutex.lock();
     this->inputSamplesArray = array;
+    mutex.unlock();
 }
 
 

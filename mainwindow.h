@@ -48,7 +48,7 @@ private:
     QThread*                    audioGetterThread;
     QThread*                    udpManagerThread;
     QThread*                    audioReceiverThread;
-    QMutex*                     mutex;
+    QMutex                      mutex;
 
     FftCalculator*  fft = nullptr;
     Complex*        fftOutArray = nullptr;

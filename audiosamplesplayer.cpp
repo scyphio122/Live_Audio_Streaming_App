@@ -111,9 +111,11 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP
         fft->setOutputArraySize(inputSize/sizeof(int16_t));
         /// Run the transform
         fft->runTransform();
+        emit sendSamplesSignal((nullptr));
     }
     else
     {
+        emit fft->fftCompleted(nullptr, 0);
         emit sendSamplesSignal(((int16_t*)data->data()));
     }
 
