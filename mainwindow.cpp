@@ -405,7 +405,12 @@ void MainWindow::on_cB_Visualization_currentIndexChanged(int index)
     {
         case 0:
         {
-            graphicVisualizer->switchVisualization(new FFTBars());
+            FFTBars* visualizer = new FFTBars();
+            visualizer->setWindowWidth(this->ui->lB_visualization->width());
+            visualizer->setWindowHeight(this->ui->lB_visualization->height());
+            visualizer->calcOffset();
+
+            graphicVisualizer->switchVisualization(visualizer);
         }break;
 
         case 1:
