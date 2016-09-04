@@ -42,17 +42,6 @@ void AudioSamplesPlayer::startPlaying(bool value)
 {
     if(value == true)
     {
-//        if(this->audioOutputBuffer != nullptr)
-//            delete audioOutputBuffer;
-//        this->audioOutputBuffer = new QBuffer(new QByteArray(AUDIO_OUT_BUF_SIZE, 0));
-//        bool retval = this->audioOutputBuffer->open(QIODevice::ReadWrite);
-
-//        memset(audioOutputBuffer->buffer().data(), 0, audioOutputBuffer->size());
-//        audioOutputBuffer->buffer().clear();
-//        audioOutputBuffer->seek(0);
-//        connect(audioOutput, SIGNAL(stateChanged(QAudio::State)), this, SLOT(bufferEmptyEvent(QAudio::State)));
-//        this->audioOutput->start(this->audioOutputBuffer);
-
         audioOutput->setBufferSize(AUDIO_OUT_BUF_SIZE);
         this->audioOutputBuffer = (QBuffer*)this->audioOutput->start();
         muted = false;
@@ -83,7 +72,6 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP
 {
     int dataSize = data->size() - 5;
     int inputSize = AUDIO_OUT_BUF_SIZE;
-//    qDebug() <<"Odebrano pakiet";
     if(!muted && isConnected)
     {
         if(dataSize > AUDIO_OUT_BUF_SIZE)
@@ -109,26 +97,9 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP
 
         if(audioOutputBuffer != nullptr)
         {
-//            delete audioOutputBuffer->buffer().data();
-//            audioOutputBuffer->setBuffer(data);
-//            audioOutputBuffer->open(QIODevice::ReadOnly);
-//              if(audioOutputQueue.count() < OUTPUT_QUEUE_SIZE)
-//              {
-//                QBuffer* _t = new QBuffer(data);
-//                _t->open(QIODevice::ReadWrite);
-//                 audioOutputQueue.enqueue(_t);
-//              }
-//              else
-//              {
-//                  delete data;
-//                  return;
-//              }
-//            if(audioOutput->state() == QAudio::IdleState)
-            {
-                audioOutputBuffer->seek(0);
-                qDebug() << "Wpisano bajtow: " << audioOutputBuffer->write(data->right(data->size()-5));
-                audioOutputBuffer->seek(0);
-            }
+            audioOutputBuffer->seek(0);
+            qDebug() << "Wpisano bajtow: " << audioOutputBuffer->write(data->right(data->size()-5));
+            audioOutputBuffer->seek(0);
         }
     }
     if(inputType == AbstractVisualization::INPUT_FFT)
@@ -149,31 +120,6 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP
     emit redrawGUI();
 }
 
-//void AudioSamplesPlayer::bufferEmptyEvent(QAudio::State state)
-//{
-//    bool queueEmpty = audioOutputQueue.isEmpty();
-
-//    if(timer != nullptr)
-//    {
-//        timer->stop();
-//        delete timer;
-//    }
-
-//    if(state == QAudio::IdleState && !queueEmpty)
-//    {
-//        QBuffer* _temp = audioOutputQueue.dequeue();
-//        QByteArray* _b = &(_temp->buffer());
-//        int size = _b->size() - 5;
-//        audioOutputBuffer->seek(0);
-//        audioOutputBuffer->write(_temp->data().right(size));
-//        audioOutputBuffer->seek(0);
-////       audioOutput->start(audioOutputBuffer);
-//        delete _temp;
-//        qDebug() << "Liczba pakietow w kolejce: " << audioOutputQueue.count();
-//    }
-//    timer = new QTimer();
-////    timer->singleShot(50, Qt::PreciseTimer, this, m_AudioOutWatchdog);
-//}
 
 void AudioSamplesPlayer::m_AudioOutWatchdog()
 {

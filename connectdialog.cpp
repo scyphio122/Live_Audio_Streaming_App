@@ -16,6 +16,11 @@ ConnectDialog::~ConnectDialog()
 
 void ConnectDialog::setRequesterIP(QString& hostIP)
 {
+    for(int i=hostIP.size() - 1; i>0; --i)
+    {
+        if(hostIP[i] == ':')
+            hostIP = hostIP.right((hostIP.size() - i))
+    }
     this->ui->lE_IP->setText(hostIP);
 }
 

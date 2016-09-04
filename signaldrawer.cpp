@@ -12,7 +12,7 @@ void SignalDrawer::draw(uint16_t *inputArray, int size, QPainter &painter, int w
     mutex.lock();
     /// Number of samples (each sample has 2 bytes)
     size /= 2;
-
+    qDebug() << "SignalDrawer size: " << size;
     QPoint prevPoint(0, windowHeight/2);
     /// Calculate the offset of samples in the axis of time
     int sampleOffset = size/windowWidth;
