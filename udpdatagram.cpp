@@ -15,7 +15,7 @@ UdpDatagram::UdpDatagram(UdpCommandEnum command, QBuffer* data)
     uint32_t dataSize = data->bytesAvailable();
 
     this->data = data->readAll();
-    qDebug()<<"Po odczytaniu"<<data->bytesAvailable();
+//    qDebug()<<"Po odczytaniu"<<data->bytesAvailable();
     if(this->data != nullptr)
     {
         this->data.push_front(dataSize>>24);
@@ -24,7 +24,7 @@ UdpDatagram::UdpDatagram(UdpCommandEnum command, QBuffer* data)
         this->data.push_front(dataSize>>0);
         this->data.push_front((char)command);
     }
-    qDebug()<<"Rozmiar bufora"<<this->data.size();
+//    qDebug()<<"Rozmiar bufora"<<this->data.size();
 }
 
 UdpDatagram::~UdpDatagram()

@@ -6,9 +6,11 @@ SignalDrawer::SignalDrawer()
 }
 
 
-
+#include <QDebug>
 void SignalDrawer::draw(uint16_t *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
 {
+    qDebug() << "Zaczalem przerysowywac GUI";
+    mutex.lock();
     /// Number of samples (each sample has 2 bytes)
     size /= 2;
 
@@ -28,7 +30,7 @@ void SignalDrawer::draw(uint16_t *inputArray, int size, QPainter &painter, int w
                 break;
             }
 
-            int result = ((inputArray[sampleIndex] - ZERO_LEVEL_SAMPLE)) * ((double)windowHalfHeight/32768);
+            int result = ((inputArray[sampleIndex] - ZERO_LEVEL_SAMPLE)) / (ZERO_LEVEL_SAMPLE/windowHalfHeight + 1);
             double y = windowHalfHeight - result;
 
             painter.drawLine(prevPoint, QPoint(px, y));
@@ -36,10 +38,18 @@ void SignalDrawer::draw(uint16_t *inputArray, int size, QPainter &painter, int w
             prevPoint.setX(px);
             prevPoint.setY(y);
 
+            if(y >= windowHeight)
+            {
+                qDebug() << "Blad obliczen";
+            }
+
             sampleIndex += sampleOffset;
 
         }
     }
+    qDebug() << "Koniec przerysowywania GUI";
+    mutex.unlock();
+    return;
 }
 
 void SignalDrawer::draw(Complex *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)

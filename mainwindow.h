@@ -58,6 +58,8 @@ private:
     QBrush*         brush;
     QPen*           pen;
     bool                        audioInSampling = false;
+    bool            repaintFlag = true;
+
 
     void paintEvent(QPaintEvent *);
     void visualizeFFT();
@@ -86,6 +88,7 @@ private slots:
 
     void on_cB_Visualization_currentIndexChanged(int index);
 
+    void updateGUI();
 
 public:
     explicit MainWindow(QWidget *parent = 0);

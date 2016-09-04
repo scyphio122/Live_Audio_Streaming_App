@@ -4,9 +4,12 @@
 #include <QRgb>
 #include "complex.h"
 #include <QPainter>
+#include <QMutex>
 
 class AbstractVisualization
 {
+protected:
+    QMutex mutex;
 public:
     QRgb color;
     int       windowHeight;

@@ -15,7 +15,7 @@ class AudioSamplesPlayer : public DatagramListener
     Q_OBJECT
 
 private:
-    const int                           AUDIO_OUT_BUF_SIZE  =   8192*8-100;
+    const int                           AUDIO_OUT_BUF_SIZE  =   8192;//8192*8-100;
     const int                           OUTPUT_QUEUE_SIZE   =   100;
 
     FftCalculator*                      fft                 =   nullptr;
@@ -48,6 +48,7 @@ signals:
     void isMutedSignal(bool value);
     void sendFft(FftCalculator* fft);
     void sendSamplesSignal(int16_t* samplesArray);
+    void redrawGUI();
 };
 
 #endif // AUDIOSAMPLESRECEIVER_H
