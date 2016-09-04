@@ -51,13 +51,15 @@ private:
     QMutex*                     mutex;
 
     FftCalculator*  fft = nullptr;
-    Complex*        fftOutArray;
+    Complex*        fftOutArray = nullptr;
+    int16_t*        inputSamplesArray = nullptr;
     int             fftOutArraySize;
     QPixmap*        pixmap;
     QBrush*         brush;
     QPen*           pen;
     bool                        audioInSampling = false;
-//    bool                        audioOutMuted   = true;
+    bool            repaintFlag = true;
+
 
     void paintEvent(QPaintEvent *);
     void visualizeFFT();
@@ -83,6 +85,10 @@ private slots:
     void on_pB_connect_clicked();
 
     void on_hSlider_outputVolume_valueChanged(int value);
+
+    void on_cB_Visualization_currentIndexChanged(int index);
+
+    void updateGUI();
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -112,6 +118,8 @@ public slots:
     void ManageConnectionRequest(QString senderIP);
     void updateConnectButton(bool isConnected);
     void onDisconnect();
+
+    void setAudioSamplesArray(int16_t* array);
 signals:
     void setInputAudioDeviceSignal(QAudioInput* newAudioInputDev);
     void setAudioOutputSignal(QAudioOutput *dev);

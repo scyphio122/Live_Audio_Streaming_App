@@ -4,6 +4,10 @@
 
 AbstractVisualization::AbstractVisualization()
 {
+    inputType = INPUT_FFT;
+}
+AbstractVisualization::~AbstractVisualization()
+{
 
 }
 

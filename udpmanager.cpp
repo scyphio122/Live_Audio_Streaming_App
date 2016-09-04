@@ -40,6 +40,8 @@ UdpManager::UdpManager(QHostAddress* ip, int sendPort)
 
 UdpManager::~UdpManager()
 {
+    udpSocket->close();
+
     if(udpSocket != nullptr)
         delete udpSocket;
 
@@ -96,7 +98,7 @@ void UdpManager::sendData(UdpDatagram* datagram)
     mutex.lock();
     /// Write data to the socket
     retval = udpSocket->writeDatagram(datagram->getDatagram(), *receiverIpAddress, this->portNumberInUse);
-    qDebug()<<"Ilość wysłanych danych:"<<retval;
+//    qDebug()<<"Ilość wysłanych danych:"<<retval;
     if(retval == -1)
     {
         QAbstractSocket::SocketError err =udpSocket->error();

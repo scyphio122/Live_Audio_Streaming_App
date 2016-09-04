@@ -18,8 +18,11 @@ private:
     void drawBar(Complex* inputArray, int size, int frequency, int x, int y, QPainter& painter, int windowHeight);
 public:
     FFTBars();
+    ~FFTBars();
+
     void calcOffset();
     void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
+    void draw(uint16_t *inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
 };
 
 #endif // FFTBARS_H

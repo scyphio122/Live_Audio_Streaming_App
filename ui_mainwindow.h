@@ -42,6 +42,7 @@ public:
     QLabel *label;
     QGroupBox *gB_visualization;
     QLabel *lB_visualization;
+    QComboBox *cB_Visualization;
     QGroupBox *gB_networkSettings;
     QLabel *lb_peerIP;
     QLineEdit *lE_peerIP;
@@ -55,9 +56,9 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1253, 790);
-        MainWindow->setMinimumSize(QSize(1253, 790));
-        MainWindow->setMaximumSize(QSize(1253, 790));
+        MainWindow->resize(1253, 850);
+        MainWindow->setMinimumSize(QSize(1253, 850));
+        MainWindow->setMaximumSize(QSize(1253, 850));
         MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QLatin1String("#MainWindow {\n"
 "background-color: rgb(49, 49, 49);\n"
@@ -245,7 +246,7 @@ public:
 "}"));
         gB_visualization = new QGroupBox(centralWidget);
         gB_visualization->setObjectName(QStringLiteral("gB_visualization"));
-        gB_visualization->setGeometry(QRect(10, 140, 1221, 591));
+        gB_visualization->setGeometry(QRect(10, 140, 1221, 621));
         gB_visualization->setStyleSheet(QLatin1String("QGroupBox\n"
 "{\n"
 "    text-align: left; /* align the text to the left */\n"
@@ -258,7 +259,7 @@ public:
 "}"));
         lB_visualization = new QLabel(gB_visualization);
         lB_visualization->setObjectName(QStringLiteral("lB_visualization"));
-        lB_visualization->setGeometry(QRect(20, 20, 1181, 561));
+        lB_visualization->setGeometry(QRect(20, 50, 1181, 561));
         lB_visualization->setAutoFillBackground(false);
         lB_visualization->setStyleSheet(QLatin1String("QLabel\n"
 "{\n"
@@ -270,6 +271,27 @@ public:
         lB_visualization->setFrameShape(QFrame::Box);
         lB_visualization->setFrameShadow(QFrame::Sunken);
         lB_visualization->setScaledContents(false);
+        cB_Visualization = new QComboBox(gB_visualization);
+        cB_Visualization->setObjectName(QStringLiteral("cB_Visualization"));
+        cB_Visualization->setGeometry(QRect(20, 20, 181, 22));
+        cB_Visualization->setStyleSheet(QLatin1String("QComboBox:enabled\n"
+"{\n"
+"    color:orange;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(55, 55, 55, 100), stop: 0 rgba(75, 75, 75, 100));\n"
+"    border-color: rgba(85,85,85,200);\n"
+"    border-width: 1px;\n"
+"    border-style: solid;\n"
+"}\n"
+"\n"
+"QComboBox:disabled\n"
+"{\n"
+"    color:gray;\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:1,y2:1, stop: 1 rgba(60, 60, 60, 100), stop: 0 rgba(80, 80, 80, 100));\n"
+"    border-color: rgba(70,70,70,200);\n"
+"    border-width: 1px;\n"
+"    border-style: inset;\n"
+"	border-radius:3;\n"
+"}"));
         gB_networkSettings = new QGroupBox(centralWidget);
         gB_networkSettings->setObjectName(QStringLiteral("gB_networkSettings"));
         gB_networkSettings->setGeometry(QRect(960, 20, 271, 101));
@@ -376,6 +398,11 @@ public:
         label->setText(QApplication::translate("MainWindow", "Change Volume:", 0));
         gB_visualization->setTitle(QApplication::translate("MainWindow", "Visualziation", 0));
         lB_visualization->setText(QString());
+        cB_Visualization->clear();
+        cB_Visualization->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "FFT Visualization", 0)
+         << QApplication::translate("MainWindow", "Signal Visualization", 0)
+        );
         gB_networkSettings->setTitle(QApplication::translate("MainWindow", "Network Settings", 0));
         lb_peerIP->setText(QApplication::translate("MainWindow", "Peer Ip:", 0));
         lE_peerIP->setText(QApplication::translate("MainWindow", "localhost", 0));

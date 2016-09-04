@@ -29,7 +29,7 @@ void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram, QString s
 {
     UdpDatagram::UdpCommandEnum command = (UdpDatagram::UdpCommandEnum)datagram->getDatagram().at(0);
     QHostAddress _senderIP(senderIP);
-
+    qDebug() << "Odebrano pakiet";
     switch(command)
     {
         case UdpDatagram::SAMPLES:

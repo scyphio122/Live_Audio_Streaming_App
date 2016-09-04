@@ -7,6 +7,11 @@
 
 FFTBars::FFTBars()
 {
+    inputType = INPUT_FFT;
+}
+
+FFTBars::~FFTBars()
+{
 
 }
 
@@ -18,7 +23,7 @@ void FFTBars::calcOffset()
 void FFTBars::drawBar(Complex* inputArray, int size, int frequency, int x, int y, QPainter& painter, int windowHeight)
 {
     int freqIndex = getFreqIndex(inputArray, size, frequency)/2;
-    int numOfRects = inputArray[freqIndex].getMagnitude()/(barSizeY*10000);
+    int numOfRects = inputArray[freqIndex].getMagnitude()/(barSizeY*25000);
 
     for(int i=0; i<numOfRects; ++i)
     {
@@ -58,4 +63,7 @@ void FFTBars::draw(Complex* inputArray, int size, QPainter& painter, int windowH
         drawScale(painter, x, windowHeight - 10, freqDisplayed[i]);
     }
 }
+void FFTBars::draw(uint16_t* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth)
+{
 
+}

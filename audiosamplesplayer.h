@@ -8,23 +8,23 @@
 #include <boost/smart_ptr/scoped_ptr.hpp>
 #include <QQueue>
 #include <QTimer>
-
+#include <abstractvisualization.h>
 
 class AudioSamplesPlayer : public DatagramListener
 {
     Q_OBJECT
 
 private:
-    const int                           AUDIO_OUT_BUF_SIZE  =   8192*8-100;
+    const int                           AUDIO_OUT_BUF_SIZE  =   2*8192;//8192*8-100;
     const int                           OUTPUT_QUEUE_SIZE   =   100;
 
     FftCalculator*                      fft                 =   nullptr;
     QBuffer*                            audioOutputBuffer   =   nullptr;
     QAudioOutput*                       audioOutput         =   nullptr;
-    QQueue<QBuffer*>                    audioOutputQueue;
     bool                                muted               =   true;
-    QTimer*                             timer               =   nullptr;
     bool                                isConnected         =   false;
+    AbstractVisualization::InputType    inputType           =   AbstractVisualization::INPUT_FFT;
+
     void m_AudioOutWatchdog();
 public:
     AudioSamplesPlayer();
@@ -33,6 +33,7 @@ public:
 
     FftCalculator* getFFT();
     void onDataReceived(QByteArray *data, QHostAddress& senderIP);
+    int getInputArraySize() {return AUDIO_OUT_BUF_SIZE;}
 
 public slots:
     void init();
@@ -40,12 +41,14 @@ public slots:
     void startPlaying(bool value);
     bool isMuted();
     void changeVolume(int volumePercentage);
-    void bufferEmptyEvent(QAudio::State state);
+//    void bufferEmptyEvent(QAudio::State state);
     void changeConnectionState(bool state);
-
+    void on_VisualizationChange(int inputType);
 signals:
     void isMutedSignal(bool value);
     void sendFft(FftCalculator* fft);
+    void sendSamplesSignal(int16_t* samplesArray);
+    void redrawGUI();
 };
 
 #endif // AUDIOSAMPLESRECEIVER_H
