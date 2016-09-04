@@ -25,7 +25,7 @@ void AudioSamplesSender::sendSamples(QBuffer* sampleArray)
     if(datagram->getDatagram() != nullptr && udpManager->getConnectionState())
     {
         /// Send the datagram to the thread with UdpManager
-        emit emitSendSamplesSignal(datagram);
+        udpManager->sendData(datagram);
     }
     /// If QBuffer has grown too much then shrink it
     if(sampleArray->size() > AudioSamplesGetter::AUDIO_IN_BUFFER_SIZE)
