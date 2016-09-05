@@ -69,7 +69,8 @@ void ConnectDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     if (_c == QMetaObject::InvokeMetaMethod) {
         ConnectDialog *_t = static_cast<ConnectDialog *>(_o);
         switch (_id) {
-
+        case 0: _t->on_buttonBox_accepted(); break;
+        case 1: _t->on_buttonBox_rejected(); break;
         default: ;
         }
     }

@@ -20,7 +20,6 @@ AudioSamplesGetter::~AudioSamplesGetter()
     delete inputDataBuffer;
     delete capturingStream;
     delete audioInDevice;
-    delete audioOutDevice;
 }
 
 void AudioSamplesGetter::init()
@@ -56,20 +55,12 @@ void AudioSamplesGetter::connectDeviceWithBuf()
     connect(capturingStream, SIGNAL(readyRead()), this, SLOT(onSamplesCaptured()));
 }
 
-void AudioSamplesGetter::setOutputAudioDevice(QAudioOutput* newAudioOutputDev)
-{
-    this->audioOutDevice = (newAudioOutputDev);
-}
 
 void AudioSamplesGetter::setMuteEnabled(bool isMuted)
 {
     this->isMuted = isMuted;
 }
 
-void AudioSamplesGetter::setEchoEnabled(bool isOn)
-{
-    this->echoSound = isOn;
-}
 
 void AudioSamplesGetter::startSampling(bool value)
 {
@@ -94,10 +85,6 @@ void AudioSamplesGetter::onSamplesCaptured()
     this->audioSender->sendSamples(capturingStream);
 }
 
-void AudioSamplesGetter::playEchoedSamples()
-{
-
-}
 
 void AudioSamplesGetter::isSampling()
 {

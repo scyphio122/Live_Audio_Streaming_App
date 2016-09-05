@@ -258,6 +258,7 @@ void MainWindow::on_cb_inputAudioDevice_activated(const QString &arg1)
     /// Send signal to the Audio Getter Thread
     emit setInputAudioDeviceSignal(new QAudioInput(dev, AudioDeviceLister::getFormat(dev, "audio/pcm")));
     ui->pB_startStopSampling->setEnabled(true);
+
 }
 
 
@@ -267,11 +268,13 @@ void MainWindow::on_pB_startStopSampling_clicked()
     {
         emit startSamplingSignal(true);
         ui->pB_startStopSampling->setText("Stop Sampling");
+        ui->cb_inputAudioDevice->setEnabled(false);
     }
     else
     {
          emit startSamplingSignal(false);
          ui->pB_startStopSampling->setText("Start Sampling");
+         ui->cb_inputAudioDevice->setEnabled(true);
     }
 
     /// Query the audioGetter To update the current state of audioPlayer

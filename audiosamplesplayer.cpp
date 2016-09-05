@@ -123,10 +123,6 @@ void AudioSamplesPlayer::onDataReceived(QByteArray* data, QHostAddress& senderIP
 }
 
 
-void AudioSamplesPlayer::m_AudioOutWatchdog()
-{
-    emit audioOutput->stateChanged(audioOutput->state());
-}
 
 void AudioSamplesPlayer::changeConnectionState(bool state)
 {

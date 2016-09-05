@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_AudioSamplesGetter_t {
-    QByteArrayData data[18];
-    char stringdata[237];
+    QByteArrayData data[14];
+    char stringdata[185];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,25 +37,20 @@ QT_MOC_LITERAL(4, 48, 4), // "init"
 QT_MOC_LITERAL(5, 53, 19), // "setInputAudioDevice"
 QT_MOC_LITERAL(6, 73, 12), // "QAudioInput*"
 QT_MOC_LITERAL(7, 86, 16), // "newAudioInputDev"
-QT_MOC_LITERAL(8, 103, 20), // "setOutputAudioDevice"
-QT_MOC_LITERAL(9, 124, 13), // "QAudioOutput*"
-QT_MOC_LITERAL(10, 138, 17), // "newAudioOutputDev"
-QT_MOC_LITERAL(11, 156, 17), // "onSamplesCaptured"
-QT_MOC_LITERAL(12, 174, 14), // "setMuteEnabled"
-QT_MOC_LITERAL(13, 189, 7), // "isMuted"
-QT_MOC_LITERAL(14, 197, 14), // "setEchoEnabled"
-QT_MOC_LITERAL(15, 212, 4), // "isOn"
-QT_MOC_LITERAL(16, 217, 13), // "startSampling"
-QT_MOC_LITERAL(17, 231, 5) // "value"
+QT_MOC_LITERAL(8, 103, 17), // "onSamplesCaptured"
+QT_MOC_LITERAL(9, 121, 14), // "setMuteEnabled"
+QT_MOC_LITERAL(10, 136, 7), // "isMuted"
+QT_MOC_LITERAL(11, 144, 13), // "startSampling"
+QT_MOC_LITERAL(12, 158, 5), // "value"
+QT_MOC_LITERAL(13, 164, 20) // "connectDeviceWithBuf"
 
     },
     "AudioSamplesGetter\0isSamplingSignal\0"
     "\0isSampling\0init\0setInputAudioDevice\0"
     "QAudioInput*\0newAudioInputDev\0"
-    "setOutputAudioDevice\0QAudioOutput*\0"
-    "newAudioOutputDev\0onSamplesCaptured\0"
-    "setMuteEnabled\0isMuted\0setEchoEnabled\0"
-    "isOn\0startSampling\0value"
+    "onSamplesCaptured\0setMuteEnabled\0"
+    "isMuted\0startSampling\0value\0"
+    "connectDeviceWithBuf"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,7 +60,7 @@ static const uint qt_meta_data_AudioSamplesGetter[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -73,17 +68,16 @@ static const uint qt_meta_data_AudioSamplesGetter[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   59,    2, 0x06 /* Public */,
+       1,    1,   54,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   62,    2, 0x0a /* Public */,
-       5,    1,   63,    2, 0x0a /* Public */,
-       8,    1,   66,    2, 0x0a /* Public */,
-      11,    0,   69,    2, 0x0a /* Public */,
-      12,    1,   70,    2, 0x0a /* Public */,
-      14,    1,   73,    2, 0x0a /* Public */,
-      16,    1,   76,    2, 0x0a /* Public */,
-       3,    0,   79,    2, 0x0a /* Public */,
+       4,    0,   57,    2, 0x0a /* Public */,
+       5,    1,   58,    2, 0x0a /* Public */,
+       8,    0,   61,    2, 0x0a /* Public */,
+       9,    1,   62,    2, 0x0a /* Public */,
+      11,    1,   65,    2, 0x0a /* Public */,
+       3,    0,   68,    2, 0x0a /* Public */,
+      13,    0,   69,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    3,
@@ -91,11 +85,10 @@ static const uint qt_meta_data_AudioSamplesGetter[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 6,    7,
-    QMetaType::Void, 0x80000000 | 9,   10,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,   13,
-    QMetaType::Void, QMetaType::Bool,   15,
-    QMetaType::Void, QMetaType::Bool,   17,
+    QMetaType::Void, QMetaType::Bool,   10,
+    QMetaType::Void, QMetaType::Bool,   12,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -109,12 +102,11 @@ void AudioSamplesGetter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 0: _t->isSamplingSignal((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 1: _t->init(); break;
         case 2: _t->setInputAudioDevice((*reinterpret_cast< QAudioInput*(*)>(_a[1]))); break;
-        case 3: _t->setOutputAudioDevice((*reinterpret_cast< QAudioOutput*(*)>(_a[1]))); break;
-        case 4: _t->onSamplesCaptured(); break;
-        case 5: _t->setMuteEnabled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 6: _t->setEchoEnabled((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 7: _t->startSampling((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 8: _t->isSampling(); break;
+        case 3: _t->onSamplesCaptured(); break;
+        case 4: _t->setMuteEnabled((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 5: _t->startSampling((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 6: _t->isSampling(); break;
+        case 7: _t->connectDeviceWithBuf(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -125,13 +117,6 @@ void AudioSamplesGetter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QAudioInput* >(); break;
-            }
-            break;
-        case 3:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-            case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QAudioOutput* >(); break;
             }
             break;
         }
@@ -172,13 +157,13 @@ int AudioSamplesGetter::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 8;
     }
     return _id;
 }
