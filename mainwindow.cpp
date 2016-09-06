@@ -112,10 +112,13 @@ void MainWindow::updateConnectButton(bool isConnected)
     if(isConnected)
     {
         ui->pB_connect->setText("Disconnect");
+        audioPlayer->changeConnectionState(true);
     }
     else
     {
         ui->pB_connect->setText("Connect");
+        audioPlayer->changeConnectionState(false);
+
     }
 }
 
