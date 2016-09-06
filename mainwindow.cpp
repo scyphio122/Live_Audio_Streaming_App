@@ -178,7 +178,7 @@ void MainWindow::paintEvent(QPaintEvent *)
 void MainWindow::setFftCalculator(FftCalculator* fft)
 {
     this->fft = fft;
-    connect(fft, SIGNAL(fftCompleted(Complex*,int)), this, SLOT(setFftOutArray(Complex*,int)));
+    connect(fft, SIGNAL(fftCompleted(Complex<double>*,int)), this, SLOT(setFftOutArray(Complex<double>*,int)));
     connect(fft, SIGNAL(repaintGUI()), this, SLOT(repaint()));
     connect(this, SIGNAL(fftEnable(bool)), fft, SLOT(fftEnable(bool)));
 
@@ -239,7 +239,7 @@ void MainWindow::onDisconnect()
     disconnectWindow.exec();
 }
 
-void MainWindow::setFftOutArray(Complex *array, int arraySize)
+void MainWindow::setFftOutArray(Complex<double> *array, int arraySize)
 {
     mutex.lock();
     this->fftOutArray = array;

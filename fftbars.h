@@ -37,7 +37,7 @@ private:
      * @param painter[in] - painter which is used to draw the scale
      * @param windowHeight[in]
      */
-    void drawBar(Complex* inputArray, int size, int frequency, int x, int y, QPainter& painter, int windowHeight);
+    void drawBar(Complex<double>* inputArray, int size, int frequency, int x, int y, QPainter& painter, int windowHeight);
 public:
     FFTBars();
     ~FFTBars();
@@ -55,7 +55,7 @@ public:
      * @param windowHeight[in] - window height
      * @param windowWidth[in] - window width
      */
-    void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
+    void draw(Complex<double>* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
 
 
     /**

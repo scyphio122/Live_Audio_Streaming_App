@@ -52,7 +52,7 @@ public:
      */
     void setWindowWidth(int w);
 
-    uint32_t getFreqIndex(Complex* inputArray, int inputArraySize, int frequency);
+    uint32_t getFreqIndex(Complex<double>* inputArray, int inputArraySize, int frequency);
 
     /**
      * @brief draw - This is the interface function which is called in order to draw the single visualization frame. It uses FFT out array.
@@ -62,7 +62,7 @@ public:
      * @param windowHeight[in] - window height
      * @param windowWidth[in] - window width
      */
-    virtual void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
+    virtual void draw(Complex<double>* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
 
     /**
      * @brief draw - This is the interface function which is called in order to draw the single visualization frame. It uses input data samples array.

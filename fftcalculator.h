@@ -23,7 +23,7 @@ class FftCalculator : public QObject
 private:
     int         inputArrayIndex = 0;
     int16_t*    inputArray = nullptr;
-    Complex*    outputArray = nullptr;
+    Complex<double>*    outputArray = nullptr;
     uint16_t    inputArraySize = 0;
     uint16_t    outputArraySize = 0;
     bool        fftEnabled = true;
@@ -35,7 +35,7 @@ private:
      * @param step[in] - step needed for the FFT alghoritm
      * @return pointer to the calculated FFT output array
      */
-    Complex*    recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long step = 1);
+    Complex<double>*    recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long step = 1);
 
 public:
     FftCalculator();
@@ -51,7 +51,7 @@ public:
      * @brief setOutputArray Setter for the buffer where the output FFT will be held
      * @param array[in]
      */
-    void        setOutputArray(Complex* array);
+    void        setOutputArray(Complex<double>* array);
 
     /**
      * @brief setInputArraySize - setter for input array size
@@ -75,7 +75,7 @@ public:
      * @brief getOutputArray - getter for an output array
      * @return pointer to the output array
      */
-    Complex*    getOutputArray();
+    Complex<double>*    getOutputArray();
 
     /**
      * @brief getInputArraySize - getter for an input array's size
@@ -94,7 +94,7 @@ public:
      * @param index[in] - the index of the requested number
      * @return complex number
      */
-    Complex     getOutputElement(uint32_t index);
+    Complex<double>     getOutputElement(uint32_t index);
 
     /**
      * @brief runTransform - This function starts synchroneous FFT alghoritm.
@@ -115,7 +115,7 @@ public slots:
     void        fftEnable(bool value);
 
 signals:
-    void        fftCompleted(Complex* outputArray, int outputArraySize); /*< This signal is emitted when FFT is completed */
+    void        fftCompleted(Complex<double>* outputArray, int outputArraySize); /*< This signal is emitted when FFT is completed */
 };
 
 

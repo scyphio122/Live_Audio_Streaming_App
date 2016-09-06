@@ -54,7 +54,7 @@ private:
     QMutex                      mutex;
 
     FftCalculator*  fft = nullptr;
-    Complex*        fftOutArray = nullptr;
+    Complex<double>*        fftOutArray = nullptr;
     int16_t*        inputSamplesArray = nullptr;
     int             fftOutArraySize;
     QPixmap*        pixmap;
@@ -221,7 +221,7 @@ public slots:
      * @param array[in] - pointer to FFT out array
      * @param arraySize[in] - FFT out array size
      */
-    void setFftOutArray(Complex* array, int arraySize);
+    void setFftOutArray(Complex<double>* array, int arraySize);
 
     /**
      * @brief setFftCalculator - setter for FFT calculator

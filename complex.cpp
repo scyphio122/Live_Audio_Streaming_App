@@ -1,12 +1,15 @@
 #include "complex.h"
 #include <cmath>
 
-Complex::Complex()
+
+template <typename T>
+Complex<T>::Complex()
 {
 
 }
 
-Complex::Complex(double realOrMag, double imagOrArg, coordsType typeOfArgs)
+template <typename T>
+Complex<T>::Complex(T realOrMag, T imagOrArg, coordsType typeOfArgs)
 {
     if(typeOfArgs == CARTESIAN_COORD)
     {
@@ -25,7 +28,8 @@ Complex::Complex(double realOrMag, double imagOrArg, coordsType typeOfArgs)
     }
 }
 
-Complex::Complex(const Complex& number)
+template <typename T>
+Complex<T>::Complex(const Complex<T>& number)
 {
     this->realPart = number.realPart;
     this->imagPart = number.imagPart;
@@ -33,50 +37,60 @@ Complex::Complex(const Complex& number)
     this->argument = number.argument;
 }
 
-void Complex::changeRealPart(double value)
+template <typename T>
+void Complex<T>::changeRealPart(T value)
 {
     this->realPart = value;
     this->magnitude = sqrt(realPart*realPart + imagPart*imagPart);;
     this->argument  = atan2(imagPart, realPart);
 }
 
-void Complex::changeImagPart(double value)
+template <typename T>
+void Complex<T>::changeImagPart(T value)
 {
     this->imagPart = value;
     this->magnitude = sqrt(realPart*realPart + imagPart*imagPart);;
     this->argument  = atan2(imagPart, realPart);
 }
 
-void Complex::changeMagnitude(double value)
+template <typename T>
+void Complex<T>::changeMagnitude(T value)
 {
     this->magnitude = value;
     this->realPart = magnitude*cos(argument);
     this->imagPart = magnitude*sin(argument);
 }
 
-void Complex::changeArgument(double value)
+template <typename T>
+void Complex<T>::changeArgument(T value)
 {
     this->argument = value;
     this->realPart = magnitude*cos(argument);
     this->imagPart = magnitude*sin(argument);
 }
 
-double Complex::getRealPart()
+template <typename T>
+T Complex<T>::getRealPart()
 {
     return this->realPart;
 }
 
-double Complex::getImagPart()
+template <typename T>
+T Complex<T>::getImagPart()
 {
     return this->imagPart;
 }
 
-double Complex::getMagnitude()
+template <typename T>
+T Complex<T>::getMagnitude()
 {
     return this->magnitude;
 }
 
-double Complex::getArg()
+template <typename T>
+T Complex<T>::getArg()
 {
     return this->argument;
 }
+
+template class Complex<double>;

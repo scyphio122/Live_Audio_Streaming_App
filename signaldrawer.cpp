@@ -50,7 +50,7 @@ void SignalDrawer::draw(uint16_t *inputArray, int size, QPainter &painter, int w
     return;
 }
 
-void SignalDrawer::draw(Complex *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
+void SignalDrawer::draw(Complex<double> *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
 {
 
 }

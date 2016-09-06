@@ -17,7 +17,7 @@ GraphicsVisualizer::~GraphicsVisualizer()
     }
 }
 
-void GraphicsVisualizer::draw(Complex *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
+void GraphicsVisualizer::draw(Complex<double> *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth)
 {
     if(inputArray != nullptr)
     {

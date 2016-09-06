@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[48];
-    char stringdata[793];
+    char stringdata[801];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -64,19 +64,19 @@ QT_MOC_LITERAL(31, 560, 9), // "updateGUI"
 QT_MOC_LITERAL(32, 570, 21), // "audioGetterIsSampling"
 QT_MOC_LITERAL(33, 592, 16), // "signalFromThread"
 QT_MOC_LITERAL(34, 609, 14), // "setFftOutArray"
-QT_MOC_LITERAL(35, 624, 8), // "Complex*"
-QT_MOC_LITERAL(36, 633, 5), // "array"
-QT_MOC_LITERAL(37, 639, 9), // "arraySize"
-QT_MOC_LITERAL(38, 649, 16), // "setFftCalculator"
-QT_MOC_LITERAL(39, 666, 14), // "FftCalculator*"
-QT_MOC_LITERAL(40, 681, 3), // "fft"
-QT_MOC_LITERAL(41, 685, 23), // "ManageConnectionRequest"
-QT_MOC_LITERAL(42, 709, 8), // "senderIP"
-QT_MOC_LITERAL(43, 718, 19), // "updateConnectButton"
-QT_MOC_LITERAL(44, 738, 11), // "isConnected"
-QT_MOC_LITERAL(45, 750, 12), // "onDisconnect"
-QT_MOC_LITERAL(46, 763, 20), // "setAudioSamplesArray"
-QT_MOC_LITERAL(47, 784, 8) // "int16_t*"
+QT_MOC_LITERAL(35, 624, 16), // "Complex<double>*"
+QT_MOC_LITERAL(36, 641, 5), // "array"
+QT_MOC_LITERAL(37, 647, 9), // "arraySize"
+QT_MOC_LITERAL(38, 657, 16), // "setFftCalculator"
+QT_MOC_LITERAL(39, 674, 14), // "FftCalculator*"
+QT_MOC_LITERAL(40, 689, 3), // "fft"
+QT_MOC_LITERAL(41, 693, 23), // "ManageConnectionRequest"
+QT_MOC_LITERAL(42, 717, 8), // "senderIP"
+QT_MOC_LITERAL(43, 726, 19), // "updateConnectButton"
+QT_MOC_LITERAL(44, 746, 11), // "isConnected"
+QT_MOC_LITERAL(45, 758, 12), // "onDisconnect"
+QT_MOC_LITERAL(46, 771, 20), // "setAudioSamplesArray"
+QT_MOC_LITERAL(47, 792, 8) // "int16_t*"
 
     },
     "MainWindow\0setInputAudioDeviceSignal\0"
@@ -97,9 +97,10 @@ QT_MOC_LITERAL(47, 784, 8) // "int16_t*"
     "on_cB_Visualization_currentIndexChanged\0"
     "index\0updateGUI\0audioGetterIsSampling\0"
     "signalFromThread\0setFftOutArray\0"
-    "Complex*\0array\0arraySize\0setFftCalculator\0"
-    "FftCalculator*\0fft\0ManageConnectionRequest\0"
-    "senderIP\0updateConnectButton\0isConnected\0"
+    "Complex<double>*\0array\0arraySize\0"
+    "setFftCalculator\0FftCalculator*\0fft\0"
+    "ManageConnectionRequest\0senderIP\0"
+    "updateConnectButton\0isConnected\0"
     "onDisconnect\0setAudioSamplesArray\0"
     "int16_t*"
 };
@@ -212,7 +213,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 19: _t->on_cB_Visualization_currentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 20: _t->updateGUI(); break;
         case 21: _t->audioGetterIsSampling((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 22: _t->setFftOutArray((*reinterpret_cast< Complex*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 22: _t->setFftOutArray((*reinterpret_cast< Complex<double>*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 23: _t->setFftCalculator((*reinterpret_cast< FftCalculator*(*)>(_a[1]))); break;
         case 24: _t->ManageConnectionRequest((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 25: _t->updateConnectButton((*reinterpret_cast< bool(*)>(_a[1]))); break;

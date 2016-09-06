@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iostream>
 
+
 FftCalculator::FftCalculator() : QObject(nullptr)
 {
 
@@ -19,7 +20,7 @@ void FftCalculator::setInputArray(int16_t *array)
     inputArray = array;
 }
 
-void FftCalculator::setOutputArray(Complex *array)
+void FftCalculator::setOutputArray(Complex<double> *array)
 {
     outputArray = array;
 }
@@ -37,7 +38,7 @@ int16_t* FftCalculator::getInputArray()
 {
     return inputArray;
 }
-Complex* FftCalculator::getOutputArray()
+Complex<double>* FftCalculator::getOutputArray()
 {
     return outputArray;
 }
@@ -52,7 +53,7 @@ uint16_t FftCalculator::getOutputArraySize()
     return outputArraySize;
 }
 
-Complex FftCalculator::getOutputElement(uint32_t index)
+Complex<double> FftCalculator::getOutputElement(uint32_t index)
 {
     return outputArray[index];
 }
@@ -88,27 +89,27 @@ void FftCalculator::runTransform()
     fftEnabled = false;
 }
 
-Complex* FftCalculator::recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long int step)
+Complex<double>* FftCalculator::recursiveFFT(int16_t subarray[], uint16_t subarraySize, unsigned long int step)
 {
-    Complex* resultArray = nullptr;
+    Complex<double>* resultArray = nullptr;
     if(subarraySize == 1)
-        return new Complex(subarray[0], 0, Complex::CARTESIAN_COORD);
+        return new Complex<double>(subarray[0], 0, Complex<double>::CARTESIAN_COORD);
     else
     {
-        Complex* evenArray = nullptr;
-        Complex* oddArray = nullptr;
+        Complex<double>* evenArray = nullptr;
+        Complex<double>* oddArray = nullptr;
 
         evenArray   = recursiveFFT(subarray, subarraySize/2, step*2);
         oddArray    = recursiveFFT(subarray + step, subarraySize/2, step*2);
 
         double complexConstArgPart = -2*M_PI/subarraySize;
 
-        resultArray = new Complex[subarraySize];
+        resultArray = new Complex<double>[subarraySize];
         int halfSubArraySize = subarraySize/2;
         for(uint16_t k=0; k<halfSubArraySize; k++)
         {
-           resultArray[k] = evenArray[k] + Complex(1.0, -complexConstArgPart*k, Complex::POLAR_COORDS)*oddArray[k];
-           resultArray[k + subarraySize/2]  = evenArray[k] - Complex(1.0, -complexConstArgPart*k, Complex::POLAR_COORDS)*oddArray[k];
+           resultArray[k] = evenArray[k] + Complex<double>(1.0, -complexConstArgPart*k, Complex<double>::POLAR_COORDS)*oddArray[k];
+           resultArray[k + subarraySize/2]  = evenArray[k] - Complex<double>(1.0, -complexConstArgPart*k, Complex<double>::POLAR_COORDS)*oddArray[k];
         }
 
         delete[] evenArray;

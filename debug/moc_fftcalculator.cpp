@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_FftCalculator_t {
     QByteArrayData data[8];
-    char stringdata[81];
+    char stringdata[89];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,16 +32,16 @@ static const qt_meta_stringdata_FftCalculator_t qt_meta_stringdata_FftCalculator
 QT_MOC_LITERAL(0, 0, 13), // "FftCalculator"
 QT_MOC_LITERAL(1, 14, 12), // "fftCompleted"
 QT_MOC_LITERAL(2, 27, 0), // ""
-QT_MOC_LITERAL(3, 28, 8), // "Complex*"
-QT_MOC_LITERAL(4, 37, 11), // "outputArray"
-QT_MOC_LITERAL(5, 49, 15), // "outputArraySize"
-QT_MOC_LITERAL(6, 65, 9), // "fftEnable"
-QT_MOC_LITERAL(7, 75, 5) // "value"
+QT_MOC_LITERAL(3, 28, 16), // "Complex<double>*"
+QT_MOC_LITERAL(4, 45, 11), // "outputArray"
+QT_MOC_LITERAL(5, 57, 15), // "outputArraySize"
+QT_MOC_LITERAL(6, 73, 9), // "fftEnable"
+QT_MOC_LITERAL(7, 83, 5) // "value"
 
     },
-    "FftCalculator\0fftCompleted\0\0Complex*\0"
-    "outputArray\0outputArraySize\0fftEnable\0"
-    "value"
+    "FftCalculator\0fftCompleted\0\0"
+    "Complex<double>*\0outputArray\0"
+    "outputArraySize\0fftEnable\0value"
 };
 #undef QT_MOC_LITERAL
 
@@ -78,7 +78,7 @@ void FftCalculator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     if (_c == QMetaObject::InvokeMetaMethod) {
         FftCalculator *_t = static_cast<FftCalculator *>(_o);
         switch (_id) {
-        case 0: _t->fftCompleted((*reinterpret_cast< Complex*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 0: _t->fftCompleted((*reinterpret_cast< Complex<double>*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 1: _t->fftEnable((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
@@ -86,7 +86,7 @@ void FftCalculator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (FftCalculator::*_t)(Complex * , int );
+            typedef void (FftCalculator::*_t)(Complex<double> * , int );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&FftCalculator::fftCompleted)) {
                 *result = 0;
             }
@@ -131,7 +131,7 @@ int FftCalculator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void FftCalculator::fftCompleted(Complex * _t1, int _t2)
+void FftCalculator::fftCompleted(Complex<double> * _t1, int _t2)
 {
     void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

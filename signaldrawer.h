@@ -22,7 +22,7 @@ public:
      * @param windowHeight[in] - window height
      * @param windowWidth[in] - window width
      */
-    void draw(Complex *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth);
+    void draw(Complex<double> *inputArray, int size, QPainter &painter, int windowHeight, int windowWidth);
 
     /**
      * @brief draw - OVERLOADED FUNCTION. This is the interface function which is called in order to draw the single visualization frame. It uses input data samples array.

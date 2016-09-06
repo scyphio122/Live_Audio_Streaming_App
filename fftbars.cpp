@@ -20,7 +20,7 @@ void FFTBars::calcOffset()
     this->xOffset = (windowWidth - barSizeX*numOfFreqs)/numOfFreqs;
 }
 
-void FFTBars::drawBar(Complex* inputArray, int size, int frequency, int x, int y, QPainter& painter, int windowHeight)
+void FFTBars::drawBar(Complex<double>* inputArray, int size, int frequency, int x, int y, QPainter& painter, int windowHeight)
 {
     int freqIndex = getFreqIndex(inputArray, size, frequency)/2;
     int numOfRects = inputArray[freqIndex].getMagnitude()/(barSizeY*25000);
@@ -54,7 +54,7 @@ void FFTBars::drawScale(QPainter& painter, int x, int y, int freq)
         painter.drawText(x + barSizeX/2 - 10, y, frequency);
 }
 
-void FFTBars::draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth)
+void FFTBars::draw(Complex<double>* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth)
 {
     for(int i=0; i<numOfFreqs; ++i)
     {

@@ -29,7 +29,7 @@ public:
      * @param windowHeight[in] - window height
      * @param windowWidth[in] - window width
      */
-    void draw(Complex* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
+    void draw(Complex<double>* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth);
 
     /**
      * @brief draw - This is the function which is called from mainwindow in order to draw the single visualization frame. It uses input data samples array.

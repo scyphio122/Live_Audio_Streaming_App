@@ -3,9 +3,11 @@
 
 #include <cmath>
 
+
 /**
  * @brief The Complex class - This is implementation of a complex number
  */
+template <typename T>
 class Complex
 {
 public:
@@ -22,64 +24,64 @@ public:
      * @param imagOrArg[in] - imaginary part(cartesian)  or argument(polar)
      * @param typeOfArgs[in] - tupe of arguments - as cartesian coordinates or poalr coordinates
      */
-    Complex(double realOrMag, double imagOrArg, coordsType typeOfArgs);
+    Complex(T realOrMag, T imagOrArg, coordsType typeOfArgs);
 
     /**
      * @brief Complex - copying constructor for complex number
      * @param number
      */
-    Complex(const Complex& number);
+    Complex(const Complex<T> &number);
 
     /**
      * @brief changeRealPart - setter for real part
      * @param value
      */
-    void    changeRealPart(double value);
+    void    changeRealPart(T value);
     /**
      * @brief changeImagPart - setter for imagninary part
      * @param value
      */
-    void    changeImagPart(double value);
+    void    changeImagPart(T value);
 
     /**
      * @brief changeMagnitude - setter for magnitude
      * @param value
      */
-    void    changeMagnitude(double value);
+    void    changeMagnitude(T value);
 
     /**
      * @brief changeArgument - setter for argument
      * @param value
      */
-    void    changeArgument(double value);
+    void    changeArgument(T value);
 
     /**
      * @brief getRealPart - getter for real part
      * @return
      */
-    double  getRealPart();
+    T  getRealPart();
 
     /**
      * @brief getImagPart - getter for imaginary part
      * @return
      */
-    double  getImagPart();
+    T  getImagPart();
 
     /**
      * @brief getMagnitude - getter for magnitude
      * @return
      */
-    double  getMagnitude();
+    T getMagnitude();
 
     /**
      * @brief getArg - getter for argument
      * @return
      */
-    double  getArg();
+    T  getArg();
 
-    Complex operator+(const Complex& number)
+    Complex<T> operator+(const Complex<T>& number)
     {
-        Complex _number;
+        Complex<T> _number;
         _number.realPart = this->realPart + number.realPart;
         _number.imagPart = this->imagPart +  number.imagPart;
 
@@ -89,7 +91,7 @@ public:
         return _number;
     }
 
-    Complex& operator+=(const Complex& number)
+    Complex<T>& operator+=(const Complex<T>& number)
     {
         this->realPart = this->realPart + number.realPart;
         this->imagPart = this->imagPart +  number.imagPart;
@@ -99,9 +101,9 @@ public:
         return *this;
     }
 
-    Complex operator-(const Complex& number)
+    Complex<T> operator-(const Complex<T>& number)
     {
-        Complex _number;
+        Complex<T> _number;
         _number.realPart = this->realPart - number.realPart;
         _number.imagPart = this->imagPart -  number.imagPart;
         _number.magnitude = sqrt(_number.realPart*_number.realPart + _number.imagPart*_number.imagPart);
@@ -109,7 +111,7 @@ public:
         return _number;
     }
 
-    Complex& operator-=(const Complex& number)
+    Complex<T>& operator-=(const Complex<T>& number)
     {
         this->realPart = this->realPart - number.realPart;
         this->imagPart = this->imagPart -  number.imagPart;
@@ -119,9 +121,9 @@ public:
         return *this;
     }
 
-    Complex operator*(const Complex& number)
+    Complex<T> operator*(const Complex<T>& number)
     {
-        Complex _number;
+        Complex<T> _number;
 
         _number.realPart = this->realPart*number.realPart - this->imagPart*number.imagPart;
         _number.imagPart = this->imagPart*number.realPart + this->realPart*number.imagPart;
@@ -131,7 +133,7 @@ public:
         return _number;
     }
 
-    Complex& operator*=(const Complex& number)
+    Complex<T>& operator*=(const Complex<T>& number)
     {
         this->realPart = this->realPart*number.realPart - this->imagPart*number.imagPart;
         this->imagPart = this->imagPart*number.realPart + this->realPart*number.imagPart;
@@ -141,9 +143,9 @@ public:
         return *this;
     }
 
-    Complex operator/(const Complex& number)
+    Complex<T> operator/(const Complex<T>& number)
     {
-        Complex _number;
+        Complex<T> _number;
 
         _number.realPart = (this->realPart*number.realPart + this->imagPart*number.imagPart)/(number.realPart*number.realPart + number.imagPart*number.imagPart);
         _number.imagPart = (this->imagPart*number.realPart - this->realPart*number.imagPart)/(number.realPart*number.realPart + number.imagPart*number.imagPart);
@@ -152,7 +154,7 @@ public:
         return _number;
     }
 
-    Complex& operator/=(const Complex& number)
+    Complex<T>& operator/=(const Complex<T>& number)
     {
         this->realPart = (this->realPart*number.realPart + this->imagPart*number.imagPart)/(number.realPart*number.realPart + number.imagPart*number.imagPart);
         this->imagPart = (this->imagPart*number.realPart - this->realPart*number.imagPart)/(number.realPart*number.realPart + number.imagPart*number.imagPart);
@@ -162,7 +164,7 @@ public:
     }
 
 
-    bool operator==(const Complex& number)
+    bool operator==(const Complex<T>& number)
     {
         return ((this->realPart == number.realPart) && (this->imagPart == number.imagPart));
     }
@@ -170,10 +172,10 @@ public:
 
 
 private:
-    double realPart;    /*< The real part of the complex number */
-    double imagPart;    /*< The imaginary part of the complex number */
-    double magnitude;
-    double argument;
+    T realPart;    /*< The real part of the complex number */
+    T imagPart;    /*< The imaginary part of the complex number */
+    T magnitude;
+    T argument;
 
 };
 
