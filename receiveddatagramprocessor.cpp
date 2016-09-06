@@ -50,15 +50,3 @@ void ReceivedDatagramProcessor::processDatagram(UdpDatagram* datagram, QString s
     return;
 }
 
-std::string ReceivedDatagramProcessor::parseName(uint8_t* data)
-{
-    uint64_t i=1;
-    std::string name = "";
-
-    while(data[i] != '\0')
-    {
-        name.push_back(data[i]);
-    }
-
-    return name;
-}
