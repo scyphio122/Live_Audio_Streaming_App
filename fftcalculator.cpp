@@ -57,24 +57,7 @@ Complex FftCalculator::getOutputElement(uint32_t index)
     return outputArray[index];
 }
 
-void FftCalculator::appendSample(uint16_t c)
-{
-    this->inputArray[inputArrayIndex++] = c;
-    if(inputArrayIndex == inputArraySize)
-    {
-        inputArrayIndex = 0;
-    }
-}
 
-void FftCalculator::setMutex(QMutex* mutex)
-{
-    this->mutex = mutex;
-}
-
-uint16_t FftCalculator::getInputFillLevel()
-{
-    return this->inputArrayIndex;
-}
 
 void FftCalculator::fftEnable(bool value)
 {
