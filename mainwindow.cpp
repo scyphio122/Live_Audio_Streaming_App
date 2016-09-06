@@ -185,10 +185,6 @@ void MainWindow::setFftCalculator(FftCalculator* fft)
 }
 
 
-void MainWindow::visualizeFFT()
-{
-    update();
-}
 
 void MainWindow::displayAudioInDevices()
 {
