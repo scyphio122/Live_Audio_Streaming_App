@@ -11,12 +11,7 @@
  */
 class AbstractVisualization
 {
-protected:
-    QMutex mutex;
 public:
-    QRgb color;
-    int       windowHeight;
-    int       windowWidth;
 
     enum InputType
     {
@@ -24,7 +19,6 @@ public:
         INPUT_FFT
     };
 
-    InputType inputType = INPUT_FFT;
 
     AbstractVisualization();
 
@@ -52,6 +46,8 @@ public:
      */
     void setWindowWidth(int w);
 
+    InputType getInputType(){ return inputType; }
+
     uint32_t getFreqIndex(Complex<double>* inputArray, int inputArraySize, int frequency);
 
     /**
@@ -73,6 +69,14 @@ public:
      * @param windowWidth[in] - window width
      */
     virtual void draw(uint16_t* inputArray, int size, QPainter& painter, int windowHeight, int windowWidth) = 0;
+
+protected:
+    QMutex mutex;
+    QRgb color;
+    int       windowHeight;
+    int       windowWidth;
+    InputType inputType = INPUT_FFT;
+
 };
 
 #endif // ABSTRACTVISUALIZATION_H

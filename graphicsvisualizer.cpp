@@ -44,10 +44,10 @@ void GraphicsVisualizer::switchVisualization(AbstractVisualization* newVisualiza
 
     currentVisualization = newVisualization;
 
-    emit on_VisualizationSwitch((int)newVisualization->inputType);
+    emit on_VisualizationSwitch((int)newVisualization->getInputType());
 }
 
 AbstractVisualization::InputType GraphicsVisualizer::GetInputType()
 {
-    return currentVisualization->inputType;
+    return currentVisualization->getInputType();
 }
